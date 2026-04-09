@@ -1,0 +1,181 @@
+import type { Locale } from "@/lib/i18n"
+
+export const headerFooterTranslations = {
+  de: {
+    languages: {
+      de: "Deutsch",
+      en: "Englisch",
+      ru: "Russisch",
+    },
+    header: {
+      navigation: [
+        { name: "Startseite", href: "/" },
+        { name: "Über uns", href: "/ueber-uns" },
+        {
+          name: "Leistungen",
+          href: "/leistungen",
+          children: [
+            { name: "Unfallgutachten", href: "/leistungen/unfallgutachten" },
+            { name: "Autovermietung", href: "/leistungen/autovermietung" },
+            { name: "Autoservice & Werkstatt", href: "/leistungen/autoservice" },
+            { name: "Detailing", href: "/leistungen/detailing" },
+          ],
+        },
+        { name: "Kontakt", href: "/kontakt" },
+      ],
+      allServices: "Alle Leistungen",
+      inquiry: "Anfrage senden",
+      callNow: "Jetzt anrufen",
+      openMenu: "Menü öffnen",
+    },
+    footer: {
+      description:
+        "Ihr starker Partner rund ums Fahrzeug in Berlin. Unfallgutachten, Autovermietung, Werkstatt und Premium Detailing unter einem Dach.",
+      address: "Lübarser Str. 25, 13435 Berlin",
+      hoursWeek: "Mo-Fr: 9:00-18:00",
+      hoursSat: "Sa: 10:00-16:00",
+      hoursNote: "sonst nach Vereinbarung",
+      columns: {
+        services: "Leistungen",
+        company: "Unternehmen",
+        legal: "Rechtliches",
+        social: "Social Media",
+      },
+      companyLinks: [
+        { name: "Über uns", href: "/ueber-uns" },
+        { name: "Kontakt", href: "/kontakt" },
+        { name: "Karriere", href: "/kontakt" },
+      ],
+      legalLinks: [
+        { name: "Impressum", href: "/impressum" },
+        { name: "Datenschutz", href: "/datenschutz" },
+        { name: "AGB", href: "/agb" },
+      ],
+      socialLinks: [
+        { name: "@unfallx", href: "https://instagram.com/unfallx" },
+        { name: "@unext.performance", href: "https://instagram.com/unext.performance" },
+      ],
+      copyright: "Alle Rechte vorbehalten.",
+      bottomLocation: "Standort: Berlin",
+      bottomCertified: "Zertifizierter Service",
+    },
+  },
+  en: {
+    languages: {
+      de: "German",
+      en: "English",
+      ru: "Russian",
+    },
+    header: {
+      navigation: [
+        { name: "Home", href: "/" },
+        { name: "About", href: "/ueber-uns" },
+        {
+          name: "Services",
+          href: "/leistungen",
+          children: [
+            { name: "Accident Reports", href: "/leistungen/unfallgutachten" },
+            { name: "Car Rental", href: "/leistungen/autovermietung" },
+            { name: "Workshop & Service", href: "/leistungen/autoservice" },
+            { name: "Detailing", href: "/leistungen/detailing" },
+          ],
+        },
+        { name: "Contact", href: "/kontakt" },
+      ],
+      allServices: "All services",
+      inquiry: "Send inquiry",
+      callNow: "Call now",
+      openMenu: "Open menu",
+    },
+    footer: {
+      description:
+        "Your strong automotive partner in Berlin. Accident reports, car rental, workshop service and premium detailing under one roof.",
+      address: "Lübarser Str. 25, 13435 Berlin",
+      hoursWeek: "Mon-Fri: 9:00 AM-6:00 PM",
+      hoursSat: "Sat: 10:00 AM-4:00 PM",
+      hoursNote: "otherwise by appointment",
+      columns: {
+        services: "Services",
+        company: "Company",
+        legal: "Legal",
+        social: "Social media",
+      },
+      companyLinks: [
+        { name: "About", href: "/ueber-uns" },
+        { name: "Contact", href: "/kontakt" },
+        { name: "Careers", href: "/kontakt" },
+      ],
+      legalLinks: [
+        { name: "Legal notice", href: "/impressum" },
+        { name: "Privacy policy", href: "/datenschutz" },
+        { name: "Terms & conditions", href: "/agb" },
+      ],
+      socialLinks: [
+        { name: "@unfallx", href: "https://instagram.com/unfallx" },
+        { name: "@unext.performance", href: "https://instagram.com/unext.performance" },
+      ],
+      copyright: "All rights reserved.",
+      bottomLocation: "Location: Berlin",
+      bottomCertified: "Certified service",
+    },
+  },
+  ru: {
+    languages: {
+      de: "Немецкий",
+      en: "Английский",
+      ru: "Русский",
+    },
+    header: {
+      navigation: [
+        { name: "Главная", href: "/" },
+        { name: "О нас", href: "/ueber-uns" },
+        {
+          name: "Услуги",
+          href: "/leistungen",
+          children: [
+            { name: "Экспертиза ДТП", href: "/leistungen/unfallgutachten" },
+            { name: "Прокат авто", href: "/leistungen/autovermietung" },
+            { name: "Сервис и мастерская", href: "/leistungen/autoservice" },
+            { name: "Детейлинг", href: "/leistungen/detailing" },
+          ],
+        },
+        { name: "Контакты", href: "/kontakt" },
+      ],
+      allServices: "Все услуги",
+      inquiry: "Отправить запрос",
+      callNow: "Позвонить",
+      openMenu: "Открыть меню",
+    },
+    footer: {
+      description:
+        "Ваш надежный автомобильный партнер в Берлине. Экспертиза ДТП, прокат авто, сервис и премиальный детейлинг под одной крышей.",
+      address: "Lübarser Str. 25, 13435 Berlin",
+      hoursWeek: "Пн-Пт: 9:00-18:00",
+      hoursSat: "Сб: 10:00-16:00",
+      hoursNote: "в другое время по договоренности",
+      columns: {
+        services: "Услуги",
+        company: "Компания",
+        legal: "Правовая информация",
+        social: "Соцсети",
+      },
+      companyLinks: [
+        { name: "О нас", href: "/ueber-uns" },
+        { name: "Контакты", href: "/kontakt" },
+        { name: "Карьера", href: "/kontakt" },
+      ],
+      legalLinks: [
+        { name: "Выходные данные", href: "/impressum" },
+        { name: "Политика конфиденциальности", href: "/datenschutz" },
+        { name: "Условия и положения", href: "/agb" },
+      ],
+      socialLinks: [
+        { name: "@unfallx", href: "https://instagram.com/unfallx" },
+        { name: "@unext.performance", href: "https://instagram.com/unext.performance" },
+      ],
+      copyright: "Все права защищены.",
+      bottomLocation: "Локация: Berlin",
+      bottomCertified: "Сертифицированный сервис",
+    },
+  },
+} as const satisfies Record<Locale, unknown>

@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Phone, MessageCircle, CheckCircle, ArrowLeft } from "lucide-react"
+import { ArrowLeft, CheckCircle, MessageCircle, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ServiceInquiryForm } from "@/components/service-inquiry-form"
 import {
@@ -9,6 +9,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { getCurrentLocale } from "@/lib/server-locale"
+import { getTranslations } from "@/lib/translations"
 
 interface ServicePageLayoutProps {
   title: string
@@ -17,16 +19,16 @@ interface ServicePageLayoutProps {
   image: string
   imageClassName?: string
   phone: string
-  benefits: string[]
-  services: { title: string; description: string }[]
-  whyChoose: { title: string; description: string }[]
-  faqs?: { question: string; answer: string }[]
+  benefits: readonly string[]
+  services: readonly { title: string; description: string }[]
+  whyChoose: readonly { title: string; description: string }[]
+  faqs?: readonly { question: string; answer: string }[]
   formTitle: string
   serviceName: string
   badge?: string
 }
 
-export function ServicePageLayout({
+export async function ServicePageLayout({
   title,
   subtitle,
   description,
@@ -41,10 +43,12 @@ export function ServicePageLayout({
   serviceName,
   badge,
 }: ServicePageLayoutProps) {
+  const locale = await getCurrentLocale()
+  const t = getTranslations(locale).serviceDetail.layout
+
   return (
     <main>
-      {/* Hero Section */}
-      <section className="relative py-20 lg:py-28 overflow-hidden">
+      <section className="relative overflow-hidden py-20 lg:py-28">
         <div className="absolute inset-0">
           <Image
             src={image}
@@ -59,13 +63,12 @@ export function ServicePageLayout({
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-          {/* Back Link */}
           <Link
             href="/leistungen"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8"
+            className="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            Zurück zu Leistungen
+            {t.backToServices}
           </Link>
 
           <div className="max-w-2xl">
@@ -75,17 +78,12 @@ export function ServicePageLayout({
               </div>
             )}
 
-            <p className="text-sm font-medium uppercase tracking-wider text-primary">
-              {subtitle}
-            </p>
+            <p className="text-sm font-medium uppercase tracking-wider text-primary">{subtitle}</p>
             <h1 className="mt-2 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
               {title}
             </h1>
-            <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              {description}
-            </p>
+            <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{description}</p>
 
-            {/* Quick Benefits */}
             <ul className="mt-8 grid gap-2 sm:grid-cols-2">
               {benefits.map((benefit) => (
                 <li key={benefit} className="flex items-center gap-2 text-sm text-foreground">
@@ -95,7 +93,6 @@ export function ServicePageLayout({
               ))}
             </ul>
 
-            {/* CTAs */}
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button asChild size="lg" className="gap-2">
                 <a href={`tel:${phone.replace(/\s/g, "")}`}>
@@ -118,21 +115,17 @@ export function ServicePageLayout({
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-16 lg:py-24 bg-card">
+      <section className="bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl mb-12">
-            Unsere Leistungen
+          <h2 className="mb-12 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            {t.servicesTitle}
           </h2>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
-              <div
-                key={service.title}
-                className="p-6 rounded-xl border border-border/50 bg-background"
-              >
+              <div key={service.title} className="rounded-xl border border-border/50 bg-background p-6">
                 <h3 className="text-lg font-semibold text-foreground">{service.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                   {service.description}
                 </p>
               </div>
@@ -141,17 +134,14 @@ export function ServicePageLayout({
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
-      <section className="py-16 lg:py-24 bg-background">
+      <section className="bg-background py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
               <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                Warum UNEXT wählen?
+                {t.whyTitle}
               </h2>
-              <p className="mt-4 text-muted-foreground">
-                Vertrauen Sie auf unsere Erfahrung und Expertise.
-              </p>
+              <p className="mt-4 text-muted-foreground">{t.whyDescription}</p>
 
               <div className="mt-8 space-y-6">
                 {whyChoose.map((item) => (
@@ -168,28 +158,23 @@ export function ServicePageLayout({
               </div>
             </div>
 
-            {/* Form */}
             <div>
-              <ServiceInquiryForm
-                serviceName={serviceName}
-                serviceTitle={formTitle}
-              />
+              <ServiceInquiryForm serviceName={serviceName} serviceTitle={formTitle} />
             </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
       {faqs && faqs.length > 0 && (
-        <section className="py-16 lg:py-24 bg-card">
+        <section className="bg-card py-16 lg:py-24">
           <div className="mx-auto max-w-3xl px-4 lg:px-8">
-            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center mb-12">
-              Häufig gestellte Fragen
+            <h2 className="mb-12 text-center text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              {t.faqTitle}
             </h2>
 
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionItem key={faq.question} value={`item-${index}`}>
                   <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
                     {faq.answer}
@@ -201,16 +186,13 @@ export function ServicePageLayout({
         </section>
       )}
 
-      {/* CTA Section */}
-      <section className="py-16 lg:py-20 bg-primary">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8 text-center">
+      <section className="bg-primary py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-4 text-center lg:px-8">
           <h2 className="text-2xl font-bold tracking-tight text-primary-foreground sm:text-3xl">
-            Haben Sie Fragen?
+            {t.questionsTitle}
           </h2>
-          <p className="mt-4 text-primary-foreground/80">
-            Kontaktieren Sie uns jetzt – wir beraten Sie gerne!
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+          <p className="mt-4 text-primary-foreground/80">{t.questionsDescription}</p>
+          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <Button
               asChild
               size="lg"
@@ -228,7 +210,7 @@ export function ServicePageLayout({
               variant="outline"
               className="gap-2 border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
             >
-              <Link href="/kontakt">Kontakt aufnehmen</Link>
+              <Link href="/kontakt">{t.contactCta}</Link>
             </Button>
           </div>
         </div>

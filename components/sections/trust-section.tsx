@@ -1,48 +1,35 @@
-import { Award, Shield, BadgeCheck, FileCheck } from "lucide-react"
+import { Award, BadgeCheck, FileCheck, Shield } from "lucide-react"
+import { getCurrentLocale } from "@/lib/server-locale"
+import { getTranslations } from "@/lib/translations"
 
-const badges = [
-  {
-    icon: Award,
-    title: "Zertifizierte Gutachter",
-  },
-  {
-    icon: Shield,
-    title: "Geprüfter Service",
-  },
-  {
-    icon: BadgeCheck,
-    title: "TÜV-Standard",
-  },
-  {
-    icon: FileCheck,
-    title: "Offizielle Gutachten",
-  },
-]
+const icons = [Award, Shield, BadgeCheck, FileCheck]
 
-export function TrustSection() {
+export async function TrustSection() {
+  const locale = await getCurrentLocale()
+  const t = getTranslations(locale).home.trust
+
   return (
-    <section className="py-12 bg-card border-y border-border">
+    <section className="border-y border-border bg-card py-12">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="flex flex-col items-center">
-          <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-8">
-            Vertrauen Sie auf Qualität
+          <p className="mb-8 text-center text-sm font-medium uppercase tracking-wider text-muted-foreground">
+            {t.title}
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-16">
-            {badges.map((badge) => (
-              <div
-                key={badge.title}
-                className="flex items-center gap-3 text-muted-foreground"
-              >
-                <badge.icon className="h-8 w-8 text-primary" />
-                <span className="text-sm font-medium">{badge.title}</span>
-              </div>
-            ))}
+          <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-16">
+            {t.badges.map((badge, index) => {
+              const Icon = icons[index]
+
+              return (
+                <div key={badge} className="flex items-center gap-3 text-muted-foreground">
+                  <Icon className="h-8 w-8 text-primary" />
+                  <span className="text-sm font-medium">{badge}</span>
+                </div>
+              )
+            })}
           </div>
 
-          <p className="mt-8 text-xs text-muted-foreground text-center">
-            Platzhalter für zukünftige Zertifikate und Partnerlogos
-          </p>
+          <p className="mt-8 text-center text-xs text-muted-foreground">{t.note}</p>
         </div>
       </div>
     </section>

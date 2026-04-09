@@ -1,13 +1,15 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Field, FieldLabel, FieldGroup } from "@/components/ui/field"
-import { Spinner } from "@/components/ui/spinner"
 import { CheckCircle } from "lucide-react"
+import { useLocale } from "@/components/locale-provider"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
+import { Spinner } from "@/components/ui/spinner"
+import { Textarea } from "@/components/ui/textarea"
+import { getTranslations } from "@/lib/translations"
 
 interface ServiceInquiryFormProps {
   serviceName: string
@@ -26,14 +28,13 @@ export function ServiceInquiryForm({
 }: ServiceInquiryFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const { locale } = useLocale()
+  const t = getTranslations(locale).serviceDetail.form
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
-
-    // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1500))
-
     setIsSubmitting(false)
     setIsSubmitted(true)
   }
@@ -42,19 +43,13 @@ export function ServiceInquiryForm({
     return (
       <Card className="border-primary/30 bg-card">
         <CardContent className="p-8 text-center">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mb-4">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
             <CheckCircle className="h-8 w-8 text-primary" />
           </div>
-          <h3 className="text-xl font-semibold text-foreground">Anfrage gesendet!</h3>
-          <p className="mt-2 text-muted-foreground">
-            Vielen Dank für Ihre Anfrage. Wir melden uns schnellstmöglich bei Ihnen.
-          </p>
-          <Button
-            className="mt-6"
-            variant="outline"
-            onClick={() => setIsSubmitted(false)}
-          >
-            Neue Anfrage
+          <h3 className="text-xl font-semibold text-foreground">{t.successTitle}</h3>
+          <p className="mt-2 text-muted-foreground">{t.successText}</p>
+          <Button className="mt-6" variant="outline" onClick={() => setIsSubmitted(false)}>
+            {t.newInquiry}
           </Button>
         </CardContent>
       </Card>
@@ -65,66 +60,50 @@ export function ServiceInquiryForm({
     <Card className="border-border/50 bg-card">
       <CardHeader>
         <CardTitle>{serviceTitle}</CardTitle>
-        <CardDescription>
-          Füllen Sie das Formular aus und wir melden uns schnellstmöglich bei Ihnen.
-        </CardDescription>
+        <CardDescription>{t.description}</CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit}>
           <FieldGroup className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
               <Field>
-                <FieldLabel htmlFor="name">Name *</FieldLabel>
-                <Input id="name" name="name" placeholder="Ihr Name" required />
+                <FieldLabel htmlFor="name">{t.name}</FieldLabel>
+                <Input id="name" name="name" placeholder={t.namePlaceholder} required />
               </Field>
               <Field>
-                <FieldLabel htmlFor="phone">Telefonnummer *</FieldLabel>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  placeholder="0176 12345678"
-                  required
-                />
+                <FieldLabel htmlFor="phone">{t.phone}</FieldLabel>
+                <Input id="phone" name="phone" type="tel" placeholder={t.phonePlaceholder} required />
               </Field>
             </div>
 
             <Field>
-              <FieldLabel htmlFor="email">E-Mail *</FieldLabel>
+              <FieldLabel htmlFor="email">{t.email}</FieldLabel>
               <Input
                 id="email"
                 name="email"
                 type="email"
-                placeholder="ihre@email.de"
+                placeholder={t.emailPlaceholder}
                 required
               />
             </Field>
 
             {fields.vehicle && (
               <Field>
-                <FieldLabel htmlFor="vehicle">Fahrzeug</FieldLabel>
-                <Input
-                  id="vehicle"
-                  name="vehicle"
-                  placeholder="z.B. BMW 320d, 2021"
-                />
+                <FieldLabel htmlFor="vehicle">{t.vehicle}</FieldLabel>
+                <Input id="vehicle" name="vehicle" placeholder={t.vehiclePlaceholder} />
               </Field>
             )}
 
             {fields.subject && (
               <Field>
-                <FieldLabel htmlFor="subject">Betreff</FieldLabel>
-                <Input
-                  id="subject"
-                  name="subject"
-                  placeholder="Ihr Anliegen"
-                />
+                <FieldLabel htmlFor="subject">{t.subject}</FieldLabel>
+                <Input id="subject" name="subject" placeholder={t.subjectPlaceholder} />
               </Field>
             )}
 
             {fields.date && (
               <Field>
-                <FieldLabel htmlFor="date">Wunschtermin</FieldLabel>
+                <FieldLabel htmlFor="date">{t.date}</FieldLabel>
                 <Input
                   id="date"
                   name="date"
@@ -135,11 +114,11 @@ export function ServiceInquiryForm({
             )}
 
             <Field>
-              <FieldLabel htmlFor="message">Nachricht</FieldLabel>
+              <FieldLabel htmlFor="message">{t.message}</FieldLabel>
               <Textarea
                 id="message"
                 name="message"
-                placeholder="Beschreiben Sie Ihr Anliegen..."
+                placeholder={t.messagePlaceholder}
                 rows={4}
               />
             </Field>
@@ -150,19 +129,19 @@ export function ServiceInquiryForm({
               {isSubmitting ? (
                 <>
                   <Spinner className="mr-2" />
-                  Wird gesendet...
+                  {t.submitting}
                 </>
               ) : (
-                "Anfrage absenden"
+                t.submit
               )}
             </Button>
 
-            <p className="text-xs text-muted-foreground text-center">
-              Mit dem Absenden stimmen Sie unserer{" "}
+            <p className="text-center text-xs text-muted-foreground">
+              {t.privacyPrefix}{" "}
               <a href="/datenschutz" className="underline hover:text-foreground">
-                Datenschutzerklärung
+                {t.privacyLink}
               </a>{" "}
-              zu.
+              {t.privacySuffix}
             </p>
           </FieldGroup>
         </form>

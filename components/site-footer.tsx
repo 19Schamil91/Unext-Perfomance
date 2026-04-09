@@ -1,37 +1,26 @@
-import Link from "next/link"
+"use client"
+
 import Image from "next/image"
-import { MapPin, Mail, Phone, Clock, Instagram } from "lucide-react"
+import Link from "next/link"
+import { Clock, Instagram, Mail, MapPin, Phone } from "lucide-react"
+import { useLocale } from "@/components/locale-provider"
+import { getTranslations } from "@/lib/translations"
 
-const footerNavigation = {
-  leistungen: [
-    { name: "Unfallgutachten", href: "/leistungen/unfallgutachten" },
-    { name: "Autovermietung", href: "/leistungen/autovermietung" },
-    { name: "Autoservice & Werkstatt", href: "/leistungen/autoservice" },
-    { name: "Detailing", href: "/leistungen/detailing" },
-  ],
-  unternehmen: [
-    { name: "Über uns", href: "/ueber-uns" },
-    { name: "Kontakt", href: "/kontakt" },
-    { name: "Karriere", href: "/kontakt" },
-  ],
-  rechtliches: [
-    { name: "Impressum", href: "/impressum" },
-    { name: "Datenschutz", href: "/datenschutz" },
-    { name: "AGB", href: "/agb" },
-  ],
-}
-
-const socialLinks = [
-  { name: "Instagram @unfallx", href: "https://instagram.com/unfallx", icon: Instagram },
-  { name: "Instagram @unext.performance", href: "https://instagram.com/unext.performance", icon: Instagram },
-]
+const serviceLinks = [
+  { href: "/leistungen/unfallgutachten" },
+  { href: "/leistungen/autovermietung" },
+  { href: "/leistungen/autoservice" },
+  { href: "/leistungen/detailing" },
+] as const
 
 export function SiteFooter() {
+  const { locale } = useLocale()
+  const t = getTranslations(locale)
+
   return (
     <footer className="border-t border-border bg-card">
       <div className="mx-auto max-w-7xl px-4 py-12 lg:px-8 lg:py-16">
         <div className="grid gap-8 lg:grid-cols-4">
-          {/* Company Info */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-block">
               <Image
@@ -42,16 +31,12 @@ export function SiteFooter() {
                 className="h-10 w-auto"
               />
             </Link>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Ihr starker Partner rund ums Fahrzeug in Berlin. Unfallgutachten, Autovermietung,
-              Werkstatt und Premium Detailing unter einem Dach.
-            </p>
+            <p className="mt-4 text-sm text-muted-foreground">{t.footer.description}</p>
 
-            {/* Contact Info */}
             <div className="mt-6 flex flex-col gap-3 text-sm">
               <div className="flex items-start gap-3 text-muted-foreground">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                <span>Lübarser Str. 25, 13435 Berlin</span>
+                <span>{t.footer.address}</span>
               </div>
               <div className="flex items-center gap-3 text-muted-foreground">
                 <Mail className="h-4 w-4 shrink-0 text-primary" />
@@ -68,20 +53,35 @@ export function SiteFooter() {
               <div className="flex items-start gap-3 text-muted-foreground">
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <div>
-                  <p>Mo–Fr: 9:00–18:00</p>
-                  <p>Sa: 10:00–16:00</p>
-                  <p className="text-xs">sonst nach Vereinbarung</p>
+                  <p>{t.footer.hoursWeek}</p>
+                  <p>{t.footer.hoursSat}</p>
+                  <p className="text-xs">{t.footer.hoursNote}</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Navigation Columns */}
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-3">
             <div>
-              <h3 className="text-sm font-semibold text-foreground">Leistungen</h3>
+              <h3 className="text-sm font-semibold text-foreground">{t.footer.columns.services}</h3>
               <ul className="mt-4 flex flex-col gap-3">
-                {footerNavigation.leistungen.map((item) => (
+                {serviceLinks.map((item, index) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="text-sm text-muted-foreground hover:text-foreground"
+                    >
+                      {t.header.navigation[2].children[index].name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold text-foreground">{t.footer.columns.company}</h3>
+              <ul className="mt-4 flex flex-col gap-3">
+                {t.footer.companyLinks.map((item) => (
                   <li key={item.name}>
                     <Link
                       href={item.href}
@@ -95,25 +95,9 @@ export function SiteFooter() {
             </div>
 
             <div>
-              <h3 className="text-sm font-semibold text-foreground">Unternehmen</h3>
+              <h3 className="text-sm font-semibold text-foreground">{t.footer.columns.legal}</h3>
               <ul className="mt-4 flex flex-col gap-3">
-                {footerNavigation.unternehmen.map((item) => (
-                  <li key={item.name}>
-                    <Link
-                      href={item.href}
-                      className="text-sm text-muted-foreground hover:text-foreground"
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-semibold text-foreground">Rechtliches</h3>
-              <ul className="mt-4 flex flex-col gap-3">
-                {footerNavigation.rechtliches.map((item) => (
+                {t.footer.legalLinks.map((item) => (
                   <li key={item.name}>
                     <Link
                       href={item.href}
@@ -125,11 +109,10 @@ export function SiteFooter() {
                 ))}
               </ul>
 
-              {/* Social Links */}
               <div className="mt-8">
-                <h3 className="text-sm font-semibold text-foreground">Social Media</h3>
+                <h3 className="text-sm font-semibold text-foreground">{t.footer.columns.social}</h3>
                 <div className="mt-4 flex flex-col gap-3">
-                  {socialLinks.map((item) => (
+                  {t.footer.socialLinks.map((item) => (
                     <a
                       key={item.name}
                       href={item.href}
@@ -137,8 +120,8 @@ export function SiteFooter() {
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
                     >
-                      <item.icon className="h-4 w-4" />
-                      <span>{item.name.replace("Instagram ", "")}</span>
+                      <Instagram className="h-4 w-4" />
+                      <span>{item.name}</span>
                     </a>
                   ))}
                 </div>
@@ -147,16 +130,15 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="mt-12 border-t border-border pt-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <p className="text-xs text-muted-foreground">
-              © {new Date().getFullYear()} UNEXT GMBH. Alle Rechte vorbehalten.
+              © {new Date().getFullYear()} UNEXT GMBH. {t.footer.copyright}
             </p>
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
-              <span>Standort: Berlin</span>
+              <span>{t.footer.bottomLocation}</span>
               <span>•</span>
-              <span>Überall zertifiziert</span>
+              <span>{t.footer.bottomCertified}</span>
             </div>
           </div>
         </div>
