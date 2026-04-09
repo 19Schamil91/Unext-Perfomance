@@ -44,7 +44,6 @@ export const headerFooterTranslations = {
       companyLinks: [
         { name: "Über uns", href: "/ueber-uns" },
         { name: "Kontakt", href: "/kontakt" },
-        { name: "Karriere", href: "/kontakt" },
       ],
       legalLinks: [
         { name: "Impressum", href: "/impressum" },
@@ -103,7 +102,6 @@ export const headerFooterTranslations = {
       companyLinks: [
         { name: "About", href: "/ueber-uns" },
         { name: "Contact", href: "/kontakt" },
-        { name: "Careers", href: "/kontakt" },
       ],
       legalLinks: [
         { name: "Legal notice", href: "/impressum" },
@@ -162,7 +160,6 @@ export const headerFooterTranslations = {
       companyLinks: [
         { name: "О нас", href: "/ueber-uns" },
         { name: "Контакты", href: "/kontakt" },
-        { name: "Карьера", href: "/kontakt" },
       ],
       legalLinks: [
         { name: "Выходные данные", href: "/impressum" },
