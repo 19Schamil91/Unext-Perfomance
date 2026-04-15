@@ -1,10 +1,22 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Car, FileCheck, Sparkles, Wrench } from "lucide-react"
+import { ArrowRight, Car, ClipboardCheck, FileCheck, Sparkles, Truck, Wrench } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
+
+interface ServiceMeta {
+  icon: typeof FileCheck
+  image: string
+  imageClassName: string
+  href: string
+  contactType: "phone" | "request"
+  contactText?: string
+  contactHref?: string
+  contactExternal?: boolean
+  accentColor: string
+}
 
 const serviceMeta = [
   {
@@ -12,7 +24,9 @@ const serviceMeta = [
     image: "/images/service-accident.webp",
     imageClassName: "object-cover object-[58%_center]",
     href: "/leistungen/unfallgutachten",
-    phone: "0176 64365185",
+    contactType: "phone",
+    contactText: "0176 64365185",
+    contactHref: "tel:+4917664365185",
     accentColor: "from-red-500/20 to-transparent",
   },
   {
@@ -20,7 +34,9 @@ const serviceMeta = [
     image: "/images/service-rental.webp",
     imageClassName: "object-cover object-[42%_center]",
     href: "/leistungen/autovermietung",
-    phone: "0174 4292900",
+    contactType: "phone",
+    contactText: "0174 4292900",
+    contactHref: "tel:+491744292900",
     accentColor: "from-blue-500/20 to-transparent",
   },
   {
@@ -28,7 +44,9 @@ const serviceMeta = [
     image: "/images/service-workshop.webp",
     imageClassName: "object-cover object-[60%_center]",
     href: "/leistungen/autoservice",
-    phone: "0177 7883206",
+    contactType: "phone",
+    contactText: "0177 7883206",
+    contactHref: "tel:+491777883206",
     accentColor: "from-amber-500/20 to-transparent",
   },
   {
@@ -36,10 +54,32 @@ const serviceMeta = [
     image: "/images/service-detailing.webp",
     imageClassName: "object-cover object-[56%_center]",
     href: "/leistungen/detailing",
-    phone: "0177 6691006",
+    contactType: "phone",
+    contactText: "0177 6691006",
+    contactHref: "tel:+491776691006",
     accentColor: "from-emerald-500/20 to-transparent",
   },
-] as const
+  {
+    icon: ClipboardCheck,
+    image: "/images/service-registration.webp",
+    imageClassName: "object-cover object-center",
+    href: "/leistungen/zulassungsservice",
+    contactType: "request",
+    contactHref: "https://instagram.com/unext.performance",
+    contactExternal: true,
+    accentColor: "from-cyan-500/20 to-transparent",
+  },
+  {
+    icon: Truck,
+    image: "/images/service-towing.webp",
+    imageClassName: "object-cover object-[56%_center]",
+    href: "/leistungen/abschleppdienst-pannenhilfe",
+    contactType: "request",
+    contactHref: "https://instagram.com/unext.performance",
+    contactExternal: true,
+    accentColor: "from-orange-500/20 to-transparent",
+  },
+] satisfies readonly ServiceMeta[]
 
 export async function ServicesSection() {
   const locale = await getCurrentLocale()
@@ -58,6 +98,8 @@ export async function ServicesSection() {
         <div className="grid gap-6 md:grid-cols-2">
           {t.items.map((service, index) => {
             const meta = serviceMeta[index]
+            const contactText =
+              meta.contactType === "request" ? t.onRequestContact : meta.contactText ?? ""
 
             return (
               <Card
@@ -114,12 +156,18 @@ export async function ServicesSection() {
                             <ArrowRight className="h-4 w-4" />
                           </Link>
                         </Button>
-                        <a
-                          href={`tel:${meta.phone.replace(/\s/g, "")}`}
-                          className="text-sm text-muted-foreground transition-colors hover:text-primary"
-                        >
-                          {meta.phone}
-                        </a>
+                        {meta.contactHref ? (
+                          <a
+                            href={meta.contactHref}
+                            target={meta.contactExternal ? "_blank" : undefined}
+                            rel={meta.contactExternal ? "noopener noreferrer" : undefined}
+                            className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                          >
+                            {contactText}
+                          </a>
+                        ) : (
+                          <span className="text-sm text-muted-foreground">{contactText}</span>
+                        )}
                       </div>
                     </div>
                   </div>

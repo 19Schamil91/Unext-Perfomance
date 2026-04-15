@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, CheckCircle, MessageCircle, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { ServiceInquiryForm } from "@/components/service-inquiry-form"
+import { ServiceInquiryForm, type ServiceInquiryFields } from "@/components/service-inquiry-form"
 import {
   Accordion,
   AccordionContent,
@@ -18,7 +18,10 @@ interface ServicePageLayoutProps {
   description: string
   image: string
   imageClassName?: string
-  phone: string
+  phone?: string
+  heroActions?: readonly ServiceAction[]
+  bottomActions?: readonly ServiceAction[]
+  contactNote?: string
   benefits: readonly string[]
   services: readonly { title: string; description: string }[]
   whyChoose: readonly { title: string; description: string }[]
@@ -26,6 +29,14 @@ interface ServicePageLayoutProps {
   formTitle: string
   serviceName: string
   badge?: string
+  formFields?: ServiceInquiryFields
+}
+
+interface ServiceAction {
+  label: string
+  href: string
+  icon?: "phone" | "message"
+  external?: boolean
 }
 
 export async function ServicePageLayout({
@@ -35,6 +46,9 @@ export async function ServicePageLayout({
   image,
   imageClassName,
   phone,
+  heroActions,
+  bottomActions,
+  contactNote,
   benefits,
   services,
   whyChoose,
@@ -42,9 +56,71 @@ export async function ServicePageLayout({
   formTitle,
   serviceName,
   badge,
+  formFields,
 }: ServicePageLayoutProps) {
   const locale = await getCurrentLocale()
   const t = getTranslations(locale).serviceDetail.layout
+  const inquiryId = `${serviceName}-anfrage`
+
+  const defaultHeroActions = phone
+    ? [
+        { label: phone, href: `tel:${phone.replace(/\s/g, "")}`, icon: "phone" as const },
+        {
+          label: "WhatsApp",
+          href: `https://wa.me/49${phone.replace(/\s/g, "").replace(/^0/, "")}`,
+          icon: "message" as const,
+          external: true,
+        },
+      ]
+    : []
+
+  const defaultBottomActions = phone
+    ? [
+        { label: phone, href: `tel:${phone.replace(/\s/g, "")}`, icon: "phone" as const },
+        { label: t.contactCta, href: "/kontakt" },
+      ]
+    : [{ label: t.contactCta, href: "/kontakt" }]
+
+  const resolvedHeroActions = heroActions ?? defaultHeroActions
+  const resolvedBottomActions = bottomActions ?? defaultBottomActions
+
+  const renderAction = (
+    action: ServiceAction,
+    variant: "default" | "outline" | "secondary",
+    className?: string
+  ) => {
+    const icon =
+      action.icon === "phone" ? (
+        <Phone className="h-5 w-5" />
+      ) : action.icon === "message" ? (
+        <MessageCircle className="h-5 w-5" />
+      ) : null
+
+    const content = (
+      <>
+        {icon}
+        {action.label}
+      </>
+    )
+
+    return (
+      <Button asChild size="lg" variant={variant} className={className}>
+        {action.external ? (
+          <a href={action.href} target="_blank" rel="noopener noreferrer" className="gap-2">
+            {content}
+          </a>
+        ) : action.href.startsWith("/") ? (
+          <Link href={action.href} className="gap-2">
+            {content}
+          </Link>
+        ) : (
+          <a href={action.href} className="gap-2">
+            {content}
+          </a>
+        )}
+      </Button>
+    )
+  }
 
   return (
     <main>
@@ -93,24 +169,15 @@ export async function ServicePageLayout({
               ))}
             </ul>
 
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Button asChild size="lg" className="gap-2">
-                <a href={`tel:${phone.replace(/\s/g, "")}`}>
-                  <Phone className="h-5 w-5" />
-                  {phone}
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="gap-2">
-                <a
-                  href={`https://wa.me/49${phone.replace(/\s/g, "").replace(/^0/, "")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MessageCircle className="h-5 w-5" />
-                  WhatsApp
-                </a>
-              </Button>
-            </div>
+            {resolvedHeroActions.length > 0 && (
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                {resolvedHeroActions.map((action, index) =>
+                  renderAction(action, index === 0 ? "default" : "outline")
+                )}
+              </div>
+            )}
+
+            {contactNote && <p className="mt-4 text-sm text-muted-foreground">{contactNote}</p>}
           </div>
         </div>
       </section>
@@ -134,7 +201,7 @@ export async function ServicePageLayout({
         </div>
       </section>
 
-      <section className="bg-background py-16 lg:py-24">
+      <section id={inquiryId} className="bg-background py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
@@ -159,7 +226,11 @@ export async function ServicePageLayout({
             </div>
 
             <div>
-              <ServiceInquiryForm serviceName={serviceName} serviceTitle={formTitle} />
+              <ServiceInquiryForm
+                serviceName={serviceName}
+                serviceTitle={formTitle}
+                fields={formFields}
+              />
             </div>
           </div>
         </div>
@@ -193,26 +264,17 @@ export async function ServicePageLayout({
           </h2>
           <p className="mt-4 text-primary-foreground/80">{t.questionsDescription}</p>
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-            <Button
-              asChild
-              size="lg"
-              variant="secondary"
-              className="gap-2 bg-white text-primary hover:bg-white/90"
-            >
-              <a href={`tel:${phone.replace(/\s/g, "")}`}>
-                <Phone className="h-5 w-5" />
-                {phone}
-              </a>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="gap-2 border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
-            >
-              <Link href="/kontakt">{t.contactCta}</Link>
-            </Button>
+            {resolvedBottomActions.map((action, index) =>
+              renderAction(
+                action,
+                index === 0 ? "secondary" : "outline",
+                index === 0
+                  ? "gap-2 bg-white text-primary hover:bg-white/90"
+                  : "gap-2 border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+              )
+            )}
           </div>
+          {contactNote && <p className="mt-4 text-sm text-primary-foreground/80">{contactNote}</p>}
         </div>
       </section>
     </main>

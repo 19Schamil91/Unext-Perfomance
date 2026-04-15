@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Car, FileCheck, Sparkles, Wrench } from "lucide-react"
+import { ArrowRight, Car, ClipboardCheck, FileCheck, Sparkles, Truck, Wrench } from "lucide-react"
 import { CtaSection } from "@/components/sections/cta-section"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
@@ -10,6 +10,17 @@ import { Card, CardContent } from "@/components/ui/card"
 import { buildPageMetadata } from "@/lib/metadata"
 import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
+
+interface ServiceMeta {
+  icon: typeof FileCheck
+  image: string
+  imageClassName: string
+  href: string
+  contactType: "phone" | "request"
+  contactText?: string
+  contactHref: string
+  contactExternal?: boolean
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getCurrentLocale()
@@ -24,30 +35,56 @@ const serviceMeta = [
     image: "/images/service-accident.webp",
     imageClassName: "object-cover object-[58%_center]",
     href: "/leistungen/unfallgutachten",
-    phone: "0176 64365185",
+    contactType: "phone",
+    contactText: "0176 64365185",
+    contactHref: "tel:+4917664365185",
   },
   {
     icon: Car,
     image: "/images/service-rental.webp",
     imageClassName: "object-cover object-[42%_center]",
     href: "/leistungen/autovermietung",
-    phone: "0174 4292900",
+    contactType: "phone",
+    contactText: "0174 4292900",
+    contactHref: "tel:+491744292900",
   },
   {
     icon: Wrench,
     image: "/images/service-workshop.webp",
     imageClassName: "object-cover object-[60%_center]",
     href: "/leistungen/autoservice",
-    phone: "0177 7883206",
+    contactType: "phone",
+    contactText: "0177 7883206",
+    contactHref: "tel:+491777883206",
   },
   {
     icon: Sparkles,
     image: "/images/service-detailing.webp",
     imageClassName: "object-cover object-[56%_center]",
     href: "/leistungen/detailing",
-    phone: "0177 6691006",
+    contactType: "phone",
+    contactText: "0177 6691006",
+    contactHref: "tel:+491776691006",
   },
-] as const
+  {
+    icon: ClipboardCheck,
+    image: "/images/service-registration.webp",
+    imageClassName: "object-cover object-center",
+    href: "/leistungen/zulassungsservice",
+    contactType: "request",
+    contactHref: "https://instagram.com/unext.performance",
+    contactExternal: true,
+  },
+  {
+    icon: Truck,
+    image: "/images/service-towing.webp",
+    imageClassName: "object-cover object-[56%_center]",
+    href: "/leistungen/abschleppdienst-pannenhilfe",
+    contactType: "request",
+    contactHref: "https://instagram.com/unext.performance",
+    contactExternal: true,
+  },
+] satisfies readonly ServiceMeta[]
 
 export default async function LeistungenPage() {
   const locale = await getCurrentLocale()
@@ -75,6 +112,8 @@ export default async function LeistungenPage() {
             <div className="space-y-16">
               {t.items.map((service, index) => {
                 const meta = serviceMeta[index]
+                const contactText =
+                  meta.contactType === "request" ? t.onRequestContact : meta.contactText
 
                 return (
                   <Card key={service.title} className="overflow-hidden border-border/50 bg-card">
@@ -127,10 +166,14 @@ export default async function LeistungenPage() {
                               </Link>
                             </Button>
                             <a
-                              href={`tel:${meta.phone.replace(/\s/g, "")}`}
+                              href={meta.contactHref}
+                              target={meta.contactExternal ? "_blank" : undefined}
+                              rel={meta.contactExternal ? "noopener noreferrer" : undefined}
                               className="text-sm text-muted-foreground transition-colors hover:text-primary"
                             >
-                              {t.directCall} {meta.phone}
+                              {meta.contactType === "phone"
+                                ? `${t.directCall} ${contactText}`
+                                : contactText}
                             </a>
                           </div>
                         </div>

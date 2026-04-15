@@ -14,11 +14,13 @@ import { getTranslations } from "@/lib/translations"
 interface ServiceInquiryFormProps {
   serviceName: string
   serviceTitle: string
-  fields?: {
-    vehicle?: boolean
-    date?: boolean
-    subject?: boolean
-  }
+  fields?: ServiceInquiryFields
+}
+
+export interface ServiceInquiryFields {
+  vehicle?: boolean
+  date?: boolean
+  subject?: boolean
 }
 
 export function ServiceInquiryForm({

@@ -5,8 +5,9 @@ export const servicesAndAboutTranslations = {
     servicesPage: {
       title: "Unsere Leistungen",
       description:
-        "UNEXT GMBH bietet Ihnen ein umfassendes Leistungsspektrum rund ums Fahrzeug. Vier starke Bereiche unter einem Dach - professionell, zuverlässig und immer für Sie da.",
+        "UNEXT GMBH bietet Ihnen ein umfassendes Leistungsspektrum rund ums Fahrzeug. Sechs starke Bereiche unter einem Dach - professionell, zuverlässig und immer für Sie da.",
       directCall: "Direkt anrufen:",
+      onRequestContact: "Telefon auf Anfrage · @unext.performance",
       items: [
         {
           title: "Unfallgutachten & Soforthilfe",
@@ -54,6 +55,30 @@ export const servicesAndAboutTranslations = {
             "Innen- & Außenreinigung",
             "Werterhalt & optische Aufwertung",
             "Professionell & zertifiziert",
+          ],
+        },
+        {
+          title: "KFZ-Zulassungsservice",
+          subtitle: "Anmeldung & Kennzeichen",
+          description:
+            "Wir übernehmen den gesamten Ablauf für Sie - von der Abmeldung bis zur fertigen Zulassung. Kein Termin, kein Behördengang, kein Aufwand für Sie.",
+          features: [
+            "KFZ An- & Abmeldung",
+            "Kurzzeit- & Exportkennzeichen",
+            "Versicherungsservice inkl. eVB",
+            "Wunschkennzeichen-Service",
+          ],
+        },
+        {
+          title: "Abschleppdienst & Pannenhilfe",
+          subtitle: "Soforthilfe & Transport",
+          description:
+            "Im Notfall sind wir schnell für Sie da und sorgen für eine sichere Lösung. Sie müssen sich um nichts kümmern - wir übernehmen die nächsten Schritte für Sie.",
+          features: [
+            "Schnelle Hilfe bei Unfall oder Panne",
+            "Abschleppdienst direkt vor Ort",
+            "Fahrzeugtransport zur Wunschadresse",
+            "Komplette Abwicklung auf Wunsch",
           ],
         },
       ],
@@ -121,8 +146,9 @@ export const servicesAndAboutTranslations = {
     servicesPage: {
       title: "Our services",
       description:
-        "UNEXT GMBH offers a comprehensive range of vehicle-related services. Four strong business areas under one roof - professional, reliable and always there for you.",
+        "UNEXT GMBH offers a comprehensive range of vehicle-related services. Six strong business areas under one roof - professional, reliable and always there for you.",
       directCall: "Call directly:",
+      onRequestContact: "Phone on request · @unext.performance",
       items: [
         {
           title: "Accident Reports & Immediate Assistance",
@@ -151,6 +177,30 @@ export const servicesAndAboutTranslations = {
           description:
             "Give your vehicle professional care. Our detailing experts restore your car's shine inside and out.",
           features: ["Paint correction & polish", "Interior & exterior cleaning", "Value retention & visual upgrade", "Professional & certified"],
+        },
+        {
+          title: "Vehicle Registration Service",
+          subtitle: "Registration & license plates",
+          description:
+            "We handle the entire process for you - from deregistration to completed registration. No appointments, no authority visits and no extra effort on your side.",
+          features: [
+            "Vehicle registration & deregistration",
+            "Temporary & export plates",
+            "Insurance service incl. eVB number",
+            "Custom plate service",
+          ],
+        },
+        {
+          title: "Towing & Roadside Assistance",
+          subtitle: "Immediate help & transport",
+          description:
+            "In emergencies, we are there quickly and provide a safe solution. You do not have to take care of anything - we handle the next steps for you.",
+          features: [
+            "Fast help after accidents or breakdowns",
+            "On-site towing service",
+            "Vehicle transport to your destination",
+            "Complete follow-up handling on request",
+          ],
         },
       ],
     },
@@ -197,8 +247,9 @@ export const servicesAndAboutTranslations = {
     servicesPage: {
       title: "Наши услуги",
       description:
-        "UNEXT GMBH предлагает полный спектр услуг вокруг автомобиля. Четыре сильных направления под одной крышей - профессионально, надежно и всегда рядом.",
+        "UNEXT GMBH предлагает полный спектр услуг вокруг автомобиля. Шесть сильных направлений под одной крышей - профессионально, надежно и всегда рядом.",
       directCall: "Позвонить напрямую:",
+      onRequestContact: "Телефон по запросу · @unext.performance",
       items: [
         {
           title: "Экспертиза ДТП и срочная помощь",
@@ -227,6 +278,30 @@ export const servicesAndAboutTranslations = {
           description:
             "Подарите вашему автомобилю профессиональный уход. Наши специалисты по детейлингу вернут блеск вашему авто внутри и снаружи.",
           features: ["Коррекция лака и полировка", "Чистка салона и кузова", "Сохранение стоимости и внешнее обновление", "Профессионально и сертифицированно"],
+        },
+        {
+          title: "Сервис регистрации авто",
+          subtitle: "Оформление и номера",
+          description:
+            "Мы берем на себя весь процесс - от снятия с учета до готовой регистрации. Без записи, без посещения ведомств и без лишних хлопот для вас.",
+          features: [
+            "Постановка и снятие с учета",
+            "Временные и экспортные номера",
+            "Страховой сервис с eVB",
+            "Сервис выбора номера",
+          ],
+        },
+        {
+          title: "Эвакуатор и помощь на дороге",
+          subtitle: "Срочная помощь и транспортировка",
+          description:
+            "В экстренной ситуации мы быстро приезжаем и обеспечиваем безопасное решение. Вам не нужно ни о чем заботиться - мы берем следующие шаги на себя.",
+          features: [
+            "Быстрая помощь при ДТП или поломке",
+            "Эвакуатор прямо на место",
+            "Доставка авто по нужному адресу",
+            "Полное сопровождение по запросу",
+          ],
         },
       ],
     },

@@ -11,6 +11,8 @@ const serviceLinks = [
   { href: "/leistungen/autovermietung" },
   { href: "/leistungen/autoservice" },
   { href: "/leistungen/detailing" },
+  { href: "/leistungen/zulassungsservice" },
+  { href: "/leistungen/abschleppdienst-pannenhilfe" },
 ] as const
 
 export function SiteFooter() {

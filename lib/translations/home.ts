@@ -18,7 +18,8 @@ export const homeTranslations = {
     services: {
       title: "Unsere Leistungen",
       description:
-        "Vier starke Bereiche - ein kompetenter Partner. Entdecken Sie unser umfassendes Serviceangebot für Ihr Fahrzeug.",
+        "Sechs starke Bereiche - ein kompetenter Partner. Entdecken Sie unser umfassendes Serviceangebot für Ihr Fahrzeug.",
+      onRequestContact: "Telefon auf Anfrage · @unext.performance",
       learnMore: "Mehr erfahren",
       viewAll: "Alle Leistungen ansehen",
       items: [
@@ -68,6 +69,30 @@ export const homeTranslations = {
             "Innen- & Außenreinigung",
             "Werterhalt",
             "Professionell zertifiziert",
+          ],
+        },
+        {
+          title: "KFZ-Zulassungsservice",
+          subtitle: "Anmeldung & Kennzeichen",
+          description:
+            "Wir übernehmen Anmeldung, Abmeldung und alle wichtigen Formalitäten rund um Ihr Fahrzeug schnell und unkompliziert.",
+          features: [
+            "KFZ An- & Abmeldung",
+            "Kurzzeit- & Exportkennzeichen",
+            "eVB- und Wunschkennzeichen-Service",
+            "Hol- & Bringservice auf Anfrage",
+          ],
+        },
+        {
+          title: "Abschleppdienst & Pannenhilfe",
+          subtitle: "Soforthilfe vor Ort",
+          description:
+            "Wenn Ihr Fahrzeug liegen bleibt, organisieren wir schnelle Hilfe, sicheren Transport und auf Wunsch die komplette weitere Abwicklung.",
+          features: [
+            "Schnelle Hilfe bei Panne oder Unfall",
+            "Abschleppdienst direkt vor Ort",
+            "Transport zur Werkstatt oder Wunschadresse",
+            "Weitere Schritte aus einer Hand",
           ],
         },
       ],
@@ -216,7 +241,8 @@ export const homeTranslations = {
     services: {
       title: "Our services",
       description:
-        "Four strong business areas - one competent partner. Discover our full range of automotive services.",
+        "Six strong business areas - one competent partner. Discover our full range of automotive services.",
+      onRequestContact: "Phone on request · @unext.performance",
       learnMore: "Learn more",
       viewAll: "View all services",
       items: [
@@ -247,6 +273,30 @@ export const homeTranslations = {
           description:
             "Premium vehicle detailing for demanding customers. Paint correction, polishing and professional interior and exterior cleaning.",
           features: ["Paint correction & polish", "Interior & exterior cleaning", "Value retention", "Professionally certified"],
+        },
+        {
+          title: "Vehicle Registration Service",
+          subtitle: "Registration & plates",
+          description:
+            "We handle registration, deregistration and all key formalities for your vehicle quickly and without complications.",
+          features: [
+            "Vehicle registration & deregistration",
+            "Temporary & export plates",
+            "eVB and custom plate service",
+            "Pickup service for documents on request",
+          ],
+        },
+        {
+          title: "Towing & Roadside Assistance",
+          subtitle: "Immediate help on site",
+          description:
+            "If your vehicle is no longer drivable, we arrange fast support, safe transport and, if needed, the complete next steps.",
+          features: [
+            "Fast help after breakdown or accident",
+            "On-site towing service",
+            "Transport to workshop or desired address",
+            "Next steps from one source",
+          ],
         },
       ],
     },
@@ -346,7 +396,8 @@ export const homeTranslations = {
     services: {
       title: "Наши услуги",
       description:
-        "Четыре сильных направления - один компетентный партнер. Ознакомьтесь с нашим полным спектром автомобильных услуг.",
+        "Шесть сильных направлений - один компетентный партнер. Ознакомьтесь с нашим полным спектром автомобильных услуг.",
+      onRequestContact: "Телефон по запросу · @unext.performance",
       learnMore: "Подробнее",
       viewAll: "Все услуги",
       items: [
@@ -377,6 +428,30 @@ export const homeTranslations = {
           description:
             "Премиальный детейлинг для требовательных клиентов. Коррекция лака, полировка и профессиональная уборка салона и кузова.",
           features: ["Коррекция лака и полировка", "Чистка салона и кузова", "Сохранение стоимости", "Профессиональная сертификация"],
+        },
+        {
+          title: "Сервис регистрации авто",
+          subtitle: "Оформление и номера",
+          description:
+            "Мы быстро и без лишних сложностей берем на себя регистрацию, снятие с учета и все важные формальности по вашему автомобилю.",
+          features: [
+            "Постановка и снятие с учета",
+            "Временные и экспортные номера",
+            "Сервис eVB и выбора номера",
+            "Получение и передача документов по запросу",
+          ],
+        },
+        {
+          title: "Эвакуатор и помощь на дороге",
+          subtitle: "Срочная помощь на месте",
+          description:
+            "Если автомобиль больше не на ходу, мы организуем быструю помощь, безопасную транспортировку и при необходимости дальнейшее сопровождение.",
+          features: [
+            "Быстрая помощь при поломке или ДТП",
+            "Эвакуатор прямо на место",
+            "Транспортировка в сервис или по нужному адресу",
+            "Следующие шаги из одних рук",
+          ],
         },
       ],
     },
