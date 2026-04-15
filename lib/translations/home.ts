@@ -97,6 +97,25 @@ export const homeTranslations = {
         },
       ],
     },
+    expressCourier: {
+      eyebrow: "Zusatzservice",
+      title: "Expresslieferung & Kurierdienst",
+      description:
+        "Wenn es schnell gehen muss, sind wir zuverlässig für Sie da. Direkte Abholung und schnelle Zustellung - ohne Umwege.",
+      features: [
+        "Schnelle Lieferung innerhalb Berlins",
+        "Flexible Abholung und Zustellung",
+        "Transport von Dokumenten, Paketen oder Fahrzeugteilen",
+        "Express-Service für zeitkritische Aufträge",
+        "Individuelle Lösungen für Privat- und Geschäftskunden",
+      ],
+      cta: "Jetzt kontaktieren",
+      contactLabel: "Telefon:",
+      highlightTitle: "Schnell, direkt und zuverlässig",
+      highlightDescription:
+        "Ob Dokumente, Pakete oder Fahrzeugteile - wir übernehmen zeitkritische Transporte innerhalb Berlins sauber und ohne unnötige Umwege.",
+      contactBoxLabel: "Direkter Kontakt",
+    },
     why: {
       title: "Warum UNEXT GMBH?",
       description:
@@ -314,6 +333,25 @@ export const homeTranslations = {
           ],
         },
       ],
+    },
+    expressCourier: {
+      eyebrow: "Additional service",
+      title: "Express Delivery & Courier Service",
+      description:
+        "When things need to move fast, we are there for you reliably. Direct pickup and fast delivery - without detours.",
+      features: [
+        "Fast delivery within Berlin",
+        "Flexible pickup and delivery",
+        "Transport of documents, parcels or vehicle parts",
+        "Express service for time-critical jobs",
+        "Individual solutions for private and business customers",
+      ],
+      cta: "Contact now",
+      contactLabel: "Phone:",
+      highlightTitle: "Fast, direct and reliable",
+      highlightDescription:
+        "Whether documents, parcels or vehicle parts - we handle time-critical transports within Berlin cleanly and without unnecessary detours.",
+      contactBoxLabel: "Direct contact",
     },
     why: {
       title: "Why UNEXT GMBH?",
@@ -537,6 +575,25 @@ export const homeTranslations = {
           ],
         },
       ],
+    },
+    expressCourier: {
+      eyebrow: "Дополнительный сервис",
+      title: "Экспресс-доставка и курьерская служба",
+      description:
+        "Если нужно быстро, мы надежно поможем. Прямой забор и быстрая доставка - без лишних маршрутов.",
+      features: [
+        "Быстрая доставка по Берлину",
+        "Гибкий забор и доставка",
+        "Перевозка документов, посылок или автозапчастей",
+        "Экспресс-сервис для срочных заказов",
+        "Индивидуальные решения для частных и корпоративных клиентов",
+      ],
+      cta: "Связаться сейчас",
+      contactLabel: "Телефон:",
+      highlightTitle: "Быстро, напрямую и надежно",
+      highlightDescription:
+        "Документы, посылки или автозапчасти - мы берем на себя срочные перевозки по Берлину аккуратно и без лишних задержек.",
+      contactBoxLabel: "Прямой контакт",
     },
     why: {
       title: "Почему UNEXT GMBH?",
