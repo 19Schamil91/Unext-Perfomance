@@ -98,7 +98,7 @@ export async function HeroSection() {
             fill
             sizes="100vw"
             quality={78}
-            className="object-contain object-center object-bottom"
+            className="object-cover object-[center_14%]"
             priority
           />
           <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background via-background/65 to-transparent" />
@@ -127,7 +127,7 @@ export async function HeroSection() {
             fill
             sizes="100vw"
             quality={78}
-            className="object-contain object-center"
+            className="object-cover object-[center_12%] lg:object-[center_10%]"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background/88 via-background/70 md:via-background/42 to-background/12" />
