@@ -31,15 +31,7 @@ export default async function ZulassungsservicePage() {
         description={t.description}
         image="/images/service-registration.webp"
         imageClassName="object-cover object-[60%_center] md:object-[64%_center]"
-        heroActions={[
-          { label: t.ctaLabel, href: "#zulassungsservice-anfrage", icon: "message" },
-          { label: getTranslations(locale).serviceDetail.layout.contactCta, href: "/kontakt" },
-        ]}
-        bottomActions={[
-          { label: t.ctaLabel, href: "#zulassungsservice-anfrage", icon: "message" },
-          { label: getTranslations(locale).serviceDetail.layout.contactCta, href: "/kontakt" },
-        ]}
-        contactNote={t.contactHint}
+        phone="030 23613927"
         benefits={t.benefits}
         services={t.services}
         whyChoose={t.whyChoose}

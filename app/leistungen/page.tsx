@@ -16,10 +16,8 @@ interface ServiceMeta {
   image: string
   imageClassName: string
   href: string
-  contactType: "phone" | "request"
   contactText?: string
   contactHref: string
-  contactExternal?: boolean
 }
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -35,16 +33,14 @@ const serviceMeta = [
     image: "/images/service-accident.webp",
     imageClassName: "object-cover object-[58%_center]",
     href: "/leistungen/unfallgutachten",
-    contactType: "phone",
     contactText: "0176 64365185",
     contactHref: "tel:+4917664365185",
   },
   {
     icon: Car,
     image: "/images/service-rental.webp",
-    imageClassName: "object-cover object-[42%_center]",
+    imageClassName: "object-cover object-[28%_center] sm:object-[36%_center] lg:object-[42%_center]",
     href: "/leistungen/autovermietung",
-    contactType: "phone",
     contactText: "0174 4292900",
     contactHref: "tel:+491744292900",
   },
@@ -53,7 +49,6 @@ const serviceMeta = [
     image: "/images/service-workshop.webp",
     imageClassName: "object-cover object-[60%_center]",
     href: "/leistungen/autoservice",
-    contactType: "phone",
     contactText: "0177 7883206",
     contactHref: "tel:+491777883206",
   },
@@ -62,7 +57,6 @@ const serviceMeta = [
     image: "/images/service-detailing.webp",
     imageClassName: "object-cover object-[56%_center]",
     href: "/leistungen/detailing",
-    contactType: "phone",
     contactText: "0177 6691006",
     contactHref: "tel:+491776691006",
   },
@@ -71,18 +65,16 @@ const serviceMeta = [
     image: "/images/service-registration.webp",
     imageClassName: "object-cover object-[38%_center]",
     href: "/leistungen/zulassungsservice",
-    contactType: "request",
-    contactHref: "https://instagram.com/unext.performance",
-    contactExternal: true,
+    contactText: "030 23613927",
+    contactHref: "tel:+493023613927",
   },
   {
     icon: Truck,
     image: "/images/service-towing.webp",
     imageClassName: "object-cover object-[44%_center]",
     href: "/leistungen/abschleppdienst-pannenhilfe",
-    contactType: "request",
-    contactHref: "https://instagram.com/unext.performance",
-    contactExternal: true,
+    contactText: "030 23613927",
+    contactHref: "tel:+493023613927",
   },
 ] satisfies readonly ServiceMeta[]
 
@@ -112,14 +104,13 @@ export default async function LeistungenPage() {
             <div className="space-y-16">
               {t.items.map((service, index) => {
                 const meta = serviceMeta[index]
-                const contactText =
-                  meta.contactType === "request" ? t.onRequestContact : meta.contactText
+                const contactText = meta.contactText ?? ""
 
                 return (
                   <Card key={service.title} className="overflow-hidden border-border/50 bg-card">
                     <CardContent className="p-0">
                       <div className={`flex flex-col ${index % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"}`}>
-                        <div className="relative h-64 lg:h-auto lg:w-1/2">
+                        <div className="relative h-60 sm:h-72 lg:h-auto lg:w-1/2">
                           <Image
                             src={meta.image}
                             alt={service.title}
@@ -130,7 +121,7 @@ export default async function LeistungenPage() {
                           />
                         </div>
 
-                        <div className="flex-1 p-8 lg:p-12">
+                        <div className="flex-1 p-5 sm:p-8 lg:p-12">
                           <div className="flex items-start gap-4">
                             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                               <meta.icon className="h-7 w-7" />
@@ -139,20 +130,20 @@ export default async function LeistungenPage() {
                               <p className="text-xs font-medium uppercase tracking-wider text-primary">
                                 {service.subtitle}
                               </p>
-                              <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
+                              <h2 className="text-xl font-bold text-foreground sm:text-3xl">
                                 {service.title}
                               </h2>
                             </div>
                           </div>
 
-                          <p className="mt-6 leading-relaxed text-muted-foreground">
+                          <p className="mt-5 leading-7 text-muted-foreground sm:mt-6">
                             {service.description}
                           </p>
 
                           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                             {service.features.map((feature) => (
-                              <li key={feature} className="flex items-center gap-2 text-sm text-foreground">
-                                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                              <li key={feature} className="flex items-start gap-2 text-sm leading-6 text-foreground">
+                                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
                                 {feature}
                               </li>
                             ))}
@@ -167,13 +158,9 @@ export default async function LeistungenPage() {
                             </Button>
                             <a
                               href={meta.contactHref}
-                              target={meta.contactExternal ? "_blank" : undefined}
-                              rel={meta.contactExternal ? "noopener noreferrer" : undefined}
-                              className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                              className="text-sm leading-6 text-muted-foreground transition-colors hover:text-primary"
                             >
-                              {meta.contactType === "phone"
-                                ? `${t.directCall} ${contactText}`
-                                : contactText}
+                              {`${t.directCall} ${contactText}`}
                             </a>
                           </div>
                         </div>

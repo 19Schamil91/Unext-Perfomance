@@ -120,13 +120,20 @@ export function SiteHeader() {
 
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="lg:hidden">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-11 w-11 rounded-full border border-border/80 bg-card text-foreground shadow-sm transition-colors hover:bg-accent lg:hidden"
+              >
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">{t.header.openMenu}</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-sm">
-              <div className="flex flex-col gap-6 pt-6">
+            <SheetContent
+              side="right"
+              className="w-[90vw] max-w-sm overflow-y-auto border-l border-border/70 bg-card/98 px-5 pb-6 pt-6 backdrop-blur"
+            >
+              <div className="flex min-h-full flex-col gap-6 pt-6">
                 <Link
                   href="/"
                   onClick={() => setMobileMenuOpen(false)}
@@ -141,24 +148,27 @@ export function SiteHeader() {
                   />
                 </Link>
 
-                <nav className="flex flex-col gap-4">
+                <nav className="flex flex-col gap-2">
                   {navigation.map((item) => (
-                    <div key={item.name}>
+                    <div
+                      key={item.name}
+                      className="rounded-2xl border border-border/60 bg-background/50 px-4 py-3"
+                    >
                       <Link
                         href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="text-lg font-medium text-foreground"
+                        className="block text-[1.05rem] font-semibold leading-6 text-foreground"
                       >
                         {item.name}
                       </Link>
                       {item.children && (
-                        <div className="mt-2 flex flex-col gap-2 pl-4">
+                        <div className="mt-3 flex flex-col gap-2 border-l border-border/70 pl-4">
                           {item.children?.map((child) => (
                             <Link
                               key={child.name}
                               href={child.href}
                               onClick={() => setMobileMenuOpen(false)}
-                              className="text-sm text-muted-foreground hover:text-foreground"
+                              className="text-sm leading-6 text-muted-foreground transition-colors hover:text-foreground"
                             >
                               {child.name}
                             </Link>
@@ -177,7 +187,11 @@ export function SiteHeader() {
                       </Link>
                     </Button>
                     <Button asChild variant="outline" className="w-full">
-                      <a href="tel:+493023613927" className="gap-2">
+                      <a
+                        href="tel:+493023613927"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="gap-2"
+                      >
                         <Phone className="h-4 w-4" />
                         {t.header.callNow}
                       </a>
@@ -191,6 +205,7 @@ export function SiteHeader() {
                       key={lang.code}
                       variant={locale === lang.code ? "secondary" : "ghost"}
                       size="sm"
+                      className="min-w-14 rounded-full px-3"
                       disabled={isPending}
                       onClick={() => handleLocaleChange(lang.code)}
                     >

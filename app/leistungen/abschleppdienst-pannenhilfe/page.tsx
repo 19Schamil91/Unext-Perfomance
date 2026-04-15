@@ -31,15 +31,7 @@ export default async function AbschleppdienstPage() {
         description={t.description}
         image="/images/service-towing.webp"
         imageClassName="object-cover object-[48%_center] md:object-[52%_center]"
-        heroActions={[
-          { label: t.ctaLabel, href: "#abschleppdienst-anfrage", icon: "message" },
-          { label: getTranslations(locale).serviceDetail.layout.contactCta, href: "/kontakt" },
-        ]}
-        bottomActions={[
-          { label: t.ctaLabel, href: "#abschleppdienst-anfrage", icon: "message" },
-          { label: getTranslations(locale).serviceDetail.layout.contactCta, href: "/kontakt" },
-        ]}
-        contactNote={t.contactHint}
+        phone="030 23613927"
         benefits={t.benefits}
         services={t.services}
         whyChoose={t.whyChoose}

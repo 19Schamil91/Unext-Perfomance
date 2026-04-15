@@ -63,7 +63,7 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-3">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:col-span-3">
             <div>
               <h3 className="text-sm font-semibold text-foreground">{t.footer.columns.services}</h3>
               <ul className="mt-4 flex flex-col gap-3">
@@ -133,11 +133,11 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 border-t border-border pt-8">
-          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+          <div className="flex flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
             <p className="text-xs text-muted-foreground">
               © {new Date().getFullYear()} UNEXT GMBH. {t.footer.copyright}
             </p>
-            <div className="flex items-center gap-4 text-xs text-muted-foreground">
+            <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-muted-foreground sm:justify-end">
               <span>{t.footer.bottomLocation}</span>
               <span>•</span>
               <span>{t.footer.bottomCertified}</span>

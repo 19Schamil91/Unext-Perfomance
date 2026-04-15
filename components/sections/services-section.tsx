@@ -11,10 +11,8 @@ interface ServiceMeta {
   image: string
   imageClassName: string
   href: string
-  contactType: "phone" | "request"
   contactText?: string
   contactHref?: string
-  contactExternal?: boolean
   accentColor: string
 }
 
@@ -24,7 +22,6 @@ const serviceMeta = [
     image: "/images/service-accident.webp",
     imageClassName: "object-cover object-[58%_center]",
     href: "/leistungen/unfallgutachten",
-    contactType: "phone",
     contactText: "0176 64365185",
     contactHref: "tel:+4917664365185",
     accentColor: "from-red-500/20 to-transparent",
@@ -32,9 +29,8 @@ const serviceMeta = [
   {
     icon: Car,
     image: "/images/service-rental.webp",
-    imageClassName: "object-cover object-[42%_center]",
+    imageClassName: "object-cover object-[28%_center] sm:object-[36%_center] lg:object-[42%_center]",
     href: "/leistungen/autovermietung",
-    contactType: "phone",
     contactText: "0174 4292900",
     contactHref: "tel:+491744292900",
     accentColor: "from-blue-500/20 to-transparent",
@@ -44,7 +40,6 @@ const serviceMeta = [
     image: "/images/service-workshop.webp",
     imageClassName: "object-cover object-[60%_center]",
     href: "/leistungen/autoservice",
-    contactType: "phone",
     contactText: "0177 7883206",
     contactHref: "tel:+491777883206",
     accentColor: "from-amber-500/20 to-transparent",
@@ -54,7 +49,6 @@ const serviceMeta = [
     image: "/images/service-detailing.webp",
     imageClassName: "object-cover object-[56%_center]",
     href: "/leistungen/detailing",
-    contactType: "phone",
     contactText: "0177 6691006",
     contactHref: "tel:+491776691006",
     accentColor: "from-emerald-500/20 to-transparent",
@@ -64,9 +58,8 @@ const serviceMeta = [
     image: "/images/service-registration.webp",
     imageClassName: "object-cover object-[38%_center]",
     href: "/leistungen/zulassungsservice",
-    contactType: "request",
-    contactHref: "https://instagram.com/unext.performance",
-    contactExternal: true,
+    contactText: "030 23613927",
+    contactHref: "tel:+493023613927",
     accentColor: "from-cyan-500/20 to-transparent",
   },
   {
@@ -74,9 +67,8 @@ const serviceMeta = [
     image: "/images/service-towing.webp",
     imageClassName: "object-cover object-[44%_center]",
     href: "/leistungen/abschleppdienst-pannenhilfe",
-    contactType: "request",
-    contactHref: "https://instagram.com/unext.performance",
-    contactExternal: true,
+    contactText: "030 23613927",
+    contactHref: "tel:+493023613927",
     accentColor: "from-orange-500/20 to-transparent",
   },
 ] satisfies readonly ServiceMeta[]
@@ -98,8 +90,7 @@ export async function ServicesSection() {
         <div className="grid gap-6 md:grid-cols-2">
           {t.items.map((service, index) => {
             const meta = serviceMeta[index]
-            const contactText =
-              meta.contactType === "request" ? t.onRequestContact : meta.contactText ?? ""
+            const contactText = meta.contactText ?? ""
 
             return (
               <Card
@@ -108,7 +99,7 @@ export async function ServicesSection() {
               >
                 <CardContent className="p-0">
                   <div className="flex flex-col lg:flex-row">
-                    <div className="relative h-48 overflow-hidden lg:h-auto lg:w-2/5">
+                    <div className="relative h-56 overflow-hidden sm:h-60 lg:h-auto lg:w-2/5">
                       <Image
                         src={meta.image}
                         alt={service.title}
@@ -120,7 +111,7 @@ export async function ServicesSection() {
                       <div className={`absolute inset-0 bg-gradient-to-t ${meta.accentColor}`} />
                     </div>
 
-                    <div className="flex-1 p-6 lg:p-8">
+                    <div className="flex-1 p-5 sm:p-6 lg:p-8">
                       <div className="flex items-start gap-4">
                         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                           <meta.icon className="h-6 w-6" />
@@ -133,7 +124,7 @@ export async function ServicesSection() {
                         </div>
                       </div>
 
-                      <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                      <p className="mt-4 text-sm leading-7 text-muted-foreground sm:text-[0.95rem]">
                         {service.description}
                       </p>
 
@@ -141,9 +132,9 @@ export async function ServicesSection() {
                         {service.features.map((feature) => (
                           <li
                             key={feature}
-                            className="flex items-center gap-2 text-xs text-muted-foreground"
+                            className="flex items-start gap-2 text-sm leading-6 text-muted-foreground"
                           >
-                            <span className="h-1 w-1 rounded-full bg-primary" />
+                            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
                             {feature}
                           </li>
                         ))}
@@ -159,8 +150,6 @@ export async function ServicesSection() {
                         {meta.contactHref ? (
                           <a
                             href={meta.contactHref}
-                            target={meta.contactExternal ? "_blank" : undefined}
-                            rel={meta.contactExternal ? "noopener noreferrer" : undefined}
                             className="text-sm text-muted-foreground transition-colors hover:text-primary"
                           >
                             {contactText}
