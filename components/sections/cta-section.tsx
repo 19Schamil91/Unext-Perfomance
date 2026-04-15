@@ -33,9 +33,9 @@ export async function CtaSection() {
               variant="secondary"
               className="gap-2 bg-white text-primary hover:bg-white/90"
             >
-              <a href="tel:+4917664365185">
+              <a href="tel:+493023613927">
                 <Phone className="h-5 w-5" />
-                0176 64365185
+                030 23613927
               </a>
             </Button>
             <Button

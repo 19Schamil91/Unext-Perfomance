@@ -42,7 +42,7 @@ function HeroContent({
 
       <div className="mt-8 flex flex-col gap-4 sm:flex-row">
         <Button asChild size="lg" className="gap-2">
-          <a href="tel:+4917664365185">
+          <a href="tel:+493023613927">
             <Phone className="h-5 w-5" />
             {callNow}
           </a>

@@ -8,7 +8,7 @@ export const homeTranslations = {
       title2: "rund ums Fahrzeug",
       title3: "in Berlin",
       description:
-        "Unfallgutachten, Autovermietung, Werkstatt, Kfz-Zulassungsservice, Abschleppdienst und Premium Detailing - alles unter einem Dach. Professionell, schnell und zuverlässig seit 2024.",
+        "Unfallgutachten, Autovermietung, Werkstatt, Kfz-Zulassungsservice, Abschleppdienst, Premium Detailing und Expresslieferung & Kurierdienst - professionell, schnell und zuverlässig für Sie da.",
       callNow: "Jetzt anrufen",
       inquiry: "Anfrage senden",
       whatsapp: "WhatsApp",
@@ -250,7 +250,7 @@ export const homeTranslations = {
       title2: "for everything automotive",
       title3: "in Berlin",
       description:
-        "Accident reports, car rental, workshop service, vehicle registration, towing and premium detailing - all under one roof. Professional, fast and reliable since 2024.",
+        "Accident reports, car rental, workshop service, vehicle registration, towing, premium detailing and express delivery - professional, fast and reliable for you.",
       callNow: "Call now",
       inquiry: "Send inquiry",
       whatsapp: "WhatsApp",

@@ -173,8 +173,15 @@ export async function ServicePageLayout({
 
             {resolvedHeroActions.length > 0 && (
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                {resolvedHeroActions.map((action, index) =>
-                  renderAction(action, index === 0 ? "default" : "outline", "w-full sm:w-auto")
+                {resolvedHeroActions.map((action, index) => (
+                  <div key={`${action.href}-${action.label}`} className="contents">
+                    {renderAction(
+                      action,
+                      index === 0 ? "default" : "outline",
+                      "w-full sm:w-auto"
+                    )}
+                  </div>
+                )
                 )}
               </div>
             )}
@@ -268,14 +275,17 @@ export async function ServicePageLayout({
           </h2>
           <p className="mt-4 text-primary-foreground/80">{t.questionsDescription}</p>
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-            {resolvedBottomActions.map((action, index) =>
-              renderAction(
-                action,
-                index === 0 ? "secondary" : "outline",
-                index === 0
-                  ? "gap-2 bg-white text-primary hover:bg-white/90"
-                  : "gap-2 border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
-              )
+            {resolvedBottomActions.map((action, index) => (
+              <div key={`${action.href}-${action.label}`} className="contents">
+                {renderAction(
+                  action,
+                  index === 0 ? "secondary" : "outline",
+                  index === 0
+                    ? "gap-2 bg-white text-primary hover:bg-white/90"
+                    : "gap-2 border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                )}
+              </div>
+            )
             )}
           </div>
           {contactNote && <p className="mt-4 text-sm text-primary-foreground/80">{contactNote}</p>}

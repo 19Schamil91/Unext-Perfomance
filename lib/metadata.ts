@@ -11,7 +11,7 @@ const homeMeta: Record<Locale, { title: string; description: string; keywords: s
   de: {
     title: "UNEXT GMBH | Ihr starker Partner rund ums Fahrzeug in Berlin",
     description:
-      "UNEXT GMBH Berlin - Unfallgutachten, Autovermietung, Autoservice & Werkstatt, Kfz-Zulassungsservice, Abschleppdienst und Premium Detailing. Zertifiziert, schnell und zuverlässig.",
+      "UNEXT GMBH Berlin - Unfallgutachten, Autovermietung, Autoservice & Werkstatt, Kfz-Zulassungsservice, Abschleppdienst, Premium Detailing und Expresslieferung. Zertifiziert, schnell und zuverlässig.",
     keywords: [
       "Unfallgutachten Berlin",
       "Kfz-Gutachter Berlin",
@@ -20,6 +20,8 @@ const homeMeta: Record<Locale, { title: string; description: string; keywords: s
       "Auto Detailing Berlin",
       "Kfz-Zulassungsservice Berlin",
       "Abschleppdienst Berlin",
+      "Expresslieferung Berlin",
+      "Kurierdienst Berlin",
       "UNEXT",
       "UNFALLX",
     ],
@@ -27,7 +29,7 @@ const homeMeta: Record<Locale, { title: string; description: string; keywords: s
   en: {
     title: "UNEXT GMBH | Your trusted automotive partner in Berlin",
     description:
-      "UNEXT GMBH Berlin - accident reports, car rental, workshop service, vehicle registration, towing and premium detailing. Certified, fast and reliable.",
+      "UNEXT GMBH Berlin - accident reports, car rental, workshop service, vehicle registration, towing, premium detailing and express delivery. Certified, fast and reliable.",
     keywords: [
       "accident reports Berlin",
       "car appraiser Berlin",
@@ -36,6 +38,8 @@ const homeMeta: Record<Locale, { title: string; description: string; keywords: s
       "vehicle registration Berlin",
       "towing Berlin",
       "auto detailing Berlin",
+      "express delivery Berlin",
+      "courier service Berlin",
       "UNEXT",
       "UNFALLX",
     ],

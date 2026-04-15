@@ -5,6 +5,7 @@ import Image from "next/image"
 import {
   Car,
   CheckCircle,
+  ClipboardCheck,
   Clock,
   FileCheck,
   Instagram,
@@ -13,6 +14,7 @@ import {
   MessageCircle,
   Phone,
   Sparkles,
+  Truck,
   Wrench,
 } from "lucide-react"
 import { SiteFooter } from "@/components/site-footer"
@@ -31,7 +33,15 @@ const serviceMeta = [
   { icon: Car, phone: "0174 4292900", social: "@unext.performance" },
   { icon: Wrench, phone: "0177 7883206", social: "@unext.performance" },
   { icon: Sparkles, phone: "0177 6691006", social: "@unext.performance" },
+  { icon: ClipboardCheck, phone: "030 23613927", social: "@unext.performance" },
+  { icon: Truck, phone: "030 23613927", social: "@unext.performance" },
 ] as const
+
+const fallbackServiceMeta = {
+  icon: Phone,
+  phone: "030 23613927",
+  social: "@unext.performance",
+} as const
 
 export function ContactPageClient() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -110,7 +120,7 @@ export function ContactPageClient() {
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {t.serviceContacts.map((service, index) => {
-                const meta = serviceMeta[index]
+                const meta = serviceMeta[index] ?? fallbackServiceMeta
 
                 return (
                   <Card key={service.title} className="border-border/50 bg-card">

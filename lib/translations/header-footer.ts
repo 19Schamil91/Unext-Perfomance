@@ -32,7 +32,7 @@ export const headerFooterTranslations = {
     },
     footer: {
       description:
-        "Ihr starker Partner rund ums Fahrzeug in Berlin. Unfallgutachten, Autovermietung, Werkstatt, Kfz-Zulassungsservice, Abschleppdienst und Premium Detailing unter einem Dach.",
+        "Ihr starker Partner rund ums Fahrzeug in Berlin. Unfallgutachten, Autovermietung, Werkstatt, Kfz-Zulassungsservice, Abschleppdienst, Premium Detailing und Expresslieferung aus einer Hand.",
       address: "Lübarser Str. 25, 13435 Berlin",
       hoursWeek: "Mo-Fr: 9:00-18:00",
       hoursSat: "Sa: 10:00-16:00",
@@ -92,7 +92,7 @@ export const headerFooterTranslations = {
     },
     footer: {
       description:
-        "Your strong automotive partner in Berlin. Accident reports, car rental, workshop service, vehicle registration, towing and premium detailing under one roof.",
+        "Your strong automotive partner in Berlin. Accident reports, car rental, workshop service, vehicle registration, towing, premium detailing and express delivery from one source.",
       address: "Lübarser Str. 25, 13435 Berlin",
       hoursWeek: "Mon-Fri: 9:00 AM-6:00 PM",
       hoursSat: "Sat: 10:00 AM-4:00 PM",
