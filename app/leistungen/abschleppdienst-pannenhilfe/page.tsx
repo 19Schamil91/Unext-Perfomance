@@ -30,7 +30,7 @@ export default async function AbschleppdienstPage() {
         subtitle={t.subtitle}
         description={t.description}
         image="/images/service-towing.webp"
-        imageClassName="object-cover object-[58%_center] md:object-[60%_center]"
+        imageClassName="object-cover object-[48%_center] md:object-[52%_center]"
         heroActions={[
           { label: t.ctaLabel, href: "#abschleppdienst-anfrage", icon: "message" },
           { label: getTranslations(locale).serviceDetail.layout.contactCta, href: "/kontakt" },

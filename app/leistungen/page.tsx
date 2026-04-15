@@ -78,7 +78,7 @@ const serviceMeta = [
   {
     icon: Truck,
     image: "/images/service-towing.webp",
-    imageClassName: "object-cover object-[56%_center]",
+    imageClassName: "object-cover object-[44%_center]",
     href: "/leistungen/abschleppdienst-pannenhilfe",
     contactType: "request",
     contactHref: "https://instagram.com/unext.performance",
