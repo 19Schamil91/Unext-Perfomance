@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { ArrowRight, Clock3, Package, Truck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -6,6 +7,9 @@ import { getTranslations } from "@/lib/translations"
 
 const contactHref = "tel:+493023613927"
 const contactNumber = "030 23613927"
+const imageSrc = "/images/service-express-courier.webp"
+const imageWidth = 1536
+const imageHeight = 1024
 
 export async function ExpressCourierSection() {
   const locale = await getCurrentLocale()
@@ -65,26 +69,40 @@ export async function ExpressCourierSection() {
               </div>
 
               <div className="border-t border-border/50 bg-card/60 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
-                <div className="rounded-2xl border border-border/50 bg-background p-6 sm:p-8">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <Clock3 className="h-7 w-7" />
+                <div className="flex h-full flex-col gap-6">
+                  <div className="overflow-hidden rounded-2xl border border-border/50 bg-background">
+                    <Image
+                      src={imageSrc}
+                      alt={t.title}
+                      width={imageWidth}
+                      height={imageHeight}
+                      sizes="(min-width: 1024px) 32vw, (min-width: 640px) 50vw, 100vw"
+                      quality={74}
+                      className="h-auto w-full object-cover object-[52%_center]"
+                    />
                   </div>
-                  <h3 className="mt-5 text-xl font-semibold text-foreground">
-                    {t.highlightTitle}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
-                    {t.highlightDescription}
-                  </p>
-                  <div className="mt-6 rounded-xl border border-border/50 bg-card px-4 py-3">
-                    <p className="text-xs font-medium uppercase tracking-wider text-primary">
-                      {t.contactBoxLabel}
+
+                  <div className="rounded-2xl border border-border/50 bg-background p-6 sm:p-8">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <Clock3 className="h-7 w-7" />
+                    </div>
+                    <h3 className="mt-5 text-xl font-semibold text-foreground">
+                      {t.highlightTitle}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
+                      {t.highlightDescription}
                     </p>
-                    <a
-                      href={contactHref}
-                      className="mt-2 inline-block text-lg font-semibold text-foreground transition-colors hover:text-primary"
-                    >
-                      {contactNumber}
-                    </a>
+                    <div className="mt-6 rounded-xl border border-border/50 bg-card px-4 py-3">
+                      <p className="text-xs font-medium uppercase tracking-wider text-primary">
+                        {t.contactBoxLabel}
+                      </p>
+                      <a
+                        href={contactHref}
+                        className="mt-2 inline-block text-lg font-semibold text-foreground transition-colors hover:text-primary"
+                      >
+                        {contactNumber}
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
