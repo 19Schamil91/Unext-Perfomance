@@ -19,7 +19,7 @@ export const headerFooterTranslations = {
             { name: "Autovermietung", href: "/leistungen/autovermietung" },
             { name: "Autoservice & Werkstatt", href: "/leistungen/autoservice" },
             { name: "Detailing", href: "/leistungen/detailing" },
-            { name: "KFZ-Zulassungsservice", href: "/leistungen/zulassungsservice" },
+            { name: "Kfz-Zulassungsservice", href: "/leistungen/zulassungsservice" },
             { name: "Abschleppdienst & Pannenhilfe", href: "/leistungen/abschleppdienst-pannenhilfe" },
           ],
         },
@@ -32,7 +32,7 @@ export const headerFooterTranslations = {
     },
     footer: {
       description:
-        "Ihr starker Partner rund ums Fahrzeug in Berlin. Unfallgutachten, Autovermietung, Werkstatt und Premium Detailing unter einem Dach.",
+        "Ihr starker Partner rund ums Fahrzeug in Berlin. Unfallgutachten, Autovermietung, Werkstatt, Kfz-Zulassungsservice, Abschleppdienst und Premium Detailing unter einem Dach.",
       address: "Lübarser Str. 25, 13435 Berlin",
       hoursWeek: "Mo-Fr: 9:00-18:00",
       hoursSat: "Sa: 10:00-16:00",
@@ -92,7 +92,7 @@ export const headerFooterTranslations = {
     },
     footer: {
       description:
-        "Your strong automotive partner in Berlin. Accident reports, car rental, workshop service and premium detailing under one roof.",
+        "Your strong automotive partner in Berlin. Accident reports, car rental, workshop service, vehicle registration, towing and premium detailing under one roof.",
       address: "Lübarser Str. 25, 13435 Berlin",
       hoursWeek: "Mon-Fri: 9:00 AM-6:00 PM",
       hoursSat: "Sat: 10:00 AM-4:00 PM",
@@ -152,7 +152,7 @@ export const headerFooterTranslations = {
     },
     footer: {
       description:
-        "Ваш надежный автомобильный партнер в Берлине. Экспертиза ДТП, прокат авто, сервис и премиальный детейлинг под одной крышей.",
+        "Ваш надежный автомобильный партнер в Берлине. Экспертиза ДТП, прокат авто, сервис, регистрация, эвакуатор и премиальный детейлинг под одной крышей.",
       address: "Lübarser Str. 25, 13435 Berlin",
       hoursWeek: "Пн-Пт: 9:00-18:00",
       hoursSat: "Сб: 10:00-16:00",

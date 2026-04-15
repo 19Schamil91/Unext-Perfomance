@@ -7,7 +7,7 @@ export const servicePagesPart1 = {
       subtitle: "UNFALLX",
       badge: "Zertifizierte Gutachter",
       description:
-        "Ein Unfall ist immer stressig. Wir nehmen Ihnen die Last ab: Unsere zertifizierten Gutachter erstellen unabhängige KFZ-Gutachten und unterstützen Sie kompetent bei der gesamten Schadensabwicklung - schnell, professionell und fair.",
+        "Ein Unfall ist immer stressig. Wir nehmen Ihnen die Last ab: Unsere zertifizierten Gutachter erstellen unabhängige Kfz-Gutachten und unterstützen Sie kompetent bei der gesamten Schadensabwicklung - schnell, professionell und fair.",
       benefits: ["Schnelle Terminvergabe", "Unabhängige Gutachten", "Zertifizierte Gutachter", "Schadensabwicklung inklusive", "Kostenlose Erstberatung", "Vor-Ort-Service möglich"],
       services: [
         { title: "Unfallgutachten", description: "Professionelle und unabhängige Schadensbewertung nach Verkehrsunfällen für Versicherungen und Gerichte." },
@@ -25,10 +25,10 @@ export const servicePagesPart1 = {
       ],
       faqs: [
         { question: "Wer zahlt das Unfallgutachten?", answer: "Bei unverschuldeten Unfällen übernimmt in der Regel die gegnerische Versicherung die Kosten für das Gutachten. Wir beraten Sie gerne zu Ihrem konkreten Fall." },
-        { question: "Wie schnell kann ich einen Termin bekommen?", answer: "Wir bieten kurzfristige Termine an - oft schon am gleichen oder nächsten Tag. Rufen Sie uns einfach an!" },
+        { question: "Wie schnell kann ich einen Termin bekommen?", answer: "Wir bieten kurzfristige Termine an - oft schon am gleichen oder nächsten Tag. Rufen Sie uns einfach an." },
         { question: "Brauche ich bei jedem Unfall ein Gutachten?", answer: "Ein Gutachten ist bei Schäden über ca. 750 EUR empfehlenswert, um Ihre Ansprüche vollständig geltend machen zu können. Bei Bagatellschäden reicht oft ein Kostenvoranschlag." },
         { question: "Kommen Sie auch zu mir?", answer: "Ja, wir bieten auf Wunsch auch Vor-Ort-Termine an. Sprechen Sie uns einfach bei der Terminvereinbarung darauf an." },
-        { question: "Wie lange dauert die Erstellung eines Gutachtens?", answer: "In der Regel erhalten Sie Ihr Gutachten innerhalb von 24-48 Stunden nach der Fahrzeugbesichtigung." },
+        { question: "Wie lange dauert die Erstellung eines Gutachtens?", answer: "In der Regel erhalten Sie Ihr Gutachten innerhalb von 24 bis 48 Stunden nach der Fahrzeugbesichtigung." },
       ],
       formTitle: "Gutachten anfragen",
     },
@@ -36,7 +36,7 @@ export const servicePagesPart1 = {
       title: "Autovermietung",
       subtitle: "Ersatzfahrzeuge",
       description:
-        "Ob nach einem Unfall, während der Werkstattzeit oder für besondere Anlässe - wir haben das passende Fahrzeug für Sie. Schnell verfügbar, fair im Preis und immer in top Zustand.",
+        "Ob nach einem Unfall, während der Werkstattzeit oder für besondere Anlässe - wir haben das passende Fahrzeug für Sie. Schnell verfügbar, fair im Preis und immer in Top-Zustand.",
       benefits: ["Sofort verfügbare Fahrzeuge", "Flexible Mietdauer", "Faire & transparente Preise", "Geprüfte Fahrzeuge", "Unkomplizierte Abwicklung", "Privat- und Geschäftskunden"],
       services: [
         { title: "Ersatzfahrzeuge", description: "Schnelle Bereitstellung von Ersatzfahrzeugen bei Unfall oder während der Reparatur Ihres Fahrzeugs." },
@@ -56,7 +56,7 @@ export const servicePagesPart1 = {
         { question: "Welche Fahrzeuge können gemietet werden?", answer: "Wir bieten verschiedene Fahrzeugklassen an - vom Kleinwagen bis zur gehobenen Mittelklasse. Sprechen Sie uns an für aktuelle Verfügbarkeiten." },
         { question: "Was brauche ich für die Anmietung?", answer: "Sie benötigen einen gültigen Führerschein, Personalausweis und eine gültige Kreditkarte oder Kaution." },
         { question: "Wer zahlt bei einem Unfall den Mietwagen?", answer: "Bei unverschuldeten Unfällen übernimmt die gegnerische Versicherung die Mietwagenkosten. Wir beraten Sie gerne." },
-        { question: "Kann ich das Fahrzeug am Wochenende abholen?", answer: "Samstags sind wir von 10:00-16:00 Uhr für Sie da. Außerhalb der Öffnungszeiten nach Vereinbarung." },
+        { question: "Kann ich das Fahrzeug am Wochenende abholen?", answer: "Samstags sind wir von 10:00 bis 16:00 Uhr für Sie da. Außerhalb der Öffnungszeiten nach Vereinbarung." },
         { question: "Gibt es eine Kilometerbegrenzung?", answer: "Unsere Tarife beinhalten in der Regel eine großzügige Kilometerpauschale. Details besprechen wir bei der Buchung." },
       ],
       formTitle: "Mietwagen anfragen",
@@ -89,7 +89,7 @@ export const servicePagesPart1 = {
         { question: "How quickly can I get an appointment?", answer: "We offer short-notice appointments - often on the same day or the next day. Just give us a call." },
         { question: "Do I need a report after every accident?", answer: "A report is recommended for damage above about EUR 750 so you can assert your claims in full. For minor damage, a cost estimate is often sufficient." },
         { question: "Can you come to me?", answer: "Yes, we also offer on-site appointments on request. Just mention it when booking." },
-        { question: "How long does it take to prepare a report?", answer: "You usually receive your report within 24-48 hours after the vehicle inspection." },
+        { question: "How long does it take to prepare a report?", answer: "You usually receive your report within 24 to 48 hours after the vehicle inspection." },
       ],
       formTitle: "Request a report",
     },
@@ -130,7 +130,7 @@ export const servicePagesPart1 = {
       badge: "Сертифицированные эксперты",
       description:
         "ДТП всегда связано со стрессом. Мы берем нагрузку на себя: наши сертифицированные эксперты готовят независимую автоэкспертизу и профессионально сопровождают вас в процессе урегулирования ущерба - быстро, честно и надежно.",
-      benefits: ["Быстрая запись", "Независимая экспертиза", "Сертифицированные эксперты", "Урегулирование ущерба включено", "Бесплатичная первичная консультация", "Выезд на место возможен"],
+      benefits: ["Быстрая запись", "Независимая экспертиза", "Сертифицированные эксперты", "Урегулирование ущерба включено", "Бесплатная первичная консультация", "Выезд на место возможен"],
       services: [
         { title: "Экспертиза ДТП", description: "Профессиональная и независимая оценка повреждений после ДТП для страховых компаний и суда." },
         { title: "Срочная помощь после ДТП", description: "Быстрая поддержка сразу после аварии - мы берем на себя все необходимое." },
