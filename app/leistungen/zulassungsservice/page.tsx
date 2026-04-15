@@ -30,7 +30,7 @@ export default async function ZulassungsservicePage() {
         subtitle={t.subtitle}
         description={t.description}
         image="/images/service-registration.webp"
-        imageClassName="object-cover object-[44%_center] md:object-center"
+        imageClassName="object-cover object-[60%_center] md:object-[64%_center]"
         heroActions={[
           { label: t.ctaLabel, href: "#zulassungsservice-anfrage", icon: "message" },
           { label: getTranslations(locale).serviceDetail.layout.contactCta, href: "/kontakt" },

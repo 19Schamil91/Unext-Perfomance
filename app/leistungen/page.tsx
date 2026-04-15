@@ -69,7 +69,7 @@ const serviceMeta = [
   {
     icon: ClipboardCheck,
     image: "/images/service-registration.webp",
-    imageClassName: "object-cover object-center",
+    imageClassName: "object-cover object-[38%_center]",
     href: "/leistungen/zulassungsservice",
     contactType: "request",
     contactHref: "https://instagram.com/unext.performance",
