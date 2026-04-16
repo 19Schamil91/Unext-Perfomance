@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Car, ClipboardCheck, FileCheck, Sparkles, Truck, Wrench } from "lucide-react"
+import { ArrowRight, Car, ClipboardCheck, FileCheck, Phone, Sparkles, Truck, Wrench } from "lucide-react"
 import { CtaSection } from "@/components/sections/cta-section"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
@@ -158,9 +158,15 @@ export default async function LeistungenPage() {
                                 <ArrowRight className="h-4 w-4" />
                               </Link>
                             </Button>
+                            <Button asChild variant="outline" className="w-full gap-2 sm:hidden">
+                              <a href={meta.contactHref}>
+                                <Phone className="h-4 w-4" />
+                                {contactText}
+                              </a>
+                            </Button>
                             <a
                               href={meta.contactHref}
-                              className="text-sm leading-6 text-muted-foreground transition-colors hover:text-primary"
+                              className="hidden text-sm leading-6 text-muted-foreground transition-colors hover:text-primary sm:inline"
                             >
                               {`${t.directCall} ${contactText}`}
                             </a>

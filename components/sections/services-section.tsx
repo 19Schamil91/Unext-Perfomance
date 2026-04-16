@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Car, ClipboardCheck, FileCheck, Sparkles, Truck, Wrench } from "lucide-react"
+import { ArrowRight, Car, ClipboardCheck, FileCheck, Phone, Sparkles, Truck, Wrench } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { homeServiceAnchors } from "@/lib/service-anchors"
@@ -150,12 +150,20 @@ export async function ServicesSection() {
                           </Link>
                         </Button>
                         {meta.contactHref ? (
-                          <a
-                            href={meta.contactHref}
-                            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-                          >
-                            {contactText}
-                          </a>
+                          <>
+                            <Button asChild variant="outline" size="sm" className="w-full gap-2 sm:hidden">
+                              <a href={meta.contactHref}>
+                                <Phone className="h-4 w-4" />
+                                {contactText}
+                              </a>
+                            </Button>
+                            <a
+                              href={meta.contactHref}
+                              className="hidden text-sm font-medium text-muted-foreground transition-colors hover:text-primary sm:inline"
+                            >
+                              {contactText}
+                            </a>
+                          </>
                         ) : (
                           <span className="text-sm text-muted-foreground">{contactText}</span>
                         )}
