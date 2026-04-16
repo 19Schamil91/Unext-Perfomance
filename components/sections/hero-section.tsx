@@ -87,21 +87,23 @@ function HeroContent({
 export async function HeroSection() {
   const locale = await getCurrentLocale()
   const t = getTranslations(locale).home.hero
+  const heroMobileImageSrc = "/images/home-hero-team-balanced.webp"
+  const heroDesktopImageSrc = "/images/home-hero-team-desktop.webp"
 
   return (
     <section className="overflow-hidden bg-background">
       <div className="md:hidden">
-        <div className="relative aspect-[4/5] overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.16),transparent_58%),linear-gradient(180deg,rgba(26,26,31,0.02),rgba(26,26,31,0.16))]">
+        <div className="relative aspect-[4/3] overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.16),transparent_58%),linear-gradient(180deg,rgba(26,26,31,0.02),rgba(26,26,31,0.16))]">
           <Image
-            src="/images/home-hero-team.webp"
+            src={heroMobileImageSrc}
             alt="UNEXT team"
             fill
             sizes="100vw"
             quality={78}
-            className="object-cover object-[center_14%]"
+            className="object-cover object-[center_10%]"
             priority
           />
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background via-background/65 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background via-background/40 to-transparent" />
         </div>
 
         <div className="px-4 pb-14 pt-8">
@@ -119,19 +121,21 @@ export async function HeroSection() {
         </div>
       </div>
 
-      <div className="relative hidden min-h-[90vh] items-center overflow-hidden md:flex">
+      <div className="relative hidden min-h-[88vh] items-center overflow-hidden md:flex">
         <div className="absolute inset-0">
           <Image
-            src="/images/home-hero-team.webp"
+            src={heroDesktopImageSrc}
             alt="UNEXT team"
             fill
             sizes="100vw"
             quality={78}
-            className="object-cover object-[center_12%] lg:object-[center_10%]"
+            className="object-cover object-[center_18%] lg:object-[center_16%]"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/88 via-background/70 md:via-background/42 to-background/12" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/72 via-transparent to-background/10 md:from-background/44" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(255,255,255,0.18),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(11,14,20,0.22))]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/42 via-background/12 to-transparent" />
+          <div className="absolute inset-0 bg-background/10" />
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background/40 via-background/12 to-transparent" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 py-24 lg:px-8">
@@ -144,7 +148,7 @@ export async function HeroSection() {
             inquiry={t.inquiry}
             whatsapp={t.whatsapp}
             address={t.address}
-            className="mt-14 max-w-xl lg:mt-16 lg:max-w-2xl"
+            className="mt-14 max-w-xl rounded-[2rem] border border-white/10 bg-background/52 px-6 py-8 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-sm lg:mt-16 lg:max-w-2xl lg:px-8 lg:py-10"
           />
         </div>
       </div>
