@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ArrowRight, Car, ClipboardCheck, FileCheck, Phone, Sparkles, Truck, Wrench } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { ServiceSelectionLink } from "@/components/service-selection-link"
 import { homeServiceAnchors } from "@/lib/service-anchors"
 import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
@@ -144,10 +145,14 @@ export async function ServicesSection() {
 
                       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
                         <Button asChild size="sm" className="w-full gap-2 sm:w-auto">
-                          <Link href={meta.href}>
+                          <ServiceSelectionLink
+                            href={meta.href}
+                            serviceName={meta.href.split("/").at(-1) ?? service.title}
+                            serviceTitle={service.title}
+                          >
                             {t.learnMore}
                             <ArrowRight className="h-4 w-4" />
-                          </Link>
+                          </ServiceSelectionLink>
                         </Button>
                         {meta.contactHref ? (
                           <>

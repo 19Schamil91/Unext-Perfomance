@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { ServiceSelectionLink } from "@/components/service-selection-link"
 import { buildPageMetadata } from "@/lib/metadata"
 import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
@@ -153,10 +154,14 @@ export default async function LeistungenPage() {
 
                           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
                             <Button asChild className="gap-2">
-                              <Link href={meta.href}>
+                              <ServiceSelectionLink
+                                href={meta.href}
+                                serviceName={meta.href.split("/").at(-1) ?? service.title}
+                                serviceTitle={service.title}
+                              >
                                 {getTranslations(locale).home.services.learnMore}
                                 <ArrowRight className="h-4 w-4" />
-                              </Link>
+                              </ServiceSelectionLink>
                             </Button>
                             <Button asChild variant="outline" className="w-full gap-2 sm:hidden">
                               <a href={meta.contactHref}>

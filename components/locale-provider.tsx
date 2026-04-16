@@ -2,13 +2,15 @@
 
 import {
   createContext,
+  useEffect,
   useContext,
   useState,
   useTransition,
   type ReactNode,
 } from "react"
 import { useRouter } from "next/navigation"
-import type { Locale } from "@/lib/i18n"
+import { isLocale, type Locale } from "@/lib/i18n"
+import { persistLocale, readStorage, storageKeys } from "@/lib/browser-storage"
 
 interface LocaleContextValue {
   locale: Locale
@@ -28,12 +30,28 @@ export function LocaleProvider({ initialLocale, children }: LocaleProviderProps)
   const [locale, setLocaleState] = useState(initialLocale)
   const [isPending, startTransition] = useTransition()
 
+  useEffect(() => {
+    const storedLocale = readStorage<{ locale?: string }>(storageKeys.locale)?.locale
+
+    if (!isLocale(storedLocale) || storedLocale === initialLocale) {
+      return
+    }
+
+    document.cookie = `locale=${storedLocale}; path=/; max-age=31536000; SameSite=Lax`
+    setLocaleState(storedLocale)
+
+    startTransition(() => {
+      router.refresh()
+    })
+  }, [initialLocale, router])
+
   const setLocale = (nextLocale: Locale) => {
     if (nextLocale === locale) {
       return
     }
 
     document.cookie = `locale=${nextLocale}; path=/; max-age=31536000; SameSite=Lax`
+    persistLocale(nextLocale)
     setLocaleState(nextLocale)
 
     startTransition(() => {

@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, CheckCircle, MessageCircle, Phone } from "lucide-react"
+import { SelectedServiceTracker } from "@/components/selected-service-tracker"
 import { Button } from "@/components/ui/button"
 import { ServiceInquiryForm, type ServiceInquiryFields } from "@/components/service-inquiry-form"
 import {
@@ -124,6 +125,8 @@ export async function ServicePageLayout({
 
   return (
     <main>
+      <SelectedServiceTracker serviceName={serviceName} serviceTitle={title} />
+
       <section className="relative overflow-hidden py-16 sm:py-20 lg:py-28">
         <div className="absolute inset-0">
           <Image

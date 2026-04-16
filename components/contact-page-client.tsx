@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import {
   Car,
@@ -26,6 +26,14 @@ import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Spinner } from "@/components/ui/spinner"
 import { Textarea } from "@/components/ui/textarea"
+import {
+  removeStorage,
+  type ContactFormDraft,
+  type LastSelectedService,
+  readStorage,
+  storageKeys,
+  writeStorage,
+} from "@/lib/browser-storage"
 import { getTranslations } from "@/lib/translations"
 
 const serviceMeta = [
@@ -43,11 +51,53 @@ const fallbackServiceMeta = {
   social: "@unext.performance",
 } as const
 
+const emptyContactDraft: ContactFormDraft = {
+  name: "",
+  phone: "",
+  email: "",
+  subject: "",
+  message: "",
+}
+
 export function ContactPageClient() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [formData, setFormData] = useState<ContactFormDraft>(emptyContactDraft)
   const { locale } = useLocale()
   const t = getTranslations(locale).contactPage
+
+  useEffect(() => {
+    const savedDraft = readStorage<ContactFormDraft>(storageKeys.contactForm)
+
+    if (savedDraft) {
+      setFormData({ ...emptyContactDraft, ...savedDraft })
+      return
+    }
+
+    const lastSelectedService = readStorage<LastSelectedService>(storageKeys.lastSelectedService)
+
+    if (lastSelectedService?.serviceTitle) {
+      setFormData((current) => ({
+        ...current,
+        subject: lastSelectedService.serviceTitle,
+      }))
+    }
+  }, [])
+
+  useEffect(() => {
+    if (isSubmitted) {
+      return
+    }
+
+    writeStorage(storageKeys.contactForm, formData)
+  }, [formData, isSubmitted])
+
+  const handleFieldChange = (field: keyof ContactFormDraft, value: string) => {
+    setFormData((current) => ({
+      ...current,
+      [field]: value,
+    }))
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -55,6 +105,7 @@ export function ContactPageClient() {
     await new Promise((resolve) => setTimeout(resolve, 1500))
     setIsSubmitting(false)
     setIsSubmitted(true)
+    removeStorage(storageKeys.contactForm)
   }
 
   return (
@@ -180,7 +231,19 @@ export function ContactPageClient() {
                       </div>
                       <h3 className="text-xl font-semibold text-foreground">{t.form.successTitle}</h3>
                       <p className="mt-2 text-muted-foreground">{t.form.successText}</p>
-                      <Button className="mt-6" variant="outline" onClick={() => setIsSubmitted(false)}>
+                      <Button
+                        className="mt-6"
+                        variant="outline"
+                        onClick={() => {
+                          const lastSelectedService = readStorage<LastSelectedService>(storageKeys.lastSelectedService)
+
+                          setFormData({
+                            ...emptyContactDraft,
+                            subject: lastSelectedService?.serviceTitle ?? "",
+                          })
+                          setIsSubmitted(false)
+                        }}
+                      >
                         {t.form.newMessage}
                       </Button>
                     </CardContent>
@@ -197,11 +260,25 @@ export function ContactPageClient() {
                           <div className="grid gap-4 sm:grid-cols-2">
                             <Field>
                               <FieldLabel htmlFor="name">{t.form.name}</FieldLabel>
-                              <Input id="name" name="name" placeholder={t.form.namePlaceholder} required />
+                              <Input
+                                id="name"
+                                name="name"
+                                placeholder={t.form.namePlaceholder}
+                                value={formData.name}
+                                onChange={(event) => handleFieldChange("name", event.target.value)}
+                                required
+                              />
                             </Field>
                             <Field>
                               <FieldLabel htmlFor="phone">{t.form.phone}</FieldLabel>
-                              <Input id="phone" name="phone" type="tel" placeholder={t.form.phonePlaceholder} />
+                              <Input
+                                id="phone"
+                                name="phone"
+                                type="tel"
+                                placeholder={t.form.phonePlaceholder}
+                                value={formData.phone}
+                                onChange={(event) => handleFieldChange("phone", event.target.value)}
+                              />
                             </Field>
                           </div>
 
@@ -212,13 +289,22 @@ export function ContactPageClient() {
                               name="email"
                               type="email"
                               placeholder={t.form.emailPlaceholder}
+                              value={formData.email}
+                              onChange={(event) => handleFieldChange("email", event.target.value)}
                               required
                             />
                           </Field>
 
                           <Field>
                             <FieldLabel htmlFor="subject">{t.form.subject}</FieldLabel>
-                            <Input id="subject" name="subject" placeholder={t.form.subjectPlaceholder} required />
+                            <Input
+                              id="subject"
+                              name="subject"
+                              placeholder={t.form.subjectPlaceholder}
+                              value={formData.subject}
+                              onChange={(event) => handleFieldChange("subject", event.target.value)}
+                              required
+                            />
                           </Field>
 
                           <Field>
@@ -227,6 +313,8 @@ export function ContactPageClient() {
                               id="message"
                               name="message"
                               placeholder={t.form.messagePlaceholder}
+                              value={formData.message}
+                              onChange={(event) => handleFieldChange("message", event.target.value)}
                               rows={5}
                               required
                             />
