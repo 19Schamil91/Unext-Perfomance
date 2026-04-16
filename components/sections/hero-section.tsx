@@ -30,15 +30,17 @@ function HeroContent({
 }: HeroContentProps) {
   return (
     <div className={className}>
-      <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+      <h1 className="text-4xl font-bold tracking-tight text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.34)] sm:text-5xl lg:text-6xl">
         <span className="block">{title1}</span>
         <span className="block text-primary">{title2}</span>
-        <span className="mt-2 block text-2xl font-normal text-muted-foreground sm:text-3xl lg:text-4xl">
+        <span className="mt-2 block text-2xl font-normal text-white/84 drop-shadow-[0_2px_12px_rgba(0,0,0,0.26)] sm:text-3xl lg:text-4xl">
           {title3}
         </span>
       </h1>
 
-      <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">{description}</p>
+      <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80 drop-shadow-[0_2px_10px_rgba(0,0,0,0.2)]">
+        {description}
+      </p>
 
       <div className="mt-8 flex flex-col gap-4 sm:flex-row">
         <Button asChild size="lg" className="gap-2">
@@ -61,7 +63,7 @@ function HeroContent({
         </Button>
       </div>
 
-      <div className="mt-10 flex flex-col gap-3 text-sm text-muted-foreground sm:flex-row sm:items-center sm:gap-4">
+      <div className="mt-10 flex flex-col gap-3 text-sm text-white/72 sm:flex-row sm:items-center sm:gap-4">
         <div className="flex items-center gap-2">
           <svg className="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
@@ -133,8 +135,8 @@ export async function HeroSection() {
             priority
           />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(255,255,255,0.18),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(11,14,20,0.22))]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/42 via-background/12 to-transparent" />
-          <div className="absolute inset-0 bg-background/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/54 via-background/20 via-42% to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/8 via-transparent to-background/12" />
           <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background/40 via-background/12 to-transparent" />
         </div>
 
@@ -148,7 +150,7 @@ export async function HeroSection() {
             inquiry={t.inquiry}
             whatsapp={t.whatsapp}
             address={t.address}
-            className="mt-14 max-w-xl rounded-[2rem] border border-white/10 bg-background/52 px-6 py-8 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-sm lg:mt-16 lg:max-w-2xl lg:px-8 lg:py-10"
+            className="mt-14 max-w-xl lg:mt-16 lg:max-w-2xl"
           />
         </div>
       </div>
