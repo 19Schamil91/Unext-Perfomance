@@ -11,24 +11,27 @@ export async function ProcessSection() {
   return (
     <section className="bg-card py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="mx-auto mb-16 max-w-3xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-16">
+          <h2 className="text-[2rem] font-bold tracking-[-0.03em] text-foreground sm:text-4xl sm:tracking-tight">
             {t.title}
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">{t.description}</p>
+          <p className="mt-3 text-base leading-7 text-muted-foreground sm:mt-4 sm:text-lg">{t.description}</p>
         </div>
 
         <div className="relative">
           <div className="absolute left-0 right-0 top-1/2 hidden h-0.5 -translate-y-1/2 bg-border lg:block" />
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {t.steps.map((item, index) => {
               const Icon = icons[index]
 
               return (
-                <div key={item.step} className="relative flex flex-col items-center text-center">
-                  <div className="relative z-10 mb-4">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-primary bg-background">
+                <div
+                  key={item.step}
+                  className="relative rounded-[1.5rem] border border-border/60 bg-background p-5 text-left shadow-sm sm:items-center sm:text-center lg:border-none lg:bg-transparent lg:p-0 lg:shadow-none"
+                >
+                  <div className="relative z-10 mb-4 inline-flex">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-primary bg-background sm:h-16 sm:w-16">
                       <Icon className="h-7 w-7 text-primary" />
                     </div>
                     <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">

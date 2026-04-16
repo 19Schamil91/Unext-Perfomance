@@ -81,6 +81,8 @@
 
 @theme inline {
   --font-sans:
+    "Aptos",
+    "Segoe UI Variable",
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
@@ -129,8 +131,20 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
   body {
     @apply bg-background text-foreground;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
   }
 }
 

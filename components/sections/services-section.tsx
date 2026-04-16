@@ -80,11 +80,11 @@ export async function ServicesSection() {
   return (
     <section className="bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="mx-auto mb-16 max-w-3xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-16">
+          <h2 className="text-[2rem] font-bold tracking-[-0.03em] text-foreground sm:text-4xl sm:tracking-tight">
             {t.title}
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">{t.description}</p>
+          <p className="mt-3 text-base leading-7 text-muted-foreground sm:mt-4 sm:text-lg">{t.description}</p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
@@ -99,7 +99,7 @@ export async function ServicesSection() {
               >
                 <CardContent className="p-4 sm:p-5 lg:p-6">
                   <div className="flex flex-col gap-5 lg:flex-row lg:items-stretch">
-                    <div className="relative h-64 overflow-hidden rounded-[1.75rem] border border-border/50 bg-background shadow-sm sm:h-72 lg:w-[38%] lg:min-h-[320px]">
+                    <div className="relative h-56 overflow-hidden rounded-[1.5rem] border border-border/50 bg-background shadow-sm sm:h-72 sm:rounded-[1.75rem] lg:w-[38%] lg:min-h-[320px]">
                       <Image
                         src={meta.image}
                         alt={service.title}
@@ -120,11 +120,11 @@ export async function ServicesSection() {
                           <p className="text-xs font-medium uppercase tracking-wider text-primary">
                             {service.subtitle}
                           </p>
-                          <h3 className="text-xl font-semibold text-foreground">{service.title}</h3>
+                          <h3 className="text-lg font-semibold leading-7 text-foreground sm:text-xl">{service.title}</h3>
                         </div>
                       </div>
 
-                      <p className="mt-4 text-sm leading-7 text-muted-foreground sm:text-[0.95rem]">
+                      <p className="mt-4 text-sm leading-6 text-muted-foreground sm:text-[0.95rem] sm:leading-7">
                         {service.description}
                       </p>
 
@@ -141,7 +141,7 @@ export async function ServicesSection() {
                       </ul>
 
                       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-                        <Button asChild size="sm" className="gap-2">
+                        <Button asChild size="sm" className="w-full gap-2 sm:w-auto">
                           <Link href={meta.href}>
                             {t.learnMore}
                             <ArrowRight className="h-4 w-4" />
@@ -150,7 +150,7 @@ export async function ServicesSection() {
                         {meta.contactHref ? (
                           <a
                             href={meta.contactHref}
-                            className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
                           >
                             {contactText}
                           </a>
@@ -166,8 +166,8 @@ export async function ServicesSection() {
           })}
         </div>
 
-        <div className="mt-12 text-center">
-          <Button asChild variant="outline" size="lg" className="gap-2">
+        <div className="mt-10 text-center sm:mt-12">
+          <Button asChild variant="outline" size="lg" className="w-full gap-2 sm:w-auto">
             <Link href="/leistungen">
               {t.viewAll}
               <ArrowRight className="h-5 w-5" />

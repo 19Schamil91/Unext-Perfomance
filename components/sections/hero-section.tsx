@@ -6,6 +6,7 @@ import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
 
 interface HeroContentProps {
+  badge: string
   title1: string
   title2: string
   title3: string
@@ -19,6 +20,7 @@ interface HeroContentProps {
 }
 
 function HeroContent({
+  badge,
   title1,
   title2,
   title3,
@@ -32,19 +34,34 @@ function HeroContent({
 }: HeroContentProps) {
   return (
     <div className={className}>
-      <h1 className="text-4xl font-bold tracking-tight text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.34)] sm:text-5xl lg:text-6xl">
+      <div className="inline-flex rounded-full border border-white/12 bg-white/8 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white/78 backdrop-blur-sm">
+        {badge}
+      </div>
+
+      <h1 className="mt-4 text-[2.4rem] leading-[1.02] font-bold tracking-[-0.04em] text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.34)] sm:text-5xl sm:tracking-tight lg:text-6xl">
         <span className="block">{title1}</span>
         <span className="block text-primary">{title2}</span>
-        <span className="mt-2 block text-2xl font-normal text-white/84 drop-shadow-[0_2px_12px_rgba(0,0,0,0.26)] sm:text-3xl lg:text-4xl">
+        <span className="mt-2 block text-[1.35rem] font-normal text-white/84 drop-shadow-[0_2px_12px_rgba(0,0,0,0.26)] sm:text-3xl lg:text-4xl">
           {title3}
         </span>
       </h1>
 
-      <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80 drop-shadow-[0_2px_10px_rgba(0,0,0,0.2)]">
+      <p className="mt-5 max-w-xl text-base leading-7 text-white/80 drop-shadow-[0_2px_10px_rgba(0,0,0,0.2)] sm:mt-6 sm:text-lg">
         {description}
       </p>
 
-      <div className="mt-6 flex max-w-3xl flex-wrap gap-2">
+      <div className="mt-6 grid grid-cols-2 gap-2 sm:hidden">
+        {services.map((service) => (
+          <span
+            key={service}
+            className="rounded-[1rem] border border-white/12 bg-white/8 px-3 py-2 text-sm leading-5 text-white/82 backdrop-blur-sm"
+          >
+            {service}
+          </span>
+        ))}
+      </div>
+
+      <div className="mt-6 hidden max-w-3xl flex-wrap gap-2 sm:flex">
         {services.map((service) => (
           <span
             key={service}
@@ -55,7 +72,7 @@ function HeroContent({
         ))}
       </div>
 
-      <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
         <Button asChild size="lg" className="w-full gap-2 sm:w-auto">
           <a href="tel:+493023613927">
             <Phone className="h-5 w-5" />
@@ -128,6 +145,7 @@ export async function HeroSection() {
             title1={t.title1}
             title2={t.title2}
             title3={t.title3}
+            badge={t.badge}
             description={t.description}
             services={mainServices}
             callNow={t.callNow}
@@ -161,6 +179,7 @@ export async function HeroSection() {
             title1={t.title1}
             title2={t.title2}
             title3={t.title3}
+            badge={t.badge}
             description={t.description}
             services={mainServices}
             callNow={t.callNow}

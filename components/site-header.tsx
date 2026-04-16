@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ChevronDown, Globe, Menu, MessageCircle, Phone } from "lucide-react"
+import { ChevronDown, ChevronRight, Globe, Menu, MessageCircle, Phone } from "lucide-react"
 import { useLocale } from "@/components/locale-provider"
 import { Button } from "@/components/ui/button"
 import {
@@ -27,6 +27,8 @@ export function SiteHeader() {
   const { locale, setLocale, isPending } = useLocale()
   const t = getTranslations(locale)
   const navigation = t.header.navigation as readonly NavigationItem[]
+  const pageNavigation = navigation.filter((item) => !item.children)
+  const serviceNavigation = navigation.find((item) => item.children)
   const languages = locales.map((code) => ({ code, name: t.languages[code] }))
 
   const handleLocaleChange = (nextLocale: Locale) => {
@@ -137,55 +139,30 @@ export function SiteHeader() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-[90vw] max-w-sm overflow-y-auto border-l border-border/70 bg-card/98 px-5 pb-6 pt-6 backdrop-blur"
+              className="w-[92vw] max-w-sm overflow-y-auto border-l border-border/70 bg-card/98 px-4 pb-6 pt-5 backdrop-blur"
             >
-              <div className="flex min-h-full flex-col gap-6 pt-6">
-                <Link
-                  href="/"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center"
-                >
-                  <Image
-                    src="/images/unext-logo.webp"
-                    alt="UNEXT GMBH Logo"
-                    width={120}
-                    height={35}
-                    className="h-8 w-auto"
-                  />
-                </Link>
+              <div className="flex min-h-full flex-col gap-6 pt-3">
+                <div className="rounded-[1.75rem] border border-border/60 bg-background/70 p-4 shadow-sm">
+                  <Link
+                    href="/"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center"
+                  >
+                    <Image
+                      src="/images/unext-logo.webp"
+                      alt="UNEXT GMBH Logo"
+                      width={120}
+                      height={35}
+                      className="h-8 w-auto"
+                    />
+                  </Link>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{t.header.menuDescription}</p>
+                </div>
 
-                <nav className="flex flex-col gap-2">
-                  {navigation.map((item) => (
-                    <div
-                      key={item.name}
-                      className="rounded-2xl border border-border/60 bg-background/50 px-4 py-3"
-                    >
-                      <Link
-                        href={item.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="block text-[1.05rem] font-semibold leading-6 text-foreground"
-                      >
-                        {item.name}
-                      </Link>
-                      {item.children && (
-                        <div className="mt-3 flex flex-col gap-2 border-l border-border/70 pl-4">
-                          {item.children?.map((child) => (
-                            <Link
-                              key={child.name}
-                              href={child.href}
-                              onClick={() => setMobileMenuOpen(false)}
-                              className="text-sm leading-6 text-muted-foreground transition-colors hover:text-foreground"
-                            >
-                              {child.name}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </nav>
-
-                <div className="border-t border-border pt-4">
+                <div>
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                    {t.header.quickContact}
+                  </p>
                   <div className="flex flex-col gap-3">
                     <Button asChild className="w-full">
                       <a
@@ -217,19 +194,71 @@ export function SiteHeader() {
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2 border-t border-border pt-4">
-                  {languages.map((lang) => (
-                    <Button
-                      key={lang.code}
-                      variant={locale === lang.code ? "secondary" : "ghost"}
-                      size="sm"
-                      className="min-w-14 rounded-full px-3"
-                      disabled={isPending}
-                      onClick={() => handleLocaleChange(lang.code)}
-                    >
-                      {lang.code.toUpperCase()}
-                    </Button>
-                  ))}
+                <div>
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                    {t.header.navigationTitle}
+                  </p>
+                  <nav className="rounded-[1.75rem] border border-border/60 bg-background/50 p-2">
+                    {pageNavigation.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center justify-between rounded-[1.1rem] px-4 py-3 text-[1.02rem] font-semibold leading-6 text-foreground transition-colors hover:bg-accent/60"
+                      >
+                        <span>{item.name}</span>
+                        <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                      </Link>
+                    ))}
+                  </nav>
+                </div>
+
+                {serviceNavigation?.children ? (
+                  <div>
+                    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                      {t.header.servicesTitle}
+                    </p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {serviceNavigation.children.map((child) => (
+                        <Link
+                          key={child.name}
+                          href={child.href}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="min-h-20 rounded-[1.25rem] border border-border/60 bg-background/60 px-3 py-3 text-sm font-medium leading-5 text-foreground transition-colors hover:border-primary/30 hover:bg-accent/40"
+                        >
+                          {child.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+
+                <div className="border-t border-border pt-4">
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                    {t.header.languageTitle}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {languages.map((lang) => (
+                      <Button
+                        key={lang.code}
+                        variant={locale === lang.code ? "secondary" : "ghost"}
+                        size="sm"
+                        className="min-w-14 rounded-full px-3"
+                        disabled={isPending}
+                        onClick={() => handleLocaleChange(lang.code)}
+                      >
+                        {lang.code.toUpperCase()}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-t border-border pt-4">
+                  <Button asChild variant="outline" className="w-full">
+                    <Link href={serviceNavigation?.href ?? "/leistungen"} onClick={() => setMobileMenuOpen(false)}>
+                      {t.header.allServices}
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </SheetContent>
