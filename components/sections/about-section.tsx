@@ -23,7 +23,7 @@ export async function AboutSection() {
                 quality={76}
                 className="object-cover object-[64%_center]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/16 via-transparent to-transparent dark:from-background/28" />
             </div>
 
             <div className="absolute -bottom-6 left-4 right-4 sm:left-8 sm:right-auto">

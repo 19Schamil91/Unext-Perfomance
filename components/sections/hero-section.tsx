@@ -7,7 +7,8 @@ import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
 
 interface HeroContentProps {
-  badge: string
+  tone: "surface" | "overlay"
+  badge?: string
   title1: string
   title2: string
   title3: string
@@ -22,6 +23,7 @@ interface HeroContentProps {
 }
 
 function HeroContent({
+  tone,
   badge,
   title1,
   title2,
@@ -35,26 +37,60 @@ function HeroContent({
   viewAllServices,
   className,
 }: HeroContentProps) {
-  return (
-    <div className={className}>
-      <div className="inline-flex rounded-full border border-white/12 bg-white/8 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-white/78 backdrop-blur-sm sm:text-xs sm:tracking-[0.18em]">
-        {badge}
-      </div>
+  const isOverlay = tone === "overlay"
 
-      <h1 className="mt-4 text-[2rem] leading-[1.02] font-bold tracking-[-0.045em] text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.34)] sm:text-5xl sm:tracking-tight lg:text-6xl">
+  return (
+    <div className={`min-w-0 ${className ?? ""}`}>
+      {badge ? (
+        <div
+          className={
+            isOverlay
+              ? "mb-5 inline-flex max-w-full rounded-full border border-white/12 bg-white/8 px-3 py-1 text-center text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-white/78 backdrop-blur-sm sm:text-xs sm:tracking-[0.18em]"
+              : "mb-5 inline-flex max-w-full rounded-full border border-border/70 bg-accent px-3 py-1 text-center text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:text-xs sm:tracking-[0.18em]"
+          }
+        >
+          {badge}
+        </div>
+      ) : null}
+
+      <h1
+        className={
+          isOverlay
+            ? "text-[2rem] leading-[1.02] font-bold tracking-[-0.045em] text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.34)] sm:text-5xl sm:tracking-tight lg:text-6xl"
+            : "text-[1.92rem] leading-[1.04] font-bold tracking-[-0.03em] text-foreground sm:text-5xl sm:tracking-tight lg:text-6xl"
+        }
+      >
         <span className="block">{title1}</span>
         <span className="block text-primary">{title2}</span>
-        <span className="mt-1.5 block text-[1.08rem] font-normal text-white/84 drop-shadow-[0_2px_12px_rgba(0,0,0,0.26)] sm:mt-2 sm:text-3xl lg:text-4xl">
+        <span
+          className={
+            isOverlay
+              ? "mt-1.5 block text-[1.08rem] font-normal text-white/84 drop-shadow-[0_2px_12px_rgba(0,0,0,0.26)] sm:mt-2 sm:text-3xl lg:text-4xl"
+              : "mt-1.5 block text-[1.08rem] font-normal text-muted-foreground sm:mt-2 sm:text-3xl lg:text-4xl"
+          }
+        >
           {title3}
         </span>
       </h1>
 
-      <p className="mt-4 max-w-xl text-[0.98rem] leading-7 text-white/80 drop-shadow-[0_2px_10px_rgba(0,0,0,0.2)] sm:mt-6 sm:text-lg">
+      <p
+        className={
+          isOverlay
+            ? "mt-4 max-w-xl text-[0.98rem] leading-7 text-white/80 drop-shadow-[0_2px_10px_rgba(0,0,0,0.2)] sm:mt-6 sm:text-lg"
+            : "mt-4 text-[0.98rem] leading-7 text-muted-foreground sm:mt-6 sm:max-w-xl sm:text-lg"
+        }
+      >
         {description}
       </p>
 
-      <div className="mt-5 sm:mt-6">
-        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/56 sm:text-[0.72rem]">
+      <div className="mt-6 sm:mt-7">
+        <p
+          className={
+            isOverlay
+              ? "text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/56 sm:text-[0.72rem]"
+              : "text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground sm:text-[0.72rem]"
+          }
+        >
           Direkt zu den Hauptleistungen
         </p>
       </div>
@@ -64,9 +100,13 @@ function HeroContent({
           <Link
             key={service.anchor}
             href={`#${service.anchor}`}
-            className="group flex min-h-[4.5rem] items-center justify-between gap-3 rounded-[1.1rem] border border-white/14 bg-[linear-gradient(180deg,rgba(255,255,255,0.1),rgba(255,255,255,0.06))] px-3 py-3 text-[0.83rem] leading-5 text-white/88 shadow-[0_12px_28px_rgba(0,0,0,0.18)] backdrop-blur-sm transition-all hover:border-primary/55 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.14),rgba(255,255,255,0.08))] hover:text-white"
+            className={
+              isOverlay
+                ? "group flex min-h-[4.5rem] min-w-0 items-center justify-between gap-3 rounded-[1.1rem] border border-white/14 bg-[linear-gradient(180deg,rgba(255,255,255,0.1),rgba(255,255,255,0.06))] px-3 py-3 text-[0.83rem] leading-5 text-white/88 shadow-[0_12px_28px_rgba(0,0,0,0.18)] backdrop-blur-sm transition-all hover:border-primary/55 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.14),rgba(255,255,255,0.08))] hover:text-white"
+                : "group flex min-h-[4.5rem] min-w-0 items-center justify-between gap-3 rounded-[1.1rem] border border-border/70 bg-card px-3 py-3 text-[0.83rem] leading-5 text-foreground shadow-[0_12px_28px_rgba(15,23,42,0.08)] transition-all hover:border-primary/45 hover:bg-accent"
+            }
           >
-            <span>{service.title}</span>
+            <span className="min-w-0">{service.title}</span>
             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/12 text-primary transition-transform group-hover:translate-x-0.5">
               <DoorOpen className="h-4 w-4" />
             </span>
@@ -79,9 +119,13 @@ function HeroContent({
           <Link
             key={service.anchor}
             href={`#${service.anchor}`}
-            className="group inline-flex items-center gap-2 rounded-full border border-white/14 bg-[linear-gradient(180deg,rgba(255,255,255,0.1),rgba(255,255,255,0.06))] px-4 py-2 text-sm text-white/88 shadow-[0_10px_22px_rgba(0,0,0,0.16)] backdrop-blur-sm transition-all hover:border-primary/55 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.14),rgba(255,255,255,0.08))] hover:text-white"
+            className={
+              isOverlay
+                ? "group inline-flex min-w-0 items-center gap-2 rounded-full border border-white/14 bg-[linear-gradient(180deg,rgba(255,255,255,0.1),rgba(255,255,255,0.06))] px-4 py-2 text-sm text-white/88 shadow-[0_10px_22px_rgba(0,0,0,0.16)] backdrop-blur-sm transition-all hover:border-primary/55 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.14),rgba(255,255,255,0.08))] hover:text-white"
+                : "group inline-flex min-w-0 items-center gap-2 rounded-full border border-border/70 bg-card px-4 py-2 text-sm text-foreground shadow-[0_10px_22px_rgba(15,23,42,0.08)] transition-all hover:border-primary/45 hover:bg-accent"
+            }
           >
-            <span>{service.title}</span>
+            <span className="min-w-0">{service.title}</span>
             <DoorOpen className="h-3.5 w-3.5 text-primary transition-transform group-hover:translate-x-0.5" />
           </Link>
         ))}
@@ -109,13 +153,26 @@ function HeroContent({
       </div>
 
       <div className="mt-4 sm:hidden">
-        <Link href="/leistungen" className="inline-flex items-center gap-2 text-sm font-medium text-white/78 transition-colors hover:text-white">
+        <Link
+          href="/leistungen"
+          className={
+            isOverlay
+              ? "inline-flex items-center gap-2 text-sm font-medium text-white/78 transition-colors hover:text-white"
+              : "inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+          }
+        >
           {viewAllServices}
           <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
 
-      <div className="mt-8 flex flex-col gap-3 text-sm text-white/72 sm:mt-10 sm:flex-row sm:items-center sm:gap-4">
+      <div
+        className={
+          isOverlay
+            ? "mt-8 flex flex-col gap-3 text-sm text-white/72 sm:mt-10 sm:flex-row sm:items-center sm:gap-4"
+            : "mt-8 flex flex-col gap-3 text-sm text-muted-foreground sm:mt-10 sm:flex-row sm:items-center sm:gap-4"
+        }
+      >
         <div className="flex items-center gap-2">
           <svg className="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path
@@ -151,7 +208,7 @@ export async function HeroSection() {
   const heroDesktopImageSrc = "/images/home-hero-team-desktop.webp"
 
   return (
-    <section className="overflow-hidden bg-background">
+    <section className="overflow-x-clip overflow-y-hidden bg-background">
       <div className="md:hidden">
         <div className="relative aspect-[16/11] overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.16),transparent_58%),linear-gradient(180deg,rgba(26,26,31,0.02),rgba(26,26,31,0.16))]">
           <Image
@@ -163,15 +220,17 @@ export async function HeroSection() {
             className="object-cover object-[center_12%]"
             priority
           />
-          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background via-background/30 to-transparent" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,10,15,0.14),rgba(7,10,15,0.34))]" />
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/42 via-black/12 to-transparent" />
         </div>
 
-        <div className="px-4 pb-12 pt-6">
+        <div className="px-5 pb-12 pt-6">
           <HeroContent
+            tone="surface"
+            badge={t.badge}
             title1={t.title1}
             title2={t.title2}
             title3={t.title3}
-            badge={t.badge}
             description={t.description}
             services={mainServices}
             callNow={t.callNow}
@@ -179,12 +238,12 @@ export async function HeroSection() {
             whatsapp={t.whatsapp}
             address={t.address}
             viewAllServices={viewAllServices}
-            className="mx-auto max-w-2xl"
+            className="mx-auto max-w-[23rem] sm:max-w-2xl"
           />
         </div>
       </div>
 
-      <div className="relative hidden min-h-[88vh] items-center overflow-hidden md:flex">
+      <div className="relative hidden min-h-[88vh] items-end overflow-hidden md:flex">
         <div className="absolute inset-0">
           <Image
             src={heroDesktopImageSrc}
@@ -196,17 +255,17 @@ export async function HeroSection() {
             priority
           />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(255,255,255,0.18),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(11,14,20,0.22))]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/54 via-background/20 via-42% to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/8 via-transparent to-background/12" />
-          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background/40 via-background/12 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/56 via-black/22 via-42% to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/8 via-transparent to-black/12" />
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/24 via-black/8 to-transparent" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-4 py-24 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 pb-18 pt-24 lg:px-8 lg:pb-20">
           <HeroContent
+            tone="overlay"
             title1={t.title1}
             title2={t.title2}
             title3={t.title3}
-            badge={t.badge}
             description={t.description}
             services={mainServices}
             callNow={t.callNow}
@@ -214,7 +273,7 @@ export async function HeroSection() {
             whatsapp={t.whatsapp}
             address={t.address}
             viewAllServices={viewAllServices}
-            className="mt-14 max-w-xl lg:mt-16 lg:max-w-2xl"
+            className="max-w-xl lg:max-w-2xl"
           />
         </div>
       </div>

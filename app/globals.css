@@ -4,43 +4,39 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* UNEXT Brand - Dark Premium Automotive Theme */
-  --background: oklch(0.13 0.005 250);
-  --foreground: oklch(0.98 0 0);
-  --card: oklch(0.18 0.005 250);
-  --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.15 0.005 250);
-  --popover-foreground: oklch(0.98 0 0);
+  --background: oklch(0.985 0.003 250);
+  --foreground: oklch(0.2 0.01 250);
+  --card: oklch(0.998 0.002 250);
+  --card-foreground: oklch(0.2 0.01 250);
+  --popover: oklch(0.998 0.002 250);
+  --popover-foreground: oklch(0.2 0.01 250);
   /* Primary - UNEXT Red */
   --primary: oklch(0.55 0.22 25);
   --primary-foreground: oklch(1 0 0);
-  /* Secondary - Dark Charcoal */
-  --secondary: oklch(0.22 0.005 250);
-  --secondary-foreground: oklch(0.98 0 0);
-  /* Muted - Darker gray */
-  --muted: oklch(0.25 0.005 250);
-  --muted-foreground: oklch(0.65 0.01 250);
-  /* Accent - Slightly lighter dark */
-  --accent: oklch(0.20 0.005 250);
-  --accent-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.95 0.004 250);
+  --secondary-foreground: oklch(0.24 0.01 250);
+  --muted: oklch(0.965 0.004 250);
+  --muted-foreground: oklch(0.52 0.01 250);
+  --accent: oklch(0.955 0.004 250);
+  --accent-foreground: oklch(0.24 0.01 250);
   --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.30 0.005 250);
-  --input: oklch(0.22 0.005 250);
+  --border: oklch(0.88 0.004 250);
+  --input: oklch(0.92 0.004 250);
   --ring: oklch(0.55 0.22 25);
   --chart-1: oklch(0.55 0.22 25);
-  --chart-2: oklch(0.65 0.01 250);
-  --chart-3: oklch(0.45 0.01 250);
-  --chart-4: oklch(0.75 0.01 250);
-  --chart-5: oklch(0.35 0.01 250);
+  --chart-2: oklch(0.62 0.06 220);
+  --chart-3: oklch(0.67 0.05 140);
+  --chart-4: oklch(0.72 0.05 90);
+  --chart-5: oklch(0.58 0.06 280);
   --radius: 0.5rem;
-  --sidebar: oklch(0.12 0.005 250);
-  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar: oklch(0.975 0.003 250);
+  --sidebar-foreground: oklch(0.2 0.01 250);
   --sidebar-primary: oklch(0.55 0.22 25);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.20 0.005 250);
-  --sidebar-accent-foreground: oklch(0.98 0 0);
-  --sidebar-border: oklch(0.30 0.005 250);
+  --sidebar-accent: oklch(0.95 0.004 250);
+  --sidebar-accent-foreground: oklch(0.24 0.01 250);
+  --sidebar-border: oklch(0.88 0.004 250);
   --sidebar-ring: oklch(0.55 0.22 25);
 }
 
@@ -133,10 +129,12 @@
   }
   html {
     -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
   }
   body {
     @apply bg-background text-foreground;
     text-rendering: optimizeLegibility;
+    overflow-x: clip;
   }
   h1,
   h2,

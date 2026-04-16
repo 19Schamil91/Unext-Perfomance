@@ -19,8 +19,6 @@ export async function ProcessSection() {
         </div>
 
         <div className="relative">
-          <div className="absolute left-0 right-0 top-1/2 hidden h-0.5 -translate-y-1/2 bg-border lg:block" />
-
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {t.steps.map((item, index) => {
               const Icon = icons[index]

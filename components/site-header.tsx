@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ChevronDown, ChevronRight, Globe, Menu, MessageCircle, Phone } from "lucide-react"
 import { useLocale } from "@/components/locale-provider"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -30,6 +31,11 @@ export function SiteHeader() {
   const pageNavigation = navigation.filter((item) => !item.children)
   const serviceNavigation = navigation.find((item) => item.children)
   const languages = locales.map((code) => ({ code, name: t.languages[code] }))
+  const themeLabels = {
+    de: { light: "Hellmodus aktivieren", dark: "Darkmodus aktivieren" },
+    en: { light: "Switch to light mode", dark: "Switch to dark mode" },
+    ru: { light: "Включить светлую тему", dark: "Включить темную тему" },
+  } as const
 
   const handleLocaleChange = (nextLocale: Locale) => {
     setLocale(nextLocale)
@@ -108,6 +114,12 @@ export function SiteHeader() {
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
+
+          <ThemeToggle
+            lightLabel={themeLabels[locale].light}
+            darkLabel={themeLabels[locale].dark}
+            className="h-10 w-10 rounded-full border border-border/80 bg-card text-foreground shadow-sm transition-colors hover:bg-accent"
+          />
 
           <Button asChild variant="ghost" size="icon" className="h-10 w-10 sm:hidden">
             <a href="tel:+493023613927" aria-label="Jetzt anrufen">
