@@ -108,9 +108,11 @@ export default async function LeistungenPage() {
 
                 return (
                   <Card key={service.title} className="overflow-hidden border-border/50 bg-card">
-                    <CardContent className="p-0">
-                      <div className={`flex flex-col ${index % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"}`}>
-                        <div className="relative h-60 sm:h-72 lg:h-auto lg:w-1/2">
+                    <CardContent className="p-4 sm:p-5 lg:p-6">
+                      <div
+                        className={`flex flex-col gap-5 ${index % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"} lg:items-stretch`}
+                      >
+                        <div className="relative h-64 overflow-hidden rounded-[1.75rem] border border-border/50 bg-background shadow-sm sm:h-72 lg:w-[42%] lg:min-h-[320px]">
                           <Image
                             src={meta.image}
                             alt={service.title}
@@ -121,7 +123,7 @@ export default async function LeistungenPage() {
                           />
                         </div>
 
-                        <div className="flex-1 p-5 sm:p-8 lg:p-12">
+                        <div className="flex-1 px-1 py-1 sm:px-2 lg:px-4 lg:py-4">
                           <div className="flex items-start gap-4">
                             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                               <meta.icon className="h-7 w-7" />

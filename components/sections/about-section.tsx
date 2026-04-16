@@ -13,8 +13,8 @@ export async function AboutSection() {
     <section className="bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="relative">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+          <div className="relative lg:pr-6">
+            <div className="relative aspect-[16/11] overflow-hidden rounded-[1.75rem] border border-border/50 bg-card shadow-sm">
               <Image
                 src="/images/hero-car.webp"
                 alt="UNEXT team member"

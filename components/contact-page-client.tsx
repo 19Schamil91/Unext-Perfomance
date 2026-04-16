@@ -259,7 +259,7 @@ export function ContactPageClient() {
 
               <div>
                 <h3 className="mb-4 text-xl font-semibold text-foreground">{t.locationTitle}</h3>
-                <div className="relative mb-6 aspect-video overflow-hidden rounded-xl border border-border">
+                <div className="relative mb-6 aspect-[16/11] overflow-hidden rounded-[1.75rem] border border-border/50 bg-background shadow-sm">
                   <Image
                     src="/images/hero-car.webp"
                     alt=""

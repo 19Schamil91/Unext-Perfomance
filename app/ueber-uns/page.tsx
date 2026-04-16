@@ -145,15 +145,17 @@ export default async function UeberUnsPage() {
         <section className="bg-background py-16 lg:py-24">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-              <div className="relative aspect-video overflow-hidden rounded-2xl lg:order-2">
-                <Image
-                  src="/images/service-accident.webp"
-                  alt="UNFALLX"
-                  fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  quality={76}
-                  className="object-cover object-[58%_center]"
-                />
+              <div className="lg:order-2 lg:pl-6">
+                <div className="relative aspect-[16/11] overflow-hidden rounded-[1.75rem] border border-border/50 bg-card shadow-sm">
+                  <Image
+                    src="/images/service-accident.webp"
+                    alt="UNFALLX"
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    quality={76}
+                    className="object-cover object-[58%_center]"
+                  />
+                </div>
               </div>
 
               <div className="lg:order-1">

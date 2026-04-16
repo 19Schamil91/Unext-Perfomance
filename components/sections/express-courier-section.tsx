@@ -70,7 +70,7 @@ export async function ExpressCourierSection() {
 
               <div className="border-t border-border/50 bg-card/60 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
                 <div className="flex h-full flex-col gap-6">
-                  <div className="overflow-hidden rounded-2xl border border-border/50 bg-background">
+                  <div className="overflow-hidden rounded-[1.75rem] border border-border/50 bg-background shadow-sm">
                     <Image
                       src={imageSrc}
                       alt={t.title}
@@ -78,7 +78,7 @@ export async function ExpressCourierSection() {
                       height={imageHeight}
                       sizes="(min-width: 1024px) 32vw, (min-width: 640px) 50vw, 100vw"
                       quality={74}
-                      className="h-auto w-full object-cover object-[52%_center]"
+                      className="aspect-[16/11] h-auto w-full object-cover object-[52%_center]"
                     />
                   </div>
 

@@ -97,9 +97,9 @@ export async function ServicesSection() {
                 key={service.title}
                 className="group relative overflow-hidden border-border/50 bg-card transition-all duration-300 hover:border-primary/50"
               >
-                <CardContent className="p-0">
-                  <div className="flex flex-col lg:flex-row">
-                    <div className="relative h-56 overflow-hidden sm:h-60 lg:h-auto lg:w-2/5">
+                <CardContent className="p-4 sm:p-5 lg:p-6">
+                  <div className="flex flex-col gap-5 lg:flex-row lg:items-stretch">
+                    <div className="relative h-64 overflow-hidden rounded-[1.75rem] border border-border/50 bg-background shadow-sm sm:h-72 lg:w-[38%] lg:min-h-[320px]">
                       <Image
                         src={meta.image}
                         alt={service.title}
@@ -111,7 +111,7 @@ export async function ServicesSection() {
                       <div className={`absolute inset-0 bg-gradient-to-t ${meta.accentColor}`} />
                     </div>
 
-                    <div className="flex-1 p-5 sm:p-6 lg:p-8">
+                    <div className="flex-1 px-1 py-1 sm:px-2 lg:px-3 lg:py-3">
                       <div className="flex items-start gap-4">
                         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                           <meta.icon className="h-6 w-6" />
