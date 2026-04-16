@@ -1,7 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, MessageCircle, Phone } from "lucide-react"
+import { ArrowRight, DoorOpen, MessageCircle, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { homeServiceAnchors } from "@/lib/service-anchors"
 import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
 
@@ -11,7 +12,7 @@ interface HeroContentProps {
   title2: string
   title3: string
   description: string
-  services: readonly string[]
+  services: readonly { title: string; anchor: string }[]
   callNow: string
   inquiry: string
   whatsapp: string
@@ -52,25 +53,37 @@ function HeroContent({
         {description}
       </p>
 
+      <div className="mt-5 sm:mt-6">
+        <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/56 sm:text-[0.72rem]">
+          Direkt zu den Hauptleistungen
+        </p>
+      </div>
+
       <div className="mt-5 grid grid-cols-2 gap-2 sm:hidden">
         {services.map((service) => (
-          <span
-            key={service}
-            className="rounded-[1rem] border border-white/12 bg-white/8 px-3 py-2 text-[0.83rem] leading-5 text-white/82 backdrop-blur-sm"
+          <Link
+            key={service.anchor}
+            href={`#${service.anchor}`}
+            className="group flex min-h-[4.5rem] items-center justify-between gap-3 rounded-[1.1rem] border border-white/14 bg-[linear-gradient(180deg,rgba(255,255,255,0.1),rgba(255,255,255,0.06))] px-3 py-3 text-[0.83rem] leading-5 text-white/88 shadow-[0_12px_28px_rgba(0,0,0,0.18)] backdrop-blur-sm transition-all hover:border-primary/55 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.14),rgba(255,255,255,0.08))] hover:text-white"
           >
-            {service}
-          </span>
+            <span>{service.title}</span>
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/12 text-primary transition-transform group-hover:translate-x-0.5">
+              <DoorOpen className="h-4 w-4" />
+            </span>
+          </Link>
         ))}
       </div>
 
       <div className="mt-6 hidden max-w-3xl flex-wrap gap-2 sm:flex">
         {services.map((service) => (
-          <span
-            key={service}
-            className="rounded-full border border-white/12 bg-white/8 px-3 py-1.5 text-sm text-white/82 backdrop-blur-sm"
+          <Link
+            key={service.anchor}
+            href={`#${service.anchor}`}
+            className="group inline-flex items-center gap-2 rounded-full border border-white/14 bg-[linear-gradient(180deg,rgba(255,255,255,0.1),rgba(255,255,255,0.06))] px-4 py-2 text-sm text-white/88 shadow-[0_10px_22px_rgba(0,0,0,0.16)] backdrop-blur-sm transition-all hover:border-primary/55 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.14),rgba(255,255,255,0.08))] hover:text-white"
           >
-            {service}
-          </span>
+            <span>{service.title}</span>
+            <DoorOpen className="h-3.5 w-3.5 text-primary transition-transform group-hover:translate-x-0.5" />
+          </Link>
         ))}
       </div>
 
@@ -129,7 +142,10 @@ export async function HeroSection() {
   const locale = await getCurrentLocale()
   const home = getTranslations(locale).home
   const t = home.hero
-  const mainServices = home.services.items.map((service) => service.title)
+  const mainServices = home.services.items.map((service, index) => ({
+    title: service.title,
+    anchor: homeServiceAnchors[index] ?? homeServiceAnchors[0],
+  }))
   const viewAllServices = home.services.viewAll
   const heroMobileImageSrc = "/images/home-hero-team-balanced.webp"
   const heroDesktopImageSrc = "/images/home-hero-team-desktop.webp"

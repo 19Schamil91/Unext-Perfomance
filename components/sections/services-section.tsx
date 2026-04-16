@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ArrowRight, Car, ClipboardCheck, FileCheck, Sparkles, Truck, Wrench } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { homeServiceAnchors } from "@/lib/service-anchors"
 import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
 
@@ -95,7 +96,8 @@ export async function ServicesSection() {
             return (
               <Card
                 key={service.title}
-                className="group relative overflow-hidden border-border/50 bg-card transition-all duration-300 hover:border-primary/50"
+                id={homeServiceAnchors[index]}
+                className="group relative scroll-mt-28 overflow-hidden border-border/50 bg-card transition-all duration-300 hover:border-primary/50"
               >
                 <CardContent className="p-4 sm:p-5 lg:p-6">
                   <div className="flex flex-col gap-5 lg:flex-row lg:items-stretch">
