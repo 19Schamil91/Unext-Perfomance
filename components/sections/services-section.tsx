@@ -29,7 +29,7 @@ const serviceMeta = [
   {
     icon: Car,
     image: "/images/service-rental.webp",
-    imageClassName: "object-cover object-[28%_center] sm:object-[36%_center] lg:object-[42%_center]",
+    imageClassName: "object-cover object-[38%_30%] sm:object-[42%_38%] lg:object-[42%_center]",
     href: "/leistungen/autovermietung",
     contactText: "0174 4292900",
     contactHref: "tel:+491744292900",

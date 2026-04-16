@@ -30,7 +30,7 @@ export default async function AutovermietungPage() {
         subtitle={t.subtitle}
         description={t.description}
         image="/images/service-rental.webp"
-        imageClassName="object-cover object-[24%_center] sm:object-[30%_center] md:object-[46%_center]"
+        imageClassName="object-cover object-[36%_28%] sm:object-[42%_38%] md:object-[46%_center]"
         phone="0174 4292900"
         benefits={t.benefits}
         services={t.services}

@@ -38,14 +38,14 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 lg:px-8 lg:py-3">
         <Link href="/" className="flex items-center">
           <Image
             src="/images/unext-logo.webp"
             alt="UNEXT GMBH Logo"
             width={140}
             height={40}
-            className="h-10 w-auto"
+            className="h-8 w-auto sm:h-10"
             priority
           />
         </Link>
@@ -87,7 +87,7 @@ export function SiteHeader() {
           )}
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="sm" className="hidden gap-2 sm:flex">
@@ -109,7 +109,7 @@ export function SiteHeader() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Button asChild variant="ghost" size="icon" className="sm:hidden">
+          <Button asChild variant="ghost" size="icon" className="h-10 w-10 sm:hidden">
             <a href="tel:+493023613927" aria-label="Jetzt anrufen">
               <Phone className="h-4 w-4" />
             </a>
@@ -131,18 +131,18 @@ export function SiteHeader() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-11 w-11 rounded-full border border-border/80 bg-card text-foreground shadow-sm transition-colors hover:bg-accent lg:hidden"
+                className="h-10 w-10 rounded-full border border-border/80 bg-card text-foreground shadow-sm transition-colors hover:bg-accent lg:hidden"
               >
-                <Menu className="h-6 w-6" />
+                <Menu className="h-5 w-5" />
                 <span className="sr-only">{t.header.openMenu}</span>
               </Button>
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-[92vw] max-w-sm overflow-y-auto border-l border-border/70 bg-card/98 px-4 pb-6 pt-5 backdrop-blur"
+              className="w-[88vw] max-w-[20rem] overflow-y-auto border-l border-border/70 bg-card/98 px-3.5 pb-5 pt-4 backdrop-blur"
             >
-              <div className="flex min-h-full flex-col gap-6 pt-3">
-                <div className="rounded-[1.75rem] border border-border/60 bg-background/70 p-4 shadow-sm">
+              <div className="flex min-h-full flex-col gap-5 pt-2">
+                <div className="rounded-[1.35rem] border border-border/60 bg-background/70 p-4 shadow-sm">
                   <Link
                     href="/"
                     onClick={() => setMobileMenuOpen(false)}
@@ -156,11 +156,10 @@ export function SiteHeader() {
                       className="h-8 w-auto"
                     />
                   </Link>
-                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{t.header.menuDescription}</p>
                 </div>
 
                 <div>
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                  <p className="mb-2.5 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
                     {t.header.quickContact}
                   </p>
                   <div className="flex flex-col gap-3">
@@ -174,11 +173,6 @@ export function SiteHeader() {
                         {t.header.callNow}
                       </a>
                     </Button>
-                    <Button asChild variant="outline" className="w-full">
-                      <Link href="/kontakt" onClick={() => setMobileMenuOpen(false)}>
-                        {t.header.inquiry}
-                      </Link>
-                    </Button>
                     <Button asChild variant="ghost" className="w-full">
                       <a
                         href="https://wa.me/4917664365185"
@@ -191,20 +185,25 @@ export function SiteHeader() {
                         WhatsApp
                       </a>
                     </Button>
+                    <Button asChild variant="outline" className="w-full">
+                      <Link href="/kontakt" onClick={() => setMobileMenuOpen(false)}>
+                        {t.header.inquiry}
+                      </Link>
+                    </Button>
                   </div>
                 </div>
 
                 <div>
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                  <p className="mb-2.5 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
                     {t.header.navigationTitle}
                   </p>
-                  <nav className="rounded-[1.75rem] border border-border/60 bg-background/50 p-2">
+                  <nav className="rounded-[1.35rem] border border-border/60 bg-background/50 p-2">
                     {pageNavigation.map((item) => (
                       <Link
                         key={item.name}
                         href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center justify-between rounded-[1.1rem] px-4 py-3 text-[1.02rem] font-semibold leading-6 text-foreground transition-colors hover:bg-accent/60"
+                        className="flex items-center justify-between rounded-[1rem] px-3.5 py-3 text-base font-semibold leading-6 text-foreground transition-colors hover:bg-accent/60"
                       >
                         <span>{item.name}</span>
                         <ChevronRight className="h-4 w-4 text-muted-foreground" />
@@ -215,18 +214,19 @@ export function SiteHeader() {
 
                 {serviceNavigation?.children ? (
                   <div>
-                    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                    <p className="mb-2.5 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
                       {t.header.servicesTitle}
                     </p>
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="rounded-[1.35rem] border border-border/60 bg-background/50 p-2">
                       {serviceNavigation.children.map((child) => (
                         <Link
                           key={child.name}
                           href={child.href}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="min-h-20 rounded-[1.25rem] border border-border/60 bg-background/60 px-3 py-3 text-sm font-medium leading-5 text-foreground transition-colors hover:border-primary/30 hover:bg-accent/40"
+                          className="flex items-center justify-between rounded-[1rem] px-3.5 py-3 text-sm font-medium leading-5 text-foreground transition-colors hover:bg-accent/40"
                         >
-                          {child.name}
+                          <span>{child.name}</span>
+                          <ChevronRight className="h-4 w-4 text-muted-foreground" />
                         </Link>
                       ))}
                     </div>
@@ -234,7 +234,7 @@ export function SiteHeader() {
                 ) : null}
 
                 <div className="border-t border-border pt-4">
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                  <p className="mb-2.5 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
                     {t.header.languageTitle}
                   </p>
                   <div className="flex flex-wrap gap-2">
