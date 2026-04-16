@@ -15,10 +15,10 @@ export const headerFooterTranslations = {
           name: "Leistungen",
           href: "/leistungen",
           children: [
-            { name: "Unfallgutachten", href: "/leistungen/unfallgutachten" },
+            { name: "Unfallhilfe & Gutachten", href: "/leistungen/unfallgutachten" },
             { name: "Autovermietung", href: "/leistungen/autovermietung" },
-            { name: "Autoservice & Werkstatt", href: "/leistungen/autoservice" },
-            { name: "Detailing", href: "/leistungen/detailing" },
+            { name: "KFZ-Werkstatt & Reparatur", href: "/leistungen/autoservice" },
+            { name: "Fahrzeugaufbereitung", href: "/leistungen/detailing" },
             { name: "Kfz-Zulassungsservice", href: "/leistungen/zulassungsservice" },
             { name: "Abschleppdienst & Pannenhilfe", href: "/leistungen/abschleppdienst-pannenhilfe" },
           ],
@@ -32,7 +32,7 @@ export const headerFooterTranslations = {
     },
     footer: {
       description:
-        "Ihr starker Partner rund ums Fahrzeug in Berlin. Unfallgutachten, Autovermietung, Werkstatt, Kfz-Zulassungsservice, Abschleppdienst, Premium Detailing und Expresslieferung aus einer Hand.",
+        "Kompletter Fahrzeug-Service in Berlin: Unfallhilfe & Gutachten, Autovermietung, KFZ-Werkstatt, Fahrzeugaufbereitung, KFZ-Zulassung und Abschleppdienst aus einer Hand.",
       address: "Lübarser Str. 25, 13435 Berlin",
       hoursWeek: "Mo-Fr: 9:00-18:00",
       hoursSat: "Sa: 10:00-16:00",
@@ -58,7 +58,7 @@ export const headerFooterTranslations = {
       ],
       copyright: "Alle Rechte vorbehalten.",
       bottomLocation: "Standort: Berlin",
-      bottomCertified: "Zertifizierter Service",
+      bottomCertified: "Alles aus einer Hand",
     },
   },
   en: {
@@ -118,7 +118,7 @@ export const headerFooterTranslations = {
       ],
       copyright: "All rights reserved.",
       bottomLocation: "Location: Berlin",
-      bottomCertified: "Certified service",
+      bottomCertified: "Everything from one source",
     },
   },
   ru: {

@@ -31,7 +31,7 @@ export async function CtaSection() {
               asChild
               size="lg"
               variant="secondary"
-              className="gap-2 bg-white text-primary hover:bg-white/90"
+              className="w-full gap-2 bg-white text-primary hover:bg-white/90 sm:w-auto"
             >
               <a href="tel:+493023613927">
                 <Phone className="h-5 w-5" />
@@ -42,7 +42,7 @@ export async function CtaSection() {
               asChild
               size="lg"
               variant="outline"
-              className="gap-2 border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+              className="w-full gap-2 border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white sm:w-auto"
             >
               <a href="https://wa.me/4917664365185" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="h-5 w-5" />
@@ -53,7 +53,7 @@ export async function CtaSection() {
               asChild
               size="lg"
               variant="outline"
-              className="gap-2 border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+              className="w-full gap-2 border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white sm:w-auto"
             >
               <Link href="/kontakt">
                 {t.inquiry}

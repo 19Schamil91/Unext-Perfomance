@@ -29,7 +29,7 @@ export async function TrustSection() {
             })}
           </div>
 
-          <p className="mt-8 text-center text-xs text-muted-foreground">{t.note}</p>
+          {t.note ? <p className="mt-8 text-center text-xs text-muted-foreground">{t.note}</p> : null}
         </div>
       </div>
     </section>

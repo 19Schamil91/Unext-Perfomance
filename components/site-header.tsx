@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ChevronDown, Globe, Menu, Phone } from "lucide-react"
+import { ChevronDown, Globe, Menu, MessageCircle, Phone } from "lucide-react"
 import { useLocale } from "@/components/locale-provider"
 import { Button } from "@/components/ui/button"
 import {
@@ -107,6 +107,12 @@ export function SiteHeader() {
             </DropdownMenuContent>
           </DropdownMenu>
 
+          <Button asChild variant="ghost" size="icon" className="sm:hidden">
+            <a href="tel:+493023613927" aria-label="Jetzt anrufen">
+              <Phone className="h-4 w-4" />
+            </a>
+          </Button>
+
           <Button asChild variant="ghost" size="sm" className="hidden md:flex">
             <a href="tel:+493023613927" className="gap-2">
               <Phone className="h-4 w-4" />
@@ -182,11 +188,6 @@ export function SiteHeader() {
                 <div className="border-t border-border pt-4">
                   <div className="flex flex-col gap-3">
                     <Button asChild className="w-full">
-                      <Link href="/kontakt" onClick={() => setMobileMenuOpen(false)}>
-                        {t.header.inquiry}
-                      </Link>
-                    </Button>
-                    <Button asChild variant="outline" className="w-full">
                       <a
                         href="tel:+493023613927"
                         onClick={() => setMobileMenuOpen(false)}
@@ -194,6 +195,23 @@ export function SiteHeader() {
                       >
                         <Phone className="h-4 w-4" />
                         {t.header.callNow}
+                      </a>
+                    </Button>
+                    <Button asChild variant="outline" className="w-full">
+                      <Link href="/kontakt" onClick={() => setMobileMenuOpen(false)}>
+                        {t.header.inquiry}
+                      </Link>
+                    </Button>
+                    <Button asChild variant="ghost" className="w-full">
+                      <a
+                        href="https://wa.me/4917664365185"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="gap-2"
+                      >
+                        <MessageCircle className="h-4 w-4" />
+                        WhatsApp
                       </a>
                     </Button>
                   </div>

@@ -3,12 +3,12 @@ import type { Locale } from "@/lib/i18n"
 export const homeTranslations = {
   de: {
     hero: {
-      badge: "Zertifizierter Service",
-      title1: "Ihr starker Partner",
-      title2: "rund ums Fahrzeug",
+      badge: "Schnelle Hilfe in Berlin",
+      title1: "Kompletter Fahrzeug-Service",
+      title2: "aus einer Hand",
       title3: "in Berlin",
       description:
-        "Unfallgutachten, Autovermietung, Werkstatt, Kfz-Zulassungsservice, Abschleppdienst, Premium Detailing und Expresslieferung & Kurierdienst - professionell, schnell und zuverlässig für Sie da.",
+        "Ein Ansprechpartner für Unfallhilfe & Gutachten, Autovermietung, KFZ-Werkstatt, Fahrzeugaufbereitung, KFZ-Zulassung und Abschleppdienst in Berlin. Für Privatkunden, Unternehmen sowie Uber-, Bolt- und Taxi-Fahrer.",
       callNow: "Jetzt anrufen",
       inquiry: "Anfrage senden",
       whatsapp: "WhatsApp",
@@ -16,59 +16,59 @@ export const homeTranslations = {
       scrollLabel: "Mehr erfahren",
     },
     services: {
-      title: "Unsere Leistungen",
+      title: "6 Hauptleistungen rund ums Fahrzeug",
       description:
-        "Sechs starke Bereiche - ein kompetenter Partner. Entdecken Sie unser umfassendes Serviceangebot für Ihr Fahrzeug.",
+        "Diese sechs Bereiche bilden den Kern von UNEXT. Wählen Sie direkt die Leistung, bei der Sie jetzt Unterstützung brauchen.",
       onRequestContact: "Telefon auf Anfrage · @unext.performance",
       learnMore: "Mehr erfahren",
-      viewAll: "Alle Leistungen ansehen",
+      viewAll: "Alle 6 Hauptleistungen ansehen",
       items: [
         {
-          title: "Unfallgutachten",
+          title: "Unfallhilfe & Gutachten",
           subtitle: "UNFALLX",
           description:
-            "Schnelle Soforthilfe nach Unfällen. Unabhängige Kfz-Gutachten durch zertifizierte Gutachter. Professionelle Unterstützung bei der Schadensabwicklung.",
+            "Nach einem Unfall organisieren wir schnelle Unterstützung, ein unabhängiges Gutachten und die nächsten sinnvollen Schritte.",
           features: [
-            "Schnelle Terminvergabe",
-            "Unabhängige Gutachten",
-            "Zertifizierte Gutachter",
-            "Schadensabwicklung",
+            "Schnelle Ersteinschätzung",
+            "Unabhängiges Gutachten",
+            "Unterstützung bei der Schadensabwicklung",
+            "Auf Wunsch weitere Schritte über UNEXT",
           ],
         },
         {
           title: "Autovermietung",
           subtitle: "Ersatzfahrzeuge",
           description:
-            "Ersatzfahrzeuge direkt verfügbar. Flexible Laufzeiten und schnelle, unkomplizierte Abwicklung für Privat- und Geschäftskunden.",
+            "Mietwagen und Ersatzfahrzeuge für Privatkunden, Unternehmen und Fahrdienste. Schnell verfügbar und unkompliziert organisiert.",
           features: [
-            "Sofort verfügbar",
+            "Kurzfristig verfügbar",
             "Flexible Laufzeiten",
-            "Schnelle Abwicklung",
-            "Geprüfte Fahrzeuge",
+            "Schnelle Übergabe",
+            "Saubere, gepflegte Fahrzeuge",
           ],
         },
         {
-          title: "Autoservice & Werkstatt",
-          subtitle: "Reparatur & Wartung",
+          title: "KFZ-Werkstatt & Reparatur",
+          subtitle: "Wartung & Reparatur",
           description:
-            "Professioneller Werkstattservice mit zertifiziertem Fachpersonal. Vom Ölwechsel bis zur kompletten Inspektion - alles aus einer Hand.",
+            "Von Inspektion bis Reparatur: Wir kümmern uns zuverlässig um die Technik Ihres Fahrzeugs und halten Sie mobil.",
           features: [
-            "Ölwechsel & Inspektion",
-            "Reifenwechsel",
-            "Dashcam-Einbau",
-            "Allgemeine Reparaturen",
+            "Inspektion & Ölservice",
+            "Reifenservice",
+            "Diagnose & Reparatur",
+            "Auch für Fahrdienstfahrzeuge",
           ],
         },
         {
-          title: "Detailing",
-          subtitle: "Premium Aufbereitung",
+          title: "Fahrzeugaufbereitung",
+          subtitle: "Detailing",
           description:
-            "Premium Fahrzeugaufbereitung für anspruchsvolle Kunden. Lackaufbereitung, Politur und professionelle Innen- & Außenreinigung.",
+            "Professionelle Innen- und Außenaufbereitung für gepflegte Fahrzeuge, Werterhalt und einen sauberen Gesamteindruck.",
           features: [
-            "Lackaufbereitung & Politur",
             "Innen- & Außenreinigung",
+            "Lackaufbereitung & Politur",
+            "Individuelle Pakete",
             "Werterhalt",
-            "Professionell zertifiziert",
           ],
         },
         {
@@ -101,7 +101,7 @@ export const homeTranslations = {
       eyebrow: "Zusatzservice",
       title: "Expresslieferung & Kurierdienst",
       description:
-        "Wenn es schnell gehen muss, sind wir zuverlässig für Sie da. Direkte Abholung und schnelle Zustellung - ohne Umwege.",
+        "Dieser Bereich ergänzt unsere 6 Hauptleistungen. Wir übernehmen zeitkritische Fahrten und Zustellungen innerhalb Berlins schnell und direkt.",
       features: [
         "Schnelle Lieferung innerhalb Berlins",
         "Flexible Abholung und Zustellung",
@@ -117,33 +117,33 @@ export const homeTranslations = {
       contactBoxLabel: "Direkter Kontakt",
     },
     why: {
-      title: "Warum UNEXT GMBH?",
+      title: "Warum Kunden UNEXT wählen",
       description:
-        "Vertrauen Sie auf unsere Expertise und Erfahrung. Wir setzen auf Qualität, Transparenz und Kundenzufriedenheit.",
+        "Klare Abläufe, direkte Erreichbarkeit und mehrere Fahrzeugleistungen an einem Ort.",
       benefits: [
         {
-          title: "Zertifiziert",
-          description: "Alle unsere Gutachter und Mitarbeiter sind geprüft und zertifiziert.",
+          title: "Ein Ansprechpartner",
+          description: "Sie müssen nicht mehrere Betriebe koordinieren, wenn mehrere Schritte zusammenhängen.",
         },
         {
-          title: "Schnelle Reaktionszeiten",
-          description: "Kurzfristige Termine möglich - wir sind sofort für Sie da.",
+          title: "Schnell erreichbar",
+          description: "Telefon und WhatsApp sind der schnellste Weg zu einer ersten Einschätzung.",
         },
         {
-          title: "Transparente & faire Preise",
-          description: "Keine versteckten Kosten. Klare Kommunikation von Anfang an.",
+          title: "Auch für Fahrdienste",
+          description: "Pragmatische Lösungen für Uber-, Bolt-, Taxi- und andere gewerblich genutzte Fahrzeuge.",
         },
         {
-          title: "Zuverlässiger Service",
-          description: "Professionell, termingerecht und mit höchsten Qualitätsstandards.",
+          title: "Klare Abstimmung",
+          description: "Sie erfahren direkt, was möglich ist, was benötigt wird und wie es weitergeht.",
         },
         {
-          title: "Persönliche Beratung",
-          description: "Individuelle Betreuung durch unsere erfahrenen Experten.",
+          title: "Leistungen kombinierbar",
+          description: "Abschleppen, Werkstatt, Mietwagen oder Zulassung können sinnvoll miteinander verbunden werden.",
         },
         {
-          title: "Alles an einem Standort",
-          description: "Sechs Services unter einem Dach - bequem und zeitsparend.",
+          title: "Standort Berlin",
+          description: "Kurze Wege und ein fester Ansprechpartner für Ihr Anliegen rund ums Fahrzeug.",
         },
       ],
     },
@@ -169,30 +169,30 @@ export const homeTranslations = {
       },
     },
     process: {
-      title: "So funktioniert's",
+      title: "So kommen Sie schnell zur passenden Lösung",
       description:
-        "In vier einfachen Schritten zu Ihrer Lösung - schnell, unkompliziert und professionell.",
+        "Ein Anruf oder eine Nachricht genügt. Wir klären Ihr Anliegen kurz und sagen Ihnen den nächsten sinnvollen Schritt.",
       steps: [
         {
           step: "01",
-          title: "Kontakt aufnehmen",
+          title: "Anrufen oder schreiben",
           description:
-            "Rufen Sie uns an, schreiben Sie uns eine E-Mail oder nutzen Sie WhatsApp.",
+            "Telefon und WhatsApp sind der schnellste Weg zu einer ersten Einschätzung.",
         },
         {
           step: "02",
-          title: "Anliegen schildern",
-          description: "Beschreiben Sie kurz Ihr Anliegen - wir beraten Sie individuell.",
+          title: "Anliegen kurz schildern",
+          description: "Zum Beispiel Unfall, Werkstatt, Mietwagen, Zulassung oder Pannenhilfe.",
         },
         {
           step: "03",
-          title: "Schnelle Rückmeldung",
-          description: "Wir melden uns kurzfristig zurück und besprechen das weitere Vorgehen.",
+          title: "Rückmeldung erhalten",
+          description: "Wir sagen Ihnen direkt, was möglich ist und welche Unterlagen oder Infos wir brauchen.",
         },
         {
           step: "04",
-          title: "Termin & Lösung",
-          description: "Sie erhalten einen zeitnahen Termin und eine professionelle Lösung.",
+          title: "Termin oder Soforthilfe",
+          description: "Sie bekommen die passende Unterstützung ohne unnötige Umwege oder mehrfaches Weiterleiten.",
         },
       ],
     },
@@ -225,20 +225,20 @@ export const homeTranslations = {
       ],
     },
     trust: {
-      title: "Vertrauen Sie auf Qualität",
-      note: "Platzhalter für zukünftige Zertifikate und Partnerlogos",
+      title: "Für Privatkunden, Unternehmen und Fahrdienste",
+      note: "",
       badges: [
-        "Zertifizierte Gutachter",
-        "Geprüfter Service",
-        "TÜV-Standard",
-        "Offizielle Gutachten",
+        "Privatkunden",
+        "Geschäftskunden",
+        "Uber-, Bolt- & Taxi-Fahrer",
+        "6 Hauptleistungen aus einer Hand",
       ],
     },
     cta: {
-      badge: "Kurzfristige Termine möglich",
-      title: "Jetzt anrufen oder direkt schreiben - wir sind sofort für Sie da!",
+      badge: "Telefonisch am schnellsten",
+      title: "Sie brauchen Hilfe rund ums Fahrzeug?",
       description:
-        "Ob Unfall, Mietwagen, Werkstatttermin oder Detailing - kontaktieren Sie uns und wir kümmern uns um Ihr Anliegen.",
+        "Rufen Sie uns an oder schreiben Sie uns per WhatsApp. Wir sagen Ihnen direkt, wie wir Ihnen bei Unfall, Werkstatt, Mietwagen, Zulassung oder Pannenhilfe weiterhelfen.",
       inquiry: "Anfrage senden",
       whatsapp: "WhatsApp",
     },

@@ -3,22 +3,22 @@ import type { Locale } from "@/lib/i18n"
 export const servicesAndAboutTranslations = {
   de: {
     servicesPage: {
-      title: "Unsere Leistungen",
+      title: "6 Hauptleistungen rund ums Fahrzeug",
       description:
-        "UNEXT GMBH bietet Ihnen ein umfassendes Leistungsspektrum rund ums Fahrzeug. Sechs starke Bereiche unter einem Dach - professionell, zuverlässig und immer für Sie da.",
+        "Diese 6 Hauptleistungen bilden den Kern von UNEXT. Sie sehen sofort, wobei wir Sie direkt unterstützen können - klar, schnell und ohne Umwege.",
       directCall: "Direkt anrufen:",
       onRequestContact: "Telefon auf Anfrage · @unext.performance",
       items: [
         {
-          title: "Unfallgutachten & Soforthilfe",
+          title: "Unfallhilfe & Gutachten",
           subtitle: "UNFALLX",
           description:
-            "Nach einem Unfall brauchen Sie schnelle und kompetente Hilfe. Unsere zertifizierten Gutachter erstellen unabhängige Kfz-Gutachten und unterstützen Sie bei der gesamten Schadensabwicklung.",
+            "Nach einem Unfall erhalten Sie schnelle Unterstützung, ein unabhängiges Gutachten und eine klare Orientierung für die nächsten Schritte.",
           features: [
-            "Schnelle Terminvergabe",
+            "Schnelle Ersteinschätzung",
             "Unterstützung bei der Schadensabwicklung",
-            "Unabhängige & professionelle Gutachten",
-            "Zertifizierte Gutachter",
+            "Unabhängiges Gutachten",
+            "Weitere Schritte über UNEXT möglich",
           ],
         },
         {
@@ -34,27 +34,27 @@ export const servicesAndAboutTranslations = {
           ],
         },
         {
-          title: "Autoservice & Werkstatt",
-          subtitle: "Reparatur & Wartung",
+          title: "KFZ-Werkstatt & Reparatur",
+          subtitle: "Wartung & Reparatur",
           description:
-            "Unser professionelles Werkstatt-Team kümmert sich um alle Belange rund um Ihr Fahrzeug. Von der Inspektion bis zur Reparatur - alles aus einer Hand.",
+            "Von Inspektion bis Reparatur kümmern wir uns zuverlässig um die Technik Ihres Fahrzeugs - auch wenn es schnell gehen muss.",
           features: [
-            "Ölwechsel & Inspektion",
-            "Reifenwechsel & Einlagerung",
-            "Dashcam-Einbau",
-            "Allgemeine Reparaturen & Wartung",
+            "Inspektion & Ölservice",
+            "Reifenservice",
+            "Diagnose & Reparatur",
+            "Auch für Fahrdienstfahrzeuge",
           ],
         },
         {
-          title: "Detailing",
-          subtitle: "Premium Fahrzeugaufbereitung",
+          title: "Fahrzeugaufbereitung",
+          subtitle: "Detailing",
           description:
-            "Gönnen Sie Ihrem Fahrzeug eine professionelle Aufbereitung. Unsere Detailing-Experten bringen Ihr Auto wieder auf Hochglanz - innen wie außen.",
+            "Professionelle Innen- und Außenaufbereitung für gepflegte Fahrzeuge, Werterhalt und einen sauberen Gesamteindruck.",
           features: [
-            "Lackaufbereitung & Politur",
             "Innen- & Außenreinigung",
-            "Werterhalt & optische Aufwertung",
-            "Professionell & zertifiziert",
+            "Lackaufbereitung & Politur",
+            "Werterhalt",
+            "Individuelle Pakete",
           ],
         },
         {

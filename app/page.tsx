@@ -6,7 +6,6 @@ import { ServicesSection } from "@/components/sections/services-section"
 import { WhySection } from "@/components/sections/why-section"
 import { AboutSection } from "@/components/sections/about-section"
 import { ProcessSection } from "@/components/sections/process-section"
-import { TestimonialsSection } from "@/components/sections/testimonials-section"
 import { TrustSection } from "@/components/sections/trust-section"
 import { CtaSection } from "@/components/sections/cta-section"
 
@@ -16,13 +15,12 @@ export default function HomePage() {
       <SiteHeader />
       <main>
         <HeroSection />
+        <TrustSection />
         <ServicesSection />
-        <ExpressCourierSection />
+        <ProcessSection />
         <WhySection />
         <AboutSection />
-        <ProcessSection />
-        <TestimonialsSection />
-        <TrustSection />
+        <ExpressCourierSection />
         <CtaSection />
       </main>
       <SiteFooter />

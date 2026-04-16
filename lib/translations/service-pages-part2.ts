@@ -3,7 +3,7 @@
 export const servicePagesPart2 = {
   de: {
     workshop: {
-      title: "Autoservice & Werkstatt",
+      title: "KFZ-Werkstatt & Reparatur",
       subtitle: "Reparatur & Wartung",
       description: "Unser erfahrenes Werkstatt-Team kümmert sich professionell um Ihr Fahrzeug. Von der routinemäßigen Wartung bis zur Reparatur - wir bieten zuverlässigen Service mit Qualitätsgarantie.",
       benefits: ["Zertifiziertes Fachpersonal", "Moderne Werkstattausstattung", "Faire & transparente Preise", "Kurzfristige Termine", "Alle Marken & Modelle", "Originalteile auf Wunsch"],
@@ -31,8 +31,8 @@ export const servicePagesPart2 = {
       formTitle: "Werkstatttermin anfragen",
     },
     detailing: {
-      title: "Detailing",
-      subtitle: "Premium Fahrzeugaufbereitung",
+      title: "Fahrzeugaufbereitung",
+      subtitle: "Detailing",
       description: "Ihr Fahrzeug verdient das Beste. Unsere Detailing-Experten bringen Ihr Auto wieder auf Hochglanz - mit professionellen Methoden und Premium-Produkten für ein Ergebnis, das begeistert.",
       benefits: ["Premium Produkte & Methoden", "Erfahrene Detailing-Experten", "Werterhalt Ihres Fahrzeugs", "Individuelle Beratung", "Verschiedene Pakete verfügbar", "Nachhaltige Ergebnisse"],
       services: [

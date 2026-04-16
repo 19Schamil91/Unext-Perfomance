@@ -10,6 +10,7 @@ interface HeroContentProps {
   title2: string
   title3: string
   description: string
+  services: readonly string[]
   callNow: string
   inquiry: string
   whatsapp: string
@@ -22,6 +23,7 @@ function HeroContent({
   title2,
   title3,
   description,
+  services,
   callNow,
   inquiry,
   whatsapp,
@@ -42,24 +44,35 @@ function HeroContent({
         {description}
       </p>
 
+      <div className="mt-6 flex max-w-3xl flex-wrap gap-2">
+        {services.map((service) => (
+          <span
+            key={service}
+            className="rounded-full border border-white/12 bg-white/8 px-3 py-1.5 text-sm text-white/82 backdrop-blur-sm"
+          >
+            {service}
+          </span>
+        ))}
+      </div>
+
       <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-        <Button asChild size="lg" className="gap-2">
+        <Button asChild size="lg" className="w-full gap-2 sm:w-auto">
           <a href="tel:+493023613927">
             <Phone className="h-5 w-5" />
             {callNow}
           </a>
         </Button>
-        <Button asChild size="lg" variant="outline" className="gap-2">
-          <Link href="/kontakt">
-            {inquiry}
-            <ArrowRight className="h-5 w-5" />
-          </Link>
-        </Button>
-        <Button asChild size="lg" variant="secondary" className="gap-2">
+        <Button asChild size="lg" variant="secondary" className="w-full gap-2 sm:w-auto">
           <a href="https://wa.me/4917664365185" target="_blank" rel="noopener noreferrer">
             <MessageCircle className="h-5 w-5" />
             {whatsapp}
           </a>
+        </Button>
+        <Button asChild size="lg" variant="outline" className="w-full gap-2 sm:w-auto">
+          <Link href="/kontakt">
+            {inquiry}
+            <ArrowRight className="h-5 w-5" />
+          </Link>
         </Button>
       </div>
 
@@ -88,7 +101,9 @@ function HeroContent({
 
 export async function HeroSection() {
   const locale = await getCurrentLocale()
-  const t = getTranslations(locale).home.hero
+  const home = getTranslations(locale).home
+  const t = home.hero
+  const mainServices = home.services.items.map((service) => service.title)
   const heroMobileImageSrc = "/images/home-hero-team-balanced.webp"
   const heroDesktopImageSrc = "/images/home-hero-team-desktop.webp"
 
@@ -114,6 +129,7 @@ export async function HeroSection() {
             title2={t.title2}
             title3={t.title3}
             description={t.description}
+            services={mainServices}
             callNow={t.callNow}
             inquiry={t.inquiry}
             whatsapp={t.whatsapp}
@@ -146,6 +162,7 @@ export async function HeroSection() {
             title2={t.title2}
             title3={t.title3}
             description={t.description}
+            services={mainServices}
             callNow={t.callNow}
             inquiry={t.inquiry}
             whatsapp={t.whatsapp}

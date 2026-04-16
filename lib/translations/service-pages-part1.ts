@@ -3,7 +3,7 @@ import type { Locale } from "@/lib/i18n"
 export const servicePagesPart1 = {
   de: {
     accident: {
-      title: "Unfallgutachten & Soforthilfe",
+      title: "Unfallhilfe & Gutachten",
       subtitle: "UNFALLX",
       badge: "Zertifizierte Gutachter",
       description:
