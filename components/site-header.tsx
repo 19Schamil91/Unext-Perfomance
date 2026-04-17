@@ -7,12 +7,6 @@ import { ChevronDown, ChevronRight, Globe, Menu, MessageCircle, Phone } from "lu
 import { useLocale } from "@/components/locale-provider"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { locales, type Locale } from "@/lib/i18n"
 import { getTranslations } from "@/lib/translations"
@@ -26,7 +20,9 @@ type NavigationItem = {
 export function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false)
+  const [servicesMenuOpen, setServicesMenuOpen] = useState(false)
   const languageMenuRef = useRef<HTMLDivElement | null>(null)
+  const servicesMenuRef = useRef<HTMLDivElement | null>(null)
   const { locale, setLocale, isPending } = useLocale()
   const t = getTranslations(locale)
   const navigation = t.header.navigation as readonly NavigationItem[]
@@ -36,17 +32,21 @@ export function SiteHeader() {
   const themeLabels = {
     de: { light: "Hellmodus aktivieren", dark: "Darkmodus aktivieren" },
     en: { light: "Switch to light mode", dark: "Switch to dark mode" },
-    ru: { light: "Включить светлую тему", dark: "Включить темную тему" },
+    ru: {
+      light: "\u0412\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u0441\u0432\u0435\u0442\u043b\u0443\u044e \u0442\u0435\u043c\u0443",
+      dark: "\u0412\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u0442\u0435\u043c\u043d\u0443\u044e \u0442\u0435\u043c\u0443",
+    },
   } as const
 
   const handleLocaleChange = (nextLocale: Locale) => {
     setLocale(nextLocale)
     setLanguageMenuOpen(false)
+    setServicesMenuOpen(false)
     setMobileMenuOpen(false)
   }
 
   useEffect(() => {
-    if (!languageMenuOpen) {
+    if (!languageMenuOpen && !servicesMenuOpen) {
       return
     }
 
@@ -54,11 +54,15 @@ export function SiteHeader() {
       if (!languageMenuRef.current?.contains(event.target as Node)) {
         setLanguageMenuOpen(false)
       }
+      if (!servicesMenuRef.current?.contains(event.target as Node)) {
+        setServicesMenuOpen(false)
+      }
     }
 
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setLanguageMenuOpen(false)
+        setServicesMenuOpen(false)
       }
     }
 
@@ -69,7 +73,7 @@ export function SiteHeader() {
       document.removeEventListener("mousedown", handlePointerDown)
       document.removeEventListener("keydown", handleEscape)
     }
-  }, [languageMenuOpen])
+  }, [languageMenuOpen, servicesMenuOpen])
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
@@ -86,40 +90,54 @@ export function SiteHeader() {
         </Link>
 
         <div className="hidden lg:flex lg:items-center lg:gap-x-8">
-          {navigation.map((item) =>
-            item.children ? (
-              <DropdownMenu key={item.name}>
-                <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-                    {item.name}
-                    <ChevronDown className="h-4 w-4" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-56">
-                  <DropdownMenuItem asChild>
-                    <Link href={item.href} className="w-full">
-                      {t.header.allServices}
-                    </Link>
-                  </DropdownMenuItem>
-                  {item.children?.map((child) => (
-                    <DropdownMenuItem key={child.name} asChild>
-                      <Link href={child.href} className="w-full">
-                        {child.name}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+          {pageNavigation.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {item.name}
+            </Link>
+          ))}
+
+          {serviceNavigation ? (
+            <div ref={servicesMenuRef} className="relative">
+              <button
+                type="button"
+                className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                aria-expanded={servicesMenuOpen}
+                aria-haspopup="menu"
+                onClick={() => setServicesMenuOpen((open) => !open)}
               >
-                {item.name}
-              </Link>
-            )
-          )}
+                {serviceNavigation.name}
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${servicesMenuOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              {servicesMenuOpen ? (
+                <div className="absolute left-0 top-full z-50 mt-2 w-64 rounded-xl border border-border bg-popover p-1 shadow-lg">
+                  <Link
+                    href={serviceNavigation.href}
+                    className="block w-full rounded-lg px-3 py-2 text-sm leading-5 text-popover-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                    onClick={() => setServicesMenuOpen(false)}
+                  >
+                    {t.header.allServices}
+                  </Link>
+                  {serviceNavigation.children?.map((child) => (
+                    <Link
+                      key={child.name}
+                      href={child.href}
+                      className="block w-full rounded-lg px-3 py-2 text-sm leading-5 text-popover-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                      onClick={() => setServicesMenuOpen(false)}
+                    >
+                      {child.name}
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          ) : null}
         </div>
 
         <div className="flex items-center gap-2 sm:gap-4">
@@ -146,7 +164,7 @@ export function SiteHeader() {
                   <button
                     key={lang.code}
                     type="button"
-                    className="flex w-full items-center rounded-lg px-3 py-2 text-left text-sm text-popover-foreground transition-colors hover:bg-accent hover:text-accent-foreground disabled:pointer-events-none disabled:opacity-50"
+                    className="flex w-full items-center rounded-lg px-3 py-2 text-left text-sm leading-5 text-popover-foreground transition-colors hover:bg-accent hover:text-accent-foreground disabled:pointer-events-none disabled:opacity-50"
                     disabled={isPending}
                     onClick={() => handleLocaleChange(lang.code)}
                   >
@@ -197,11 +215,7 @@ export function SiteHeader() {
             >
               <div className="flex min-h-full flex-col gap-5 pt-2">
                 <div className="rounded-[1.35rem] border border-border/60 bg-background/70 p-4 shadow-sm">
-                  <Link
-                    href="/"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center"
-                  >
+                  <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center">
                     <Image
                       src="/images/unext-logo.webp"
                       alt="UNEXT GMBH Logo"
@@ -218,11 +232,7 @@ export function SiteHeader() {
                   </p>
                   <div className="flex flex-col gap-3">
                     <Button asChild className="w-full">
-                      <a
-                        href="tel:+493023613927"
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="gap-2"
-                      >
+                      <a href="tel:+493023613927" onClick={() => setMobileMenuOpen(false)} className="gap-2">
                         <Phone className="h-4 w-4" />
                         {t.header.callNow}
                       </a>
@@ -259,7 +269,7 @@ export function SiteHeader() {
                         onClick={() => setMobileMenuOpen(false)}
                         className="flex items-center justify-between rounded-[1rem] px-3.5 py-3 text-base font-semibold leading-6 text-foreground transition-colors hover:bg-accent/60"
                       >
-                        <span>{item.name}</span>
+                        <span className="min-w-0 [text-wrap:balance]">{item.name}</span>
                         <ChevronRight className="h-4 w-4 text-muted-foreground" />
                       </Link>
                     ))}
@@ -279,7 +289,7 @@ export function SiteHeader() {
                           onClick={() => setMobileMenuOpen(false)}
                           className="flex items-center justify-between rounded-[1rem] px-3.5 py-3 text-sm font-medium leading-5 text-foreground transition-colors hover:bg-accent/40"
                         >
-                          <span>{child.name}</span>
+                          <span className="min-w-0 [text-wrap:balance]">{child.name}</span>
                           <ChevronRight className="h-4 w-4 text-muted-foreground" />
                         </Link>
                       ))}
