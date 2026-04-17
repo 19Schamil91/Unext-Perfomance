@@ -54,8 +54,8 @@ export default async function ImpressumPage() {
             </a>
             <br />
             E-Mail:{" "}
-            <a href="mailto:unext.gmbh@gmail.com" className="text-primary hover:underline">
-              unext.gmbh@gmail.com
+            <a href="mailto:info@unext.de" className="text-primary hover:underline">
+              info@unext.de
             </a>
           </p>
         </div>
