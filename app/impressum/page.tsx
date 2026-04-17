@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata(
     locale,
     `${t.title} | UNEXT GMBH Berlin`,
-    `${t.title} - UNEXT GMBH Berlin.`,
+    "Impressum der Unext GmbH gem\u00e4\u00df \u00a7 5 DDG.",
     "/impressum"
   )
 }
@@ -21,72 +21,59 @@ export default async function ImpressumPage() {
   const t = getTranslations(locale).legal.impressum
 
   return (
-    <LegalPageLayout title={t.title}>
-      <section className="space-y-6 text-muted-foreground">
+    <LegalPageLayout title={t.title} showPlaceholderAlert={false}>
+      <section className="space-y-8 text-muted-foreground">
         <div>
-          <h2 className="mb-4 text-xl font-semibold text-foreground">{t.sections.companyDetails}</h2>
-          <p>
-            UNEXT GMBH
+          <h2 className="mb-4 text-xl font-semibold text-foreground">
+            {"Angaben gem\u00e4\u00df \u00a7 5 DDG"}
+          </h2>
+          <address className="not-italic leading-8">
+            Unext GmbH
             <br />
-            Lübarser Str. 25
+            {"L\u00fcbarser Str. 25"}
             <br />
             13435 Berlin
-          </p>
-        </div>
-
-        <div>
-          <h3 className="mb-2 text-lg font-semibold text-foreground">{t.sections.representedBy}</h3>
-          <p>{t.representedByPlaceholder}</p>
-        </div>
-
-        <div>
-          <h3 className="mb-2 text-lg font-semibold text-foreground">{t.sections.contact}</h3>
-          <p>
-            Telefon: 030 23613927
             <br />
-            E-Mail: info@unext.de
-          </p>
+            Deutschland
+          </address>
         </div>
 
         <div>
-          <h3 className="mb-2 text-lg font-semibold text-foreground">{t.sections.register}</h3>
-          <p className="whitespace-pre-line">{t.registerPlaceholder}</p>
+          <h2 className="mb-4 text-xl font-semibold text-foreground">
+            {"Vertreten durch den Gesch\u00e4ftsf\u00fchrer"}
+          </h2>
+          <p>Selimchan Kasumov</p>
         </div>
 
         <div>
-          <h3 className="mb-2 text-lg font-semibold text-foreground">{t.sections.vat}</h3>
-          <p className="whitespace-pre-line">{t.vatPlaceholder}</p>
-        </div>
-
-        <div>
-          <h3 className="mb-2 text-lg font-semibold text-foreground">{t.sections.responsibility}</h3>
-          <p className="whitespace-pre-line">{t.responsibilityPlaceholder}</p>
-        </div>
-
-        <div>
-          <h3 className="mb-2 text-lg font-semibold text-foreground">{t.sections.euDispute}</h3>
+          <h2 className="mb-4 text-xl font-semibold text-foreground">Kontakt</h2>
           <p>
-            {t.euDisputeText}{" "}
-            <a
-              href="https://ec.europa.eu/consumers/odr/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              https://ec.europa.eu/consumers/odr/
+            Telefon:{" "}
+            <a href="tel:+493023613927" className="text-primary hover:underline">
+              030 23613927
             </a>
             <br />
-            {t.euDisputeSuffix}
+            E-Mail:{" "}
+            <a href="mailto:unext.gmbh@gmail.com" className="text-primary hover:underline">
+              unext.gmbh@gmail.com
+            </a>
           </p>
         </div>
 
         <div>
-          <h3 className="mb-2 text-lg font-semibold text-foreground">{t.sections.consumerDispute}</h3>
-          <p>{t.consumerDisputeText}</p>
+          <h2 className="mb-4 text-xl font-semibold text-foreground">Registereintrag</h2>
+          <p className="whitespace-pre-line">
+            Eintragung im Handelsregister
+            {"\n"}Registergericht: Berlin (Charlottenburg)
+            {"\n"}Registernummer: HRB 265091 B
+          </p>
         </div>
 
-        <div className="border-t border-border pt-8">
-          <p className="whitespace-pre-line text-sm italic text-muted-foreground/70">{t.note}</p>
+        <div>
+          <h2 className="mb-4 text-xl font-semibold text-foreground">
+            {"Umsatzsteuer-Identifikationsnummer gem\u00e4\u00df \u00a7 27a UStG"}
+          </h2>
+          <p>DE369354416</p>
         </div>
       </section>
     </LegalPageLayout>

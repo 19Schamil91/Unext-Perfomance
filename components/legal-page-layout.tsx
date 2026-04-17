@@ -8,9 +8,14 @@ import { getTranslations } from "@/lib/translations"
 interface LegalPageLayoutProps {
   title: string
   children: React.ReactNode
+  showPlaceholderAlert?: boolean
 }
 
-export async function LegalPageLayout({ title, children }: LegalPageLayoutProps) {
+export async function LegalPageLayout({
+  title,
+  children,
+  showPlaceholderAlert = true,
+}: LegalPageLayoutProps) {
   const locale = await getCurrentLocale()
   const t = getTranslations(locale).legal
 
@@ -23,15 +28,17 @@ export async function LegalPageLayout({ title, children }: LegalPageLayoutProps)
             {title}
           </h1>
 
-          <Alert className="mb-8 border-amber-500/50 bg-amber-500/10">
-            <AlertTriangle className="h-4 w-4 text-amber-500" />
-            <AlertTitle className="text-amber-500">{t.alertTitle}</AlertTitle>
-            <AlertDescription className="text-amber-500/80">
-              {t.alertText}
-            </AlertDescription>
-          </Alert>
+          {showPlaceholderAlert ? (
+            <Alert className="mb-8 border-amber-500/50 bg-amber-500/10">
+              <AlertTriangle className="h-4 w-4 text-amber-500" />
+              <AlertTitle className="text-amber-500">{t.alertTitle}</AlertTitle>
+              <AlertDescription className="text-amber-500/80">
+                {t.alertText}
+              </AlertDescription>
+            </Alert>
+          ) : null}
 
-          <div className="prose prose-invert max-w-none">{children}</div>
+          <div className="max-w-none">{children}</div>
         </div>
       </main>
       <SiteFooter />
