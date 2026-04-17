@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronDown, ChevronRight, Globe, Menu, MessageCircle, Phone } from "lucide-react"
@@ -25,6 +25,8 @@ type NavigationItem = {
 
 export function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [languageMenuOpen, setLanguageMenuOpen] = useState(false)
+  const languageMenuRef = useRef<HTMLDivElement | null>(null)
   const { locale, setLocale, isPending } = useLocale()
   const t = getTranslations(locale)
   const navigation = t.header.navigation as readonly NavigationItem[]
@@ -39,8 +41,35 @@ export function SiteHeader() {
 
   const handleLocaleChange = (nextLocale: Locale) => {
     setLocale(nextLocale)
+    setLanguageMenuOpen(false)
     setMobileMenuOpen(false)
   }
+
+  useEffect(() => {
+    if (!languageMenuOpen) {
+      return
+    }
+
+    const handlePointerDown = (event: MouseEvent) => {
+      if (!languageMenuRef.current?.contains(event.target as Node)) {
+        setLanguageMenuOpen(false)
+      }
+    }
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setLanguageMenuOpen(false)
+      }
+    }
+
+    document.addEventListener("mousedown", handlePointerDown)
+    document.addEventListener("keydown", handleEscape)
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown)
+      document.removeEventListener("keydown", handleEscape)
+    }
+  }, [languageMenuOpen])
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
@@ -94,26 +123,39 @@ export function SiteHeader() {
         </div>
 
         <div className="flex items-center gap-2 sm:gap-4">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="hidden gap-2 sm:flex">
-                <Globe className="h-4 w-4" />
-                <span className="uppercase">{locale}</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {languages.map((lang) => (
-                <DropdownMenuItem
-                  key={lang.code}
-                  className="cursor-pointer"
-                  disabled={isPending}
-                  onClick={() => handleLocaleChange(lang.code)}
-                >
-                  {lang.name}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <div ref={languageMenuRef} className="relative hidden sm:block">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="gap-2"
+              aria-expanded={languageMenuOpen}
+              aria-haspopup="menu"
+              disabled={isPending}
+              onClick={() => setLanguageMenuOpen((open) => !open)}
+            >
+              <Globe className="h-4 w-4" />
+              <span className="uppercase">{locale}</span>
+              <ChevronDown
+                className={`h-4 w-4 transition-transform ${languageMenuOpen ? "rotate-180" : ""}`}
+              />
+            </Button>
+
+            {languageMenuOpen ? (
+              <div className="absolute right-0 top-full z-50 mt-2 min-w-[11rem] rounded-xl border border-border bg-popover p-1 shadow-lg">
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    type="button"
+                    className="flex w-full items-center rounded-lg px-3 py-2 text-left text-sm text-popover-foreground transition-colors hover:bg-accent hover:text-accent-foreground disabled:pointer-events-none disabled:opacity-50"
+                    disabled={isPending}
+                    onClick={() => handleLocaleChange(lang.code)}
+                  >
+                    {lang.name}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+          </div>
 
           <ThemeToggle
             lightLabel={themeLabels[locale].light}

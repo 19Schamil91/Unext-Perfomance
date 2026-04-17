@@ -5,10 +5,8 @@ import {
   useEffect,
   useContext,
   useState,
-  useTransition,
   type ReactNode,
 } from "react"
-import { useRouter } from "next/navigation"
 import { isLocale, type Locale } from "@/lib/i18n"
 import { persistLocale, readStorage, storageKeys } from "@/lib/browser-storage"
 
@@ -19,6 +17,7 @@ interface LocaleContextValue {
 }
 
 const LocaleContext = createContext<LocaleContextValue | null>(null)
+const scrollRestoreKey = "unext.locale-scroll-y"
 
 interface LocaleProviderProps {
   initialLocale: Locale
@@ -26,9 +25,26 @@ interface LocaleProviderProps {
 }
 
 export function LocaleProvider({ initialLocale, children }: LocaleProviderProps) {
-  const router = useRouter()
   const [locale, setLocaleState] = useState(initialLocale)
-  const [isPending, startTransition] = useTransition()
+  const [isPending, setIsPending] = useState(false)
+
+  useEffect(() => {
+    setLocaleState(initialLocale)
+  }, [initialLocale])
+
+  useEffect(() => {
+    const savedScrollY = window.sessionStorage.getItem(scrollRestoreKey)
+
+    if (!savedScrollY) {
+      return
+    }
+
+    window.sessionStorage.removeItem(scrollRestoreKey)
+
+    requestAnimationFrame(() => {
+      window.scrollTo(0, Number(savedScrollY))
+    })
+  }, [])
 
   useEffect(() => {
     const storedLocale = readStorage<{ locale?: string }>(storageKeys.locale)?.locale
@@ -39,11 +55,10 @@ export function LocaleProvider({ initialLocale, children }: LocaleProviderProps)
 
     document.cookie = `locale=${storedLocale}; path=/; max-age=31536000; SameSite=Lax`
     setLocaleState(storedLocale)
-
-    startTransition(() => {
-      router.refresh()
-    })
-  }, [initialLocale, router])
+    setIsPending(true)
+    window.sessionStorage.setItem(scrollRestoreKey, String(window.scrollY))
+    window.location.reload()
+  }, [initialLocale])
 
   const setLocale = (nextLocale: Locale) => {
     if (nextLocale === locale) {
@@ -53,10 +68,9 @@ export function LocaleProvider({ initialLocale, children }: LocaleProviderProps)
     document.cookie = `locale=${nextLocale}; path=/; max-age=31536000; SameSite=Lax`
     persistLocale(nextLocale)
     setLocaleState(nextLocale)
-
-    startTransition(() => {
-      router.refresh()
-    })
+    setIsPending(true)
+    window.sessionStorage.setItem(scrollRestoreKey, String(window.scrollY))
+    window.location.reload()
   }
 
   return (
