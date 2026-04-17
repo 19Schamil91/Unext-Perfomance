@@ -52,12 +52,31 @@ const emptyContactDraft: ContactFormDraft = {
   message: "",
 }
 
+function splitAtSentenceBoundary(text: string) {
+  const match = text.match(/^(.+?[.!?])(\s+.+)$/)
+
+  if (!match) {
+    return { lead: text, rest: "" }
+  }
+
+  return {
+    lead: match[1],
+    rest: match[2].trim(),
+  }
+}
+
+function shouldForceSentenceBreak(locale: string) {
+  return locale === "de" || locale === "en" || locale === "ru"
+}
+
 export function ContactPageClient() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [formData, setFormData] = useState<ContactFormDraft>(emptyContactDraft)
   const { locale } = useLocale()
   const t = getTranslations(locale).contactPage
+  const descriptionParts = splitAtSentenceBoundary(t.description)
+  const forceSentenceBreak = shouldForceSentenceBreak(locale)
 
   const handleFieldChange = (field: keyof ContactFormDraft, value: string) => {
     setFormData((current) => ({
@@ -80,12 +99,24 @@ export function ContactPageClient() {
       <main>
         <section className="bg-card py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            <div className="max-w-[58rem]">
+              <h1 className="max-w-[12ch] text-4xl font-bold tracking-tight text-foreground [text-wrap:balance] sm:text-5xl">
                 {t.title}
               </h1>
-              <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-                {t.description}
+              <p className="mt-6 max-w-[54rem] text-lg leading-relaxed text-muted-foreground">
+                <span>{descriptionParts.lead}</span>
+                {descriptionParts.rest ? (
+                  <>
+                    {forceSentenceBreak ? (
+                      <span className="block">{descriptionParts.rest}</span>
+                    ) : (
+                      <>
+                        <span className="hidden xl:inline"> </span>
+                        <span className="block xl:inline">{descriptionParts.rest}</span>
+                      </>
+                    )}
+                  </>
+                ) : null}
               </p>
             </div>
           </div>
