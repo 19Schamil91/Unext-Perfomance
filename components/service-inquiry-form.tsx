@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useState } from "react"
 import { CheckCircle } from "lucide-react"
 import { useLocale } from "@/components/locale-provider"
 import { Button } from "@/components/ui/button"
@@ -9,12 +9,7 @@ import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Spinner } from "@/components/ui/spinner"
 import { Textarea } from "@/components/ui/textarea"
-import {
-  removeStorage,
-  type ServiceInquiryDraft,
-  readStorage,
-  writeStorage,
-} from "@/lib/browser-storage"
+import type { ServiceInquiryDraft } from "@/lib/browser-storage"
 import { getTranslations } from "@/lib/translations"
 
 interface ServiceInquiryFormProps {
@@ -47,27 +42,6 @@ export function ServiceInquiryForm({
   })
   const { locale } = useLocale()
   const t = getTranslations(locale).serviceDetail.form
-  const draftKey = useMemo(() => `unext.service-inquiry.${serviceName}`, [serviceName])
-
-  useEffect(() => {
-    const savedDraft = readStorage<ServiceInquiryDraft>(draftKey)
-
-    if (savedDraft) {
-      setFormData((current) => ({
-        ...current,
-        ...savedDraft,
-      }))
-    }
-  }, [draftKey])
-
-  useEffect(() => {
-    if (isSubmitted) {
-      return
-    }
-
-    writeStorage(draftKey, formData)
-  }, [draftKey, formData, isSubmitted])
-
   const handleFieldChange = (field: keyof ServiceInquiryDraft, value: string) => {
     setFormData((current) => ({
       ...current,
@@ -81,7 +55,6 @@ export function ServiceInquiryForm({
     await new Promise((resolve) => setTimeout(resolve, 1500))
     setIsSubmitting(false)
     setIsSubmitted(true)
-    removeStorage(draftKey)
   }
 
   if (isSubmitted) {

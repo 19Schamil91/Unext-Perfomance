@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Image from "next/image"
 import {
   Car,
@@ -26,14 +26,7 @@ import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Spinner } from "@/components/ui/spinner"
 import { Textarea } from "@/components/ui/textarea"
-import {
-  removeStorage,
-  type ContactFormDraft,
-  type LastSelectedService,
-  readStorage,
-  storageKeys,
-  writeStorage,
-} from "@/lib/browser-storage"
+import type { ContactFormDraft } from "@/lib/browser-storage"
 import { getTranslations } from "@/lib/translations"
 
 const serviceMeta = [
@@ -66,32 +59,6 @@ export function ContactPageClient() {
   const { locale } = useLocale()
   const t = getTranslations(locale).contactPage
 
-  useEffect(() => {
-    const savedDraft = readStorage<ContactFormDraft>(storageKeys.contactForm)
-
-    if (savedDraft) {
-      setFormData({ ...emptyContactDraft, ...savedDraft })
-      return
-    }
-
-    const lastSelectedService = readStorage<LastSelectedService>(storageKeys.lastSelectedService)
-
-    if (lastSelectedService?.serviceTitle) {
-      setFormData((current) => ({
-        ...current,
-        subject: lastSelectedService.serviceTitle,
-      }))
-    }
-  }, [])
-
-  useEffect(() => {
-    if (isSubmitted) {
-      return
-    }
-
-    writeStorage(storageKeys.contactForm, formData)
-  }, [formData, isSubmitted])
-
   const handleFieldChange = (field: keyof ContactFormDraft, value: string) => {
     setFormData((current) => ({
       ...current,
@@ -105,7 +72,6 @@ export function ContactPageClient() {
     await new Promise((resolve) => setTimeout(resolve, 1500))
     setIsSubmitting(false)
     setIsSubmitted(true)
-    removeStorage(storageKeys.contactForm)
   }
 
   return (
@@ -235,12 +201,7 @@ export function ContactPageClient() {
                         className="mt-6"
                         variant="outline"
                         onClick={() => {
-                          const lastSelectedService = readStorage<LastSelectedService>(storageKeys.lastSelectedService)
-
-                          setFormData({
-                            ...emptyContactDraft,
-                            subject: lastSelectedService?.serviceTitle ?? "",
-                          })
+                          setFormData(emptyContactDraft)
                           setIsSubmitted(false)
                         }}
                       >

@@ -1,8 +1,5 @@
 "use client"
 
-import { useEffect } from "react"
-import { storageKeys, writeStorage } from "@/lib/browser-storage"
-
 interface SelectedServiceTrackerProps {
   serviceName: string
   serviceTitle: string
@@ -10,18 +7,9 @@ interface SelectedServiceTrackerProps {
 }
 
 export function SelectedServiceTracker({
-  serviceName,
-  serviceTitle,
-  href,
+  serviceName: _serviceName,
+  serviceTitle: _serviceTitle,
+  href: _href,
 }: SelectedServiceTrackerProps) {
-  useEffect(() => {
-    writeStorage(storageKeys.lastSelectedService, {
-      serviceName,
-      serviceTitle,
-      href,
-      savedAt: new Date().toISOString(),
-    })
-  }, [href, serviceName, serviceTitle])
-
   return null
 }

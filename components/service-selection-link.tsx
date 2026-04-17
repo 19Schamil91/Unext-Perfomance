@@ -2,7 +2,6 @@
 
 import type { ReactNode } from "react"
 import Link, { type LinkProps } from "next/link"
-import { storageKeys, writeStorage } from "@/lib/browser-storage"
 
 interface ServiceSelectionLinkProps extends LinkProps {
   serviceName: string
@@ -12,31 +11,16 @@ interface ServiceSelectionLinkProps extends LinkProps {
 }
 
 export function ServiceSelectionLink({
-  serviceName,
-  serviceTitle,
+  serviceName: _serviceName,
+  serviceTitle: _serviceTitle,
   href,
   className,
   children,
   ...props
 }: ServiceSelectionLinkProps) {
-  const hrefValue = typeof href === "string" ? href : href.pathname ?? ""
-
   return (
-    <Link
-      href={href}
-      className={className}
-      onClick={() =>
-        writeStorage(storageKeys.lastSelectedService, {
-          serviceName,
-          serviceTitle,
-          href: hrefValue,
-          savedAt: new Date().toISOString(),
-        })
-      }
-      {...props}
-    >
+    <Link href={href} className={className} {...props}>
       {children}
     </Link>
   )
 }
-
