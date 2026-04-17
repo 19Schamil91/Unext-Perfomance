@@ -8,7 +8,7 @@ export const homeTranslations = {
       title2: "aus einer Hand",
       title3: "in Berlin",
       description:
-        "Ein Ansprechpartner für Unfallhilfe & Gutachten, Autovermietung, KFZ-Werkstatt, Fahrzeugaufbereitung, KFZ-Zulassung und Abschleppdienst in Berlin. Für Privatkunden, Unternehmen sowie Uber-, Bolt- und Taxi-Fahrer.",
+        "Ein Ansprechpartner für Unfallhilfe & Gutachten, Autovermietung, Kfz-Werkstatt, Fahrzeugaufbereitung, Kfz-Zulassung und Abschleppdienst in Berlin. Für Privatkunden, Unternehmen sowie Uber-, Bolt- und Taxi-Fahrer.",
       callNow: "Jetzt anrufen",
       inquiry: "Anfrage senden",
       whatsapp: "WhatsApp",
@@ -48,7 +48,7 @@ export const homeTranslations = {
           ],
         },
         {
-          title: "KFZ-Werkstatt & Reparatur",
+          title: "Kfz-Werkstatt & Reparatur",
           subtitle: "Wartung & Reparatur",
           description:
             "Von Inspektion bis Reparatur: Wir kümmern uns zuverlässig um die Technik Ihres Fahrzeugs und halten Sie mobil.",

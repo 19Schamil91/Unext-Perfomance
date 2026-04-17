@@ -19,41 +19,41 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ImpressumPage() {
   const locale = await getCurrentLocale()
   const t = getTranslations(locale).legal.impressum
+  const phoneLabel =
+    locale === "ru" ? "\u0422\u0435\u043b\u0435\u0444\u043e\u043d:" : locale === "en" ? "Phone:" : "Telefon:"
+  const emailLabel =
+    locale === "ru" ? "E-mail:" : locale === "en" ? "Email:" : "E-Mail:"
 
   return (
     <LegalPageLayout title={t.title} showPlaceholderAlert={false}>
       <section className="space-y-8 text-muted-foreground">
         <div>
-          <h2 className="mb-4 text-xl font-semibold text-foreground">
-            {"Angaben gem\u00e4\u00df \u00a7 5 DDG"}
-          </h2>
+          <h2 className="mb-4 text-xl font-semibold text-foreground">{t.sections.companyDetails}</h2>
           <address className="not-italic leading-8">
-            Unext GmbH
+            {t.companyName}
             <br />
-            {"L\u00fcbarser Str. 25"}
+            {t.street}
             <br />
-            13435 Berlin
+            {t.city}
             <br />
-            Deutschland
+            {t.country}
           </address>
         </div>
 
         <div>
-          <h2 className="mb-4 text-xl font-semibold text-foreground">
-            {"Vertreten durch den Gesch\u00e4ftsf\u00fchrer"}
-          </h2>
-          <p>Selimchan Kasumov</p>
+          <h2 className="mb-4 text-xl font-semibold text-foreground">{t.representedByTitle}</h2>
+          <p>{t.representedByName}</p>
         </div>
 
         <div>
-          <h2 className="mb-4 text-xl font-semibold text-foreground">Kontakt</h2>
+          <h2 className="mb-4 text-xl font-semibold text-foreground">{t.sections.contact}</h2>
           <p>
-            Telefon:{" "}
+            {phoneLabel}{" "}
             <a href="tel:+493023613927" className="text-primary hover:underline">
               030 23613927
             </a>
             <br />
-            E-Mail:{" "}
+            {emailLabel}{" "}
             <a href="mailto:info@unext.de" className="text-primary hover:underline">
               info@unext.de
             </a>
@@ -61,19 +61,19 @@ export default async function ImpressumPage() {
         </div>
 
         <div>
-          <h2 className="mb-4 text-xl font-semibold text-foreground">Registereintrag</h2>
+          <h2 className="mb-4 text-xl font-semibold text-foreground">{t.sections.register}</h2>
           <p className="whitespace-pre-line">
-            Eintragung im Handelsregister
-            {"\n"}Registergericht: Berlin (Charlottenburg)
-            {"\n"}Registernummer: HRB 265091 B
+            {t.registerText}
+            {"\n"}
+            {t.registerCourt}
+            {"\n"}
+            {t.registerNumber}
           </p>
         </div>
 
         <div>
-          <h2 className="mb-4 text-xl font-semibold text-foreground">
-            {"Umsatzsteuer-Identifikationsnummer gem\u00e4\u00df \u00a7 27a UStG"}
-          </h2>
-          <p>DE369354416</p>
+          <h2 className="mb-4 text-xl font-semibold text-foreground">{t.vatTitle}</h2>
+          <p>{t.vatNumber}</p>
         </div>
       </section>
     </LegalPageLayout>

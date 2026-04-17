@@ -17,7 +17,7 @@ export const headerFooterTranslations = {
           children: [
             { name: "Unfallhilfe & Gutachten", href: "/leistungen/unfallgutachten" },
             { name: "Autovermietung", href: "/leistungen/autovermietung" },
-            { name: "KFZ-Werkstatt & Reparatur", href: "/leistungen/autoservice" },
+            { name: "Kfz-Werkstatt & Reparatur", href: "/leistungen/autoservice" },
             { name: "Fahrzeugaufbereitung", href: "/leistungen/detailing" },
             { name: "Kfz-Zulassungsservice", href: "/leistungen/zulassungsservice" },
             { name: "Abschleppdienst & Pannenhilfe", href: "/leistungen/abschleppdienst-pannenhilfe" },
@@ -37,7 +37,7 @@ export const headerFooterTranslations = {
     },
     footer: {
       description:
-        "Kompletter Fahrzeug-Service in Berlin: Unfallhilfe & Gutachten, Autovermietung, KFZ-Werkstatt, Fahrzeugaufbereitung, KFZ-Zulassung und Abschleppdienst aus einer Hand.",
+        "Kompletter Fahrzeug-Service in Berlin: Unfallhilfe & Gutachten, Autovermietung, Kfz-Werkstatt, Fahrzeugaufbereitung, Kfz-Zulassung und Abschleppdienst aus einer Hand.",
       address: "Lübarser Str. 25, 13435 Berlin",
       hoursWeek: "Mo-Fr: 9:00-18:00",
       hoursSat: "Sa: 10:00-16:00",
@@ -183,7 +183,7 @@ export const headerFooterTranslations = {
         { name: "Контакты", href: "/kontakt" },
       ],
       legalLinks: [
-        { name: "Выходные данные", href: "/impressum" },
+        { name: "Юридическая информация", href: "/impressum" },
         { name: "Политика конфиденциальности", href: "/datenschutz" },
         { name: "Условия и положения", href: "/agb" },
       ],

@@ -34,7 +34,7 @@ export const servicesAndAboutTranslations = {
           ],
         },
         {
-          title: "KFZ-Werkstatt & Reparatur",
+          title: "Kfz-Werkstatt & Reparatur",
           subtitle: "Wartung & Reparatur",
           description:
             "Von Inspektion bis Reparatur kümmern wir uns zuverlässig um die Technik Ihres Fahrzeugs - auch wenn es schnell gehen muss.",
