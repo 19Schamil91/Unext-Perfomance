@@ -20,10 +20,10 @@ export async function CtaSection() {
               <Clock className="h-5 w-5" />
               <span className="text-sm font-medium uppercase tracking-wider">{t.badge}</span>
             </div>
-            <h2 className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl">
+            <h2 className="measure-heading text-heading-fluid text-primary-foreground">
               {t.title}
             </h2>
-            <p className="mt-4 text-lg text-primary-foreground/80">{t.description}</p>
+            <p className="measure-intro-tight mt-4 text-body-fluid text-primary-foreground/80">{t.description}</p>
           </div>
 
           <div className="flex flex-col gap-4 sm:flex-row lg:flex-col xl:flex-row">

@@ -56,8 +56,8 @@ function HeroContent({
       <h1
         className={
           isOverlay
-            ? "text-[2rem] leading-[1.02] font-bold tracking-[-0.045em] text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.34)] sm:text-5xl sm:tracking-tight lg:text-6xl"
-            : "text-[1.92rem] leading-[1.04] font-bold tracking-[-0.03em] text-foreground sm:text-5xl sm:tracking-tight lg:text-6xl"
+            ? "measure-display text-display-fluid text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.34)]"
+            : "measure-display text-display-fluid text-foreground"
         }
       >
         <span className="block">{title1}</span>
@@ -65,8 +65,8 @@ function HeroContent({
         <span
           className={
             isOverlay
-              ? "mt-1.5 block text-[1.08rem] font-normal text-white/84 drop-shadow-[0_2px_12px_rgba(0,0,0,0.26)] sm:mt-2 sm:text-3xl lg:text-4xl"
-              : "mt-1.5 block text-[1.08rem] font-normal text-muted-foreground sm:mt-2 sm:text-3xl lg:text-4xl"
+              ? "mt-1.5 block max-w-[18ch] text-[clamp(1.05rem,0.84rem+1vw,2.35rem)] leading-[1.12] font-normal text-white/84 drop-shadow-[0_2px_12px_rgba(0,0,0,0.26)] sm:mt-2"
+              : "mt-1.5 block max-w-[18ch] text-[clamp(1.05rem,0.84rem+1vw,2.35rem)] leading-[1.12] font-normal text-muted-foreground sm:mt-2"
           }
         >
           {title3}
@@ -76,8 +76,8 @@ function HeroContent({
       <p
         className={
           isOverlay
-            ? "mt-4 max-w-xl text-[0.98rem] leading-7 text-white/80 drop-shadow-[0_2px_10px_rgba(0,0,0,0.2)] sm:mt-6 sm:text-lg"
-            : "mt-4 text-[0.98rem] leading-7 text-muted-foreground sm:mt-6 sm:max-w-xl sm:text-lg"
+            ? "measure-intro-tight mt-4 text-body-fluid text-white/80 drop-shadow-[0_2px_10px_rgba(0,0,0,0.2)] sm:mt-6"
+            : "measure-intro-tight mt-4 text-body-fluid text-muted-foreground sm:mt-6"
         }
       >
         {description}
@@ -106,7 +106,7 @@ function HeroContent({
                 : "group flex min-h-[4.5rem] min-w-0 items-center justify-between gap-3 rounded-[1.1rem] border border-border/70 bg-card px-3 py-3 text-[0.83rem] leading-5 text-foreground shadow-[0_12px_28px_rgba(15,23,42,0.08)] transition-all hover:border-primary/45 hover:bg-accent"
             }
           >
-            <span className="min-w-0">{service.title}</span>
+            <span className="min-w-0 [text-wrap:balance]">{service.title}</span>
             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/12 text-primary transition-transform group-hover:translate-x-0.5">
               <DoorOpen className="h-4 w-4" />
             </span>
@@ -125,7 +125,7 @@ function HeroContent({
                 : "group inline-flex min-w-0 items-center gap-2 rounded-full border border-border/70 bg-card px-4 py-2 text-sm text-foreground shadow-[0_10px_22px_rgba(15,23,42,0.08)] transition-all hover:border-primary/45 hover:bg-accent"
             }
           >
-            <span className="min-w-0">{service.title}</span>
+            <span className="min-w-0 [text-wrap:balance]">{service.title}</span>
             <DoorOpen className="h-3.5 w-3.5 text-primary transition-transform group-hover:translate-x-0.5" />
           </Link>
         ))}

@@ -65,10 +65,6 @@ function splitAtSentenceBoundary(text: string) {
   }
 }
 
-function shouldForceSentenceBreak(locale: string) {
-  return locale === "de" || locale === "en" || locale === "ru"
-}
-
 export function ContactPageClient() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -76,7 +72,6 @@ export function ContactPageClient() {
   const { locale } = useLocale()
   const t = getTranslations(locale).contactPage
   const descriptionParts = splitAtSentenceBoundary(t.description)
-  const forceSentenceBreak = shouldForceSentenceBreak(locale)
 
   const handleFieldChange = (field: keyof ContactFormDraft, value: string) => {
     setFormData((current) => ({
@@ -99,22 +94,15 @@ export function ContactPageClient() {
       <main>
         <section className="bg-card py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="max-w-[58rem]">
-              <h1 className="max-w-[12ch] text-4xl font-bold tracking-tight text-foreground [text-wrap:balance] sm:text-5xl">
+            <div className="measure-intro max-w-[58rem]">
+              <h1 className="measure-display text-display-fluid text-foreground">
                 {t.title}
               </h1>
-              <p className="mt-6 max-w-[54rem] text-lg leading-relaxed text-muted-foreground">
+              <p className="measure-intro mt-6 text-body-fluid text-muted-foreground">
                 <span>{descriptionParts.lead}</span>
                 {descriptionParts.rest ? (
                   <>
-                    {forceSentenceBreak ? (
-                      <span className="block">{descriptionParts.rest}</span>
-                    ) : (
-                      <>
-                        <span className="hidden xl:inline"> </span>
-                        <span className="block xl:inline">{descriptionParts.rest}</span>
-                      </>
-                    )}
+                    <span className="block">{descriptionParts.rest}</span>
                   </>
                 ) : null}
               </p>
@@ -164,7 +152,9 @@ export function ContactPageClient() {
             <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
               {t.serviceContactsTitle}
             </h2>
-            <p className="mb-12 max-w-2xl text-muted-foreground">{t.serviceContactsDescription}</p>
+            <p className="measure-intro-tight mb-12 text-body-compact text-muted-foreground">
+              {t.serviceContactsDescription}
+            </p>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {t.serviceContacts.map((service, index) => {

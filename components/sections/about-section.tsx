@@ -50,11 +50,11 @@ export async function AboutSection() {
             <p className="text-sm font-medium uppercase tracking-wider text-primary">
               {t.eyebrow}
             </p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            <h2 className="mt-2 measure-heading text-heading-fluid text-foreground">
               {t.title}
             </h2>
-            <p className="mt-6 leading-relaxed text-muted-foreground">{t.paragraph1}</p>
-            <p className="mt-4 leading-relaxed text-muted-foreground">{t.paragraph2}</p>
+            <p className="mt-6 measure-intro-tight text-body-fluid text-muted-foreground">{t.paragraph1}</p>
+            <p className="mt-4 measure-intro-tight text-body-fluid text-muted-foreground">{t.paragraph2}</p>
 
             <ul className="mt-8 space-y-3">
               {t.highlights.map((item) => (

@@ -28,8 +28,8 @@ export default async function ImpressumPage() {
     <LegalPageLayout title={t.title} showPlaceholderAlert={false}>
       <section className="space-y-8 text-muted-foreground">
         <div>
-          <h2 className="mb-4 text-xl font-semibold text-foreground">{t.sections.companyDetails}</h2>
-          <address className="not-italic leading-8">
+          <h2 className="mb-4 text-title-fluid font-semibold text-foreground">{t.sections.companyDetails}</h2>
+          <address className="measure-intro not-italic text-body-compact">
             {t.companyName}
             <br />
             {t.street}
@@ -41,13 +41,13 @@ export default async function ImpressumPage() {
         </div>
 
         <div>
-          <h2 className="mb-4 text-xl font-semibold text-foreground">{t.representedByTitle}</h2>
-          <p>{t.representedByName}</p>
+          <h2 className="mb-4 text-title-fluid font-semibold text-foreground">{t.representedByTitle}</h2>
+          <p className="measure-intro">{t.representedByName}</p>
         </div>
 
         <div>
-          <h2 className="mb-4 text-xl font-semibold text-foreground">{t.sections.contact}</h2>
-          <p>
+          <h2 className="mb-4 text-title-fluid font-semibold text-foreground">{t.sections.contact}</h2>
+          <p className="measure-intro">
             {phoneLabel}{" "}
             <a href="tel:+493023613927" className="text-primary hover:underline">
               030 23613927
@@ -61,8 +61,8 @@ export default async function ImpressumPage() {
         </div>
 
         <div>
-          <h2 className="mb-4 text-xl font-semibold text-foreground">{t.sections.register}</h2>
-          <p className="whitespace-pre-line">
+          <h2 className="mb-4 text-title-fluid font-semibold text-foreground">{t.sections.register}</h2>
+          <p className="measure-intro whitespace-pre-line">
             {t.registerText}
             {"\n"}
             {t.registerCourt}
@@ -72,8 +72,8 @@ export default async function ImpressumPage() {
         </div>
 
         <div>
-          <h2 className="mb-4 text-xl font-semibold text-foreground">{t.vatTitle}</h2>
-          <p>{t.vatNumber}</p>
+          <h2 className="mb-4 text-title-fluid font-semibold text-foreground">{t.vatTitle}</h2>
+          <p className="measure-intro">{t.vatNumber}</p>
         </div>
       </section>
     </LegalPageLayout>

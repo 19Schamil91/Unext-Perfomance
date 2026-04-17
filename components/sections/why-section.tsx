@@ -12,10 +12,10 @@ export async function WhySection() {
     <section className="bg-card py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto mb-16 max-w-3xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          <h2 className="mx-auto measure-heading text-heading-fluid text-foreground">
             {t.title}
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">{t.description}</p>
+          <p className="mx-auto mt-4 measure-intro text-body-fluid text-muted-foreground">{t.description}</p>
         </div>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -30,8 +30,8 @@ export async function WhySection() {
                 <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
                   <Icon className="h-7 w-7" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground">{benefit.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <h3 className="measure-card-copy text-title-fluid font-semibold text-foreground">{benefit.title}</h3>
+                <p className="mt-2 measure-card-copy text-body-compact text-muted-foreground">
                   {benefit.description}
                 </p>
               </div>

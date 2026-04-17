@@ -150,7 +150,7 @@ export async function ServicePageLayout({
             {t.backToServices}
           </Link>
 
-          <div className="max-w-2xl">
+          <div className="measure-intro">
             {badge && (
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5">
                 <span className="text-sm font-medium text-primary">{badge}</span>
@@ -158,16 +158,16 @@ export async function ServicePageLayout({
             )}
 
             <p className="text-sm font-medium uppercase tracking-wider text-primary">{subtitle}</p>
-            <h1 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-5xl">
+            <h1 className="mt-2 measure-heading text-display-fluid text-foreground">
               {title}
             </h1>
-            <p className="mt-5 text-base leading-7 text-muted-foreground sm:mt-6 sm:text-lg">
+            <p className="mt-5 measure-intro-tight text-body-fluid text-muted-foreground sm:mt-6">
               {description}
             </p>
 
             <ul className="mt-8 grid gap-2 sm:grid-cols-2">
               {benefits.map((benefit) => (
-                <li key={benefit} className="flex items-start gap-2 text-sm leading-6 text-foreground">
+                <li key={benefit} className="flex items-start gap-2 text-body-compact text-foreground">
                   <CheckCircle className="h-4 w-4 shrink-0 text-primary" />
                   {benefit}
                 </li>
@@ -196,15 +196,15 @@ export async function ServicePageLayout({
 
       <section className="bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <h2 className="mb-12 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+          <h2 className="mb-12 measure-heading text-heading-fluid text-foreground">
             {t.servicesTitle}
           </h2>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
               <div key={service.title} className="rounded-xl border border-border/50 bg-background p-5 sm:p-6">
-                <h3 className="text-lg font-semibold text-foreground">{service.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <h3 className="measure-card-copy text-title-fluid font-semibold text-foreground">{service.title}</h3>
+                <p className="mt-2 measure-card-copy text-body-compact text-muted-foreground">
                   {service.description}
                 </p>
               </div>
@@ -217,10 +217,10 @@ export async function ServicePageLayout({
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
-              <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              <h2 className="measure-heading text-heading-fluid text-foreground">
                 {t.whyTitle}
               </h2>
-              <p className="mt-4 text-sm leading-7 text-muted-foreground sm:text-base">
+              <p className="mt-4 measure-intro-tight text-body-compact text-muted-foreground">
                 {t.whyDescription}
               </p>
 
@@ -231,8 +231,8 @@ export async function ServicePageLayout({
                       <CheckCircle className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground">{item.title}</h3>
-                      <p className="mt-1 text-sm leading-7 text-muted-foreground">{item.description}</p>
+                      <h3 className="measure-card-copy text-title-fluid font-semibold text-foreground">{item.title}</h3>
+                      <p className="mt-1 measure-card-copy-wide text-body-compact text-muted-foreground">{item.description}</p>
                     </div>
                   </div>
                 ))}
@@ -253,7 +253,7 @@ export async function ServicePageLayout({
       {faqs && faqs.length > 0 && (
         <section className="bg-card py-16 lg:py-24">
           <div className="mx-auto max-w-3xl px-4 lg:px-8">
-            <h2 className="mb-12 text-center text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+            <h2 className="mx-auto mb-12 measure-heading text-heading-fluid text-center text-foreground">
               {t.faqTitle}
             </h2>
 
@@ -273,10 +273,10 @@ export async function ServicePageLayout({
 
       <section className="bg-primary py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 text-center lg:px-8">
-          <h2 className="text-2xl font-bold tracking-tight text-primary-foreground sm:text-3xl">
+          <h2 className="mx-auto measure-heading text-heading-fluid text-primary-foreground">
             {t.questionsTitle}
           </h2>
-          <p className="mt-4 text-primary-foreground/80">{t.questionsDescription}</p>
+          <p className="mx-auto mt-4 measure-intro-tight text-body-fluid text-primary-foreground/80">{t.questionsDescription}</p>
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             {resolvedBottomActions.map((action, index) => (
               <div key={`${action.href}-${action.label}`} className="contents">

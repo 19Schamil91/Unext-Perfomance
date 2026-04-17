@@ -23,8 +23,8 @@ export async function LegalPageLayout({
     <>
       <SiteHeader />
       <main className="bg-background py-16 lg:py-24">
-        <div className="mx-auto max-w-3xl px-4 lg:px-8">
-          <h1 className="mb-8 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        <div className="mx-auto max-w-4xl px-4 lg:px-8">
+          <h1 className="mb-8 measure-heading text-heading-fluid text-foreground">
             {title}
           </h1>
 
@@ -38,7 +38,7 @@ export async function LegalPageLayout({
             </Alert>
           ) : null}
 
-          <div className="max-w-none">{children}</div>
+          <div className="max-w-none text-body-compact">{children}</div>
         </div>
       </main>
       <SiteFooter />

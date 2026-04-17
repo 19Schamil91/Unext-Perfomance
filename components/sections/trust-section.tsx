@@ -26,7 +26,7 @@ export async function TrustSection() {
                   className="flex items-center gap-3 rounded-[1.15rem] border border-border/70 bg-background/65 px-4 py-3 text-muted-foreground md:rounded-none md:border-none md:bg-transparent md:px-0 md:py-0"
                 >
                   <Icon className="h-7 w-7 shrink-0 text-primary sm:h-8 sm:w-8" />
-                  <span className="text-sm font-medium leading-5">{badge}</span>
+                  <span className="measure-card-copy text-sm font-medium leading-5 [text-wrap:balance]">{badge}</span>
                 </div>
               )
             })}

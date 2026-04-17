@@ -12,10 +12,12 @@ export async function ProcessSection() {
     <section className="bg-card py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-16">
-          <h2 className="text-[2rem] font-bold tracking-[-0.03em] text-foreground sm:text-4xl sm:tracking-tight">
+          <h2 className="mx-auto measure-heading text-heading-fluid text-foreground">
             {t.title}
           </h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground sm:mt-4 sm:text-lg">{t.description}</p>
+          <p className="mx-auto mt-3 measure-intro text-body-fluid text-muted-foreground sm:mt-4">
+            {t.description}
+          </p>
         </div>
 
         <div className="relative">
@@ -37,8 +39,8 @@ export async function ProcessSection() {
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  <h3 className="measure-card-copy text-title-fluid font-semibold text-foreground">{item.title}</h3>
+                  <p className="mt-2 measure-card-copy text-body-compact text-muted-foreground">
                     {item.description}
                   </p>
 

@@ -30,13 +30,13 @@ export async function ExpressCourierSection() {
                     <p className="text-xs font-medium uppercase tracking-wider text-primary">
                       {t.eyebrow}
                     </p>
-                    <h2 className="mt-1 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                    <h2 className="mt-1 measure-heading text-heading-fluid text-foreground">
                       {t.title}
                     </h2>
                   </div>
                 </div>
 
-                <p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
+                <p className="mt-5 measure-intro-tight text-body-compact text-muted-foreground">
                   {t.description}
                 </p>
 
@@ -47,7 +47,7 @@ export async function ExpressCourierSection() {
                       className="flex items-start gap-3 rounded-xl border border-border/50 bg-card p-4"
                     >
                       <Package className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                      <p className="text-sm leading-6 text-foreground">{feature}</p>
+                      <p className="measure-card-copy text-body-compact text-foreground">{feature}</p>
                     </div>
                   ))}
                 </div>
@@ -86,10 +86,10 @@ export async function ExpressCourierSection() {
                     <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <Clock3 className="h-7 w-7" />
                     </div>
-                    <h3 className="mt-5 text-xl font-semibold text-foreground">
+                    <h3 className="mt-5 measure-card-copy text-title-fluid font-semibold text-foreground">
                       {t.highlightTitle}
                     </h3>
-                    <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
+                    <p className="mt-3 measure-card-copy-wide text-body-compact text-muted-foreground">
                       {t.highlightDescription}
                     </p>
                     <div className="mt-6 rounded-xl border border-border/50 bg-card px-4 py-3">

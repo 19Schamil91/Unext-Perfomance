@@ -43,11 +43,11 @@ export default async function UeberUnsPage() {
           </div>
 
           <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="max-w-2xl">
-              <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            <div className="measure-intro">
+              <h1 className="measure-display text-display-fluid text-foreground">
                 {t.title}
               </h1>
-              <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+              <p className="mt-6 measure-intro-tight text-body-fluid text-muted-foreground">
                 {t.description}
               </p>
             </div>
@@ -74,10 +74,10 @@ export default async function UeberUnsPage() {
                 <p className="text-sm font-medium uppercase tracking-wider text-primary">
                   {t.storyEyebrow}
                 </p>
-                <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                <h2 className="mt-2 measure-heading text-heading-fluid text-foreground">
                   {t.storyTitle}
                 </h2>
-                <div className="mt-6 space-y-4 leading-relaxed text-muted-foreground">
+                <div className="mt-6 measure-intro-tight space-y-4 text-body-fluid text-muted-foreground">
                   {t.storyParagraphs.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}
@@ -95,8 +95,8 @@ export default async function UeberUnsPage() {
                         <span className="text-xs font-medium uppercase tracking-wider text-primary">
                           {milestone.year}
                         </span>
-                        <h3 className="text-lg font-semibold text-foreground">{milestone.title}</h3>
-                        <p className="mt-1 text-sm text-muted-foreground">
+                        <h3 className="measure-card-copy text-title-fluid font-semibold text-foreground">{milestone.title}</h3>
+                        <p className="mt-1 measure-card-copy text-body-compact text-muted-foreground">
                           {milestone.description}
                         </p>
                       </div>
@@ -111,10 +111,10 @@ export default async function UeberUnsPage() {
         <section className="bg-card py-16 lg:py-24">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="mx-auto mb-16 max-w-3xl text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              <h2 className="mx-auto measure-heading text-heading-fluid text-foreground">
                 {t.valuesTitle}
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground">{t.valuesDescription}</p>
+              <p className="mx-auto mt-4 measure-intro text-body-fluid text-muted-foreground">{t.valuesDescription}</p>
             </div>
 
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -130,8 +130,8 @@ export default async function UeberUnsPage() {
                       <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
                         <Icon className="h-7 w-7" />
                       </div>
-                      <h3 className="text-lg font-semibold text-foreground">{value.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      <h3 className="measure-card-copy text-title-fluid font-semibold text-foreground">{value.title}</h3>
+                      <p className="mt-2 measure-card-copy text-body-compact text-muted-foreground">
                         {value.description}
                       </p>
                     </CardContent>
@@ -162,10 +162,10 @@ export default async function UeberUnsPage() {
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5">
                   <span className="text-sm font-medium text-primary">{t.subBrandBadge}</span>
                 </div>
-                <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                <h2 className="measure-heading text-heading-fluid text-foreground">
                   {t.subBrandTitle}
                 </h2>
-                <p className="mt-6 leading-relaxed text-muted-foreground">
+                <p className="mt-6 measure-intro-tight text-body-fluid text-muted-foreground">
                   {t.subBrandDescription}
                 </p>
                 <ul className="mt-6 space-y-3">

@@ -89,11 +89,11 @@ export default async function LeistungenPage() {
       <main>
         <section className="bg-card py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            <div className="measure-intro">
+              <h1 className="measure-display text-display-fluid text-foreground">
                 {t.title}
               </h1>
-              <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+              <p className="mt-6 measure-intro-tight text-body-fluid text-muted-foreground">
                 {t.description}
               </p>
             </div>
@@ -133,19 +133,19 @@ export default async function LeistungenPage() {
                               <p className="text-xs font-medium uppercase tracking-wider text-primary">
                                 {service.subtitle}
                               </p>
-                              <h2 className="text-xl font-bold text-foreground sm:text-3xl">
+                              <h2 className="measure-card-copy-wide text-[clamp(1.3rem,1.1rem+1vw,2.1rem)] leading-[1.12] font-bold text-foreground">
                                 {service.title}
                               </h2>
                             </div>
                           </div>
 
-                          <p className="mt-5 leading-7 text-muted-foreground sm:mt-6">
+                          <p className="mt-5 measure-intro-tight text-body-fluid text-muted-foreground sm:mt-6">
                             {service.description}
                           </p>
 
                           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                             {service.features.map((feature) => (
-                              <li key={feature} className="flex items-start gap-2 text-sm leading-6 text-foreground">
+                              <li key={feature} className="flex items-start gap-2 text-body-compact text-foreground">
                                 <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
                                 {feature}
                               </li>

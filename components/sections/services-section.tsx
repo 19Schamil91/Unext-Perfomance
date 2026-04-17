@@ -83,10 +83,12 @@ export async function ServicesSection() {
     <section className="bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-16">
-          <h2 className="text-[2rem] font-bold tracking-[-0.03em] text-foreground sm:text-4xl sm:tracking-tight">
+          <h2 className="mx-auto measure-heading text-heading-fluid text-foreground">
             {t.title}
           </h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground sm:mt-4 sm:text-lg">{t.description}</p>
+          <p className="mx-auto mt-3 measure-intro text-body-fluid text-muted-foreground sm:mt-4">
+            {t.description}
+          </p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
@@ -123,11 +125,11 @@ export async function ServicesSection() {
                           <p className="text-xs font-medium uppercase tracking-wider text-primary">
                             {service.subtitle}
                           </p>
-                          <h3 className="text-lg font-semibold leading-7 text-foreground sm:text-xl">{service.title}</h3>
+                          <h3 className="measure-card-copy-wide text-title-fluid font-semibold text-foreground">{service.title}</h3>
                         </div>
                       </div>
 
-                      <p className="mt-4 text-sm leading-6 text-muted-foreground sm:text-[0.95rem] sm:leading-7">
+                      <p className="mt-4 measure-card-copy-wide text-body-compact text-muted-foreground">
                         {service.description}
                       </p>
 
@@ -135,7 +137,7 @@ export async function ServicesSection() {
                         {service.features.map((feature) => (
                           <li
                             key={feature}
-                            className="flex items-start gap-2 text-sm leading-6 text-muted-foreground"
+                            className="flex items-start gap-2 text-body-compact text-muted-foreground"
                           >
                             <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
                             {feature}
