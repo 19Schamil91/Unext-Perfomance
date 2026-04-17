@@ -1,6 +1,7 @@
 import type { Locale } from "@/lib/i18n"
 import { contactTranslations } from "@/lib/translations/contact"
 import { headerFooterTranslations } from "@/lib/translations/header-footer"
+import { homeTranslationOverrides } from "@/lib/translations/home-overrides"
 import { homeTranslations } from "@/lib/translations/home"
 import { legalTranslations } from "@/lib/translations/legal"
 import { serviceDetailTranslations } from "@/lib/translations/service-details"
@@ -27,7 +28,34 @@ const dictionaries = {
   },
   en: {
     ...headerFooterTranslations.en,
-    home: homeTranslations.en,
+    home: {
+      ...homeTranslations.en,
+      ...homeTranslationOverrides.en,
+      hero: {
+        ...homeTranslations.en.hero,
+        ...homeTranslationOverrides.en.hero,
+      },
+      services: {
+        ...homeTranslations.en.services,
+        ...homeTranslationOverrides.en.services,
+      },
+      why: {
+        ...homeTranslations.en.why,
+        ...homeTranslationOverrides.en.why,
+      },
+      process: {
+        ...homeTranslations.en.process,
+        ...homeTranslationOverrides.en.process,
+      },
+      trust: {
+        ...homeTranslations.en.trust,
+        ...homeTranslationOverrides.en.trust,
+      },
+      cta: {
+        ...homeTranslations.en.cta,
+        ...homeTranslationOverrides.en.cta,
+      },
+    },
     servicesPage: servicesAndAboutTranslations.en.servicesPage,
     aboutPage: servicesAndAboutTranslations.en.aboutPage,
     serviceDetail: {
@@ -43,7 +71,34 @@ const dictionaries = {
   },
   ru: {
     ...headerFooterTranslations.ru,
-    home: homeTranslations.ru,
+    home: {
+      ...homeTranslations.ru,
+      ...homeTranslationOverrides.ru,
+      hero: {
+        ...homeTranslations.ru.hero,
+        ...homeTranslationOverrides.ru.hero,
+      },
+      services: {
+        ...homeTranslations.ru.services,
+        ...homeTranslationOverrides.ru.services,
+      },
+      why: {
+        ...homeTranslations.ru.why,
+        ...homeTranslationOverrides.ru.why,
+      },
+      process: {
+        ...homeTranslations.ru.process,
+        ...homeTranslationOverrides.ru.process,
+      },
+      trust: {
+        ...homeTranslations.ru.trust,
+        ...homeTranslationOverrides.ru.trust,
+      },
+      cta: {
+        ...homeTranslations.ru.cta,
+        ...homeTranslationOverrides.ru.cta,
+      },
+    },
     servicesPage: servicesAndAboutTranslations.ru.servicesPage,
     aboutPage: servicesAndAboutTranslations.ru.aboutPage,
     serviceDetail: {
