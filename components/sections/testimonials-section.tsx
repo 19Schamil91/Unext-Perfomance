@@ -40,7 +40,7 @@ export async function TestimonialsSection() {
                       <p className="font-semibold text-foreground">{testimonial.name}</p>
                       <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                     </div>
-                    <span className="rounded bg-primary/10 px-2 py-1 text-xs font-medium uppercase tracking-wider text-primary">
+                    <span className="rounded bg-primary/10 px-2 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
                       {testimonial.service}
                     </span>
                   </div>

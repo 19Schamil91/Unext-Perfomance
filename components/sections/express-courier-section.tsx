@@ -32,10 +32,10 @@ export async function ExpressCourierSection() {
                     <Truck className="h-7 w-7" />
                   </div>
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-wider text-primary">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-primary">
                       {t.eyebrow}
                     </p>
-                    <h2 className="mt-1 measure-heading text-heading-fluid text-foreground">
+                    <h2 className="mt-1 max-w-[13ch] text-heading-fluid font-semibold text-foreground sm:max-w-[15ch] lg:max-w-none lg:whitespace-nowrap">
                       {t.title}
                     </h2>
                   </div>
@@ -93,7 +93,7 @@ export async function ExpressCourierSection() {
                         {t.highlightDescription}
                       </p>
                       <div className="mt-6 rounded-xl border border-border/50 bg-card/80 px-4 py-3">
-                        <p className="text-xs font-medium uppercase tracking-wider text-primary">
+                        <p className="text-xs font-semibold uppercase tracking-wider text-primary">
                           {t.contactBoxLabel}
                         </p>
                         <a

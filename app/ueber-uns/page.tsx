@@ -71,10 +71,10 @@ export default async function UeberUnsPage() {
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
               <div>
-                <p className="text-sm font-medium uppercase tracking-wider text-primary">
+                <p className="text-sm font-semibold uppercase tracking-wider text-primary">
                   {t.storyEyebrow}
                 </p>
-                <h2 className="mt-2 measure-heading text-heading-fluid text-foreground">
+                <h2 className="mt-2 measure-heading text-heading-fluid font-semibold text-foreground">
                   {t.storyTitle}
                 </h2>
                 <div className="mt-6 measure-intro-tight space-y-4 text-body-fluid text-muted-foreground">
@@ -92,7 +92,7 @@ export default async function UeberUnsPage() {
                         {index + 1}
                       </div>
                       <div>
-                        <span className="text-xs font-medium uppercase tracking-wider text-primary">
+                        <span className="text-xs font-semibold uppercase tracking-wider text-primary">
                           {milestone.year}
                         </span>
                         <h3 className="measure-card-copy text-title-fluid font-semibold text-foreground">{milestone.title}</h3>
@@ -111,7 +111,7 @@ export default async function UeberUnsPage() {
         <section className="bg-card py-16 lg:py-24">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="mx-auto mb-16 max-w-3xl text-center">
-              <h2 className="mx-auto measure-heading text-heading-fluid text-foreground">
+              <h2 className="mx-auto measure-heading text-heading-fluid font-semibold text-foreground">
                 {t.valuesTitle}
               </h2>
               <p className="mx-auto mt-4 measure-intro text-body-fluid text-muted-foreground">{t.valuesDescription}</p>
@@ -160,9 +160,9 @@ export default async function UeberUnsPage() {
 
               <div className="lg:order-1">
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5">
-                  <span className="text-sm font-medium text-primary">{t.subBrandBadge}</span>
+                  <span className="text-sm font-semibold text-primary">{t.subBrandBadge}</span>
                 </div>
-                <h2 className="measure-heading text-heading-fluid text-foreground">
+                <h2 className="measure-heading text-heading-fluid font-semibold text-foreground">
                   {t.subBrandTitle}
                 </h2>
                 <p className="mt-6 measure-intro-tight text-body-fluid text-muted-foreground">

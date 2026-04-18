@@ -84,7 +84,7 @@ export async function ServicesSection() {
     <section className="bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto mb-10 max-w-5xl text-center sm:mb-16">
-          <h2 className="mx-auto max-w-[14ch] text-heading-fluid text-foreground sm:max-w-[15ch] lg:max-w-none">
+          <h2 className="mx-auto max-w-[14ch] text-heading-fluid font-semibold text-foreground sm:max-w-[15ch] lg:max-w-none">
             {t.title}
           </h2>
           <ReadableText

@@ -47,10 +47,10 @@ export async function AboutSection() {
           </div>
 
           <div className="lg:pl-8">
-            <p className="text-sm font-medium uppercase tracking-wider text-primary">
+            <p className="text-sm font-semibold uppercase tracking-wider text-primary">
               {t.eyebrow}
             </p>
-            <h2 className="mt-2 measure-heading text-heading-fluid text-foreground">
+            <h2 className="mt-2 measure-heading text-heading-fluid font-semibold text-foreground">
               {t.title}
             </h2>
             <p className="mt-6 measure-intro-tight text-body-fluid text-muted-foreground">{t.paragraph1}</p>

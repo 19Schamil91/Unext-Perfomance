@@ -166,7 +166,7 @@ export function ContactPageClient() {
                       <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
                         <meta.icon className="h-6 w-6" />
                       </div>
-                      <p className="text-xs font-medium uppercase tracking-wider text-primary">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-primary">
                         {service.subtitle}
                       </p>
                       <h3 className="text-lg font-semibold text-foreground">{service.title}</h3>

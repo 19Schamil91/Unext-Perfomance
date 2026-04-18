@@ -13,7 +13,7 @@ export async function ProcessSection() {
     <section className="bg-card py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto mb-10 max-w-5xl text-center sm:mb-16">
-          <h2 className="mx-auto max-w-[14ch] text-heading-fluid tracking-[-0.03em] text-foreground sm:max-w-[16ch] lg:max-w-none lg:whitespace-nowrap">
+          <h2 className="mx-auto max-w-[14ch] text-heading-fluid font-semibold tracking-[-0.03em] text-foreground sm:max-w-[16ch] lg:max-w-none lg:whitespace-nowrap">
             {t.title}
           </h2>
           <ReadableText

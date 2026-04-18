@@ -225,7 +225,7 @@ export async function ServicePageLayout({
 
       <section className="bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <h2 className="mb-12 max-w-[20ch] text-heading-fluid text-foreground">
+          <h2 className="mb-12 max-w-[20ch] text-heading-fluid font-semibold text-foreground">
             {t.servicesTitle}
           </h2>
 
@@ -252,7 +252,7 @@ export async function ServicePageLayout({
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-16">
             <div>
-              <h2 className="max-w-[18ch] text-heading-fluid text-foreground">
+              <h2 className="max-w-[18ch] text-heading-fluid font-semibold text-foreground">
                 {t.whyTitle}
               </h2>
               <ReadableText
@@ -297,7 +297,7 @@ export async function ServicePageLayout({
       {faqs && faqs.length > 0 && (
         <section className="bg-card py-16 lg:py-24">
           <div className="mx-auto max-w-3xl px-4 lg:px-8">
-            <h2 className="mx-auto mb-12 max-w-[18ch] text-heading-fluid text-center text-foreground">
+            <h2 className="mx-auto mb-12 max-w-[18ch] text-heading-fluid font-semibold text-center text-foreground">
               {t.faqTitle}
             </h2>
 
@@ -327,7 +327,7 @@ export async function ServicePageLayout({
 
       <section className="bg-primary py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 text-center lg:px-8">
-          <h2 className="mx-auto max-w-[18ch] text-heading-fluid text-primary-foreground">
+          <h2 className="mx-auto max-w-[18ch] text-heading-fluid font-semibold text-primary-foreground">
             {t.questionsTitle}
           </h2>
           <ReadableText

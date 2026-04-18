@@ -26,9 +26,9 @@ export async function CtaSection() {
           <div className="max-w-4xl xl:max-w-none">
             <div className="mb-4 flex items-center gap-2 text-primary-foreground/80">
               <Clock className="h-5 w-5" />
-              <span className="text-sm font-medium uppercase tracking-wider">{t.badge}</span>
+              <span className="text-sm font-semibold uppercase tracking-wider">{t.badge}</span>
             </div>
-            <h2 className="max-w-[14ch] text-heading-fluid tracking-[-0.03em] text-primary-foreground sm:max-w-[16ch] lg:max-w-none lg:text-[clamp(2.8rem,4.2vw,4.35rem)] lg:leading-[1.02] lg:whitespace-nowrap">
+            <h2 className="max-w-[14ch] text-heading-fluid font-semibold tracking-[-0.03em] text-primary-foreground sm:max-w-[16ch] lg:max-w-none lg:text-[clamp(2.8rem,4.2vw,4.35rem)] lg:leading-[1.02] lg:whitespace-nowrap">
               {t.title}
             </h2>
             {fixedDescriptionLines ? (
