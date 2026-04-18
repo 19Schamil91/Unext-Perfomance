@@ -167,11 +167,11 @@ export async function ServicesSection() {
                               asChild
                               variant="outline"
                               size="sm"
-                              className="w-full gap-2 border-primary/40 bg-primary/12 text-foreground hover:border-primary/55 hover:bg-primary/18 hover:text-foreground sm:ml-auto sm:w-auto"
+                              className="group w-full gap-2 border-primary/40 bg-primary/12 text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:!border-primary/55 hover:!bg-primary/12 hover:!text-foreground sm:ml-auto sm:w-auto"
                             >
                               <a href={meta.contactHref}>
-                                <Phone className="h-4 w-4" />
-                                {contactText}
+                                <Phone className="h-4 w-4 transition-transform duration-300 ease-out group-hover:-rotate-12 group-hover:scale-110" />
+                                <span className="transition-colors duration-300 group-hover:text-primary">{contactText}</span>
                               </a>
                             </Button>
                           </>

@@ -91,32 +91,49 @@ export async function ServicePageLayout({
     variant: "default" | "outline" | "secondary",
     className?: string
   ) => {
+    const isPhoneAction = action.icon === "phone"
+    const label = isPhoneAction ? (
+      <span className="transition-colors duration-300 group-hover:text-primary">{action.label}</span>
+    ) : (
+      action.label
+    )
     const icon =
-      action.icon === "phone" ? (
-        <Phone className="h-5 w-5" />
+      isPhoneAction ? (
+        <Phone className="h-5 w-5 transition-transform duration-300 ease-out group-hover:-rotate-12 group-hover:scale-110" />
       ) : action.icon === "message" ? (
         <MessageCircle className="h-5 w-5" />
       ) : null
 
+    const actionClassName = [
+      className,
+      isPhoneAction
+        ? "group transition-all duration-300 hover:-translate-y-0.5 hover:!border-primary/55 hover:!bg-primary/12 hover:!text-foreground"
+        : "",
+    ]
+      .filter(Boolean)
+      .join(" ")
+
+    const contentClassName = isPhoneAction ? "group gap-2" : "gap-2"
+
     const content = (
       <>
         {icon}
-        {action.label}
+        {label}
       </>
     )
 
     return (
-      <Button asChild size="lg" variant={variant} className={className}>
+      <Button asChild size="lg" variant={variant} className={actionClassName}>
         {action.external ? (
-          <a href={action.href} target="_blank" rel="noopener noreferrer" className="gap-2">
+          <a href={action.href} target="_blank" rel="noopener noreferrer" className={contentClassName}>
             {content}
           </a>
         ) : action.href.startsWith("/") ? (
-          <Link href={action.href} className="gap-2">
+          <Link href={action.href} className={contentClassName}>
             {content}
           </Link>
         ) : (
-          <a href={action.href} className="gap-2">
+          <a href={action.href} className={contentClassName}>
             {content}
           </a>
         )}
