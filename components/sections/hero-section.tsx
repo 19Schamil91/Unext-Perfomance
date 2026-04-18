@@ -22,6 +22,82 @@ interface HeroContentProps {
   className?: string
 }
 
+function renderHeroDescription(description: string) {
+  const protectedTerm = "Kfz-Werkstatt"
+  const desktopBreakMarkers = ["Autovermietung,", "Berlin."]
+  const protectedTerms = [protectedTerm, "Taxi-Fahrer"]
+
+  let remaining = description
+  const lines: string[] = []
+
+  for (const marker of desktopBreakMarkers) {
+    const markerIndex = remaining.indexOf(marker)
+
+    if (markerIndex === -1) {
+      continue
+    }
+
+    const lineEnd = markerIndex + marker.length
+    lines.push(remaining.slice(0, lineEnd).trim())
+    remaining = remaining.slice(lineEnd).trimStart()
+  }
+
+  if (lines.length === 0) {
+    lines.push(description)
+  } else if (remaining) {
+    lines.push(remaining)
+  }
+
+  const renderProtectedLine = (line: string) => {
+    const segments: Array<string | { protected: string }> = []
+    let cursor = 0
+
+    while (cursor < line.length) {
+      let nextMatch: { index: number; term: string } | null = null
+
+      for (const term of protectedTerms) {
+        const index = line.indexOf(term, cursor)
+
+        if (index !== -1 && (!nextMatch || index < nextMatch.index)) {
+          nextMatch = { index, term }
+        }
+      }
+
+      if (!nextMatch) {
+        segments.push(line.slice(cursor))
+        break
+      }
+
+      if (nextMatch.index > cursor) {
+        segments.push(line.slice(cursor, nextMatch.index))
+      }
+
+      segments.push({ protected: nextMatch.term })
+      cursor = nextMatch.index + nextMatch.term.length
+    }
+
+    return segments.map((segment, index) =>
+      typeof segment === "string" ? (
+        <span key={`${segment}-${index}`}>{segment}</span>
+      ) : (
+        <span key={`${segment.protected}-${index}`} className="whitespace-nowrap">
+          {segment.protected}
+        </span>
+      )
+    )
+  }
+
+  return (
+    <>
+      {lines.map((line, index) => (
+        <span key={`${line}-${index}`} className="block">
+          {renderProtectedLine(line)}
+        </span>
+      ))}
+    </>
+  )
+}
+
 function HeroContent({
   tone,
   badge,
@@ -76,11 +152,11 @@ function HeroContent({
       <p
         className={
           isOverlay
-            ? "measure-intro-tight mt-4 text-body-fluid text-white/80 drop-shadow-[0_2px_10px_rgba(0,0,0,0.2)] sm:mt-6"
+            ? "mt-4 max-w-[84ch] text-body-fluid text-white/80 drop-shadow-[0_2px_10px_rgba(0,0,0,0.2)] sm:mt-6"
             : "measure-intro-tight mt-4 text-body-fluid text-muted-foreground sm:mt-6"
         }
       >
-        {description}
+        {renderHeroDescription(description)}
       </p>
 
       <div className="mt-6 sm:mt-7">
@@ -273,7 +349,7 @@ export async function HeroSection() {
             whatsapp={t.whatsapp}
             address={t.address}
             viewAllServices={viewAllServices}
-            className="max-w-xl lg:max-w-2xl"
+            className="max-w-3xl xl:max-w-4xl"
           />
         </div>
       </div>
