@@ -34,7 +34,7 @@ export async function AboutSection() {
                 </div>
                 <div className="hidden w-px bg-border sm:block" />
                 <div className="min-w-[84px] px-2 text-center">
-                  <p className="text-2xl font-bold text-primary">4</p>
+                  <p className="text-2xl font-bold text-primary">6</p>
                   <p className="text-xs text-muted-foreground">{t.stats.services}</p>
                 </div>
                 <div className="hidden w-px bg-border sm:block" />
