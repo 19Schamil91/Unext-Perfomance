@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Car, ClipboardCheck, FileCheck, Phone, Sparkles, Truck, Wrench } from "lucide-react"
+import { ReadableText } from "@/components/readable-text"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ServiceSelectionLink } from "@/components/service-selection-link"
@@ -82,13 +83,15 @@ export async function ServicesSection() {
   return (
     <section className="bg-background py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-16">
-          <h2 className="mx-auto measure-heading text-heading-fluid text-foreground">
+        <div className="mx-auto mb-10 max-w-5xl text-center sm:mb-16">
+          <h2 className="mx-auto max-w-[14ch] text-heading-fluid text-foreground sm:max-w-[15ch] lg:max-w-none">
             {t.title}
           </h2>
-          <p className="mx-auto mt-3 measure-intro text-body-fluid text-muted-foreground sm:mt-4">
-            {t.description}
-          </p>
+          <ReadableText
+            text={t.description}
+            targetLineLength={76}
+            className="mx-auto mt-3 measure-intro-tight text-body-fluid text-muted-foreground sm:mt-4"
+          />
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
@@ -100,52 +103,54 @@ export async function ServicesSection() {
               <Card
                 key={service.title}
                 id={homeServiceAnchors[index]}
-                className="group relative scroll-mt-28 overflow-hidden border-border/50 bg-card transition-all duration-300 hover:border-primary/50"
+                className="group relative scroll-mt-28 overflow-hidden rounded-[1.75rem] border border-border/55 bg-card shadow-[0_16px_38px_rgba(15,23,42,0.08)] transition-all duration-300 hover:border-primary/35 hover:shadow-[0_20px_44px_rgba(15,23,42,0.11)]"
               >
                 <CardContent className="p-4 sm:p-5 lg:p-6">
-                  <div className="flex flex-col gap-5 lg:flex-row lg:items-stretch">
-                    <div className="relative h-56 overflow-hidden rounded-[1.5rem] border border-border/50 bg-background shadow-sm sm:h-72 sm:rounded-[1.75rem] lg:w-[38%] lg:min-h-[320px]">
+                  <div className="flex h-full flex-col">
+                    <div className="relative h-60 overflow-hidden rounded-[1.45rem] border border-border/50 bg-background shadow-sm sm:h-72 lg:h-64">
                       <Image
                         src={meta.image}
                         alt={service.title}
                         fill
-                        sizes="(min-width: 1024px) 40vw, 100vw"
+                        sizes="(min-width: 1024px) 32vw, (min-width: 768px) 48vw, 100vw"
                         quality={74}
                         className={`${meta.imageClassName} transition-transform duration-500 group-hover:scale-105`}
                       />
                       <div className={`absolute inset-0 bg-gradient-to-t ${meta.accentColor}`} />
                     </div>
 
-                    <div className="flex-1 px-1 py-1 sm:px-2 lg:px-3 lg:py-3">
+                    <div className="flex min-w-0 flex-1 flex-col px-1 pt-5 sm:px-2 lg:px-1">
                       <div className="flex items-start gap-4">
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                           <meta.icon className="h-6 w-6" />
                         </div>
-                        <div>
-                          <p className="text-xs font-medium uppercase tracking-wider text-primary">
+                        <div className="min-w-0">
+                          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-primary">
                             {service.subtitle}
                           </p>
-                          <h3 className="measure-card-copy-wide text-title-fluid font-semibold text-foreground">{service.title}</h3>
+                          <h3 className="mt-1 text-[clamp(1.14rem,1.02rem+0.38vw,1.42rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-foreground md:whitespace-nowrap">
+                            {service.title}
+                          </h3>
                         </div>
                       </div>
 
-                      <p className="mt-4 measure-card-copy-wide text-body-compact text-muted-foreground">
+                      <p className="mt-4 max-w-[62ch] text-[0.98rem] leading-8 text-muted-foreground">
                         {service.description}
                       </p>
 
-                      <ul className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                      <ul className="mt-5 grid gap-y-3">
                         {service.features.map((feature) => (
                           <li
                             key={feature}
-                            className="flex items-start gap-2 text-body-compact text-muted-foreground"
+                            className="grid grid-cols-[0.45rem_minmax(0,1fr)] items-start gap-x-3 rounded-xl border border-border/45 bg-background/55 px-3 py-2.5 text-body-compact text-muted-foreground"
                           >
-                            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
-                            {feature}
+                            <span className="mt-[0.58rem] h-1.5 w-1.5 rounded-full bg-primary" />
+                            <span>{feature}</span>
                           </li>
                         ))}
                       </ul>
 
-                      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+                      <div className="mt-6 flex flex-col gap-3 border-t border-border/55 pt-5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
                         <Button asChild size="sm" className="w-full gap-2 sm:w-auto">
                           <ServiceSelectionLink
                             href={meta.href}
@@ -158,18 +163,17 @@ export async function ServicesSection() {
                         </Button>
                         {meta.contactHref ? (
                           <>
-                            <Button asChild variant="outline" size="sm" className="w-full gap-2 sm:hidden">
+                            <Button
+                              asChild
+                              variant="outline"
+                              size="sm"
+                              className="w-full gap-2 border-primary/35 bg-primary/10 text-foreground hover:border-primary/55 hover:bg-primary/16 hover:text-foreground sm:w-auto"
+                            >
                               <a href={meta.contactHref}>
                                 <Phone className="h-4 w-4" />
                                 {contactText}
                               </a>
                             </Button>
-                            <a
-                              href={meta.contactHref}
-                              className="hidden text-sm font-medium text-muted-foreground transition-colors hover:text-primary sm:inline"
-                            >
-                              {contactText}
-                            </a>
                           </>
                         ) : (
                           <span className="text-sm text-muted-foreground">{contactText}</span>

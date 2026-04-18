@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Car, ClipboardCheck, FileCheck, Phone, Sparkles, Truck, Wrench } from "lucide-react"
+import { ReadableText } from "@/components/readable-text"
 import { CtaSection } from "@/components/sections/cta-section"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
@@ -89,13 +90,15 @@ export default async function LeistungenPage() {
       <main>
         <section className="bg-card py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="measure-intro">
-              <h1 className="measure-display text-display-fluid text-foreground">
+            <div className="mx-auto max-w-5xl text-center">
+              <h1 className="mx-auto max-w-[14ch] text-display-fluid text-foreground sm:max-w-[15ch] lg:max-w-none">
                 {t.title}
               </h1>
-              <p className="mt-6 measure-intro-tight text-body-fluid text-muted-foreground">
-                {t.description}
-              </p>
+              <ReadableText
+                text={t.description}
+                targetLineLength={76}
+                className="mx-auto mt-6 measure-intro-tight text-body-fluid text-muted-foreground"
+              />
             </div>
           </div>
         </section>
@@ -108,12 +111,15 @@ export default async function LeistungenPage() {
                 const contactText = meta.contactText ?? ""
 
                 return (
-                  <Card key={service.title} className="overflow-hidden border-border/50 bg-card">
+                  <Card
+                    key={service.title}
+                    className="overflow-hidden rounded-[1.85rem] border border-border/55 bg-card shadow-[0_16px_38px_rgba(15,23,42,0.08)]"
+                  >
                     <CardContent className="p-4 sm:p-5 lg:p-6">
                       <div
-                        className={`flex flex-col gap-5 ${index % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"} lg:items-stretch`}
+                        className={`flex flex-col gap-5 ${index % 2 === 1 ? "lg:grid-cols-[minmax(0,1fr)_18rem]" : "lg:grid-cols-[18rem_minmax(0,1fr)]"} lg:grid lg:gap-6 lg:items-stretch`}
                       >
-                        <div className="relative h-64 overflow-hidden rounded-[1.75rem] border border-border/50 bg-background shadow-sm sm:h-72 lg:w-[42%] lg:min-h-[320px]">
+                        <div className="relative h-64 overflow-hidden rounded-[1.6rem] border border-border/50 bg-background shadow-sm sm:h-72 lg:h-full lg:min-h-[21rem]">
                           <Image
                             src={meta.image}
                             alt={service.title}
@@ -124,35 +130,38 @@ export default async function LeistungenPage() {
                           />
                         </div>
 
-                        <div className="flex-1 px-1 py-1 sm:px-2 lg:px-4 lg:py-4">
+                        <div className="flex min-w-0 flex-col px-1 py-1 sm:px-2 lg:px-1 lg:py-2">
                           <div className="flex items-start gap-4">
                             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                               <meta.icon className="h-7 w-7" />
                             </div>
-                            <div>
-                              <p className="text-xs font-medium uppercase tracking-wider text-primary">
+                            <div className="min-w-0">
+                              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-primary">
                                 {service.subtitle}
                               </p>
-                              <h2 className="measure-card-copy-wide text-[clamp(1.3rem,1.1rem+1vw,2.1rem)] leading-[1.12] font-bold text-foreground">
+                              <h2 className="mt-1 text-[clamp(1.22rem,1.06rem+0.46vw,1.58rem)] leading-[1.08] font-bold tracking-[-0.02em] text-foreground lg:whitespace-nowrap">
                                 {service.title}
                               </h2>
                             </div>
                           </div>
 
-                          <p className="mt-5 measure-intro-tight text-body-fluid text-muted-foreground sm:mt-6">
+                          <p className="mt-5 max-w-[62ch] text-[1rem] leading-8 text-muted-foreground sm:mt-6">
                             {service.description}
                           </p>
 
-                          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                          <ul className="mt-6 grid gap-y-3">
                             {service.features.map((feature) => (
-                              <li key={feature} className="flex items-start gap-2 text-body-compact text-foreground">
-                                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
-                                {feature}
+                              <li
+                                key={feature}
+                                className="grid grid-cols-[0.45rem_minmax(0,1fr)] items-start gap-x-3 rounded-xl border border-border/45 bg-background/55 px-3 py-2.5 text-body-compact text-foreground"
+                              >
+                                <span className="mt-[0.55rem] h-1.5 w-1.5 rounded-full bg-primary" />
+                                <span>{feature}</span>
                               </li>
                             ))}
                           </ul>
 
-                          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+                          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
                             <Button asChild className="gap-2">
                               <ServiceSelectionLink
                                 href={meta.href}
@@ -163,18 +172,16 @@ export default async function LeistungenPage() {
                                 <ArrowRight className="h-4 w-4" />
                               </ServiceSelectionLink>
                             </Button>
-                            <Button asChild variant="outline" className="w-full gap-2 sm:hidden">
+                            <Button
+                              asChild
+                              variant="outline"
+                              className="w-full gap-2 border-primary/35 bg-primary/10 text-foreground hover:border-primary/55 hover:bg-primary/16 hover:text-foreground sm:w-auto"
+                            >
                               <a href={meta.contactHref}>
                                 <Phone className="h-4 w-4" />
                                 {contactText}
                               </a>
                             </Button>
-                            <a
-                              href={meta.contactHref}
-                              className="hidden text-sm leading-6 text-muted-foreground transition-colors hover:text-primary sm:inline"
-                            >
-                              {`${t.directCall} ${contactText}`}
-                            </a>
                           </div>
                         </div>
                       </div>

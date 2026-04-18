@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, CheckCircle, MessageCircle, Phone } from "lucide-react"
+import { ReadableText } from "@/components/readable-text"
 import { SelectedServiceTracker } from "@/components/selected-service-tracker"
 import { Button } from "@/components/ui/button"
 import { ServiceInquiryForm, type ServiceInquiryFields } from "@/components/service-inquiry-form"
@@ -144,44 +145,49 @@ export async function ServicePageLayout({
         <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
           <Link
             href="/leistungen"
-            className="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+            className="mb-8 inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1.5 text-sm text-muted-foreground backdrop-blur-sm transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
             {t.backToServices}
           </Link>
 
-          <div className="measure-intro">
+          <div className="max-w-4xl xl:max-w-[68rem]">
             {badge && (
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5">
-                <span className="text-sm font-medium text-primary">{badge}</span>
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/12 px-4 py-1.5">
+                <span className="text-xs font-semibold uppercase tracking-[0.16em] text-primary sm:text-sm sm:tracking-[0.12em]">{badge}</span>
               </div>
             )}
 
-            <p className="text-sm font-medium uppercase tracking-wider text-primary">{subtitle}</p>
-            <h1 className="mt-2 measure-heading text-display-fluid text-foreground">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary sm:text-sm sm:tracking-[0.14em]">{subtitle}</p>
+            <h1 className="mt-3 max-w-[16ch] text-display-fluid text-foreground sm:max-w-[18ch] lg:max-w-[20ch]">
               {title}
             </h1>
-            <p className="mt-5 measure-intro-tight text-body-fluid text-muted-foreground sm:mt-6">
-              {description}
-            </p>
+            <ReadableText
+              text={description}
+              targetLineLength={82}
+              className="mt-5 max-w-[74ch] text-body-fluid text-muted-foreground sm:mt-6"
+            />
 
-            <ul className="mt-8 grid gap-2 sm:grid-cols-2">
+            <ul className="mt-8 grid gap-3 sm:grid-cols-2">
               {benefits.map((benefit) => (
-                <li key={benefit} className="flex items-start gap-2 text-body-compact text-foreground">
-                  <CheckCircle className="h-4 w-4 shrink-0 text-primary" />
-                  {benefit}
+                <li
+                  key={benefit}
+                  className="flex items-start gap-3 rounded-2xl border border-border/60 bg-background/72 px-4 py-3 text-body-compact text-foreground shadow-[0_12px_26px_rgba(15,23,42,0.06)] backdrop-blur-sm"
+                >
+                  <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                  <span className="max-w-[34ch]">{benefit}</span>
                 </li>
               ))}
             </ul>
 
             {resolvedHeroActions.length > 0 && (
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 {resolvedHeroActions.map((action, index) => (
                   <div key={`${action.href}-${action.label}`} className="contents">
                     {renderAction(
                       action,
                       index === 0 ? "default" : "outline",
-                      "w-full sm:w-auto"
+                      "w-full gap-2 sm:w-auto sm:min-w-[12rem]"
                     )}
                   </div>
                 )
@@ -189,24 +195,36 @@ export async function ServicePageLayout({
               </div>
             )}
 
-            {contactNote && <p className="mt-4 text-sm text-muted-foreground">{contactNote}</p>}
+            {contactNote && (
+              <ReadableText
+                text={contactNote}
+                targetLineLength={74}
+                className="mt-4 max-w-[72ch] text-sm leading-7 text-muted-foreground"
+              />
+            )}
           </div>
         </div>
       </section>
 
       <section className="bg-card py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <h2 className="mb-12 measure-heading text-heading-fluid text-foreground">
+          <h2 className="mb-12 max-w-[20ch] text-heading-fluid text-foreground">
             {t.servicesTitle}
           </h2>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
-              <div key={service.title} className="rounded-xl border border-border/50 bg-background p-5 sm:p-6">
-                <h3 className="measure-card-copy text-title-fluid font-semibold text-foreground">{service.title}</h3>
-                <p className="mt-2 measure-card-copy text-body-compact text-muted-foreground">
-                  {service.description}
-                </p>
+              <div
+                key={service.title}
+                className="flex h-full flex-col rounded-[1.6rem] border border-border/55 bg-background p-6 shadow-[0_14px_34px_rgba(15,23,42,0.05)] transition-colors hover:border-primary/25"
+              >
+                <div className="mb-4 h-1.5 w-12 rounded-full bg-primary/70" />
+                <h3 className="max-w-[24ch] text-title-fluid font-semibold text-foreground">{service.title}</h3>
+                <ReadableText
+                  text={service.description}
+                  targetLineLength={38}
+                  className="mt-3 max-w-[38ch] text-body-compact text-muted-foreground"
+                />
               </div>
             ))}
           </div>
@@ -215,24 +233,33 @@ export async function ServicePageLayout({
 
       <section id={inquiryId} className="bg-background py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-16">
             <div>
-              <h2 className="measure-heading text-heading-fluid text-foreground">
+              <h2 className="max-w-[18ch] text-heading-fluid text-foreground">
                 {t.whyTitle}
               </h2>
-              <p className="mt-4 measure-intro-tight text-body-compact text-muted-foreground">
-                {t.whyDescription}
-              </p>
+              <ReadableText
+                text={t.whyDescription}
+                targetLineLength={68}
+                className="mt-4 max-w-[60ch] text-body-compact text-muted-foreground"
+              />
 
-              <div className="mt-8 space-y-6">
+              <div className="mt-8 space-y-4">
                 {whyChoose.map((item) => (
-                  <div key={item.title} className="flex gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <div
+                    key={item.title}
+                    className="flex gap-4 rounded-[1.4rem] border border-border/50 bg-card p-5 shadow-[0_12px_28px_rgba(15,23,42,0.04)]"
+                  >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <CheckCircle className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="measure-card-copy text-title-fluid font-semibold text-foreground">{item.title}</h3>
-                      <p className="mt-1 measure-card-copy-wide text-body-compact text-muted-foreground">{item.description}</p>
+                      <h3 className="max-w-[24ch] text-title-fluid font-semibold text-foreground">{item.title}</h3>
+                      <ReadableText
+                        text={item.description}
+                        targetLineLength={40}
+                        className="mt-2 max-w-[42ch] text-body-compact text-muted-foreground"
+                      />
                     </div>
                   </div>
                 ))}
@@ -253,16 +280,26 @@ export async function ServicePageLayout({
       {faqs && faqs.length > 0 && (
         <section className="bg-card py-16 lg:py-24">
           <div className="mx-auto max-w-3xl px-4 lg:px-8">
-            <h2 className="mx-auto mb-12 measure-heading text-heading-fluid text-center text-foreground">
+            <h2 className="mx-auto mb-12 max-w-[18ch] text-heading-fluid text-center text-foreground">
               {t.faqTitle}
             </h2>
 
-            <Accordion type="single" collapsible className="w-full">
+            <Accordion type="single" collapsible className="w-full space-y-3">
               {faqs.map((faq, index) => (
-                <AccordionItem key={faq.question} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
+                <AccordionItem
+                  key={faq.question}
+                  value={`item-${index}`}
+                  className="overflow-hidden rounded-2xl border border-border/55 bg-background px-5 shadow-[0_10px_24px_rgba(15,23,42,0.04)]"
+                >
+                  <AccordionTrigger className="py-5 text-left text-[1rem] leading-7 font-medium sm:text-[1.05rem]">
+                    {faq.question}
+                  </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">
-                    {faq.answer}
+                    <ReadableText
+                      text={faq.answer}
+                      targetLineLength={72}
+                      className="max-w-[64ch] pb-1 text-body-compact text-muted-foreground"
+                    />
                   </AccordionContent>
                 </AccordionItem>
               ))}
@@ -273,10 +310,14 @@ export async function ServicePageLayout({
 
       <section className="bg-primary py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 text-center lg:px-8">
-          <h2 className="mx-auto measure-heading text-heading-fluid text-primary-foreground">
+          <h2 className="mx-auto max-w-[18ch] text-heading-fluid text-primary-foreground">
             {t.questionsTitle}
           </h2>
-          <p className="mx-auto mt-4 measure-intro-tight text-body-fluid text-primary-foreground/80">{t.questionsDescription}</p>
+          <ReadableText
+            text={t.questionsDescription}
+            targetLineLength={76}
+            className="mx-auto mt-4 max-w-[64ch] text-body-fluid text-primary-foreground/80"
+          />
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             {resolvedBottomActions.map((action, index) => (
               <div key={`${action.href}-${action.label}`} className="contents">
@@ -284,14 +325,20 @@ export async function ServicePageLayout({
                   action,
                   index === 0 ? "secondary" : "outline",
                   index === 0
-                    ? "gap-2 bg-white text-primary hover:bg-white/90"
-                    : "gap-2 border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                    ? "w-full gap-2 bg-white text-primary hover:bg-white/90 sm:w-auto sm:min-w-[12rem]"
+                    : "w-full gap-2 border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white sm:w-auto sm:min-w-[12rem]"
                 )}
               </div>
             )
             )}
           </div>
-          {contactNote && <p className="mt-4 text-sm text-primary-foreground/80">{contactNote}</p>}
+          {contactNote && (
+            <ReadableText
+              text={contactNote}
+              targetLineLength={74}
+              className="mx-auto mt-4 max-w-[62ch] text-sm leading-7 text-primary-foreground/80"
+            />
+          )}
         </div>
       </section>
     </main>

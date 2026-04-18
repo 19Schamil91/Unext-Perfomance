@@ -59,7 +59,7 @@ export function ServiceInquiryForm({
 
   if (isSubmitted) {
     return (
-      <Card className="border-primary/30 bg-card">
+      <Card className="rounded-[1.6rem] border-primary/30 bg-card shadow-[0_16px_36px_rgba(15,23,42,0.06)]">
         <CardContent className="p-8 text-center">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
             <CheckCircle className="h-8 w-8 text-primary" />
@@ -90,12 +90,16 @@ export function ServiceInquiryForm({
   }
 
   return (
-    <Card className="border-border/50 bg-card">
-      <CardHeader>
-        <CardTitle>{serviceTitle}</CardTitle>
-        <CardDescription>{t.description}</CardDescription>
+    <Card className="rounded-[1.6rem] border-border/50 bg-card shadow-[0_18px_40px_rgba(15,23,42,0.07)]">
+      <CardHeader className="space-y-3 p-7 pb-5 sm:p-8 sm:pb-6">
+        <CardTitle className="max-w-[22ch] text-[clamp(1.22rem,1.08rem+0.5vw,1.65rem)] leading-[1.14]">
+          {serviceTitle}
+        </CardTitle>
+        <CardDescription className="max-w-[44ch] text-body-compact text-muted-foreground">
+          {t.description}
+        </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-7 pb-7 pt-0 sm:px-8 sm:pb-8">
         <form onSubmit={handleSubmit}>
           <FieldGroup className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
@@ -202,7 +206,7 @@ export function ServiceInquiryForm({
               )}
             </Button>
 
-            <p className="text-center text-xs text-muted-foreground">
+            <p className="mx-auto max-w-[42ch] text-center text-xs leading-6 text-muted-foreground">
               {t.privacyPrefix}{" "}
               <a href="/datenschutz" className="underline hover:text-foreground">
                 {t.privacyLink}
