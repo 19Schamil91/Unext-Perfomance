@@ -18,8 +18,13 @@ export async function ExpressCourierSection() {
   return (
     <section className="bg-card py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <Card className="overflow-hidden border-border/50 bg-background">
-          <CardContent className="p-0">
+        <Card className="relative overflow-hidden border-border/50 bg-background shadow-[0_18px_42px_rgba(15,23,42,0.08)]">
+          <CardContent className="relative p-0">
+            <div className="pointer-events-none absolute inset-0">
+              <div className="absolute -right-20 top-10 h-56 w-56 rounded-full bg-primary/8 blur-3xl" />
+              <div className="absolute bottom-0 right-1/4 h-40 w-40 rounded-full bg-primary/6 blur-3xl" />
+            </div>
+
             <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
               <div className="p-6 sm:p-8 lg:p-10">
                 <div className="flex items-start gap-4">
@@ -59,49 +64,45 @@ export async function ExpressCourierSection() {
                       <ArrowRight className="h-4 w-4" />
                     </a>
                   </Button>
-                  <a
-                    href={contactHref}
-                    className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-                  >
-                    {t.contactLabel} {contactNumber}
-                  </a>
                 </div>
               </div>
 
-              <div className="border-t border-border/50 bg-card/60 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
-                <div className="flex h-full flex-col gap-6">
-                  <div className="overflow-hidden rounded-[1.75rem] border border-border/50 bg-background shadow-sm">
-                    <Image
-                      src={imageSrc}
-                      alt={t.title}
-                      width={imageWidth}
-                      height={imageHeight}
+              <div className="border-t border-border/50 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
+                <div className="rounded-[2rem] border border-white/6 bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.01))] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-5 lg:p-6">
+                  <div className="flex h-full flex-col gap-6">
+                    <div className="overflow-hidden rounded-[1.85rem] border border-border/45 bg-[#110807] shadow-[0_18px_34px_rgba(0,0,0,0.24)]">
+                      <Image
+                        src={imageSrc}
+                        alt={t.title}
+                        width={imageWidth}
+                        height={imageHeight}
                       sizes="(min-width: 1024px) 32vw, (min-width: 640px) 50vw, 100vw"
                       quality={74}
                       className="aspect-[16/11] h-auto w-full object-cover object-[52%_center]"
                     />
                   </div>
 
-                  <div className="rounded-2xl border border-border/50 bg-background p-6 sm:p-8">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                      <Clock3 className="h-7 w-7" />
-                    </div>
-                    <h3 className="mt-5 measure-card-copy text-title-fluid font-semibold text-foreground">
-                      {t.highlightTitle}
-                    </h3>
-                    <p className="mt-3 measure-card-copy-wide text-body-compact text-muted-foreground">
-                      {t.highlightDescription}
-                    </p>
-                    <div className="mt-6 rounded-xl border border-border/50 bg-card px-4 py-3">
-                      <p className="text-xs font-medium uppercase tracking-wider text-primary">
-                        {t.contactBoxLabel}
+                    <div className="rounded-[1.7rem] border border-border/50 bg-background/95 p-6 backdrop-blur-sm sm:p-8">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <Clock3 className="h-7 w-7" />
+                      </div>
+                      <h3 className="mt-5 measure-card-copy text-title-fluid font-semibold text-foreground">
+                        {t.highlightTitle}
+                      </h3>
+                      <p className="mt-3 measure-card-copy-wide text-body-compact text-muted-foreground">
+                        {t.highlightDescription}
                       </p>
-                      <a
-                        href={contactHref}
-                        className="mt-2 inline-block text-lg font-semibold text-foreground transition-colors hover:text-primary"
-                      >
-                        {contactNumber}
-                      </a>
+                      <div className="mt-6 rounded-xl border border-border/50 bg-card/80 px-4 py-3">
+                        <p className="text-xs font-medium uppercase tracking-wider text-primary">
+                          {t.contactBoxLabel}
+                        </p>
+                        <a
+                          href={contactHref}
+                          className="mt-2 inline-block text-lg font-semibold text-foreground transition-colors hover:text-primary"
+                        >
+                          {contactNumber}
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
