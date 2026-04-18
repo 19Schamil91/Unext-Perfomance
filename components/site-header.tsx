@@ -26,6 +26,7 @@ export function SiteHeader() {
   const { locale, setLocale, isPending } = useLocale()
   const t = getTranslations(locale)
   const navigation = t.header.navigation as readonly NavigationItem[]
+  const desktopNavigation = navigation
   const pageNavigation = navigation.filter((item) => !item.children)
   const serviceNavigation = navigation.find((item) => item.children)
   const languages = locales.map((code) => ({ code, name: t.languages[code] }))
@@ -90,54 +91,54 @@ export function SiteHeader() {
         </Link>
 
         <div className="hidden lg:flex lg:items-center lg:gap-x-8">
-          {pageNavigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {item.name}
-            </Link>
-          ))}
+          {desktopNavigation.map((item) =>
+            item.children ? (
+              <div key={item.name} ref={servicesMenuRef} className="relative">
+                <button
+                  type="button"
+                  className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  aria-expanded={servicesMenuOpen}
+                  aria-haspopup="menu"
+                  onClick={() => setServicesMenuOpen((open) => !open)}
+                >
+                  {item.name}
+                  <ChevronDown
+                    className={`h-4 w-4 transition-transform ${servicesMenuOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
 
-          {serviceNavigation ? (
-            <div ref={servicesMenuRef} className="relative">
-              <button
-                type="button"
-                className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                aria-expanded={servicesMenuOpen}
-                aria-haspopup="menu"
-                onClick={() => setServicesMenuOpen((open) => !open)}
-              >
-                {serviceNavigation.name}
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform ${servicesMenuOpen ? "rotate-180" : ""}`}
-                />
-              </button>
-
-              {servicesMenuOpen ? (
-                <div className="absolute left-0 top-full z-50 mt-2 w-64 rounded-xl border border-border bg-popover p-1 shadow-lg">
-                  <Link
-                    href={serviceNavigation.href}
-                    className="block w-full rounded-lg px-3 py-2 text-sm leading-5 text-popover-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-                    onClick={() => setServicesMenuOpen(false)}
-                  >
-                    {t.header.allServices}
-                  </Link>
-                  {serviceNavigation.children?.map((child) => (
+                {servicesMenuOpen ? (
+                  <div className="absolute left-0 top-full z-50 mt-2 w-64 rounded-xl border border-border bg-popover p-1 shadow-lg">
                     <Link
-                      key={child.name}
-                      href={child.href}
+                      href={item.href}
                       className="block w-full rounded-lg px-3 py-2 text-sm leading-5 text-popover-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
                       onClick={() => setServicesMenuOpen(false)}
                     >
-                      {child.name}
+                      {t.header.allServices}
                     </Link>
-                  ))}
-                </div>
-              ) : null}
-            </div>
-          ) : null}
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.name}
+                        href={child.href}
+                        className="block w-full rounded-lg px-3 py-2 text-sm leading-5 text-popover-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                        onClick={() => setServicesMenuOpen(false)}
+                      >
+                        {child.name}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            ) : (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {item.name}
+              </Link>
+            )
+          )}
         </div>
 
         <div className="flex items-center gap-2 sm:gap-4">
