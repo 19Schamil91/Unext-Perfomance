@@ -161,7 +161,7 @@ export default async function LeistungenPage() {
                             ))}
                           </ul>
 
-                          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+                          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                             <Button asChild className="gap-2">
                               <ServiceSelectionLink
                                 href={meta.href}
@@ -175,7 +175,7 @@ export default async function LeistungenPage() {
                             <Button
                               asChild
                               variant="outline"
-                              className="w-full gap-2 border-primary/35 bg-primary/10 text-foreground hover:border-primary/55 hover:bg-primary/16 hover:text-foreground sm:w-auto"
+                              className="w-full gap-2 border-primary/40 bg-primary/12 text-foreground hover:border-primary/55 hover:bg-primary/18 hover:text-foreground sm:ml-auto sm:w-auto"
                             >
                               <a href={meta.contactHref}>
                                 <Phone className="h-4 w-4" />
