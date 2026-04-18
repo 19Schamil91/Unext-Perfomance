@@ -1,4 +1,5 @@
 import { CheckCircle, Clock, MessageSquare, Phone } from "lucide-react"
+import { ReadableText } from "@/components/readable-text"
 import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
 
@@ -15,9 +16,11 @@ export async function ProcessSection() {
           <h2 className="mx-auto max-w-[14ch] text-heading-fluid tracking-[-0.03em] text-foreground sm:max-w-[16ch] lg:max-w-none lg:whitespace-nowrap">
             {t.title}
           </h2>
-          <p className="mx-auto mt-3 max-w-[62ch] text-body-fluid text-muted-foreground sm:mt-4">
-            {t.description}
-          </p>
+          <ReadableText
+            text={t.description}
+            targetLineLength={72}
+            className="mx-auto mt-3 max-w-[66ch] text-body-fluid text-muted-foreground sm:mt-4"
+          />
         </div>
 
         <div className="relative">
