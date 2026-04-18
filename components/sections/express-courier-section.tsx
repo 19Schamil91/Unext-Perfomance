@@ -25,7 +25,7 @@ export async function ExpressCourierSection() {
               <div className="absolute bottom-0 right-1/4 h-40 w-40 rounded-full bg-primary/6 blur-3xl" />
             </div>
 
-            <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="grid gap-0 lg:grid-cols-[1.24fr_0.76fr]">
               <div className="p-6 sm:p-8 lg:p-10">
                 <div className="flex items-start gap-4">
                   <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
@@ -35,7 +35,7 @@ export async function ExpressCourierSection() {
                     <p className="text-xs font-semibold uppercase tracking-wider text-primary">
                       {t.eyebrow}
                     </p>
-                    <h2 className="mt-1 max-w-[13ch] text-heading-fluid font-semibold text-foreground sm:max-w-[15ch] lg:max-w-none lg:whitespace-nowrap">
+                    <h2 className="mt-1 max-w-[13ch] text-heading-fluid font-semibold text-foreground sm:max-w-[15ch] lg:max-w-none lg:text-[clamp(2.7rem,3.9vw,4.2rem)] lg:leading-[1.02] lg:whitespace-nowrap">
                       {t.title}
                     </h2>
                   </div>
