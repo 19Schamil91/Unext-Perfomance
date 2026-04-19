@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import { DevPageCompareProvider, DevPageCompareView } from "@/components/dev-page-compare"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { ServicePageLayout } from "@/components/service-page-layout"
@@ -112,23 +111,6 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function AutoservicePage() {
   const locale = await getCurrentLocale()
   const t = getTranslations(locale).serviceDetail.pages.workshop
-  const beforeLayout = (
-    <ServicePageLayout
-      title={t.title}
-      subtitle={t.subtitle}
-      description={t.description}
-      image="/images/service-workshop.webp"
-      imageClassName="object-cover object-[60%_center] md:object-[64%_center]"
-      phone="0177 7883206"
-      benefits={t.benefits}
-      services={t.services}
-      whyChoose={t.whyChoose}
-      faqs={t.faqs}
-      formTitle={t.formTitle}
-      serviceName="autoservice"
-    />
-  )
-
   const afterLayout = (
     <ServicePageLayout
       title={t.title}
@@ -157,13 +139,7 @@ export default async function AutoservicePage() {
   return (
     <>
       <SiteHeader />
-      {process.env.NODE_ENV !== "production" ? (
-        <DevPageCompareProvider>
-          <DevPageCompareView before={beforeLayout} after={afterLayout} />
-        </DevPageCompareProvider>
-      ) : (
-        afterLayout
-      )}
+      {afterLayout}
       <SiteFooter />
     </>
   )

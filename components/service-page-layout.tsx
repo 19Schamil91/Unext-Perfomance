@@ -120,7 +120,7 @@ export async function ServicePageLayout({
     className: string,
     lineSpacingClass = ""
   ) => (
-    <p className={className}>
+    <p className={`${className} text-pretty`}>
       {lines.map((line, index) => (
         <span key={`${text}-${line}-${index}`} className={`block ${index > 0 ? lineSpacingClass : ""}`}>
           {line}
@@ -229,9 +229,12 @@ export async function ServicePageLayout({
               {renderLines(title, titleLines)}
             </h1>
             {descriptionLines ? (
-              <p className="mt-5 max-w-[76ch] text-body-fluid text-muted-foreground sm:mt-6">
+              <p className="mt-5 max-w-[62ch] text-body-fluid text-muted-foreground text-pretty sm:mt-6 sm:max-w-[68ch] lg:max-w-[72ch]">
                 {descriptionLines.map((line, index) => (
-                  <span key={`${description}-${line}-${index}`} className="block">
+                  <span
+                    key={`${description}-${line}-${index}`}
+                    className={index === 0 ? "block" : "mt-1.5 block sm:mt-2"}
+                  >
                     {line}
                   </span>
                 ))}
