@@ -4,11 +4,11 @@ export const homeTranslations = {
   de: {
     hero: {
       badge: "Schnelle Hilfe in Berlin",
-      title1: "Kompletter Fahrzeug-Service",
-      title2: "aus einer Hand",
+      title1: "Ihr starker Partner",
+      title2: "rund ums Fahrzeug",
       title3: "in Berlin",
       description:
-        "Ein Ansprechpartner für Unfallhilfe & Gutachten, Autovermietung, Kfz-Werkstatt, Fahrzeugaufbereitung, Kfz-Zulassung und Abschleppdienst in Berlin. Für Privatkunden, Unternehmen sowie Uber-, Bolt- und Taxi-Fahrer.",
+        "Unfallgutachten, Autovermietung, Werkstatt, Kfz-Zulassungsservice,\nAbschleppdienst und Premium Detailing - alles unter einem Dach.\nProfessionell, schnell und zuverlässig seit 2024.",
       callNow: "Jetzt anrufen",
       inquiry: "Anfrage senden",
       whatsapp: "WhatsApp",
