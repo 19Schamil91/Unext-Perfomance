@@ -37,7 +37,9 @@ interface ServicePageLayoutProps {
   titleLines?: readonly string[]
   descriptionLines?: readonly string[]
   serviceTitleLineBreaks?: Readonly<Record<string, readonly string[]>>
+  serviceDescriptionLines?: Readonly<Record<string, readonly string[]>>
   whyChooseTitleLineBreaks?: Readonly<Record<string, readonly string[]>>
+  whyChooseDescriptionLines?: Readonly<Record<string, readonly string[]>>
 }
 
 interface ServiceAction {
@@ -70,7 +72,9 @@ export async function ServicePageLayout({
   titleLines,
   descriptionLines,
   serviceTitleLineBreaks,
+  serviceDescriptionLines,
   whyChooseTitleLineBreaks,
+  whyChooseDescriptionLines,
 }: ServicePageLayoutProps) {
   const locale = await getCurrentLocale()
   const t = getTranslations(locale).serviceDetail.layout
@@ -109,6 +113,21 @@ export async function ServicePageLayout({
       </span>
     ))
   }
+
+  const renderParagraphLines = (
+    text: string,
+    lines: readonly string[],
+    className: string,
+    lineSpacingClass = ""
+  ) => (
+    <p className={className}>
+      {lines.map((line, index) => (
+        <span key={`${text}-${line}-${index}`} className={`block ${index > 0 ? lineSpacingClass : ""}`}>
+          {line}
+        </span>
+      ))}
+    </p>
+  )
 
   const renderAction = (
     action: ServiceAction,
@@ -285,11 +304,19 @@ export async function ServicePageLayout({
                 >
                   {renderLines(service.title, serviceTitleLineBreaks?.[service.title])}
                 </h3>
-                <ReadableText
-                  text={service.description}
-                  targetLineLength={balancedTypography ? 34 : 38}
-                  className="mt-3 max-w-[38ch] text-body-compact text-muted-foreground"
-                />
+                {serviceDescriptionLines?.[service.title] ? (
+                  renderParagraphLines(
+                    service.description,
+                    serviceDescriptionLines[service.title],
+                    "mt-3 max-w-full text-[0.98rem] leading-[1.55] text-muted-foreground"
+                  )
+                ) : (
+                  <ReadableText
+                    text={service.description}
+                    targetLineLength={balancedTypography ? 34 : 38}
+                    className="mt-3 max-w-full text-[0.98rem] leading-[1.55] text-muted-foreground"
+                  />
+                )}
               </div>
             ))}
           </div>
@@ -328,11 +355,19 @@ export async function ServicePageLayout({
                       >
                         {renderLines(item.title, whyChooseTitleLineBreaks?.[item.title])}
                       </h3>
-                      <ReadableText
-                        text={item.description}
-                        targetLineLength={balancedTypography ? 36 : 40}
-                        className="mt-2 max-w-[42ch] text-body-compact text-muted-foreground"
-                      />
+                      {whyChooseDescriptionLines?.[item.title] ? (
+                        renderParagraphLines(
+                          item.description,
+                          whyChooseDescriptionLines[item.title],
+                          "mt-2 max-w-full text-body-compact leading-[1.6] text-muted-foreground"
+                        )
+                      ) : (
+                        <ReadableText
+                          text={item.description}
+                          targetLineLength={balancedTypography ? 36 : 40}
+                          className="mt-2 max-w-full text-body-compact leading-[1.6] text-muted-foreground"
+                        />
+                      )}
                     </div>
                   </div>
                 ))}
