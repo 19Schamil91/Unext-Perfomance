@@ -47,9 +47,9 @@ export default async function UeberUnsPage() {
               <h1 className="text-display-fluid text-foreground lg:whitespace-nowrap">
                 {t.title}
               </h1>
-              <p className="mt-6 max-w-none text-body-fluid text-muted-foreground">
+              <p className="mt-6 max-w-none text-[clamp(1rem,0.98rem+0.18vw,1.15rem)] leading-[1.72] text-muted-foreground/92">
                 {t.description.split("\n").map((line, index) => (
-                  <span key={`${line}-${index}`} className="block">
+                  <span key={`${line}-${index}`} className="block lg:whitespace-nowrap">
                     {line}
                   </span>
                 ))}
@@ -73,7 +73,7 @@ export default async function UeberUnsPage() {
 
         <section className="bg-background py-16 lg:py-24">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-wider text-primary">
                   {t.storyEyebrow}
@@ -88,7 +88,7 @@ export default async function UeberUnsPage() {
                 </div>
               </div>
 
-              <div className="border-l-2 border-primary/30 pl-8">
+              <div className="border-l-2 border-primary/30 pl-8 lg:pl-10">
                 <div className="space-y-8">
                   {t.milestones.map((milestone, index) => (
                     <div key={`${milestone.year}-${milestone.title}`} className="relative">
@@ -99,9 +99,15 @@ export default async function UeberUnsPage() {
                         <span className="text-xs font-semibold uppercase tracking-wider text-primary">
                           {milestone.year}
                         </span>
-                        <h3 className="measure-card-copy text-title-fluid font-semibold text-foreground">{milestone.title}</h3>
-                        <p className="mt-1 measure-card-copy text-body-compact text-muted-foreground">
-                          {milestone.description}
+                        <h3 className="max-w-none text-title-fluid font-semibold text-foreground lg:whitespace-nowrap">
+                          {milestone.title}
+                        </h3>
+                        <p className="mt-1 max-w-[42ch] text-[0.98rem] leading-[1.62] text-muted-foreground">
+                          {milestone.description.split("\n").map((line, index) => (
+                            <span key={`${line}-${index}`} className="block">
+                              {line}
+                            </span>
+                          ))}
                         </p>
                       </div>
                     </div>

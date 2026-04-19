@@ -14,7 +14,19 @@ export async function CtaSection() {
           "Rufen Sie uns an oder schreiben Sie uns per WhatsApp. Wir sagen Ihnen direkt,",
           "wie wir Ihnen bei Unfall, Werkstatt, Mietwagen, Zulassung oder Pannenhilfe weiterhelfen.",
         ]
-      : null
+      : locale === "en"
+        ? [
+            "Call us or write to us on WhatsApp. We will tell you directly",
+            "how we can help with accidents, workshop service, rental cars,",
+            "registration or roadside assistance.",
+          ]
+        : locale === "ru"
+          ? [
+              "Позвоните нам или напишите в WhatsApp. Мы сразу скажем,",
+              "как можем помочь с ДТП, автосервисом, арендой автомобиля,",
+              "регистрацией или помощью на дороге.",
+            ]
+          : null
 
   return (
     <section className="relative overflow-hidden py-20 lg:py-28">
