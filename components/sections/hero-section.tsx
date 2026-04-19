@@ -148,14 +148,14 @@ function HeroContent({
       <h1
         className={
           isOverlay
-            ? "max-w-none text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.34)]"
+            ? "max-w-none text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.28)]"
             : "measure-display text-display-fluid text-foreground"
         }
       >
         <span
           className={
             isOverlay
-              ? "block text-[clamp(2.85rem,4.8vw,4.85rem)] leading-[0.98] font-bold tracking-[-0.04em] lg:whitespace-nowrap"
+              ? "block text-[clamp(2.5rem,4.05vw,4.15rem)] leading-[0.99] font-semibold tracking-[-0.036em] lg:whitespace-nowrap"
               : "block"
           }
         >
@@ -164,7 +164,7 @@ function HeroContent({
         <span
           className={
             isOverlay
-              ? "mt-1.5 block text-[clamp(2.85rem,4.8vw,4.85rem)] leading-[0.98] font-bold tracking-[-0.04em] text-primary lg:whitespace-nowrap"
+              ? "mt-0.5 block text-[clamp(2.5rem,4.05vw,4.15rem)] leading-[0.99] font-semibold tracking-[-0.036em] text-primary lg:whitespace-nowrap"
               : "block text-primary"
           }
         >
@@ -173,7 +173,7 @@ function HeroContent({
         <span
           className={
             isOverlay
-              ? "mt-2 block text-[clamp(1.45rem,1.85vw,2.55rem)] leading-[1.03] font-light tracking-[-0.028em] text-white/50 drop-shadow-[0_2px_10px_rgba(0,0,0,0.18)] lg:whitespace-nowrap"
+              ? "mt-2 block text-[clamp(1.28rem,1.55vw,2rem)] leading-[1.05] font-light tracking-[-0.022em] text-white/46 drop-shadow-[0_2px_8px_rgba(0,0,0,0.14)] lg:whitespace-nowrap"
               : "mt-1.5 block max-w-[18ch] text-[clamp(1.05rem,0.84rem+1vw,2.35rem)] leading-[1.12] font-normal text-muted-foreground sm:mt-2"
           }
         >
@@ -184,14 +184,14 @@ function HeroContent({
       <p
         className={
           isOverlay
-            ? "mt-7 max-w-[64ch] text-[clamp(1rem,0.96rem+0.14vw,1.06rem)] leading-[1.78] text-white/62 drop-shadow-[0_2px_8px_rgba(0,0,0,0.12)] sm:mt-7"
+            ? "mt-7 max-w-[56ch] text-[clamp(0.98rem,0.95rem+0.1vw,1.03rem)] leading-[1.8] text-white/56 drop-shadow-[0_2px_8px_rgba(0,0,0,0.08)] sm:mt-7"
             : "measure-intro-tight mt-4 text-body-fluid text-muted-foreground sm:mt-6"
         }
       >
         {renderHeroDescription(description)}
       </p>
 
-      <div className="mt-7 sm:mt-8">
+      <div className="mt-8 sm:mt-9">
         <p
           className={
             isOverlay
@@ -222,24 +222,24 @@ function HeroContent({
         ))}
       </div>
 
-      <div className="mt-6 hidden max-w-[56rem] flex-wrap gap-2.5 sm:flex">
+      <div className="mt-6 hidden max-w-[54rem] grid-cols-2 gap-2.5 sm:grid lg:grid-cols-3">
         {services.map((service) => (
           <Link
             key={service.anchor}
             href={`#${service.anchor}`}
             className={
               isOverlay
-                ? "group inline-flex min-w-0 items-center gap-2 rounded-full border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] px-3.5 py-2 text-[0.9rem] text-white/72 shadow-[0_6px_14px_rgba(0,0,0,0.08)] backdrop-blur-sm transition-all hover:border-primary/38 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.04))] hover:text-white/92"
+                ? "group flex min-h-[3.3rem] min-w-0 items-center justify-between gap-3 rounded-[1rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.055),rgba(255,255,255,0.025))] px-4 py-3 text-[0.92rem] text-white/70 shadow-[0_6px_14px_rgba(0,0,0,0.07)] backdrop-blur-sm transition-all hover:border-primary/36 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.075),rgba(255,255,255,0.035))] hover:text-white/90"
                 : "group inline-flex min-w-0 items-center gap-2 rounded-full border border-border/70 bg-card px-4 py-2 text-sm text-foreground shadow-[0_10px_22px_rgba(15,23,42,0.08)] transition-all hover:border-primary/45 hover:bg-accent"
             }
           >
             <span className="min-w-0 [text-wrap:balance]">{service.title}</span>
-            <DoorOpen className="h-3.5 w-3.5 text-primary transition-transform group-hover:translate-x-0.5" />
+            <DoorOpen className="h-3.5 w-3.5 shrink-0 text-primary transition-transform group-hover:translate-x-0.5" />
           </Link>
         ))}
       </div>
 
-      <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
+      <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:gap-4">
         <Button asChild size="lg" className="w-full gap-2 sm:w-auto">
           <a href="tel:+493023613927">
             <Phone className="h-5 w-5" />
@@ -277,7 +277,7 @@ function HeroContent({
       <div
         className={
           isOverlay
-            ? "mt-8 flex flex-col gap-3 text-sm text-white/56 sm:mt-10 sm:flex-row sm:items-center sm:gap-4"
+            ? "mt-8 flex flex-col gap-3 text-sm text-white/54 sm:mt-10 sm:flex-row sm:items-center sm:gap-4"
             : "mt-8 flex flex-col gap-3 text-sm text-muted-foreground sm:mt-10 sm:flex-row sm:items-center sm:gap-4"
         }
       >
@@ -381,7 +381,7 @@ export async function HeroSection() {
             whatsapp={t.whatsapp}
             address={t.address}
             viewAllServices={viewAllServices}
-            className="max-w-[60rem]"
+            className="mx-auto max-w-[54rem]"
           />
         </div>
       </div>
