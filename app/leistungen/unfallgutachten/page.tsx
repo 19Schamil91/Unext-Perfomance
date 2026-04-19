@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import { DevPageCompareProvider, DevPageCompareView } from "@/components/dev-page-compare"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { ServicePageLayout } from "@/components/service-page-layout"
@@ -75,24 +74,6 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function UnfallgutachtenPage() {
   const locale = await getCurrentLocale()
   const t = getTranslations(locale).serviceDetail.pages.accident
-  const beforeLayout = (
-    <ServicePageLayout
-      title={t.title}
-      subtitle={t.subtitle}
-      badge={t.badge}
-      description={t.description}
-      image="/images/service-accident.webp"
-      imageClassName="object-cover object-[58%_center] md:object-[60%_center]"
-      phone="0176 64365185"
-      benefits={t.benefits}
-      services={t.services}
-      whyChoose={t.whyChoose}
-      faqs={t.faqs}
-      formTitle={t.formTitle}
-      serviceName="unfallgutachten"
-    />
-  )
-
   const afterLayout = (
     <ServicePageLayout
       title={t.title}
@@ -119,13 +100,7 @@ export default async function UnfallgutachtenPage() {
   return (
     <>
       <SiteHeader />
-      {process.env.NODE_ENV !== "production" ? (
-        <DevPageCompareProvider>
-          <DevPageCompareView before={beforeLayout} after={afterLayout} />
-        </DevPageCompareProvider>
-      ) : (
-        afterLayout
-      )}
+      {afterLayout}
       <SiteFooter />
     </>
   )

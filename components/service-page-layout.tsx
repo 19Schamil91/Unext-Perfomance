@@ -33,6 +33,7 @@ interface ServicePageLayoutProps {
   badge?: string
   formFields?: ServiceInquiryFields
   balancedTypography?: boolean
+  singleLineHeadings?: boolean
   titleLines?: readonly string[]
   descriptionLines?: readonly string[]
   serviceTitleLineBreaks?: Readonly<Record<string, readonly string[]>>
@@ -65,6 +66,7 @@ export async function ServicePageLayout({
   badge,
   formFields,
   balancedTypography = false,
+  singleLineHeadings = false,
   titleLines,
   descriptionLines,
   serviceTitleLineBreaks,
@@ -201,7 +203,7 @@ export async function ServicePageLayout({
             <h1
               className={
                 balancedTypography
-                  ? "mt-3 max-w-[18ch] text-display-fluid leading-[0.96] tracking-[-0.03em] text-foreground sm:max-w-[20ch] lg:max-w-none lg:text-balance"
+                  ? `mt-3 max-w-[18ch] text-display-fluid leading-[0.96] tracking-[-0.03em] text-foreground sm:max-w-[20ch] lg:max-w-none ${singleLineHeadings ? "lg:whitespace-nowrap" : "lg:text-balance"}`
                   : "mt-3 max-w-[16ch] text-display-fluid text-foreground sm:max-w-[18ch] lg:max-w-[20ch]"
               }
             >
@@ -277,7 +279,7 @@ export async function ServicePageLayout({
                 <h3
                   className={
                     balancedTypography
-                      ? "max-w-[24ch] text-title-fluid leading-[1.12] font-semibold tracking-[-0.02em] text-foreground text-balance"
+                      ? `max-w-[24ch] text-title-fluid leading-[1.12] font-semibold tracking-[-0.02em] text-foreground ${singleLineHeadings ? "lg:max-w-none lg:whitespace-nowrap" : "text-balance"}`
                       : "max-w-[24ch] text-title-fluid font-semibold text-foreground"
                   }
                 >
@@ -320,7 +322,7 @@ export async function ServicePageLayout({
                       <h3
                         className={
                           balancedTypography
-                            ? "max-w-[24ch] text-title-fluid leading-[1.12] font-semibold tracking-[-0.02em] text-foreground text-balance"
+                            ? `max-w-[24ch] text-title-fluid leading-[1.12] font-semibold tracking-[-0.02em] text-foreground ${singleLineHeadings ? "lg:max-w-none lg:whitespace-nowrap" : "text-balance"}`
                             : "max-w-[24ch] text-title-fluid font-semibold text-foreground"
                         }
                       >
