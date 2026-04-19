@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Car, ClipboardCheck, FileCheck, Phone, Sparkles, Truck, Wrench } from "lucide-react"
+import { LeistungenIntroCompare } from "@/components/leistungen-intro-compare"
 import { ReadableText } from "@/components/readable-text"
 import { CtaSection } from "@/components/sections/cta-section"
 import { SiteFooter } from "@/components/site-footer"
@@ -83,6 +84,23 @@ const serviceMeta = [
 export default async function LeistungenPage() {
   const locale = await getCurrentLocale()
   const t = getTranslations(locale).servicesPage
+  const fixedIntroLines =
+    locale === "de"
+      ? [
+          "Diese 6 Hauptleistungen bilden den Kern von UNEXT.",
+          "Sie sehen sofort, wobei wir Sie direkt unterstützen können - klar, schnell und ohne Umwege.",
+        ]
+      : locale === "en"
+        ? [
+            "UNEXT GMBH offers a comprehensive range of vehicle-related services.",
+            "Six strong business areas under one roof - professional, reliable and always there for you.",
+          ]
+        : locale === "ru"
+          ? [
+              "UNEXT GMBH предлагает полный спектр услуг вокруг автомобиля.",
+              "Шесть сильных направлений под одной крышей - профессионально, надежно и всегда рядом.",
+            ]
+      : null
 
   return (
     <>
@@ -90,16 +108,30 @@ export default async function LeistungenPage() {
       <main>
         <section className="bg-card py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="mx-auto max-w-5xl text-center">
-              <h1 className="mx-auto max-w-[14ch] text-display-fluid text-foreground sm:max-w-[15ch] lg:max-w-none">
-                {t.title}
-              </h1>
-              <ReadableText
-                text={t.description}
-                targetLineLength={76}
-                className="mx-auto mt-6 measure-intro-tight text-body-fluid text-muted-foreground"
-              />
-            </div>
+            {process.env.NODE_ENV !== "production" ? (
+              <LeistungenIntroCompare title={t.title} description={t.description} fixedLines={fixedIntroLines} />
+            ) : (
+              <div className="mx-auto max-w-5xl text-center">
+                <h1 className="mx-auto max-w-[14ch] text-display-fluid text-foreground sm:max-w-[15ch] lg:max-w-none lg:whitespace-nowrap">
+                  {t.title}
+                </h1>
+                {fixedIntroLines ? (
+                  <p className="mx-auto mt-6 max-w-none text-body-fluid text-muted-foreground">
+                    {fixedIntroLines.map((line) => (
+                      <span key={line} className="block lg:whitespace-nowrap">
+                        {line}
+                      </span>
+                    ))}
+                  </p>
+                ) : (
+                  <ReadableText
+                    text={t.description}
+                    targetLineLength={76}
+                    className="mx-auto mt-6 measure-intro-tight text-body-fluid text-muted-foreground"
+                  />
+                )}
+              </div>
+            )}
           </div>
         </section>
 
