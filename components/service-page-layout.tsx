@@ -40,6 +40,8 @@ interface ServicePageLayoutProps {
   serviceDescriptionLines?: Readonly<Record<string, readonly string[]>>
   whyChooseTitleLineBreaks?: Readonly<Record<string, readonly string[]>>
   whyChooseDescriptionLines?: Readonly<Record<string, readonly string[]>>
+  /** Hero-Benefit-Liste: jeder Punkt eine Zeile (kein Textumbruch im Label). */
+  benefitsSingleLine?: boolean
 }
 
 interface ServiceAction {
@@ -75,6 +77,7 @@ export async function ServicePageLayout({
   serviceDescriptionLines,
   whyChooseTitleLineBreaks,
   whyChooseDescriptionLines,
+  benefitsSingleLine = false,
 }: ServicePageLayoutProps) {
   const locale = await getCurrentLocale()
   const t = getTranslations(locale).serviceDetail.layout
@@ -247,14 +250,34 @@ export async function ServicePageLayout({
               />
             )}
 
-            <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+            <ul className="mt-8 grid min-w-0 gap-3 sm:grid-cols-2">
               {benefits.map((benefit) => (
                 <li
                   key={benefit}
-                  className="flex items-start gap-3 rounded-2xl border border-border/60 bg-background/72 px-4 py-3 text-body-compact text-foreground shadow-[0_12px_26px_rgba(15,23,42,0.06)] backdrop-blur-sm"
+                  className={
+                    benefitsSingleLine
+                      ? "flex min-w-0 items-center gap-3 overflow-x-auto rounded-2xl border border-border/60 bg-background/72 px-3 py-2.5 text-[0.8125rem] leading-snug text-foreground shadow-[0_12px_26px_rgba(15,23,42,0.06)] backdrop-blur-sm sm:px-4 sm:py-3 sm:text-body-compact sm:leading-normal"
+                      : "flex items-start gap-3 rounded-2xl border border-border/60 bg-background/72 px-4 py-3 text-body-compact text-foreground shadow-[0_12px_26px_rgba(15,23,42,0.06)] backdrop-blur-sm"
+                  }
                 >
-                  <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <span className={balancedTypography ? "max-w-[34ch] text-balance" : "max-w-[34ch]"}>{benefit}</span>
+                  <CheckCircle
+                    className={
+                      benefitsSingleLine
+                        ? "h-4 w-4 shrink-0 self-center text-primary"
+                        : "mt-0.5 h-4 w-4 shrink-0 text-primary"
+                    }
+                  />
+                  <span
+                    className={
+                      benefitsSingleLine
+                        ? "min-w-0 flex-1 whitespace-nowrap"
+                        : balancedTypography
+                          ? "max-w-[34ch] text-balance"
+                          : "max-w-[34ch]"
+                    }
+                  >
+                    {benefit}
+                  </span>
                 </li>
               ))}
             </ul>
