@@ -43,12 +43,16 @@ export default async function UeberUnsPage() {
           </div>
 
           <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="measure-intro">
-              <h1 className="measure-display text-display-fluid text-foreground">
+            <div className="max-w-5xl">
+              <h1 className="text-display-fluid text-foreground lg:whitespace-nowrap">
                 {t.title}
               </h1>
-              <p className="mt-6 measure-intro-tight text-body-fluid text-muted-foreground">
-                {t.description}
+              <p className="mt-6 max-w-none text-body-fluid text-muted-foreground">
+                {t.description.split("\n").map((line, index) => (
+                  <span key={`${line}-${index}`} className="block">
+                    {line}
+                  </span>
+                ))}
               </p>
             </div>
           </div>

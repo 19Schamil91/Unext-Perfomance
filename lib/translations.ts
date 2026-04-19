@@ -1,5 +1,6 @@
 import type { Locale } from "@/lib/i18n"
 import { contactTranslations } from "@/lib/translations/contact"
+import { aboutTranslationOverrides } from "@/lib/translations/about-overrides"
 import { headerFooterTranslations } from "@/lib/translations/header-footer"
 import { homeTranslationOverrides } from "@/lib/translations/home-overrides"
 import { homeTranslations } from "@/lib/translations/home"
@@ -21,7 +22,10 @@ const dictionaries = {
       },
     },
     servicesPage: servicesAndAboutTranslations.de.servicesPage,
-    aboutPage: servicesAndAboutTranslations.de.aboutPage,
+    aboutPage: {
+      ...servicesAndAboutTranslations.de.aboutPage,
+      ...aboutTranslationOverrides.de,
+    },
     serviceDetail: {
       layout: serviceDetailTranslations.de.layout,
       form: serviceDetailTranslations.de.form,
@@ -64,7 +68,10 @@ const dictionaries = {
       },
     },
     servicesPage: servicesAndAboutTranslations.en.servicesPage,
-    aboutPage: servicesAndAboutTranslations.en.aboutPage,
+    aboutPage: {
+      ...servicesAndAboutTranslations.en.aboutPage,
+      ...aboutTranslationOverrides.en,
+    },
     serviceDetail: {
       layout: serviceDetailTranslations.en.layout,
       form: serviceDetailTranslations.en.form,
@@ -107,7 +114,10 @@ const dictionaries = {
       },
     },
     servicesPage: servicesAndAboutTranslations.ru.servicesPage,
-    aboutPage: servicesAndAboutTranslations.ru.aboutPage,
+    aboutPage: {
+      ...servicesAndAboutTranslations.ru.aboutPage,
+      ...aboutTranslationOverrides.ru,
+    },
     serviceDetail: {
       layout: serviceDetailTranslations.ru.layout,
       form: serviceDetailTranslations.ru.form,
