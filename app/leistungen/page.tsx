@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import { ArrowRight, Car, ClipboardCheck, FileCheck, Phone, Sparkles, Truck, Wrench } from "lucide-react"
-import { LeistungenPageCompareProvider, LeistungenPageCompareView } from "@/components/leistungen-page-compare"
 import { ReadableText } from "@/components/readable-text"
 import { CtaSection } from "@/components/sections/cta-section"
 import { SiteFooter } from "@/components/site-footer"
@@ -245,80 +244,38 @@ export default async function LeistungenPage() {
   return (
     <>
       <SiteHeader />
-      {process.env.NODE_ENV !== "production" ? (
-        <LeistungenPageCompareProvider>
-          <main>
-            <section className="bg-card py-20 lg:py-28">
-              <div className="mx-auto max-w-7xl px-4 lg:px-8">
-                <div className="mx-auto max-w-5xl text-center">
-                  <p className="mb-4 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-                    Vergleich Alle Leistungen seit letztem Commit
-                  </p>
-                  <h1 className="mx-auto max-w-[14ch] text-display-fluid text-foreground sm:max-w-[15ch] lg:max-w-none lg:whitespace-nowrap">
-                    {t.title}
-                  </h1>
-                  {fixedIntroLines ? (
-                    <p className="mx-auto mt-6 max-w-none text-body-fluid text-muted-foreground">
-                      {fixedIntroLines.map((line) => (
-                        <span key={line} className="block lg:whitespace-nowrap">
-                          {line}
-                        </span>
-                      ))}
-                    </p>
-                  ) : (
-                    <ReadableText
-                      text={t.description}
-                      targetLineLength={76}
-                      className="mx-auto mt-6 measure-intro-tight text-body-fluid text-muted-foreground"
-                    />
-                  )}
-                </div>
-              </div>
-            </section>
-
-            <section className="bg-background py-16 lg:py-24">
-              <div className="mx-auto max-w-7xl px-4 lg:px-8">
-                <LeistungenPageCompareView before={renderServiceCards(false)} after={renderServiceCards(true)} />
-              </div>
-            </section>
-
-            <CtaSection />
-          </main>
-        </LeistungenPageCompareProvider>
-      ) : (
-        <main>
-          <section className="bg-card py-20 lg:py-28">
-            <div className="mx-auto max-w-7xl px-4 lg:px-8">
-              <div className="mx-auto max-w-5xl text-center">
-                <h1 className="mx-auto max-w-[14ch] text-display-fluid text-foreground sm:max-w-[15ch] lg:max-w-none lg:whitespace-nowrap">
-                  {t.title}
-                </h1>
-                {fixedIntroLines ? (
-                  <p className="mx-auto mt-6 max-w-none text-body-fluid text-muted-foreground">
-                    {fixedIntroLines.map((line) => (
-                      <span key={line} className="block lg:whitespace-nowrap">
-                        {line}
-                      </span>
-                    ))}
-                  </p>
-                ) : (
-                  <ReadableText
-                    text={t.description}
-                    targetLineLength={76}
-                    className="mx-auto mt-6 measure-intro-tight text-body-fluid text-muted-foreground"
-                  />
-                )}
-              </div>
+      <main>
+        <section className="bg-card py-20 lg:py-28">
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">
+            <div className="mx-auto max-w-5xl text-center">
+              <h1 className="mx-auto max-w-[14ch] text-display-fluid text-foreground sm:max-w-[15ch] lg:max-w-none lg:whitespace-nowrap">
+                {t.title}
+              </h1>
+              {fixedIntroLines ? (
+                <p className="mx-auto mt-6 max-w-none text-body-fluid text-muted-foreground">
+                  {fixedIntroLines.map((line) => (
+                    <span key={line} className="block lg:whitespace-nowrap">
+                      {line}
+                    </span>
+                  ))}
+                </p>
+              ) : (
+                <ReadableText
+                  text={t.description}
+                  targetLineLength={76}
+                  className="mx-auto mt-6 measure-intro-tight text-body-fluid text-muted-foreground"
+                />
+              )}
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section className="bg-background py-16 lg:py-24">
-            <div className="mx-auto max-w-7xl px-4 lg:px-8">{renderServiceCards(true)}</div>
-          </section>
+        <section className="bg-background py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">{renderServiceCards(true)}</div>
+        </section>
 
-          <CtaSection />
-        </main>
-      )}
+        <CtaSection />
+      </main>
       <SiteFooter />
     </>
   )

@@ -32,6 +32,11 @@ interface ServicePageLayoutProps {
   serviceName: string
   badge?: string
   formFields?: ServiceInquiryFields
+  balancedTypography?: boolean
+  titleLines?: readonly string[]
+  descriptionLines?: readonly string[]
+  serviceTitleLineBreaks?: Readonly<Record<string, readonly string[]>>
+  whyChooseTitleLineBreaks?: Readonly<Record<string, readonly string[]>>
 }
 
 interface ServiceAction {
@@ -59,6 +64,11 @@ export async function ServicePageLayout({
   serviceName,
   badge,
   formFields,
+  balancedTypography = false,
+  titleLines,
+  descriptionLines,
+  serviceTitleLineBreaks,
+  whyChooseTitleLineBreaks,
 }: ServicePageLayoutProps) {
   const locale = await getCurrentLocale()
   const t = getTranslations(locale).serviceDetail.layout
@@ -85,6 +95,18 @@ export async function ServicePageLayout({
 
   const resolvedHeroActions = heroActions ?? defaultHeroActions
   const resolvedBottomActions = bottomActions ?? defaultBottomActions
+
+  const renderLines = (text: string, lines?: readonly string[]) => {
+    if (!lines || lines.length === 0) {
+      return text
+    }
+
+    return lines.map((line, index) => (
+      <span key={`${text}-${line}-${index}`} className="block">
+        {line}
+      </span>
+    ))
+  }
 
   const renderAction = (
     action: ServiceAction,
@@ -176,14 +198,30 @@ export async function ServicePageLayout({
             )}
 
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary sm:text-sm sm:tracking-[0.14em]">{subtitle}</p>
-            <h1 className="mt-3 max-w-[16ch] text-display-fluid text-foreground sm:max-w-[18ch] lg:max-w-[20ch]">
-              {title}
+            <h1
+              className={
+                balancedTypography
+                  ? "mt-3 max-w-[18ch] text-display-fluid leading-[0.96] tracking-[-0.03em] text-foreground sm:max-w-[20ch] lg:max-w-none lg:text-balance"
+                  : "mt-3 max-w-[16ch] text-display-fluid text-foreground sm:max-w-[18ch] lg:max-w-[20ch]"
+              }
+            >
+              {renderLines(title, titleLines)}
             </h1>
-            <ReadableText
-              text={description}
-              targetLineLength={82}
-              className="mt-5 max-w-[74ch] text-body-fluid text-muted-foreground sm:mt-6"
-            />
+            {descriptionLines ? (
+              <p className="mt-5 max-w-[76ch] text-body-fluid text-muted-foreground sm:mt-6">
+                {descriptionLines.map((line, index) => (
+                  <span key={`${description}-${line}-${index}`} className="block">
+                    {line}
+                  </span>
+                ))}
+              </p>
+            ) : (
+              <ReadableText
+                text={description}
+                targetLineLength={balancedTypography ? 74 : 82}
+                className="mt-5 max-w-[74ch] text-body-fluid text-muted-foreground sm:mt-6"
+              />
+            )}
 
             <ul className="mt-8 grid gap-3 sm:grid-cols-2">
               {benefits.map((benefit) => (
@@ -192,7 +230,7 @@ export async function ServicePageLayout({
                   className="flex items-start gap-3 rounded-2xl border border-border/60 bg-background/72 px-4 py-3 text-body-compact text-foreground shadow-[0_12px_26px_rgba(15,23,42,0.06)] backdrop-blur-sm"
                 >
                   <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <span className="max-w-[34ch]">{benefit}</span>
+                  <span className={balancedTypography ? "max-w-[34ch] text-balance" : "max-w-[34ch]"}>{benefit}</span>
                 </li>
               ))}
             </ul>
@@ -236,10 +274,18 @@ export async function ServicePageLayout({
                 className="flex h-full flex-col rounded-[1.6rem] border border-border/55 bg-background p-6 shadow-[0_14px_34px_rgba(15,23,42,0.05)] transition-colors hover:border-primary/25"
               >
                 <div className="mb-4 h-1.5 w-12 rounded-full bg-primary/70" />
-                <h3 className="max-w-[24ch] text-title-fluid font-semibold text-foreground">{service.title}</h3>
+                <h3
+                  className={
+                    balancedTypography
+                      ? "max-w-[24ch] text-title-fluid leading-[1.12] font-semibold tracking-[-0.02em] text-foreground text-balance"
+                      : "max-w-[24ch] text-title-fluid font-semibold text-foreground"
+                  }
+                >
+                  {renderLines(service.title, serviceTitleLineBreaks?.[service.title])}
+                </h3>
                 <ReadableText
                   text={service.description}
-                  targetLineLength={38}
+                  targetLineLength={balancedTypography ? 34 : 38}
                   className="mt-3 max-w-[38ch] text-body-compact text-muted-foreground"
                 />
               </div>
@@ -271,10 +317,18 @@ export async function ServicePageLayout({
                       <CheckCircle className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="max-w-[24ch] text-title-fluid font-semibold text-foreground">{item.title}</h3>
+                      <h3
+                        className={
+                          balancedTypography
+                            ? "max-w-[24ch] text-title-fluid leading-[1.12] font-semibold tracking-[-0.02em] text-foreground text-balance"
+                            : "max-w-[24ch] text-title-fluid font-semibold text-foreground"
+                        }
+                      >
+                        {renderLines(item.title, whyChooseTitleLineBreaks?.[item.title])}
+                      </h3>
                       <ReadableText
                         text={item.description}
-                        targetLineLength={40}
+                        targetLineLength={balancedTypography ? 36 : 40}
                         className="mt-2 max-w-[42ch] text-body-compact text-muted-foreground"
                       />
                     </div>
@@ -308,7 +362,13 @@ export async function ServicePageLayout({
                   value={`item-${index}`}
                   className="overflow-hidden rounded-2xl border border-border/55 bg-background px-5 shadow-[0_10px_24px_rgba(15,23,42,0.04)]"
                 >
-                  <AccordionTrigger className="py-5 text-left text-[1rem] leading-7 font-medium sm:text-[1.05rem]">
+                  <AccordionTrigger
+                    className={
+                      balancedTypography
+                        ? "py-5 text-left text-[1rem] leading-7 font-medium text-balance sm:text-[1.05rem]"
+                        : "py-5 text-left text-[1rem] leading-7 font-medium sm:text-[1.05rem]"
+                    }
+                  >
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground">

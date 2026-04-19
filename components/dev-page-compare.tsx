@@ -4,17 +4,17 @@ import { createContext, type ReactNode, useContext, useState } from "react"
 
 type CompareMode = "before" | "after"
 
-const LeistungenCompareContext = createContext<CompareMode>("after")
+const DevCompareContext = createContext<CompareMode>("after")
 
-interface LeistungenPageCompareProviderProps {
+interface DevPageCompareProviderProps {
   children: ReactNode
 }
 
-export function LeistungenPageCompareProvider({ children }: LeistungenPageCompareProviderProps) {
+export function DevPageCompareProvider({ children }: DevPageCompareProviderProps) {
   const [mode, setMode] = useState<CompareMode>("after")
 
   return (
-    <LeistungenCompareContext.Provider value={mode}>
+    <DevCompareContext.Provider value={mode}>
       <div className="pointer-events-none fixed inset-x-0 top-24 z-50 flex justify-center px-4">
         <div className="pointer-events-auto inline-flex items-center gap-1 rounded-full border border-border/70 bg-background/90 p-1 shadow-[0_10px_24px_rgba(15,23,42,0.12)] backdrop-blur-md">
           <button
@@ -43,17 +43,17 @@ export function LeistungenPageCompareProvider({ children }: LeistungenPageCompar
       </div>
 
       {children}
-    </LeistungenCompareContext.Provider>
+    </DevCompareContext.Provider>
   )
 }
 
-interface LeistungenPageCompareViewProps {
+interface DevPageCompareViewProps {
   before: ReactNode
   after: ReactNode
 }
 
-export function LeistungenPageCompareView({ before, after }: LeistungenPageCompareViewProps) {
-  const mode = useContext(LeistungenCompareContext)
+export function DevPageCompareView({ before, after }: DevPageCompareViewProps) {
+  const mode = useContext(DevCompareContext)
 
   return <>{mode === "before" ? before : after}</>
 }
