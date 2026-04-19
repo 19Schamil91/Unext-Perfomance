@@ -12,7 +12,14 @@ import { servicesAndAboutTranslations } from "@/lib/translations/services-and-ab
 const dictionaries = {
   de: {
     ...headerFooterTranslations.de,
-    home: homeTranslations.de,
+    home: {
+      ...homeTranslations.de,
+      ...homeTranslationOverrides.de,
+      hero: {
+        ...homeTranslations.de.hero,
+        ...homeTranslationOverrides.de.hero,
+      },
+    },
     servicesPage: servicesAndAboutTranslations.de.servicesPage,
     aboutPage: servicesAndAboutTranslations.de.aboutPage,
     serviceDetail: {

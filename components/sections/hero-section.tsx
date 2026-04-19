@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, DoorOpen, MessageCircle, Phone } from "lucide-react"
+import { ArrowRight, DoorOpen, MapPin, MessageCircle, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { homeServiceAnchors } from "@/lib/service-anchors"
 import { getCurrentLocale } from "@/lib/server-locale"
@@ -12,6 +12,7 @@ interface HeroContentProps {
   title1: string
   title2: string
   title3: string
+  combinePrimaryTitle?: boolean
   description: string
   services: readonly { title: string; anchor: string }[]
   callNow: string
@@ -22,7 +23,7 @@ interface HeroContentProps {
   className?: string
 }
 
-function renderHeroDescription(description: string) {
+function renderHeroDescription(description: string, lineClassName?: string) {
   const protectedTerm = "Kfz-Werkstatt"
   const desktopBreakMarkers = ["Autovermietung,", "Berlin."]
   const protectedTerms = [protectedTerm, "Taxi-Fahrer"]
@@ -74,7 +75,7 @@ function renderHeroDescription(description: string) {
           .map((line) => line.trim())
           .filter(Boolean)
           .map((line, index) => (
-            <span key={`${line}-${index}`} className="block">
+            <span key={`${line}-${index}`} className={`block ${lineClassName ?? ""}`.trim()}>
               {renderProtectedLine(line)}
             </span>
           ))}
@@ -106,7 +107,7 @@ function renderHeroDescription(description: string) {
   return (
     <>
       {lines.map((line, index) => (
-        <span key={`${line}-${index}`} className="block">
+        <span key={`${line}-${index}`} className={`block ${lineClassName ?? ""}`.trim()}>
           {renderProtectedLine(line)}
         </span>
       ))}
@@ -120,6 +121,7 @@ function HeroContent({
   title1,
   title2,
   title3,
+  combinePrimaryTitle = false,
   description,
   services,
   callNow,
@@ -130,72 +132,101 @@ function HeroContent({
   className,
 }: HeroContentProps) {
   const isOverlay = tone === "overlay"
+  const addressParts = address.split(",").map((part) => part.trim()).filter(Boolean)
+  const addressPrimary = addressParts[0] ?? address
+  const addressSecondary = addressParts.slice(1).join(", ")
+  const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
 
   return (
     <div className={`min-w-0 ${className ?? ""}`}>
-      {badge ? (
-        <div
-          className={
-            isOverlay
-              ? "mb-5 inline-flex max-w-full rounded-full border border-white/10 bg-white/5 px-3 py-1 text-center text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-white/68 backdrop-blur-sm sm:text-xs sm:tracking-[0.18em]"
-              : "mb-5 inline-flex max-w-full rounded-full border border-border/70 bg-accent px-3 py-1 text-center text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:text-xs sm:tracking-[0.18em]"
-          }
-        >
-          {badge}
-        </div>
-      ) : null}
-
-      <h1
+      <div
         className={
           isOverlay
-            ? "max-w-none text-white drop-shadow-[0_3px_14px_rgba(0,0,0,0.28)]"
-            : "measure-display text-display-fluid text-foreground"
+            ? "relative max-w-[62rem] px-2 py-2"
+            : ""
         }
       >
-        <span
-          className={
-            isOverlay
-              ? "block text-[clamp(2.5rem,4.05vw,4.15rem)] leading-[0.99] font-semibold tracking-[-0.036em] lg:whitespace-nowrap"
-              : "block"
-          }
-        >
-          {title1}
-        </span>
-        <span
-          className={
-            isOverlay
-              ? "mt-0.5 block text-[clamp(2.5rem,4.05vw,4.15rem)] leading-[0.99] font-semibold tracking-[-0.036em] text-primary lg:whitespace-nowrap"
-              : "block text-primary"
-          }
-        >
-          {title2}
-        </span>
-        <span
-          className={
-            isOverlay
-              ? "mt-2 block text-[clamp(1.28rem,1.55vw,2rem)] leading-[1.05] font-light tracking-[-0.022em] text-white/46 drop-shadow-[0_2px_8px_rgba(0,0,0,0.14)] lg:whitespace-nowrap"
-              : "mt-1.5 block max-w-[18ch] text-[clamp(1.05rem,0.84rem+1vw,2.35rem)] leading-[1.12] font-normal text-muted-foreground sm:mt-2"
-          }
-        >
-          {title3}
-        </span>
-      </h1>
+        {isOverlay ? (
+          <div className="mb-6 h-px w-20 bg-[linear-gradient(90deg,rgba(220,38,38,0.95),rgba(255,255,255,0.75),transparent)]" />
+        ) : null}
 
-      <p
-        className={
-          isOverlay
-            ? "mt-7 max-w-[56ch] text-[clamp(0.98rem,0.95rem+0.1vw,1.03rem)] leading-[1.8] text-white/56 drop-shadow-[0_2px_8px_rgba(0,0,0,0.08)] sm:mt-7"
-            : "measure-intro-tight mt-4 text-body-fluid text-muted-foreground sm:mt-6"
-        }
-      >
-        {renderHeroDescription(description)}
-      </p>
+        {badge ? (
+          <div
+            className={
+              isOverlay
+                ? "mb-5 inline-flex max-w-full rounded-full border border-white/10 bg-white/5 px-3 py-1 text-center text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-white/68 backdrop-blur-sm sm:text-xs sm:tracking-[0.18em]"
+                : "mb-5 inline-flex max-w-full rounded-full border border-border/70 bg-accent px-3 py-1 text-center text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:text-xs sm:tracking-[0.18em]"
+            }
+          >
+            {badge}
+          </div>
+        ) : null}
 
-      <div className="mt-8 sm:mt-9">
+        <h1
+          className={
+            isOverlay
+              ? combinePrimaryTitle
+                ? "relative z-10 inline-flex max-w-none flex-col text-white drop-shadow-[0_10px_34px_rgba(0,0,0,0.42)]"
+                : "relative z-10 max-w-none text-white drop-shadow-[0_10px_34px_rgba(0,0,0,0.42)]"
+              : "measure-display text-display-fluid text-foreground"
+          }
+        >
+          {isOverlay && combinePrimaryTitle ? (
+            <span className="block bg-gradient-to-r from-white via-white to-white/82 bg-clip-text text-[clamp(2.15rem,3.3vw,3.9rem)] leading-[0.94] font-semibold tracking-[-0.04em] text-transparent lg:whitespace-nowrap">
+              <span>{title1} </span>
+              <span className="text-primary">{title2}</span>
+            </span>
+          ) : (
+            <>
+              <span
+                className={
+                  isOverlay
+                    ? "block text-[clamp(2.5rem,4.05vw,4.15rem)] leading-[0.99] font-semibold tracking-[-0.036em] lg:whitespace-nowrap"
+                    : "block"
+                }
+              >
+                {title1}
+              </span>
+              <span
+                className={
+                  isOverlay
+                    ? "mt-0.5 block text-[clamp(2.5rem,4.05vw,4.15rem)] leading-[0.99] font-semibold tracking-[-0.036em] text-primary lg:whitespace-nowrap"
+                    : "block text-primary"
+                }
+              >
+                {title2}
+              </span>
+            </>
+          )}
+          <span
+            className={
+              isOverlay
+                ? combinePrimaryTitle
+                  ? "mt-4 block text-center text-[clamp(1.08rem,1.22vw,1.38rem)] leading-none font-medium tracking-[0.08em] text-white/88 drop-shadow-[0_8px_22px_rgba(0,0,0,0.42)]"
+                  : "mt-2 block text-[clamp(1.28rem,1.55vw,2rem)] leading-[1.05] font-light tracking-[-0.022em] text-white/46 drop-shadow-[0_2px_8px_rgba(0,0,0,0.14)] lg:whitespace-nowrap"
+                : "mt-1.5 block max-w-[18ch] text-[clamp(1.05rem,0.84rem+1vw,2.35rem)] leading-[1.12] font-normal text-muted-foreground sm:mt-2"
+            }
+          >
+            {title3}
+          </span>
+        </h1>
+
         <p
           className={
             isOverlay
-              ? "text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-white/42 sm:text-[0.72rem]"
+              ? "relative z-10 mt-7 max-w-[78ch] text-left text-[clamp(1rem,0.97rem+0.14vw,1.12rem)] leading-[1.8] text-white/94 drop-shadow-[0_8px_24px_rgba(0,0,0,0.44)] sm:mt-7"
+              : "measure-intro-tight mt-4 text-body-fluid text-muted-foreground sm:mt-6"
+          }
+        >
+          {renderHeroDescription(description, isOverlay ? "md:whitespace-nowrap" : undefined)}
+        </p>
+      </div>
+
+      <div className="mt-9 sm:mt-10">
+        <p
+          className={
+            isOverlay
+              ? "text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-white/52 sm:text-[0.76rem]"
               : "text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground sm:text-[0.72rem]"
           }
         >
@@ -229,35 +260,87 @@ function HeroContent({
             href={`#${service.anchor}`}
             className={
               isOverlay
-                ? "group flex min-h-[3.3rem] min-w-0 items-center justify-between gap-3 rounded-[1rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.055),rgba(255,255,255,0.025))] px-4 py-3 text-[0.92rem] text-white/70 shadow-[0_6px_14px_rgba(0,0,0,0.07)] backdrop-blur-sm transition-all hover:border-primary/36 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.075),rgba(255,255,255,0.035))] hover:text-white/90"
+                ? "group relative flex min-h-[3.65rem] min-w-0 items-center justify-between gap-3 overflow-hidden rounded-[1.35rem] border border-white/10 bg-[linear-gradient(180deg,rgba(11,14,19,0.88),rgba(11,14,19,0.64))] px-4 py-3.5 text-[0.94rem] text-white/84 shadow-[0_16px_38px_rgba(0,0,0,0.18)] backdrop-blur-xl transition-all duration-300 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-[linear-gradient(90deg,rgba(255,255,255,0.05),rgba(255,255,255,0.32),transparent)] before:content-[''] hover:-translate-y-0.5 hover:border-white/18 hover:text-white"
                 : "group inline-flex min-w-0 items-center gap-2 rounded-full border border-border/70 bg-card px-4 py-2 text-sm text-foreground shadow-[0_10px_22px_rgba(15,23,42,0.08)] transition-all hover:border-primary/45 hover:bg-accent"
             }
           >
-            <span className="min-w-0 [text-wrap:balance]">{service.title}</span>
-            <DoorOpen className="h-3.5 w-3.5 shrink-0 text-primary transition-transform group-hover:translate-x-0.5" />
+            <span className={isOverlay ? "min-w-0 font-medium [text-wrap:balance]" : "min-w-0 [text-wrap:balance]"}>
+              {service.title}
+            </span>
+            {isOverlay ? (
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.045] text-primary/92 transition-all duration-300 group-hover:border-primary/30 group-hover:bg-primary/10">
+                <DoorOpen className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+              </span>
+            ) : (
+              <DoorOpen className="h-3.5 w-3.5 shrink-0 text-primary/92 transition-transform duration-300 group-hover:translate-x-0.5" />
+            )}
           </Link>
         ))}
       </div>
 
-      <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:gap-4">
-        <Button asChild size="lg" className="w-full gap-2 sm:w-auto">
-          <a href="tel:+493023613927">
-            <Phone className="h-5 w-5" />
-            {callNow}
-          </a>
-        </Button>
-        <Button asChild size="lg" variant="secondary" className="w-full gap-2 sm:w-auto">
-          <a href="https://wa.me/4917664365185" target="_blank" rel="noopener noreferrer">
-            <MessageCircle className="h-5 w-5" />
-            {whatsapp}
-          </a>
-        </Button>
-        <Button asChild size="lg" variant="outline" className="hidden w-full gap-2 sm:inline-flex sm:w-auto">
-          <Link href="/kontakt">
-            {inquiry}
-            <ArrowRight className="h-5 w-5" />
-          </Link>
-        </Button>
+      <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
+          <Button asChild size="lg" className="w-full gap-2 sm:w-auto">
+            <a href="tel:+493023613927">
+              <Phone className="h-5 w-5" />
+              {callNow}
+            </a>
+          </Button>
+          <Button asChild size="lg" variant="secondary" className="w-full gap-2 sm:w-auto">
+            <a href="https://wa.me/4917664365185" target="_blank" rel="noopener noreferrer">
+              <MessageCircle className="h-5 w-5" />
+              {whatsapp}
+            </a>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="hidden w-full gap-2 sm:inline-flex sm:w-auto">
+            <Link href="/kontakt">
+              {inquiry}
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+          </Button>
+        </div>
+        <a
+          href={mapsHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={
+            isOverlay
+              ? "group inline-flex w-full max-w-full items-start gap-3 text-left text-white/86 transition-all duration-300 hover:text-white sm:ml-6 sm:w-auto sm:justify-end"
+              : "group inline-flex max-w-full items-center gap-3 rounded-[1.1rem] border border-border/70 bg-card px-4 py-3 text-left text-foreground shadow-[0_14px_34px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-accent"
+          }
+        >
+          <span
+            className={
+              isOverlay
+                ? "mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/28 bg-primary/10 text-primary"
+                : "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/8 text-primary"
+            }
+          >
+            <MapPin className="h-5 w-5" />
+          </span>
+          <span className="min-w-0">
+            <span
+              className={
+                isOverlay
+                  ? "block truncate text-[1rem] font-semibold leading-tight text-white"
+                  : "block truncate text-[0.95rem] font-semibold leading-tight text-foreground"
+              }
+            >
+              {addressPrimary}
+            </span>
+            {addressSecondary ? (
+              <span
+                className={
+                  isOverlay
+                    ? "mt-1 block truncate text-[0.74rem] font-medium uppercase tracking-[0.22em] text-white/48"
+                    : "mt-1 block truncate text-[0.76rem] font-medium uppercase tracking-[0.14em] text-muted-foreground"
+                }
+              >
+                {addressSecondary}
+              </span>
+            ) : null}
+          </span>
+        </a>
       </div>
 
       <div className="mt-4 sm:hidden">
@@ -272,32 +355,6 @@ function HeroContent({
           {viewAllServices}
           <ArrowRight className="h-4 w-4" />
         </Link>
-      </div>
-
-      <div
-        className={
-          isOverlay
-            ? "mt-8 flex flex-col gap-3 text-sm text-white/54 sm:mt-10 sm:flex-row sm:items-center sm:gap-4"
-            : "mt-8 flex flex-col gap-3 text-sm text-muted-foreground sm:mt-10 sm:flex-row sm:items-center sm:gap-4"
-        }
-      >
-        <div className="flex items-center gap-2">
-          <svg className="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-            />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-          </svg>
-          <span>{address}</span>
-        </div>
       </div>
     </div>
   )
@@ -362,10 +419,10 @@ export async function HeroSection() {
             className="object-cover object-[center_18%] lg:object-[center_16%]"
             priority
           />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(255,255,255,0.18),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(11,14,20,0.22))]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/56 via-black/22 via-42% to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/8 via-transparent to-black/12" />
-          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/24 via-black/8 to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_76%_18%,rgba(255,255,255,0.14),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(11,14,20,0.08))]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,8,12,0.42)_0%,rgba(8,10,14,0.22)_24%,rgba(8,10,14,0.08)_52%,rgba(8,10,14,0.04)_100%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/6 via-transparent to-black/14" />
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/24 via-black/6 to-transparent" />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 pb-18 pt-24 lg:px-8 lg:pb-20">
@@ -374,6 +431,7 @@ export async function HeroSection() {
             title1={t.title1}
             title2={t.title2}
             title3={t.title3}
+            combinePrimaryTitle
             description={t.description}
             services={mainServices}
             callNow={t.callNow}
@@ -381,7 +439,7 @@ export async function HeroSection() {
             whatsapp={t.whatsapp}
             address={t.address}
             viewAllServices={viewAllServices}
-            className="mx-auto max-w-[54rem]"
+            className="max-w-[62rem]"
           />
         </div>
       </div>

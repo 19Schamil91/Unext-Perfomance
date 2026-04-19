@@ -11,11 +11,11 @@ export async function WhySection() {
   return (
     <section className="bg-card py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="mx-auto mb-16 max-w-3xl text-center">
-          <h2 className="mx-auto measure-heading text-heading-fluid font-semibold text-foreground">
+        <div className="mx-auto mb-16 max-w-5xl text-center">
+          <h2 className="mx-auto text-heading-fluid font-semibold text-foreground lg:whitespace-nowrap">
             {t.title}
           </h2>
-          <p className="mx-auto mt-4 measure-intro text-body-fluid text-muted-foreground">{t.description}</p>
+          <p className="mx-auto mt-4 text-body-fluid text-muted-foreground lg:whitespace-nowrap">{t.description}</p>
         </div>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">

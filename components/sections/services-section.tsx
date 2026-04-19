@@ -89,8 +89,8 @@ export async function ServicesSection() {
           </h2>
           <ReadableText
             text={t.description}
-            targetLineLength={76}
-            className="mx-auto mt-3 measure-intro-tight text-body-fluid text-muted-foreground sm:mt-4"
+            targetLineLength={180}
+            className="mx-auto mt-3 max-w-none text-body-fluid text-muted-foreground lg:whitespace-nowrap sm:mt-4"
           />
         </div>
 
