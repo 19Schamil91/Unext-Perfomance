@@ -28,7 +28,7 @@ const serviceDescriptionLineLength = {
   ru: 48,
 } satisfies Record<Locale, number>
 
-const serviceTitleLineBreaks = {
+const serviceTitleLineBreaks: Partial<Record<Locale, Record<string, string[]>>> = {
   de: {
     "Kfz-Werkstatt & Reparatur": ["Kfz-Werkstatt", "& Reparatur"],
     "Abschleppdienst & Pannenhilfe": ["Abschleppdienst", "& Pannenhilfe"],
@@ -43,7 +43,7 @@ const serviceTitleLineBreaks = {
     "Сервис регистрации авто": ["Сервис регистрации", "авто"],
     "Эвакуатор и помощь на дороге": ["Эвакуатор", "и помощь на дороге"],
   },
-} satisfies Partial<Record<Locale, Record<string, string[]>>>
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getCurrentLocale()
