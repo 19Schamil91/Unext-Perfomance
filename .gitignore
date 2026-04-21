@@ -11,6 +11,14 @@ next.user-config.*
 .env*.local
 
 # Common ignores
-node_modules
+node_modules/
 .next/
-.DS_Store
+.DS_Store*
+*.log
+*.err
+*.tsbuildinfo
+
+# Local Next.js dev artifacts
+.next-dev.log
+.next-dev.err
+tsconfig.tsbuildinfo
