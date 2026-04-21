@@ -7,9 +7,13 @@ interface SelectedServiceTrackerProps {
 }
 
 export function SelectedServiceTracker({
-  serviceName: _serviceName,
-  serviceTitle: _serviceTitle,
-  href: _href,
+  serviceName,
+  serviceTitle,
+  href,
 }: SelectedServiceTrackerProps) {
+  void serviceName
+  void serviceTitle
+  void href
+
   return null
 }

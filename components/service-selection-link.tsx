@@ -11,13 +11,16 @@ interface ServiceSelectionLinkProps extends LinkProps {
 }
 
 export function ServiceSelectionLink({
-  serviceName: _serviceName,
-  serviceTitle: _serviceTitle,
+  serviceName,
+  serviceTitle,
   href,
   className,
   children,
   ...props
 }: ServiceSelectionLinkProps) {
+  void serviceName
+  void serviceTitle
+
   return (
     <Link href={href} className={className} {...props}>
       {children}
