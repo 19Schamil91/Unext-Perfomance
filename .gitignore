@@ -22,3 +22,6 @@ node_modules/
 .next-dev.log
 .next-dev.err
 tsconfig.tsbuildinfo
+
+# Claude Code Chat-Historie (lokal, nicht ins Repo)
+.claude/
