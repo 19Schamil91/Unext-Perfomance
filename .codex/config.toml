@@ -1,0 +1,12 @@
+# .codex/config.toml
+# Projekt-lokale Codex-Konfiguration.
+#
+# Subagents nutzen `gpt-5.4-mini` (OpenAI Cloud) statt lokaler Ollama-Modelle.
+# Begründung: Tests mit qwen2.5-coder:3b und :7b haben gezeigt, dass diese
+# Modellgrößen die strukturierten Subagent-Instruktionen nicht zuverlässig
+# ausführen (fiktive Tool-Aufrufe, halluzinierte Komponenten).
+# gpt-5.4-mini verbraucht ca. 30% der Quota von gpt-5.4 und ist für
+# read-only Review-Aufgaben bei Subagents wirtschaftlich sinnvoll.
+#
+# Der Hauptagent nutzt weiterhin das Standard-Modell aus den
+# Codex-Einstellungen (typischerweise gpt-5.4).

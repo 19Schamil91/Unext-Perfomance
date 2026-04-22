@@ -22,3 +22,11 @@ node_modules/
 .next-dev.log
 .next-dev.err
 tsconfig.tsbuildinfo
+
+# Claude Code Chat-Historie (lokal, nicht ins Repo)
+.claude/
+# Codex runtime state (nicht ins Repo)
+.codex/state/
+
+# Ollama-Cache falls lokal abgelegt (vorsorglich)
+.ollama/
