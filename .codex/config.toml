@@ -1,0 +1,17 @@
+# .codex/config.toml
+# Projekt-lokale Codex-Konfiguration.
+# Diese Datei gehört ins Repository und wird mit eingecheckt.
+
+# Ollama als lokaler Modell-Provider für Subagents.
+# Ollama muss auf der Maschine installiert sein und laufen:
+#   - Installation: https://ollama.com
+#   - Start: `ollama serve` (läuft als Hintergrund-Prozess)
+#   - Modell laden (vor erstem Subagent-Lauf): `ollama pull qwen2.5-coder:3b`
+[model_providers.ollama]
+name = "Ollama (lokal)"
+base_url = "http://localhost:11434/v1"
+wire_api = "responses"
+
+# Der Hauptagent nutzt weiterhin das Cloud-Modell, das du im Codex-Konto
+# ausgewählt hast. Die Subagents (read-only) werden in ihren jeweiligen
+# TOML-Dateien auf den Ollama-Provider umgestellt.
