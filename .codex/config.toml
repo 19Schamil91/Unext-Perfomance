@@ -1,17 +1,12 @@
 # .codex/config.toml
 # Projekt-lokale Codex-Konfiguration.
-# Diese Datei gehört ins Repository und wird mit eingecheckt.
 #
-# Ollama als lokaler Modell-Provider für Subagents:
-# - `ollama` ist in Codex als Built-in-Provider bereits registriert
-#   mit dem Default-Endpunkt http://localhost:11434/v1.
-# - Wir müssen den Provider daher NICHT explizit definieren.
-# - Die drei Subagents referenzieren ihn direkt über
-#   `model_provider = "ollama"` in ihren jeweiligen .toml-Dateien.
+# Subagents nutzen `gpt-5.4-mini` (OpenAI Cloud) statt lokaler Ollama-Modelle.
+# Begründung: Tests mit qwen2.5-coder:3b und :7b haben gezeigt, dass diese
+# Modellgrößen die strukturierten Subagent-Instruktionen nicht zuverlässig
+# ausführen (fiktive Tool-Aufrufe, halluzinierte Komponenten).
+# gpt-5.4-mini verbraucht ca. 30% der Quota von gpt-5.4 und ist für
+# read-only Review-Aufgaben bei Subagents wirtschaftlich sinnvoll.
 #
-# Voraussetzungen (Runtime, nicht in dieser Datei konfiguriert):
-# - Ollama installiert (https://ollama.com)
-# - Ollama läuft (`ollama serve`, meist automatisch als Dienst)
-# - Modelle geladen:
-#     ollama pull qwen2.5-coder:3b
-#     ollama pull qwen2.5-coder:7b
+# Der Hauptagent nutzt weiterhin das Standard-Modell aus den
+# Codex-Einstellungen (typischerweise gpt-5.4).

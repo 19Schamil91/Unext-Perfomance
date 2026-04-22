@@ -7,8 +7,8 @@ description = "Read-only codebase scanner. Kartiert bestehende Komponenten, Util
 
 # Lokales Modell über Ollama. Klein und schnell — für reine Scan-Aufgaben ausreichend.
 # Falls die Hardware mehr hergibt, kann auf qwen2.5-coder:7b erhöht werden.
-model = "qwen2.5-coder:3b"
-model_provider = "ollama"
+model = "gpt-5.4-mini"
+model_provider = "openai"
 model_reasoning_effort = "low"
 
 # Read-only: keinerlei Schreibrechte. Dieser Agent scannt und berichtet.

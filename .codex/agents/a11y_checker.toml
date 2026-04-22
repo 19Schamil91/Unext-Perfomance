@@ -5,8 +5,8 @@ name = "a11y_checker"
 description = "Read-only Accessibility-Prüfer. Arbeitet AGENTS.md §18 als Checkliste gegen geänderte oder neue UI-Komponenten ab. Muss gespawnt werden bei jedem Task, der UI-Elemente oder Formulare einführt oder ändert."
 
 # Kleines Modell — Checklisten-Abarbeitung ist keine komplexe Aufgabe.
-model = "qwen2.5-coder:3b"
-model_provider = "ollama"
+model = "gpt-5.4-mini"
+model_provider = "openai"
 model_reasoning_effort = "low"
 
 sandbox_mode = "read-only"

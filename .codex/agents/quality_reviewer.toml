@@ -6,8 +6,8 @@ name = "quality_reviewer"
 description = "Read-only Code-Reviewer. Prüft geänderten Code gegen AGENTS.md §5 (Kommentare), §6 (Verbote), §11 (Naming) und §14 (Definition of Done). Muss nach jedem schreibenden Task und vor der Fertigmeldung gespawnt werden."
 
 # Mittleres Modell für Review-Aufgaben. Bei knapper Hardware auf qwen2.5-coder:3b reduzieren.
-model = "qwen2.5-coder:7b"
-model_provider = "ollama"
+model = "gpt-5.4-mini"
+model_provider = "openai"
 model_reasoning_effort = "medium"
 
 # Read-only: der Reviewer darf nichts schreiben. Korrekturen macht der Hauptagent.
