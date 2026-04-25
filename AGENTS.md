@@ -314,14 +314,15 @@ Wird ein Punkt nicht erfüllt, ist die Arbeit nicht fertig — unabhängig davon
 ## 15. Arbeitsablauf pro Task
 
 1. **AGENTS.md gelesen** (bei Session-Start, erneut bei größerem Task).
-2. **Verstehen:** Task in eigenen Worten kurz zusammenfassen. Bei Unklarheit **eine** gezielte Rückfrage.
-3. **Risiko-Check** (§13): Fällt der Task unter eine Pflicht-Rückfrage-Kategorie? Wenn ja → stop, rückfragen.
-4. **Subagent-Delegation (§19):** Prüfen, ob ein Subagent für die Vorarbeit sinnvoll ist — wenn ja, explizit spawnen.
-5. **Scannen:** Wenn UI betroffen ist → `/components/ui` und `/components` prüfen (§3) und Ergebnis zeigen.
-6. **Planen:** Stichpunkt-Liste der geplanten Änderungen, bevor Code geschrieben wird.
-7. **Umsetzen:** Nur die geplanten Änderungen. Kein „ich habe noch das und das mitverbessert".
-8. **Prüfen:** Die neun Punkte aus §14 durchgehen.
-9. **Berichten:** Kurz und präzise — welche Dateien, was, warum.
+2. **Prompt-Prüfung (§20):** Beginnt der Prompt mit `/c`? Wenn ja → §20-Ablauf statt direkter Umsetzung. Sonst weiter zu Schritt 3.
+3. **Verstehen:** Task in eigenen Worten kurz zusammenfassen. Bei Unklarheit **eine** gezielte Rückfrage.
+4. **Risiko-Check** (§13): Fällt der Task unter eine Pflicht-Rückfrage-Kategorie? Wenn ja → stop, rückfragen.
+5. **Subagent-Delegation (§19):** Prüfen, ob ein Subagent für die Vorarbeit sinnvoll ist — wenn ja, explizit spawnen.
+6. **Scannen:** Wenn UI betroffen ist → `/components/ui` und `/components` prüfen (§3) und Ergebnis zeigen.
+7. **Planen:** Stichpunkt-Liste der geplanten Änderungen, bevor Code geschrieben wird.
+8. **Umsetzen:** Nur die geplanten Änderungen. Kein „ich habe noch das und das mitverbessert".
+9. **Prüfen:** Die neun Punkte aus §14 durchgehen.
+10. **Berichten:** Kurz und präzise — welche Dateien, was, warum.
 
 ---
 
@@ -422,3 +423,51 @@ Bei **sehr kleinen Änderungen** (einzelne Textänderung, Tippfehler, Styling-Mi
 
 Dieses Projekt definiert eigene Skills unter `.agents/skills/`:
 - **`next-router-check`** — prüft, ob für eine datenladende Route `loading.tsx`, `error.tsx` und `not-found.tsx` vorhanden sind (§10 operationalisiert). Wird typischerweise vom `quality_reviewer` aufgerufen.
+
+---
+
+## 20. Prompt-Prüfung mit /c
+
+Der Hauptagent unterstützt einen expliziten Klärungsmodus, der über das Schlüsselwort `/c` am Anfang einer Nachricht des Users aktiviert wird.
+
+### 20.1 Wann der Modus greift
+
+- **Nur** wenn der User-Prompt mit `/c` beginnt (am Anfang der Nachricht, optional gefolgt von einem Leerzeichen oder Doppelpunkt).
+- Bei normalen Prompts (ohne `/c`) arbeitet der Agent wie üblich nach §15.
+- Der Agent darf den Modus **nicht ungefragt aktivieren** — der User entscheidet.
+
+### 20.2 Pflichtablauf bei /c
+
+Wenn `/c` erkannt wird, antwortet der Agent in **genau dieser Struktur**, bevor er irgendeinen Code schreibt oder Tool ausführt:
+
+**1. VERSTANDEN**
+Eine Zusammenfassung der Aufgabe in 1-3 Sätzen, in eigenen Worten. Keine Wiederholung des Prompts, sondern Interpretation.
+
+**2. FEHLT**
+Liste konkreter Informationslücken, die der Agent vor der Umsetzung benötigt. Pro Lücke ein Stichpunkt mit der konkreten Frage. Wenn nichts fehlt, explizit schreiben: „Keine Lücken erkannt."
+
+**3. VORSCHLAG**
+Konkrete Empfehlung des Agenten zur Umsetzung. Welche Komponenten/Dateien werden angefasst, welche Architektur-Entscheidung wird vorgeschlagen, welche Alternativen wurden verworfen. Maximal 5-8 Stichpunkte.
+
+**4. AUSFÜHRUNG**
+Der Agent hält **an dieser Stelle an** und wartet auf eine Antwort des Users. Erst wenn der User die Vorschläge bestätigt oder modifiziert hat, beginnt der Agent mit der eigentlichen Umsetzung.
+
+### 20.3 Verhalten bei der Antwort des Users
+
+- Bestätigung („passt", „mach so", „ja"): Agent setzt nach §15 um.
+- Modifikation („mach X statt Y"): Agent integriert die Änderung, beginnt umzusetzen, **ohne** erneut die vier Schritte durchzulaufen.
+- Neue Klärung nötig (User stellt Gegenfrage): Agent antwortet konkret, wartet erneut.
+- Abbruch („vergiss es"): Agent stoppt, wartet auf neuen Auftrag.
+
+### 20.4 Verzahnung mit anderen Regeln
+
+- §13 (Risikostufen) hat **Vorrang** vor §20: Fällt der Task unter eine Pflicht-Rückfrage-Kategorie, gilt die Pflicht-Rückfrage zusätzlich, auch wenn `/c` nicht genutzt wurde.
+- §19 (Subagent-Delegation): Subagents werden **nach** der `/c`-Klärung gespawnt, nicht vorher. Der `/c`-Modus selbst nutzt keine Subagents.
+- §3 (Wiederverwendungspflicht): Im VORSCHLAG-Schritt nennt der Agent bereits, welche bestehenden Komponenten geprüft und ggf. wiederverwendet werden — nicht erst während der Ausführung.
+
+### 20.5 Was /c NICHT ist
+
+- Kein Ersatz für Pflicht-Rückfragen aus §13.
+- Kein Auto-Modus, der ungefragt anspringt.
+- Kein Ersatz für klare Prompts: `/c` schärft den Prompt, ersetzt ihn aber nicht.
+- Keine Garantie für perfekte Ergebnisse — sondern eine strukturierte Klärungsrunde, die typische Missverständnisse vor der Umsetzung abfängt.
