@@ -1,6 +1,12 @@
+/*
+  Diese Datei ist die Uebersichtsseite fuer alle Leistungen.
+  Sie zeigt die sechs Hauptleistungen mit Bildern, Vorteilen und Kontaktaktionen.
+  Besucher koennen eine Leistung auswaehlen, Details oeffnen oder direkt anrufen.
+*/
 import type { Metadata } from "next"
 import Image from "next/image"
 import { ArrowRight, Car, ClipboardCheck, FileCheck, Phone, Sparkles, Truck, Wrench } from "lucide-react"
+import { DevPageCompareProvider, DevPageCompareView } from "@/components/DevPageCompare"
 import { ReadableText } from "@/components/readable-text"
 import { CtaSection } from "@/components/sections/cta-section"
 import { SiteFooter } from "@/components/site-footer"
@@ -13,7 +19,7 @@ import { buildPageMetadata } from "@/lib/metadata"
 import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
 
-interface ServiceMeta {
+type ServiceMeta = {
   icon: typeof FileCheck
   image: string
   imageClassName: string
@@ -24,8 +30,8 @@ interface ServiceMeta {
 
 const serviceDescriptionLineLength = {
   de: 54,
-  en: 50,
-  ru: 48,
+  en: 72,
+  ru: 72,
 } satisfies Record<Locale, number>
 
 const serviceTitleLineBreaks: Partial<Record<Locale, Record<string, string[]>>> = {
@@ -139,7 +145,7 @@ export default async function LeistungenPage() {
     ))
   }
 
-  const renderServiceCards = (balancedText: boolean) => (
+  const renderServiceCards = (balancedText: boolean, shouldUseCompactDescriptionLeading = false) => (
     <div className="space-y-16">
       {t.items.map((service, index) => {
         const meta = serviceMeta[index]
@@ -190,10 +196,17 @@ export default async function LeistungenPage() {
                     <ReadableText
                       text={service.description}
                       targetLineLength={descriptionLineLength}
-                      className="mt-5 max-w-[64ch] text-[1rem] leading-8 text-muted-foreground sm:mt-6"
+                      lineGapClassName={shouldUseCompactDescriptionLeading ? "" : undefined}
+                      className={`mt-5 max-w-[64ch] text-[1rem] text-muted-foreground sm:mt-6 ${
+                        shouldUseCompactDescriptionLeading ? "leading-[1.55]" : "leading-8"
+                      }`}
                     />
                   ) : (
-                    <p className="mt-5 max-w-[62ch] text-[1rem] leading-8 text-muted-foreground sm:mt-6">
+                    <p
+                      className={`mt-5 max-w-[62ch] text-[1rem] text-muted-foreground sm:mt-6 ${
+                        shouldUseCompactDescriptionLeading ? "leading-[1.55]" : "leading-8"
+                      }`}
+                    >
                       {service.description}
                     </p>
                   )}
@@ -271,7 +284,18 @@ export default async function LeistungenPage() {
         </section>
 
         <section className="bg-background py-16 lg:py-24">
-          <div className="mx-auto max-w-7xl px-4 lg:px-8">{renderServiceCards(true)}</div>
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">
+            {process.env.NODE_ENV !== "production" ? (
+              <DevPageCompareProvider>
+                <DevPageCompareView
+                  before={renderServiceCards(true)}
+                  after={renderServiceCards(true, true)}
+                />
+              </DevPageCompareProvider>
+            ) : (
+              renderServiceCards(true, true)
+            )}
+          </div>
         </section>
 
         <CtaSection />
