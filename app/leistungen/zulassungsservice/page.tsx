@@ -1,3 +1,8 @@
+/*
+  Diese Datei ist die Detailseite fuer den Kfz-Zulassungsservice.
+  Sie zeigt den Leistungsbereich mit Einleitung, Vorteilen, Servicekarten, Gruenden, Fragen und dem Anfrageformular.
+  Besucher koennen die Inhalte lesen und direkt Kontakt per Telefon, WhatsApp oder Formular aufnehmen.
+*/
 import type { Metadata } from "next"
 import { DevPageCompareProvider, DevPageCompareView } from "@/components/dev-page-compare"
 import { SiteFooter } from "@/components/site-footer"
@@ -16,18 +21,28 @@ const registrationTitleLines = {
   ru: ["Сервис регистрации авто"],
 } satisfies Record<Locale, readonly string[]>
 
+// Diese Zeilen halten nur den grossen Einleitungstext im Hero optisch ruhiger.
 const registrationDescriptionLines = {
   de: [
-    "Wir übernehmen die Anmeldung, Abmeldung und weitere Formalitäten rund um Ihr Fahrzeug schnell, zuverlässig und unkompliziert.",
-    `So sparen Sie Zeit, vermeiden unnötige Wartezeiten und müssen sich nicht selbst um${NB}Behördengänge kümmern.`,
+    "Wir übernehmen die Anmeldung, Abmeldung",
+    "und weitere Formalitäten rund um Ihr Fahrzeug",
+    "schnell, zuverlässig und unkompliziert.",
+    "So sparen Sie Zeit, vermeiden unnötige Wartezeiten",
+    `und müssen sich nicht selbst um${NB}Behördengänge kümmern.`,
   ],
   en: [
-    "We handle registration, deregistration and other formalities for your vehicle quickly, reliably and without complications.",
-    "This saves you time, avoids unnecessary waiting and means you do not have to deal with the authorities yourself.",
+    "We handle registration, deregistration and",
+    "other formalities for your vehicle quickly,",
+    "reliably and without complications.",
+    "This saves you time, avoids unnecessary waiting",
+    "and means you do not have to deal with the authorities yourself.",
   ],
   ru: [
-    "Мы берем на себя регистрацию, снятие с учета и другие формальности, связанные с вашим автомобилем, быстро, надежно и без лишних сложностей.",
-    "Так вы экономите время, избегаете ожидания и вам не нужно самостоятельно посещать ведомства.",
+    "Мы берем на себя регистрацию, снятие с учета",
+    "и другие формальности, связанные с вашим",
+    "автомобилем, быстро, надежно и без лишних сложностей.",
+    "Так вы экономите время, избегаете ожидания",
+    "и вам не нужно самостоятельно посещать ведомства.",
   ],
 } satisfies Record<Locale, readonly string[]>
 
