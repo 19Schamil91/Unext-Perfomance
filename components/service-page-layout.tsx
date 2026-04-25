@@ -232,11 +232,11 @@ export async function ServicePageLayout({
               {renderLines(title, titleLines)}
             </h1>
             {descriptionLines ? (
-              <p className="mt-5 max-w-[62ch] text-body-fluid text-muted-foreground text-pretty sm:mt-6 sm:max-w-[68ch] lg:max-w-[72ch]">
+              <p className="mt-5 max-w-[62ch] text-body-fluid leading-[1.38] text-muted-foreground text-pretty sm:mt-6 sm:max-w-[68ch] lg:max-w-[72ch]">
                 {descriptionLines.map((line, index) => (
                   <span
                     key={`${description}-${line}-${index}`}
-                    className={index === 0 ? "block" : "mt-1.5 block sm:mt-2"}
+                    className="block"
                   >
                     {line}
                   </span>
@@ -334,13 +334,14 @@ export async function ServicePageLayout({
                   renderParagraphLines(
                     service.description,
                     serviceDescriptionLines[service.title],
-                    "mt-3 max-w-full text-[0.98rem] leading-[1.55] text-muted-foreground"
+                    "mt-3 max-w-full text-[0.98rem] leading-[1.45] text-muted-foreground"
                   )
                 ) : (
                   <ReadableText
                     text={service.description}
                     targetLineLength={balancedTypography ? 34 : 38}
-                    className="mt-3 max-w-full text-[0.98rem] leading-[1.55] text-muted-foreground"
+                    lineGapClassName=""
+                    className="mt-3 max-w-full text-[0.98rem] leading-[1.45] text-muted-foreground"
                   />
                 )}
               </div>
@@ -385,13 +386,14 @@ export async function ServicePageLayout({
                         renderParagraphLines(
                           item.description,
                           whyChooseDescriptionLines[item.title],
-                          "mt-2 max-w-full text-body-compact leading-[1.6] text-muted-foreground"
+                          "mt-2 max-w-full text-body-compact leading-[1.45] text-muted-foreground"
                         )
                       ) : (
                         <ReadableText
                           text={item.description}
                           targetLineLength={balancedTypography ? 36 : 40}
-                          className="mt-2 max-w-full text-body-compact leading-[1.6] text-muted-foreground"
+                          lineGapClassName=""
+                          className="mt-2 max-w-full text-body-compact leading-[1.45] text-muted-foreground"
                         />
                       )}
                     </div>

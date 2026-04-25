@@ -1,3 +1,8 @@
+/*
+  Diese Datei zeigt das Anfrageformular auf den Leistungsseiten.
+  Besucher koennen ihre Kontaktdaten, Fahrzeugdaten und eine Nachricht eingeben.
+  Nach dem Absenden zeigt das Formular eine einfache Erfolgsmeldung.
+*/
 "use client"
 
 import { useState } from "react"
@@ -12,13 +17,13 @@ import { Textarea } from "@/components/ui/textarea"
 import type { ServiceInquiryDraft } from "@/lib/browser-storage"
 import { getTranslations } from "@/lib/translations"
 
-interface ServiceInquiryFormProps {
+type ServiceInquiryFormProps = {
   serviceName: string
   serviceTitle: string
   fields?: ServiceInquiryFields
 }
 
-export interface ServiceInquiryFields {
+export type ServiceInquiryFields = {
   vehicle?: boolean
   date?: boolean
   subject?: boolean
@@ -95,7 +100,7 @@ export function ServiceInquiryForm({
         <CardTitle className="max-w-[22ch] text-[clamp(1.22rem,1.08rem+0.5vw,1.65rem)] leading-[1.14]">
           {serviceTitle}
         </CardTitle>
-        <CardDescription className="max-w-[44ch] text-body-compact text-muted-foreground">
+        <CardDescription className="max-w-none text-body-compact text-muted-foreground lg:whitespace-nowrap">
           {t.description}
         </CardDescription>
       </CardHeader>

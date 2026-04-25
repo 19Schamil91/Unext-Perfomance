@@ -6,7 +6,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import { ArrowRight, Car, ClipboardCheck, FileCheck, Phone, Sparkles, Truck, Wrench } from "lucide-react"
-import { DevPageCompareProvider, DevPageCompareView } from "@/components/DevPageCompare"
 import { ReadableText } from "@/components/readable-text"
 import { CtaSection } from "@/components/sections/cta-section"
 import { SiteFooter } from "@/components/site-footer"
@@ -37,7 +36,6 @@ const serviceDescriptionLineLength = {
 const serviceTitleLineBreaks: Partial<Record<Locale, Record<string, string[]>>> = {
   en: {
     "Accident Reports & Immediate Assistance": ["Accident Reports", "& Immediate Assistance"],
-    "Vehicle Registration Service": ["Vehicle Registration", "Service"],
     "Towing & Roadside Assistance": ["Towing &", "Roadside Assistance"],
   },
   ru: {
@@ -280,18 +278,7 @@ export default async function LeistungenPage() {
         </section>
 
         <section className="bg-background py-16 lg:py-24">
-          <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            {process.env.NODE_ENV !== "production" ? (
-              <DevPageCompareProvider>
-                <DevPageCompareView
-                  before={renderServiceCards(true)}
-                  after={renderServiceCards(true, true)}
-                />
-              </DevPageCompareProvider>
-            ) : (
-              renderServiceCards(true, true)
-            )}
-          </div>
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">{renderServiceCards(true, true)}</div>
         </section>
 
         <CtaSection />
