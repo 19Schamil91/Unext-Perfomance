@@ -1,3 +1,8 @@
+/*
+  Diese Datei zeigt den Leistungsbereich auf der Startseite.
+  Sie zeigt die sechs Hauptleistungen als Karten mit Bild, Kurztext, Vorteilen und Kontaktaktion.
+  Besucher koennen eine Leistung ansehen, Details oeffnen oder direkt anrufen.
+*/
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Car, ClipboardCheck, FileCheck, Phone, Sparkles, Truck, Wrench } from "lucide-react"
@@ -9,7 +14,7 @@ import { homeServiceAnchors } from "@/lib/service-anchors"
 import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
 
-interface ServiceMeta {
+type ServiceMeta = {
   icon: typeof FileCheck
   image: string
   imageClassName: string
@@ -134,7 +139,7 @@ export async function ServicesSection() {
                         </div>
                       </div>
 
-                      <p className="mt-4 max-w-[62ch] text-[0.98rem] leading-8 text-muted-foreground">
+                      <p className="mt-4 max-w-[62ch] text-[0.98rem] leading-7 text-muted-foreground">
                         {service.description}
                       </p>
 

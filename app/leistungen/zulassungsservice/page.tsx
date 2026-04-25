@@ -4,7 +4,6 @@
   Besucher koennen die Inhalte lesen und direkt Kontakt per Telefon, WhatsApp oder Formular aufnehmen.
 */
 import type { Metadata } from "next"
-import { DevPageCompareProvider, DevPageCompareView } from "@/components/dev-page-compare"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { ServicePageLayout } from "@/components/service-page-layout"
@@ -164,8 +163,6 @@ export default async function ZulassungsservicePage() {
     formFields: { vehicle: true, subject: true, date: false } as const,
   }
 
-  const beforeLayout = <ServicePageLayout {...layoutBase} />
-
   const afterLayout = (
     <ServicePageLayout
       {...layoutBase}
@@ -184,13 +181,7 @@ export default async function ZulassungsservicePage() {
   return (
     <>
       <SiteHeader />
-      {process.env.NODE_ENV !== "production" ? (
-        <DevPageCompareProvider>
-          <DevPageCompareView before={beforeLayout} after={afterLayout} />
-        </DevPageCompareProvider>
-      ) : (
-        afterLayout
-      )}
+      {afterLayout}
       <SiteFooter />
     </>
   )

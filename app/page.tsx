@@ -1,3 +1,8 @@
+/*
+  Diese Datei ist die Startseite der Website.
+  Sie zeigt die wichtigsten Bereiche von UNEXT: Einstieg, Vertrauen, Leistungen, Ablauf, Vorteile, Unternehmen, Express-Service und Kontakt.
+  Besucher koennen Leistungen entdecken und direkt Kontakt aufnehmen.
+*/
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { HeroSection } from "@/components/sections/hero-section"
