@@ -1,5 +1,5 @@
 /*
-  Diese Datei ist die Detailseite fuer den Kfz-Zulassungsservice.
+  Diese Datei ist die Detailseite fuer die Kfz-Zulassung.
   Sie zeigt den Leistungsbereich mit Einleitung, Vorteilen, Servicekarten, Gruenden, Fragen und dem Anfrageformular.
   Besucher koennen die Inhalte lesen und direkt Kontakt per Telefon, WhatsApp oder Formular aufnehmen.
 */
@@ -15,7 +15,7 @@ import { getTranslations } from "@/lib/translations"
 const NB = "\u00A0"
 
 const registrationTitleLines = {
-  de: ["Kfz-Zulassungsservice"],
+  de: ["Kfz-Zulassung"],
   en: ["Vehicle Registration Service"],
   ru: ["Сервис регистрации авто"],
 } satisfies Record<Locale, readonly string[]>

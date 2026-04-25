@@ -1,3 +1,8 @@
+/*
+  Diese Datei ist die Detailseite fuer Werkstatt & Service.
+  Sie zeigt den Leistungsbereich mit Einleitung, Vorteilen, Servicekarten, Gruenden, Fragen und dem Anfrageformular.
+  Besucher koennen die Inhalte lesen und direkt Kontakt per Telefon, WhatsApp oder Formular aufnehmen.
+*/
 import type { Metadata } from "next"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
@@ -8,7 +13,7 @@ import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
 
 const workshopTitleLines = {
-  de: ["Kfz-Werkstatt & Reparatur"],
+  de: ["Werkstatt & Service"],
   en: ["Workshop & Service"],
   ru: ["Сервис и мастерская"],
 } satisfies Record<Locale, readonly string[]>

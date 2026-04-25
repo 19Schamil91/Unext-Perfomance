@@ -35,14 +35,10 @@ const serviceDescriptionLineLength = {
 } satisfies Record<Locale, number>
 
 const serviceTitleLineBreaks: Partial<Record<Locale, Record<string, string[]>>> = {
-  de: {
-    "Kfz-Werkstatt & Reparatur": ["Kfz-Werkstatt", "& Reparatur"],
-    "Abschleppdienst & Pannenhilfe": ["Abschleppdienst", "& Pannenhilfe"],
-  },
   en: {
     "Accident Reports & Immediate Assistance": ["Accident Reports", "& Immediate Assistance"],
     "Vehicle Registration Service": ["Vehicle Registration", "Service"],
-    "Towing & Roadside Assistance": ["Towing", "& Roadside Assistance"],
+    "Towing & Roadside Assistance": ["Towing &", "Roadside Assistance"],
   },
   ru: {
     "Экспертиза ДТП и срочная помощь": ["Экспертиза ДТП", "и срочная помощь"],
@@ -183,7 +179,7 @@ export default async function LeistungenPage() {
                       <h2
                         className={
                           balancedText
-                            ? "mt-1 max-w-[19ch] text-[clamp(1.22rem,1.06rem+0.46vw,1.58rem)] leading-[1.12] font-bold tracking-[-0.02em] text-foreground text-balance"
+                            ? "mt-1 max-w-none text-[clamp(1.22rem,1.06rem+0.46vw,1.58rem)] leading-[1.12] font-bold tracking-[-0.02em] text-foreground text-balance lg:whitespace-nowrap"
                             : "mt-1 text-[clamp(1.22rem,1.06rem+0.46vw,1.58rem)] leading-[1.08] font-bold tracking-[-0.02em] text-foreground lg:whitespace-nowrap"
                         }
                       >

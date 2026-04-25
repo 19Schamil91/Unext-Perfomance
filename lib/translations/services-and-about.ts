@@ -13,7 +13,7 @@ export const servicesAndAboutTranslations = {
           title: "Unfallhilfe & Gutachten",
           subtitle: "UNFALLX",
           description:
-            "Nach einem Unfall erhalten Sie schnelle Unterstützung, ein unabhängiges Gutachten und eine klare Orientierung für die nächsten Schritte.",
+            "Nach einem Unfall erhalten Sie schnelle Unterstützung, ein unabhängiges Gutachten und eine klare Orientierung für\u00A0die\u00A0nächsten Schritte.",
           features: [
             "Schnelle Ersteinschätzung",
             "Unterstützung bei der Schadensabwicklung",
@@ -34,7 +34,7 @@ export const servicesAndAboutTranslations = {
           ],
         },
         {
-          title: "Kfz-Werkstatt & Reparatur",
+          title: "Werkstatt & Service",
           subtitle: "Wartung & Reparatur",
           description:
             "Von Inspektion bis Reparatur kümmern wir uns zuverlässig um die Technik Ihres Fahrzeugs - auch wenn es schnell gehen muss.",
@@ -46,7 +46,7 @@ export const servicesAndAboutTranslations = {
           ],
         },
         {
-          title: "Fahrzeugaufbereitung",
+          title: "Aufbereitung & Pflege",
           subtitle: "Detailing",
           description:
             "Professionelle Innen- und Außenaufbereitung für gepflegte Fahrzeuge, Werterhalt und einen sauberen Gesamteindruck.",
@@ -58,10 +58,10 @@ export const servicesAndAboutTranslations = {
           ],
         },
         {
-          title: "Kfz-Zulassungsservice",
+          title: "Kfz-Zulassung",
           subtitle: "Anmeldung & Kennzeichen",
           description:
-            "Wir übernehmen den gesamten Ablauf für Sie - von der Abmeldung bis zur fertigen Zulassung. Kein Termin, kein Behördengang, kein Aufwand für Sie.",
+            "Wir übernehmen den gesamten Ablauf für Sie - von\u00A0der\u00A0Abmeldung\u00A0bis\u00A0zur\u00A0fertigen\u00A0Zulassung. Kein Termin, kein Behördengang, kein Aufwand für Sie.",
           features: [
             "Kfz-An- & Abmeldung",
             "Kurzzeit- & Exportkennzeichen",
@@ -70,7 +70,7 @@ export const servicesAndAboutTranslations = {
           ],
         },
         {
-          title: "Abschleppdienst & Pannenhilfe",
+          title: "Pannenhilfe & Abschleppen",
           subtitle: "Soforthilfe & Transport",
           description:
             "Im Notfall sind wir schnell für Sie da und sorgen für eine sichere Lösung. Sie müssen sich um nichts kümmern - wir übernehmen die nächsten Schritte für Sie.",
@@ -92,7 +92,7 @@ export const servicesAndAboutTranslations = {
       storyParagraphs: [
         "UNEXT GMBH wurde 2024 in Berlin gegründet, mit einer klaren Mission: professionelle Unfallgutachten und Soforthilfe für Menschen, die gerade einen stressigen Moment durchleben. Unter der Marke UNFALLX haben wir uns schnell als zuverlässiger und kompetenter Partner etabliert.",
         "Doch wir haben erkannt, dass unsere Kunden mehr brauchen. Wer nach einem Unfall ein Gutachten benötigt, braucht oft auch ein Ersatzfahrzeug. Wer sein Auto zur Reparatur bringt, wünscht sich einen Ansprechpartner für alles. Und wer sein Fahrzeug liebt, möchte es in besten Händen wissen.",
-        "Deshalb haben wir unser Angebot erweitert: Autovermietung, professioneller Werkstattservice, Premium-Detailing, Kfz-Zulassungsservice und Abschleppdienst sind heute feste Bestandteile von UNEXT. Sechs starke Bereiche, ein kompetenter Partner - das ist unsere Vision, die wir jeden Tag leben.",
+        "Deshalb haben wir unser Angebot erweitert: Autovermietung, Werkstatt & Service, Aufbereitung & Pflege, Kfz-Zulassung und Pannenhilfe & Abschleppen sind heute feste Bestandteile von UNEXT. Sechs starke Bereiche, ein kompetenter Partner - das ist unsere Vision, die wir jeden Tag leben.",
       ],
       valuesTitle: "Unsere Werte",
       valuesDescription: "Diese Prinzipien leiten uns bei allem, was wir tun.",
@@ -154,7 +154,7 @@ export const servicesAndAboutTranslations = {
           title: "Accident Reports & Immediate Assistance",
           subtitle: "UNFALLX",
           description:
-            "After an accident, you need fast and competent support. Our certified experts prepare independent vehicle reports and assist you throughout the claims process.",
+            "After an accident, you need fast and competent support. Our certified experts prepare independent vehicle reports and assist\u00A0you\u00A0throughout the claims process.",
           features: ["Fast appointments", "Support with claims handling", "Independent & professional reports", "Certified experts"],
         },
         {
@@ -182,7 +182,7 @@ export const servicesAndAboutTranslations = {
           title: "Vehicle Registration Service",
           subtitle: "Registration & license plates",
           description:
-            "We handle the entire process for you - from deregistration to completed registration. No appointments, no authority visits and no extra effort on your side.",
+            "We handle the entire process for you - from\u00A0deregistration\u00A0to\u00A0completed\u00A0registration. No appointments, no authority visits and no extra effort on your side.",
           features: [
             "Vehicle registration & deregistration",
             "Temporary & export plates",

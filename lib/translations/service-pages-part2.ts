@@ -3,8 +3,8 @@
 export const servicePagesPart2 = {
   de: {
     workshop: {
-      title: "Kfz-Werkstatt & Reparatur",
-      subtitle: "Reparatur & Wartung",
+      title: "Werkstatt & Service",
+      subtitle: "Wartung & Reparatur",
       description: "Unser erfahrenes Werkstatt-Team kümmert sich professionell um Ihr Fahrzeug. Von der routinemäßigen Wartung bis zur Reparatur - wir bieten zuverlässigen Service mit Qualitätsgarantie.",
       benefits: ["Zertifiziertes Fachpersonal", "Moderne Werkstattausstattung", "Faire & transparente Preise", "Kurzfristige Termine", "Alle Marken & Modelle", "Originalteile auf Wunsch"],
       services: [
@@ -31,7 +31,7 @@ export const servicePagesPart2 = {
       formTitle: "Werkstatttermin anfragen",
     },
     detailing: {
-      title: "Fahrzeugaufbereitung",
+      title: "Aufbereitung & Pflege",
       subtitle: "Detailing",
       description: "Ihr Fahrzeug verdient das Beste. Unsere Detailing-Experten bringen Ihr Auto wieder auf Hochglanz - mit professionellen Methoden und Premium-Produkten für ein Ergebnis, das begeistert.",
       benefits: ["Premium Produkte & Methoden", "Erfahrene Detailing-Experten", "Werterhalt Ihres Fahrzeugs", "Individuelle Beratung", "Verschiedene Pakete verfügbar", "Nachhaltige Ergebnisse"],
@@ -56,10 +56,10 @@ export const servicePagesPart2 = {
         { question: "Entfernt ihr auch Kratzer?", answer: "Leichte bis mittlere Kratzer können wir durch professionelle Politur oft vollständig entfernen. Bei tieferen Kratzern beraten wir Sie ehrlich über die Möglichkeiten." },
         { question: "Wie oft sollte ich mein Fahrzeug aufbereiten lassen?", answer: "Wir empfehlen eine professionelle Innenreinigung alle 3 bis 6 Monate und eine Außenaufbereitung mit Politur ein- bis zweimal jährlich." },
       ],
-      formTitle: "Detailing anfragen",
+      formTitle: "Aufbereitung anfragen",
     },
     registration: {
-      title: "Kfz-Zulassungsservice",
+      title: "Kfz-Zulassung",
       subtitle: "Anmeldung & Kennzeichen",
       description:
         "Wir übernehmen die Anmeldung, Abmeldung und weitere Formalitäten rund um Ihr Fahrzeug schnell, zuverlässig und unkompliziert. So sparen Sie Zeit, vermeiden unnötige Wartezeiten und müssen sich nicht selbst um Behördengänge kümmern.",
@@ -91,13 +91,13 @@ export const servicePagesPart2 = {
         { question: "Sind Kurzzeit- und Exportkennzeichen möglich?", answer: "Ja, wir unterstützen Sie bei beiden Varianten und besprechen mit Ihnen die passende Lösung." },
         { question: "Muss ich selbst zur Behörde?", answer: "Nein, genau das möchten wir Ihnen abnehmen. Wir kümmern uns um die notwendigen Schritte für Sie." },
       ],
-      formTitle: "Zulassungsservice anfragen",
+      formTitle: "Kfz-Zulassung anfragen",
       ctaLabel: "Jetzt anfragen",
       contactHint: "Instagram & TikTok: @unext.performance",
     },
     towing: {
-      title: "Abschleppdienst & Pannenhilfe",
-      subtitle: "Soforthilfe & Fahrzeugtransport",
+      title: "Pannenhilfe & Abschleppen",
+      subtitle: "Soforthilfe & Transport",
       description:
         "Wenn Ihr Fahrzeug nach einer Panne oder einem Unfall nicht mehr fahrbereit ist, sorgen wir schnell und zuverlässig für eine sichere Lösung. Vom Abschleppen bis zu den nächsten Schritten erhalten Sie Unterstützung aus einer Hand.",
       benefits: [

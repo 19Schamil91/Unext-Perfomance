@@ -15,10 +15,10 @@ export const contactTranslations = {
     serviceContacts: [
       { title: "Unfallgutachten", subtitle: "UNFALLX" },
       { title: "Autovermietung", subtitle: "Ersatzfahrzeuge" },
-      { title: "Autoservice", subtitle: "Werkstatt" },
-      { title: "Detailing", subtitle: "Premium Aufbereitung" },
-      { title: "Kfz-Zulassungsservice", subtitle: "Anmeldung & Kennzeichen" },
-      { title: "Abschleppdienst", subtitle: "Pannenhilfe" },
+      { title: "Werkstatt & Service", subtitle: "Wartung & Reparatur" },
+      { title: "Aufbereitung & Pflege", subtitle: "Detailing" },
+      { title: "Kfz-Zulassung", subtitle: "Anmeldung & Kennzeichen" },
+      { title: "Pannenhilfe & Abschleppen", subtitle: "Soforthilfe & Transport" },
     ],
     whatsapp: "WhatsApp",
     form: {

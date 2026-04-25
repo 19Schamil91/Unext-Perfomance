@@ -1,3 +1,8 @@
+/*
+  Diese Datei ist die Detailseite fuer Aufbereitung & Pflege.
+  Sie zeigt den Leistungsbereich mit Einleitung, Vorteilen, Servicekarten, Gruenden, Fragen und dem Anfrageformular.
+  Besucher koennen die Inhalte lesen und direkt Kontakt per Telefon, WhatsApp oder Formular aufnehmen.
+*/
 import type { Metadata } from "next"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
@@ -11,7 +16,7 @@ import { getTranslations } from "@/lib/translations"
 const NB = "\u00A0"
 
 const detailingTitleLines = {
-  de: ["Fahrzeugaufbereitung"],
+  de: ["Aufbereitung & Pflege"],
   en: ["Detailing"],
   ru: ["Детейлинг"],
 } satisfies Record<Locale, readonly string[]>

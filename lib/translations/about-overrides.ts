@@ -21,13 +21,13 @@ export const aboutTranslationOverrides = {
       },
       {
         year: "2026",
-        title: "Abschleppdienst",
+        title: "Pannenhilfe & Abschleppen",
         description: "Abschleppdienst und Pannenhilfe ergänzen\ndas Angebot als weiterer Servicebereich.",
       },
       {
         year: "2026",
-        title: "Kfz-Zulassungsservice",
-        description: "Der Kfz-Zulassungsservice ergänzt\ndas Angebot als neuester Servicebereich.",
+        title: "Kfz-Zulassung",
+        description: "Die Kfz-Zulassung ergänzt\ndas Angebot als neuester Servicebereich.",
       },
       {
         year: "Heute",
