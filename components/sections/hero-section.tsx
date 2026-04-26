@@ -152,10 +152,6 @@ function HeroContent({
             : ""
         }
       >
-        {isOverlay ? (
-          <div className="mb-6 h-px w-20 bg-[linear-gradient(90deg,rgba(220,38,38,0.95),rgba(255,255,255,0.75),transparent)]" />
-        ) : null}
-
         {badge ? (
           <div
             className={
@@ -388,7 +384,7 @@ export async function HeroSection() {
             alt="UNEXT team"
             fill
             sizes="100vw"
-            quality={78}
+            quality={92}
             className="object-cover object-[center_12%]"
             priority
           />
@@ -415,14 +411,14 @@ export async function HeroSection() {
         </div>
       </div>
 
-      <div className="relative hidden min-h-[90vh] items-end overflow-hidden md:flex">
+      <div className="relative hidden h-[90svh] min-h-[46rem] max-h-[58rem] items-end overflow-hidden md:flex">
         <div className="absolute inset-0">
           <Image
             src={heroDesktopImageSrc}
             alt="UNEXT team"
             fill
             sizes="100vw"
-            quality={78}
+            quality={92}
             className="object-cover object-[center_18%] lg:object-[center_16%]"
             priority
           />

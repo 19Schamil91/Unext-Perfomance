@@ -85,7 +85,7 @@ export const headerFooterTranslations = {
             { name: "Workshop & Service", href: "/leistungen/autoservice" },
             { name: "Detailing", href: "/leistungen/detailing" },
             { name: "Vehicle Registration Service", href: "/leistungen/zulassungsservice" },
-            { name: "Towing & Roadside Assistance", href: "/leistungen/abschleppdienst-pannenhilfe" },
+            { name: "Towing & Roadside Help", href: "/leistungen/abschleppdienst-pannenhilfe" },
           ],
         },
         { name: "Contact", href: "/kontakt" },

@@ -191,7 +191,7 @@ export const servicesAndAboutTranslations = {
           ],
         },
         {
-          title: "Towing & Roadside Assistance",
+          title: "Towing & Roadside Help",
           subtitle: "Immediate help & transport",
           description:
             "In emergencies, we are there quickly and provide a safe solution. You do not have to take care of anything - we handle the next steps for you.",

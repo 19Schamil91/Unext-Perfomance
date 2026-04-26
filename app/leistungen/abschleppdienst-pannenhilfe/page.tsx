@@ -14,7 +14,7 @@ import { getTranslations } from "@/lib/translations"
 
 const towingTitleLines = {
   de: ["Pannenhilfe & Abschleppen"],
-  en: ["Towing & Roadside Assistance"],
+  en: ["Towing & Roadside Help"],
   ru: ["Эвакуатор и помощь на дороге"],
 } satisfies Record<Locale, readonly string[]>
 

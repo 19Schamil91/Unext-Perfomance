@@ -227,7 +227,7 @@ export const servicePagesPart2 = {
       contactHint: "Instagram & TikTok: @unext.performance",
     },
     towing: {
-      title: "Towing & Roadside Assistance",
+      title: "Towing & Roadside Help",
       subtitle: "Immediate help & vehicle transport",
       description:
         "If your vehicle is no longer roadworthy after a breakdown or accident, we provide a fast and reliable solution. From towing to the next steps, you receive support from one source.",

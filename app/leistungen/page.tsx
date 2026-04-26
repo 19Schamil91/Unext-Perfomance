@@ -36,7 +36,7 @@ const serviceDescriptionLineLength = {
 const serviceTitleLineBreaks: Partial<Record<Locale, Record<string, string[]>>> = {
   en: {
     "Accident Reports & Immediate Assistance": ["Accident Reports", "& Immediate Assistance"],
-    "Towing & Roadside Assistance": ["Towing &", "Roadside Assistance"],
+    "Towing & Roadside Help": ["Towing & Roadside", "Help"],
   },
   ru: {
     "Экспертиза ДТП и срочная помощь": ["Экспертиза ДТП", "и срочная помощь"],

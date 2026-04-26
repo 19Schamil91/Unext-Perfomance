@@ -321,7 +321,7 @@ export const homeTranslations = {
           ],
         },
         {
-          title: "Towing & Roadside Assistance",
+          title: "Towing & Roadside Help",
           subtitle: "Immediate help on site",
           description:
             "If your vehicle breaks down, we organize fast help, safe transport and, if requested, complete follow-up handling.",
@@ -563,7 +563,7 @@ export const homeTranslations = {
           ],
         },
         {
-          title: "Эвакуатор и помощь на дороге",
+          title: "Эвакуатор и помощь на дороге",
           subtitle: "Срочная помощь на месте",
           description:
             "Если автомобиль не может продолжать движение, мы организуем быструю помощь, безопасную перевозку и при необходимости дальнейшее сопровождение.",
