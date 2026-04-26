@@ -77,7 +77,7 @@ export const homeTranslations = {
           description:
             "Wir übernehmen Anmeldung, Abmeldung und alle wichtigen Formalitäten rund um Ihr Fahrzeug schnell und unkompliziert.",
           features: [
-            "Kfz-An- & Abmeldung",
+            "Kfz-Zulassung",
             "Kurzzeit- & Exportkennzeichen",
             "eVB- und Wunschkennzeichen-Service",
             "Hol- & Bringservice auf Anfrage",
@@ -314,7 +314,7 @@ export const homeTranslations = {
           description:
             "We handle registration, deregistration and all key formalities around your vehicle quickly and without complications.",
           features: [
-            "Vehicle registration & deregistration",
+            "Vehicle registration",
             "Temporary & export plates",
             "eVB and custom plate service",
             "Pickup service on request",
@@ -556,7 +556,7 @@ export const homeTranslations = {
           description:
             "Мы берем на себя регистрацию, снятие с учета и все важные формальности по автомобилю быстро и без лишних сложностей.",
           features: [
-            "Постановка и снятие с учета",
+            "Регистрация авто",
             "Временные и экспортные номера",
             "eVB и подбор номера",
             "Сервис забора документов по запросу",

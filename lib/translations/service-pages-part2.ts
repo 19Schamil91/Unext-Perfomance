@@ -64,7 +64,7 @@ export const servicePagesPart2 = {
       description:
         "Wir übernehmen die Anmeldung, Abmeldung und weitere Formalitäten rund um Ihr Fahrzeug schnell, zuverlässig und unkompliziert. So sparen Sie Zeit, vermeiden unnötige Wartezeiten und müssen sich nicht selbst um Behördengänge kümmern.",
       benefits: [
-        "Kfz-An- & Abmeldung - schnell & unkompliziert",
+        "Kfz-Zulassung - schnell & unkompliziert",
         "Kurzzeitkennzeichen & Exportkennzeichen",
         "Versicherungsservice inkl. eVB-Nummer",
         "Wunschkennzeichen-Service",
@@ -72,12 +72,12 @@ export const servicePagesPart2 = {
         "Zeitersparnis ohne Behördengang",
       ],
       services: [
-        { title: "Kfz-An- & Abmeldung", description: "Komplette Anmeldung oder Abmeldung Ihres Fahrzeugs ohne unnötigen Aufwand für Sie." },
-        { title: "Abmeldung bei Verkauf oder Stilllegung", description: "Schnelle und saubere Abwicklung bei Verkauf, Stilllegung oder Halterwechsel." },
+        { title: "Kfz-Zulassung", description: "Komplette Anmeldung oder Abmeldung Ihres Fahrzeugs ohne unnötigen Aufwand für Sie." },
+        { title: "Abmeldung & Stilllegung", description: "Schnelle und saubere Abwicklung bei Verkauf, Stilllegung oder Halterwechsel." },
         { title: "Kurzzeitkennzeichen", description: "Organisation von Kurzzeitkennzeichen für Probefahrten, Überführungen oder Werkstatttermine." },
         { title: "Exportkennzeichen", description: "Unterstützung bei Exportkennzeichen inklusive der notwendigen Abläufe und Unterlagen." },
         { title: "Versicherungsservice inkl. eVB", description: "Unterstützung bei der Vorbereitung der Versicherungsthemen inklusive eVB-Nummer." },
-        { title: "Wunschkennzeichen & Unterlagenservice", description: "Reservierung von Wunschkennzeichen und Hol- & Bringservice für Unterlagen auf Anfrage." },
+        { title: "Wunschkennzeichen", description: "Reservierung von Wunschkennzeichen und Hol- & Bringservice für Unterlagen auf Anfrage." },
       ],
       whyChoose: [
         { title: "Weniger Aufwand", description: "Sie sparen Zeit und vermeiden Behördengänge, Wartezeiten und unnötige Abstimmungen." },
@@ -195,7 +195,7 @@ export const servicePagesPart2 = {
       description:
         "We handle registration, deregistration and other formalities for your vehicle quickly, reliably and without complications. This saves you time, avoids unnecessary waiting and means you do not have to deal with the authorities yourself.",
       benefits: [
-        "Vehicle registration & deregistration - fast and straightforward",
+        "Vehicle registration - fast and straightforward",
         "Temporary plates & export plates",
         "Insurance service incl. eVB number",
         "Custom plate service",
@@ -203,12 +203,12 @@ export const servicePagesPart2 = {
         "No authority visits required",
       ],
       services: [
-        { title: "Vehicle registration & deregistration", description: "Complete handling of registration or deregistration with minimal effort on your side." },
-        { title: "Deregistration for sale or decommissioning", description: "Reliable support when a vehicle is sold, decommissioned or taken off the road." },
+        { title: "Vehicle registration", description: "Complete handling of registration or deregistration with minimal effort on your side." },
+        { title: "Deregistration & decommissioning", description: "Reliable support when a vehicle is sold, decommissioned or taken off the road." },
         { title: "Temporary plates", description: "Organization of temporary plates for test drives, transfers or workshop appointments." },
         { title: "Export plates", description: "Support with export plates including the required steps and documents." },
         { title: "Insurance service incl. eVB", description: "Support with the insurance-related preparation, including the eVB number." },
-        { title: "Custom plates & document service", description: "Custom plate handling plus pickup service for documents on request." },
+        { title: "Custom plates", description: "Custom plate handling plus pickup service for documents on request." },
       ],
       whyChoose: [
         { title: "Less effort", description: "You save time and avoid authority visits, waiting times and unnecessary coordination." },
@@ -326,7 +326,7 @@ export const servicePagesPart2 = {
       description:
         "Мы берем на себя регистрацию, снятие с учета и другие формальности, связанные с вашим автомобилем, быстро, надежно и без лишних сложностей. Так вы экономите время, избегаете ожидания и вам не нужно самостоятельно посещать ведомства.",
       benefits: [
-        "Постановка и снятие с учета - быстро и просто",
+        "Регистрация авто - быстро и просто",
         "Временные и экспортные номера",
         "Страховой сервис, включая номер eVB",
         "Сервис выбора номера",
@@ -334,12 +334,12 @@ export const servicePagesPart2 = {
         "Экономия времени без посещения ведомств",
       ],
       services: [
-        { title: "Постановка и снятие с учета", description: "Полное оформление регистрации или снятия с учета без лишней нагрузки для вас." },
-        { title: "Снятие с учета при продаже или консервации", description: "Быстрое и корректное сопровождение при продаже, консервации или смене владельца." },
+        { title: "Регистрация авто", description: "Полное оформление регистрации или снятия с учета без лишней нагрузки для вас." },
+        { title: "Снятие с учета и консервация", description: "Быстрое и корректное сопровождение при продаже, консервации или смене владельца." },
         { title: "Временные номера", description: "Организация временных номеров для тест-драйвов, перегонов или визитов в мастерскую." },
         { title: "Экспортные номера", description: "Поддержка с экспортными номерами, включая необходимые шаги и документы." },
         { title: "Страховой сервис с eVB", description: "Поддержка в вопросах страхования, включая подготовку номера eVB." },
-        { title: "Выбор номера и сервис документов", description: "Бронирование желаемого номера и забор документов по запросу." },
+        { title: "Выбор номера", description: "Бронирование желаемого номера и забор документов по запросу." },
       ],
       whyChoose: [
         { title: "Меньше усилий", description: "Вы экономите время и избегаете посещения ведомств, ожидания и лишней координации." },

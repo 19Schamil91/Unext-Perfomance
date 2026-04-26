@@ -63,7 +63,7 @@ export const servicesAndAboutTranslations = {
           description:
             "Wir übernehmen den gesamten Ablauf für Sie - von\u00A0der\u00A0Abmeldung\u00A0bis\u00A0zur\u00A0fertigen\u00A0Zulassung. Kein Termin, kein Behördengang, kein Aufwand für Sie.",
           features: [
-            "Kfz-An- & Abmeldung",
+            "Kfz-Zulassung",
             "Kurzzeit- & Exportkennzeichen",
             "Versicherungsservice inkl. eVB",
             "Wunschkennzeichen-Service",
@@ -184,7 +184,7 @@ export const servicesAndAboutTranslations = {
           description:
             "We handle the entire process for you - from\u00A0deregistration\u00A0to\u00A0completed\u00A0registration. No appointments, no authority visits and no extra effort on your side.",
           features: [
-            "Vehicle registration & deregistration",
+            "Vehicle registration",
             "Temporary & export plates",
             "Insurance service incl. eVB number",
             "Custom plate service",
@@ -285,7 +285,7 @@ export const servicesAndAboutTranslations = {
           description:
             "Мы берем на себя весь процесс - от снятия с учета до готовой регистрации. Без записи, без посещения ведомств и без лишних хлопот для вас.",
           features: [
-            "Постановка и снятие с учета",
+            "Регистрация авто",
             "Временные и экспортные номера",
             "Страховой сервис с eVB",
             "Сервис выбора номера",
