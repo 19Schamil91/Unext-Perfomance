@@ -1,3 +1,8 @@
+/*
+  Diese Datei definiert den Fussbereich der Website mit Kontakt, Navigationslinks und Social-Bereich.
+  Sie zeigt alle wichtigen Zusatzinformationen am Seitenende in einer klaren Struktur.
+  Nutzer koennen von hier direkt zu Services, rechtlichen Seiten und Kontaktkanaelen springen.
+*/
 "use client"
 
 import Image from "next/image"
@@ -16,11 +21,12 @@ const serviceLinks = [
 ] as const
 
 export function SiteFooter() {
+  // Diese Texte werden pro Sprache fuer alle Footer-Bereiche geladen.
   const { locale } = useLocale()
   const t = getTranslations(locale)
 
   return (
-    <footer className="border-t border-border bg-card">
+    <footer className="border-t border-border/70 bg-card">
       <div className="mx-auto max-w-7xl px-4 py-12 lg:px-8 lg:py-16">
         <div className="grid gap-8 lg:grid-cols-4">
           <div className="lg:col-span-1">
@@ -33,26 +39,32 @@ export function SiteFooter() {
                 className="h-10 w-auto"
               />
             </Link>
-            <p className="mt-4 text-sm text-muted-foreground">{t.footer.description}</p>
+            <p className="mt-4 max-w-[30ch] text-sm leading-6 text-muted-foreground">{t.footer.description}</p>
 
             <div className="mt-6 flex flex-col gap-3 text-sm">
-              <div className="flex items-start gap-3 text-muted-foreground">
+              <div className="flex items-start gap-3 rounded-xl border border-border/50 bg-background/60 px-3 py-2.5 text-muted-foreground">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <span>{t.footer.address}</span>
               </div>
-              <div className="flex items-center gap-3 text-muted-foreground">
+              <div className="flex items-center gap-3 rounded-xl border border-border/50 bg-background/60 px-3 py-2.5 text-muted-foreground">
                 <Mail className="h-4 w-4 shrink-0 text-primary" />
-                <a href="mailto:info@unext.de" className="hover:text-foreground">
+                <a
+                  href="mailto:info@unext.de"
+                  className="transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
                   info@unext.de
                 </a>
               </div>
-              <div className="flex items-center gap-3 text-muted-foreground">
+              <div className="flex items-center gap-3 rounded-xl border border-border/50 bg-background/60 px-3 py-2.5 text-muted-foreground">
                 <Phone className="h-4 w-4 shrink-0 text-primary" />
-                <a href="tel:+493023613927" className="hover:text-foreground">
+                <a
+                  href="tel:+493023613927"
+                  className="transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
                   030 23613927
                 </a>
               </div>
-              <div className="flex items-start gap-3 text-muted-foreground">
+              <div className="flex items-start gap-3 rounded-xl border border-border/50 bg-background/60 px-3 py-2.5 text-muted-foreground">
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <div>
                   <p>{t.footer.hoursWeek}</p>
@@ -71,7 +83,7 @@ export function SiteFooter() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-sm text-muted-foreground hover:text-foreground"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
                       {t.header.navigation[2].children[index].name}
                     </Link>
@@ -87,7 +99,7 @@ export function SiteFooter() {
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-sm text-muted-foreground hover:text-foreground"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
                       {item.name}
                     </Link>
@@ -103,7 +115,7 @@ export function SiteFooter() {
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-sm text-muted-foreground hover:text-foreground"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
                       {item.name}
                     </Link>
@@ -120,7 +132,7 @@ export function SiteFooter() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+                      className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
                       <Instagram className="h-4 w-4" />
                       <span>{item.name}</span>

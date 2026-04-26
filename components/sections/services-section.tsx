@@ -82,24 +82,25 @@ const serviceMeta = [
 ] satisfies readonly ServiceMeta[]
 
 export async function ServicesSection() {
+  // Diese Daten bestimmen pro Leistung Bild, Icon und direkte Kontaktaktion.
   const locale = await getCurrentLocale()
   const t = getTranslations(locale).home.services
 
   return (
-    <section className="bg-background py-20 lg:py-28">
+    <section className="bg-background py-22 lg:py-30">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="mx-auto mb-10 max-w-5xl text-center sm:mb-16">
+        <div className="mx-auto mb-12 max-w-5xl text-center sm:mb-16">
           <h2 className="mx-auto max-w-[14ch] text-heading-fluid font-semibold text-foreground sm:max-w-[15ch] lg:max-w-none">
             {t.title}
           </h2>
           <ReadableText
             text={t.description}
             targetLineLength={180}
-            className="mx-auto mt-3 max-w-none text-body-fluid text-muted-foreground lg:whitespace-nowrap sm:mt-4"
+            className="mx-auto mt-3 max-w-none text-body-fluid text-muted-foreground sm:mt-4"
           />
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-7 md:grid-cols-2">
           {t.items.map((service, index) => {
             const meta = serviceMeta[index]
             const contactText = meta.contactText ?? ""
@@ -108,11 +109,11 @@ export async function ServicesSection() {
               <Card
                 key={service.title}
                 id={homeServiceAnchors[index]}
-                className="group relative scroll-mt-28 overflow-hidden rounded-[1.75rem] border border-border/55 bg-card shadow-[0_16px_38px_rgba(15,23,42,0.08)] transition-all duration-300 hover:border-primary/35 hover:shadow-[0_20px_44px_rgba(15,23,42,0.11)]"
+                className="group relative scroll-mt-28 overflow-hidden rounded-[1.75rem] border border-border/65 bg-card/98 shadow-[0_16px_38px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-[0_22px_48px_rgba(15,23,42,0.14)]"
               >
                 <CardContent className="p-4 sm:p-5 lg:p-6">
                   <div className="flex h-full flex-col">
-                    <div className="relative h-60 overflow-hidden rounded-[1.45rem] border border-border/50 bg-background shadow-sm sm:h-72 lg:h-64">
+                    <div className="relative h-60 overflow-hidden rounded-[1.45rem] border border-border/55 bg-background shadow-[0_10px_22px_rgba(15,23,42,0.08)] sm:h-72 lg:h-64">
                       <Image
                         src={meta.image}
                         alt={service.title}
@@ -133,7 +134,7 @@ export async function ServicesSection() {
                           <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-primary">
                             {service.subtitle}
                           </p>
-                          <h3 className="mt-1 text-[clamp(1.14rem,1.02rem+0.38vw,1.42rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-foreground md:whitespace-nowrap">
+                          <h3 className="mt-1 text-[clamp(1.14rem,1.02rem+0.38vw,1.42rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-foreground lg:whitespace-nowrap">
                             {service.title}
                           </h3>
                         </div>
@@ -143,11 +144,11 @@ export async function ServicesSection() {
                         {service.description}
                       </p>
 
-                      <ul className="mt-5 grid gap-y-3">
+                      <ul className="mt-5 grid gap-y-3.5">
                         {service.features.map((feature) => (
                           <li
                             key={feature}
-                            className="grid grid-cols-[0.45rem_minmax(0,1fr)] items-start gap-x-3 rounded-xl border border-border/45 bg-background/55 px-3 py-2.5 text-body-compact text-muted-foreground"
+                            className="grid grid-cols-[0.45rem_minmax(0,1fr)] items-start gap-x-3 rounded-xl border border-border/55 bg-background/70 px-3 py-2.5 text-body-compact text-muted-foreground"
                           >
                             <span className="mt-[0.58rem] h-1.5 w-1.5 rounded-full bg-primary" />
                             <span>{feature}</span>

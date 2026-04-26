@@ -69,6 +69,7 @@ function splitAtSentenceBoundary(text: string) {
 }
 
 export function ContactPageClient() {
+  // Diese Werte steuern den Formularstatus und speichern aktuelle Eingaben.
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [formData, setFormData] = useState<ContactFormDraft>(emptyContactDraft)
@@ -78,6 +79,7 @@ export function ContactPageClient() {
   const primaryPhone = "030 23613927"
   const whatsappPhone = "0176 64365185"
 
+  // Diese Funktion aktualisiert einzelne Eingabefelder waehrend des Tippens.
   const handleFieldChange = (field: keyof ContactFormDraft, value: string) => {
     setFormData((current) => ({
       ...current,
@@ -85,6 +87,7 @@ export function ContactPageClient() {
     }))
   }
 
+  // Dieser Ablauf simuliert die Formularabgabe und zeigt danach den Erfolgszustand.
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
@@ -117,7 +120,7 @@ export function ContactPageClient() {
               <div className="flex flex-col gap-3">
                 <a
                   href={`tel:${primaryPhone.replace(/\s/g, "")}`}
-                  className="flex items-center gap-4 rounded-xl border border-border/50 bg-background/72 px-6 py-4 text-foreground backdrop-blur-sm transition-colors hover:border-primary/40 hover:bg-primary/5"
+                  className="flex items-center gap-4 rounded-2xl border border-border/55 bg-background/78 px-6 py-4 text-foreground shadow-[0_10px_26px_rgba(15,23,42,0.07)] backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/5"
                 >
                   <Phone className="h-5 w-5 shrink-0 text-primary" />
                   <div>
@@ -129,7 +132,7 @@ export function ContactPageClient() {
                   href={`https://wa.me/49${whatsappPhone.replace(/\s/g, "").replace(/^0/, "")}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 rounded-xl border border-border/50 bg-background/72 px-6 py-4 text-foreground backdrop-blur-sm transition-colors hover:border-primary/40 hover:bg-primary/5"
+                  className="flex items-center gap-4 rounded-2xl border border-border/55 bg-background/78 px-6 py-4 text-foreground shadow-[0_10px_26px_rgba(15,23,42,0.07)] backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/5"
                 >
                   <MessageCircle className="h-5 w-5 shrink-0 text-primary" />
                   <div>
@@ -139,7 +142,7 @@ export function ContactPageClient() {
                 </a>
                 <a
                   href="mailto:info@unext.de"
-                  className="flex items-center gap-4 rounded-xl border border-border/50 bg-background/72 px-6 py-4 text-foreground backdrop-blur-sm transition-colors hover:border-primary/40 hover:bg-primary/5"
+                  className="flex items-center gap-4 rounded-2xl border border-border/55 bg-background/78 px-6 py-4 text-foreground shadow-[0_10px_26px_rgba(15,23,42,0.07)] backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary/5"
                 >
                   <Mail className="h-5 w-5 shrink-0 text-primary" />
                   <div>
@@ -156,7 +159,7 @@ export function ContactPageClient() {
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="mx-auto max-w-2xl">
               {isSubmitted ? (
-                <Card className="border-primary/30 bg-background">
+                <Card className="border-primary/35 bg-background">
                   <CardContent className="p-8 text-center">
                     <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                       <CheckCircle className="h-8 w-8 text-primary" />
@@ -176,7 +179,7 @@ export function ContactPageClient() {
                   </CardContent>
                 </Card>
               ) : (
-                <Card className="border-border/50 bg-background">
+                <Card className="border-border/60 bg-background">
                   <CardHeader>
                     <CardTitle>{t.form.title}</CardTitle>
                     <CardDescription>{t.form.description}</CardDescription>
@@ -266,7 +269,7 @@ export function ContactPageClient() {
                 </Card>
               )}
 
-              <div className="mt-6 flex flex-col items-start justify-between gap-4 rounded-xl border border-border/50 bg-card p-5 sm:flex-row sm:items-center">
+              <div className="mt-6 flex flex-col items-start justify-between gap-4 rounded-2xl border border-border/60 bg-card p-5 shadow-[0_10px_26px_rgba(15,23,42,0.07)] sm:flex-row sm:items-center">
                 <div className="min-w-0">
                   <p className="font-semibold text-foreground">{t.whatsappCtaTitle}</p>
                   <p className="text-sm text-muted-foreground">{t.whatsappCtaDescription}</p>
@@ -286,7 +289,7 @@ export function ContactPageClient() {
           </div>
         </section>
 
-        <section className="border-y border-border bg-card py-16 lg:py-20">
+        <section className="border-y border-border/70 bg-card py-16 lg:py-20">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="mb-10 max-w-3xl">
               <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
@@ -302,7 +305,7 @@ export function ContactPageClient() {
                 const meta = serviceMeta[index] ?? fallbackServiceMeta
 
                 return (
-                  <Card key={service.title} className="border-border/50 bg-background">
+                  <Card key={service.title} className="border-border/60 bg-background">
                     <CardContent className="flex gap-4 p-5">
                       <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                         <meta.icon className="h-5 w-5" />
@@ -355,7 +358,7 @@ export function ContactPageClient() {
             </h2>
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.72fr)] lg:gap-12">
               <div className="min-h-full">
-                <div className="flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border/50 bg-card shadow-sm">
+                <div className="flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border/60 bg-card shadow-[0_14px_34px_rgba(15,23,42,0.1)]">
                   <iframe
                     title="UNEXT GMBH Standortkarte"
                     src="https://www.google.com/maps?q=L%C3%BCbarser%20Str.%2025%2C%2013435%20Berlin&output=embed"
@@ -363,7 +366,7 @@ export function ContactPageClient() {
                     referrerPolicy="no-referrer-when-downgrade"
                     className="min-h-[22rem] flex-1 border-0"
                   />
-                  <div className="flex flex-col items-center border-t border-border/50 bg-background p-5 text-center sm:flex-row sm:justify-between sm:text-left">
+                  <div className="flex flex-col items-center border-t border-border/60 bg-background p-5 text-center sm:flex-row sm:justify-between sm:text-left">
                     <div>
                       <p className="font-semibold text-foreground">Lübarser Str. 25</p>
                       <p className="text-muted-foreground">13435 Berlin</p>
@@ -382,7 +385,7 @@ export function ContactPageClient() {
                 </div>
               </div>
 
-              <div className="flex h-full flex-col rounded-xl border border-border/50 bg-card p-6">
+              <div className="flex h-full flex-col rounded-2xl border border-border/60 bg-card p-6 shadow-[0_10px_28px_rgba(15,23,42,0.08)]">
                 <h3 className="mb-4 font-semibold text-foreground">{t.openingHoursTitle}</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between gap-4">

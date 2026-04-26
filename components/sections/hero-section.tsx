@@ -1,3 +1,8 @@
+/*
+  Diese Datei definiert den Hero-Bereich der Startseite.
+  Sie zeigt den zentralen Einstieg mit Hauptbotschaft, Leistungslinks und schnellen Kontaktaktionen.
+  Nutzer koennen von hier direkt anrufen, per WhatsApp schreiben oder zu Leistungen springen.
+*/
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, DoorOpen, MapPin, MessageCircle, Phone } from "lucide-react"
@@ -24,6 +29,7 @@ interface HeroContentProps {
 }
 
 function renderHeroDescription(description: string, lineClassName?: string) {
+  // Diese Begriffe bleiben zusammen, damit sie in allen Sprachen lesbar umbrechen.
   const protectedTerm = "Kfz-Werkstatt"
   const desktopBreakMarkers = ["Autovermietung,", "Berlin."]
   const protectedTerms = [protectedTerm, "Taxi-Fahrer"]
@@ -203,7 +209,7 @@ function HeroContent({
               isOverlay
                 ? combinePrimaryTitle
                   ? "mt-4 block text-center text-[clamp(1.08rem,1.22vw,1.38rem)] leading-none font-medium tracking-[0.08em] text-white/88 drop-shadow-[0_8px_22px_rgba(0,0,0,0.42)]"
-                  : "mt-2 block text-[clamp(1.28rem,1.55vw,2rem)] leading-[1.05] font-light tracking-[-0.022em] text-white/46 drop-shadow-[0_2px_8px_rgba(0,0,0,0.14)] lg:whitespace-nowrap"
+                  : "mt-2 block text-[clamp(1.28rem,1.55vw,2rem)] leading-[1.05] font-light tracking-[-0.022em] text-white/68 drop-shadow-[0_2px_8px_rgba(0,0,0,0.14)] lg:whitespace-nowrap"
                 : "mt-1.5 block max-w-[18ch] text-[clamp(1.05rem,0.84rem+1vw,2.35rem)] leading-[1.12] font-normal text-muted-foreground sm:mt-2"
             }
           >
@@ -218,7 +224,7 @@ function HeroContent({
               : "measure-intro-tight mt-4 text-body-fluid text-muted-foreground sm:mt-6"
           }
         >
-          {renderHeroDescription(description, isOverlay ? "md:whitespace-nowrap" : undefined)}
+          {renderHeroDescription(description, isOverlay ? "lg:whitespace-nowrap" : undefined)}
         </p>
       </div>
 
@@ -226,7 +232,7 @@ function HeroContent({
         <p
           className={
             isOverlay
-              ? "text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-white/52 sm:text-[0.76rem]"
+              ? "text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-white/70 sm:text-[0.76rem]"
               : "text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground sm:text-[0.72rem]"
           }
         >
@@ -332,7 +338,7 @@ function HeroContent({
               <span
                 className={
                   isOverlay
-                    ? "mt-1 block truncate text-[0.74rem] font-medium uppercase tracking-[0.22em] text-white/48"
+                    ? "mt-1 block truncate text-[0.74rem] font-medium uppercase tracking-[0.22em] text-white/70"
                     : "mt-1 block truncate text-[0.76rem] font-medium uppercase tracking-[0.14em] text-muted-foreground"
                 }
               >
@@ -348,7 +354,7 @@ function HeroContent({
           href="/leistungen"
           className={
             isOverlay
-              ? "inline-flex items-center gap-2 text-sm font-medium text-white/78 transition-colors hover:text-white"
+              ? "inline-flex items-center gap-2 text-sm font-medium text-white/82 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black/30"
               : "inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
           }
         >
@@ -361,6 +367,7 @@ function HeroContent({
 }
 
 export async function HeroSection() {
+  // Diese Inhalte werden serverseitig nach aktueller Sprache geladen.
   const locale = await getCurrentLocale()
   const home = getTranslations(locale).home
   const t = home.hero
@@ -389,7 +396,7 @@ export async function HeroSection() {
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/42 via-black/12 to-transparent" />
         </div>
 
-        <div className="px-5 pb-12 pt-6">
+        <div className="px-5 pb-14 pt-7">
           <HeroContent
             tone="surface"
             badge={t.badge}
@@ -408,7 +415,7 @@ export async function HeroSection() {
         </div>
       </div>
 
-      <div className="relative hidden min-h-[88vh] items-end overflow-hidden md:flex">
+      <div className="relative hidden min-h-[90vh] items-end overflow-hidden md:flex">
         <div className="absolute inset-0">
           <Image
             src={heroDesktopImageSrc}
@@ -425,7 +432,7 @@ export async function HeroSection() {
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/24 via-black/6 to-transparent" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-4 pb-18 pt-24 lg:px-8 lg:pb-20">
+        <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-24 lg:px-8 lg:pb-24">
           <HeroContent
             tone="overlay"
             title1={t.title1}
