@@ -1,7 +1,11 @@
+/*
+  Diese Datei zeigt die Kontaktseite.
+  Sie zeigt Kontaktwege, das Kontaktformular, direkte Servicekontakte und den Standort.
+  Besucher koennen anrufen, WhatsApp oeffnen, eine Nachricht senden oder den Standort ansehen.
+*/
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import {
   Car,
   CheckCircle,
@@ -72,6 +76,8 @@ export function ContactPageClient() {
   const { locale } = useLocale()
   const t = getTranslations(locale).contactPage
   const descriptionParts = splitAtSentenceBoundary(t.description)
+  const primaryPhone = "030 23613927"
+  const whatsappPhone = "0176 64365185"
 
   const handleFieldChange = (field: keyof ContactFormDraft, value: string) => {
     setFormData((current) => ({
@@ -94,121 +100,78 @@ export function ContactPageClient() {
       <main>
         <section className="bg-card py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="measure-intro max-w-[58rem]">
-              <h1 className="measure-display text-display-fluid text-foreground">
-                {t.title}
-              </h1>
-              <p className="measure-intro mt-6 text-body-fluid text-muted-foreground">
-                <span>{descriptionParts.lead}</span>
-                {descriptionParts.rest ? (
-                  <>
-                    <span className="block">{descriptionParts.rest}</span>
-                  </>
-                ) : null}
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="border-b border-border bg-background py-12">
-          <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="grid gap-6 sm:grid-cols-3">
-              {[
-                { icon: MapPin, data: t.methods.address, href: "https://maps.google.com/?q=Lübarser+Str.+25,+13435+Berlin" },
-                { icon: Mail, data: t.methods.email, href: "mailto:info@unext.de" },
-                { icon: Clock, data: t.methods.hours },
-              ].map((method) => (
-                <div
-                  key={method.data.title}
-                  className="flex items-start gap-4 rounded-xl border border-border/50 bg-card p-6"
-                >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <method.icon className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground">{method.data.title}</h3>
-                    {method.href ? (
-                      <a
-                        href={method.href}
-                        target={method.href.startsWith("http") ? "_blank" : undefined}
-                        rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="text-primary hover:underline"
-                      >
-                        {method.data.content}
-                      </a>
-                    ) : (
-                      <p className="text-foreground">{method.data.content}</p>
-                    )}
-                    <p className="text-sm text-muted-foreground">{method.data.detail}</p>
-                  </div>
+            <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.72fr)] lg:gap-16">
+              <div className="measure-intro max-w-[58rem]">
+                <h1 className="measure-display text-display-fluid text-foreground">
+                  {t.title}
+                </h1>
+                <p className="measure-intro mt-6 text-body-fluid text-muted-foreground">
+                  <span>{descriptionParts.lead}</span>
+                  {descriptionParts.rest ? (
+                    <>
+                      <span className="block">{descriptionParts.rest}</span>
+                    </>
+                  ) : null}
+                </p>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Button asChild size="lg" className="gap-2 sm:min-w-[12rem]">
+                    <a href={`tel:${primaryPhone.replace(/\s/g, "")}`}>
+                      <Phone className="h-5 w-5" />
+                      {primaryPhone}
+                    </a>
+                  </Button>
+                  <Button asChild size="lg" variant="outline" className="gap-2 sm:min-w-[12rem]">
+                    <a
+                      href={`https://wa.me/49${whatsappPhone.replace(/\s/g, "").replace(/^0/, "")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MessageCircle className="h-5 w-5" />
+                      {t.whatsappOpen}
+                    </a>
+                  </Button>
                 </div>
-              ))}
+              </div>
+
+              <div className="rounded-[1.5rem] border border-border/55 bg-background/72 p-5 shadow-[0_18px_42px_rgba(15,23,42,0.08)] backdrop-blur-sm">
+                {[
+                  { icon: MapPin, data: t.methods.address, href: "https://maps.google.com/?q=Lübarser+Str.+25,+13435+Berlin" },
+                  { icon: Mail, data: t.methods.email, href: "mailto:info@unext.de" },
+                  { icon: Clock, data: t.methods.hours },
+                ].map((method) => (
+                  <div
+                    key={method.data.title}
+                    className="flex gap-4 border-b border-border/50 py-4 first:pt-0 last:border-b-0 last:pb-0"
+                  >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <method.icon className="h-5 w-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-semibold text-foreground">{method.data.title}</p>
+                      {method.href ? (
+                        <a
+                          href={method.href}
+                          target={method.href.startsWith("http") ? "_blank" : undefined}
+                          rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className="break-words text-primary hover:underline"
+                        >
+                          {method.data.content}
+                        </a>
+                      ) : (
+                        <p className="text-foreground">{method.data.content}</p>
+                      )}
+                      <p className="text-sm leading-6 text-muted-foreground">{method.data.detail}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         <section className="bg-background py-16 lg:py-24">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              {t.serviceContactsTitle}
-            </h2>
-            <p className="measure-intro-tight mb-12 text-body-compact text-muted-foreground">
-              {t.serviceContactsDescription}
-            </p>
-
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {t.serviceContacts.map((service, index) => {
-                const meta = serviceMeta[index] ?? fallbackServiceMeta
-
-                return (
-                  <Card key={service.title} className="border-border/50 bg-card">
-                    <CardContent className="p-6">
-                      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                        <meta.icon className="h-6 w-6" />
-                      </div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-                        {service.subtitle}
-                      </p>
-                      <h3 className="text-lg font-semibold text-foreground">{service.title}</h3>
-
-                      <div className="mt-4 space-y-2">
-                        <a
-                          href={`tel:${meta.phone.replace(/\s/g, "")}`}
-                          className="flex items-center gap-2 text-sm text-foreground transition-colors hover:text-primary"
-                        >
-                          <Phone className="h-4 w-4" />
-                          {meta.phone}
-                        </a>
-                        <a
-                          href={`https://wa.me/49${meta.phone.replace(/\s/g, "").replace(/^0/, "")}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-                        >
-                          <MessageCircle className="h-4 w-4" />
-                          {t.whatsapp}
-                        </a>
-                        <a
-                          href={`https://instagram.com/${meta.social.replace("@", "")}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
-                        >
-                          <Instagram className="h-4 w-4" />
-                          {meta.social}
-                        </a>
-                      </div>
-                    </CardContent>
-                  </Card>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-card py-16 lg:py-24">
-          <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(20rem,0.92fr)] lg:gap-12">
               <div>
                 {isSubmitted ? (
                   <Card className="border-primary/30 bg-background">
@@ -327,80 +290,160 @@ export function ContactPageClient() {
                 )}
               </div>
 
-              <div>
-                <h3 className="mb-4 text-xl font-semibold text-foreground">{t.locationTitle}</h3>
-                <div className="relative mb-6 aspect-[16/11] overflow-hidden rounded-[1.75rem] border border-border/50 bg-background shadow-sm">
-                  <Image
-                    src="/images/hero-car.webp"
-                    alt=""
-                    fill
-                    sizes="(min-width: 1024px) 50vw, 100vw"
-                    quality={74}
-                    className="object-cover object-[64%_center]"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-background/80">
-                    <div className="p-6 text-center">
-                      <MapPin className="mx-auto mb-4 h-12 w-12 text-primary" />
-                      <p className="font-semibold text-foreground">Lübarser Str. 25</p>
-                      <p className="text-muted-foreground">13435 Berlin</p>
-                      <Button asChild className="mt-4" variant="outline">
+              <aside className="space-y-4">
+                {[
+                  { icon: Phone, data: { title: t.form.phone, content: primaryPhone, detail: t.whatsapp }, href: `tel:${primaryPhone.replace(/\s/g, "")}` },
+                  { icon: MessageCircle, data: { title: t.whatsapp, content: whatsappPhone, detail: t.whatsappCtaDescription }, href: `https://wa.me/49${whatsappPhone.replace(/\s/g, "").replace(/^0/, "")}` },
+                  { icon: Mail, data: t.methods.email, href: "mailto:info@unext.de" },
+                  { icon: Clock, data: t.methods.hours },
+                ].map((method) => (
+                  <div
+                    key={method.data.title}
+                    className="flex items-start gap-4 rounded-xl border border-border/50 bg-card p-5"
+                  >
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <method.icon className="h-5 w-5" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="font-semibold text-foreground">{method.data.title}</h3>
+                      {method.href ? (
                         <a
-                          href="https://maps.google.com/?q=Lübarser+Str.+25,+13435+Berlin"
-                          target="_blank"
-                          rel="noopener noreferrer"
+                          href={method.href}
+                          target={method.href.startsWith("http") ? "_blank" : undefined}
+                          rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className="break-words text-primary hover:underline"
                         >
-                          {t.openMaps}
+                          {method.data.content}
                         </a>
-                      </Button>
+                      ) : (
+                        <p className="text-foreground">{method.data.content}</p>
+                      )}
+                      <p className="text-sm leading-6 text-muted-foreground">{method.data.detail}</p>
                     </div>
                   </div>
-                </div>
-
-                <div className="rounded-xl border border-border/50 bg-background p-6">
-                  <h4 className="mb-4 font-semibold text-foreground">{t.openingHoursTitle}</h4>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between gap-4">
-                      <span className="text-muted-foreground">{t.openingHours.mondayFriday}</span>
-                      <span className="text-right text-foreground">{t.openingHours.mondayFridayValue}</span>
-                    </div>
-                    <div className="flex justify-between gap-4">
-                      <span className="text-muted-foreground">{t.openingHours.saturday}</span>
-                      <span className="text-right text-foreground">{t.openingHours.saturdayValue}</span>
-                    </div>
-                    <div className="flex justify-between gap-4">
-                      <span className="text-muted-foreground">{t.openingHours.sunday}</span>
-                      <span className="text-right text-foreground">{t.openingHours.sundayValue}</span>
-                    </div>
-                    <p className="mt-4 border-t border-border pt-2 text-xs text-muted-foreground">
-                      {t.openingHours.note}
-                    </p>
-                  </div>
-                </div>
-              </div>
+                ))}
+              </aside>
             </div>
           </div>
         </section>
 
-        <section className="bg-primary py-16 lg:py-20">
-          <div className="mx-auto max-w-7xl px-4 text-center lg:px-8">
-            <MessageCircle className="mx-auto mb-4 h-12 w-12 text-primary-foreground" />
-            <h2 className="text-2xl font-bold tracking-tight text-primary-foreground sm:text-3xl">
-              {t.whatsappCtaTitle}
+        <section className="border-y border-border bg-card py-16 lg:py-20">
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">
+            <div className="mb-10 max-w-3xl">
+              <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                {t.serviceContactsTitle}
+              </h2>
+              <p className="mt-3 text-body-compact text-muted-foreground">
+                {t.serviceContactsDescription}
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {t.serviceContacts.map((service, index) => {
+                const meta = serviceMeta[index] ?? fallbackServiceMeta
+
+                return (
+                  <Card key={service.title} className="border-border/50 bg-background">
+                    <CardContent className="flex gap-4 p-5">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        <meta.icon className="h-5 w-5" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+                          {service.subtitle}
+                        </p>
+                        <h3 className="text-lg font-semibold text-foreground">{service.title}</h3>
+                        <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+                          <a
+                            href={`tel:${meta.phone.replace(/\s/g, "")}`}
+                            className="flex items-center gap-2 text-sm text-foreground transition-colors hover:text-primary"
+                          >
+                            <Phone className="h-4 w-4" />
+                            {meta.phone}
+                          </a>
+                          <a
+                            href={`https://wa.me/49${meta.phone.replace(/\s/g, "").replace(/^0/, "")}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                          >
+                            <MessageCircle className="h-4 w-4" />
+                            {t.whatsapp}
+                          </a>
+                          <a
+                            href={`https://instagram.com/${meta.social.replace("@", "")}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                          >
+                            <Instagram className="h-4 w-4" />
+                            {meta.social}
+                          </a>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-background py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">
+            <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              {t.locationTitle}
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
-              {t.whatsappCtaDescription}
-            </p>
-            <Button
-              asChild
-              size="lg"
-              variant="secondary"
-              className="mt-8 gap-2 bg-white text-primary hover:bg-white/90"
-            >
-              <a href="https://wa.me/4917664365185" target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="h-5 w-5" />
-                {t.whatsappOpen}
-              </a>
-            </Button>
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.72fr)] lg:gap-12">
+              <div className="min-h-full">
+                <div className="flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border/50 bg-card shadow-sm">
+                  <iframe
+                    title="UNEXT GMBH Standortkarte"
+                    src="https://www.google.com/maps?q=L%C3%BCbarser%20Str.%2025%2C%2013435%20Berlin&output=embed"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="min-h-[22rem] flex-1 border-0"
+                  />
+                  <div className="flex flex-col items-center border-t border-border/50 bg-background p-5 text-center sm:flex-row sm:justify-between sm:text-left">
+                    <div>
+                      <p className="font-semibold text-foreground">Lübarser Str. 25</p>
+                      <p className="text-muted-foreground">13435 Berlin</p>
+                    </div>
+                    <Button asChild className="mt-4 sm:mt-0" variant="outline">
+                      <a
+                        href="https://maps.google.com/?q=Lübarser+Str.+25,+13435+Berlin"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <MapPin className="h-4 w-4" />
+                        {t.openMaps}
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex h-full flex-col rounded-xl border border-border/50 bg-card p-6">
+                <h3 className="mb-4 font-semibold text-foreground">{t.openingHoursTitle}</h3>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between gap-4">
+                    <span className="text-muted-foreground">{t.openingHours.mondayFriday}</span>
+                    <span className="text-right text-foreground">{t.openingHours.mondayFridayValue}</span>
+                  </div>
+                  <div className="flex justify-between gap-4">
+                    <span className="text-muted-foreground">{t.openingHours.saturday}</span>
+                    <span className="text-right text-foreground">{t.openingHours.saturdayValue}</span>
+                  </div>
+                  <div className="flex justify-between gap-4">
+                    <span className="text-muted-foreground">{t.openingHours.sunday}</span>
+                    <span className="text-right text-foreground">{t.openingHours.sundayValue}</span>
+                  </div>
+                  <p className="mt-4 border-t border-border pt-2 text-xs text-muted-foreground">
+                    {t.openingHours.note}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </main>
