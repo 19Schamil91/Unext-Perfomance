@@ -5,32 +5,28 @@ export function splitTextIntoReadableLines(text: string, targetLineLength = 78) 
     return []
   }
 
-  const sentences =
-    normalized.match(/[^.!?]+[.!?]?/gu)?.map((sentence) => sentence.trim()).filter(Boolean) ?? [
-      normalized,
-    ]
+  const readableParts =
+    normalized
+      .match(/[^.!?,]+[.!?,]?/gu)
+      ?.map((part) => part.trim())
+      .filter(Boolean) ?? [normalized]
 
   const lines: string[] = []
+  let currentLine = ""
 
-  for (const sentence of sentences) {
-    const phrases = sentence.split(/(?<=,)\s+/u).map((phrase) => phrase.trim()).filter(Boolean)
+  for (const part of readableParts) {
+    const candidate = currentLine ? `${currentLine} ${part}` : part
 
-    let currentLine = ""
-
-    for (const phrase of phrases) {
-      const candidate = currentLine ? `${currentLine} ${phrase}` : phrase
-
-      if (currentLine && candidate.length > targetLineLength) {
-        lines.push(currentLine)
-        currentLine = phrase
-      } else {
-        currentLine = candidate
-      }
-    }
-
-    if (currentLine) {
+    if (currentLine && candidate.length > targetLineLength) {
       lines.push(currentLine)
+      currentLine = part
+    } else {
+      currentLine = candidate
     }
+  }
+
+  if (currentLine) {
+    lines.push(currentLine)
   }
 
   return lines

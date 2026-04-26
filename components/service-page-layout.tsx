@@ -1,3 +1,8 @@
+/*
+  Diese Datei stellt das gemeinsame Layout fuer einzelne Leistungsseiten bereit.
+  Sie zeigt Hero-Bereich, Vorteile, Servicekarten, Gruende, Formular und Fragen.
+  Besucher koennen Informationen lesen und direkt Kontakt aufnehmen.
+*/
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, CheckCircle, MessageCircle, Phone } from "lucide-react"
@@ -14,7 +19,7 @@ import {
 import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
 
-interface ServicePageLayoutProps {
+type ServicePageLayoutProps = {
   title: string
   subtitle: string
   description: string
@@ -44,7 +49,7 @@ interface ServicePageLayoutProps {
   benefitsSingleLine?: boolean
 }
 
-interface ServiceAction {
+type ServiceAction = {
   label: string
   href: string
   icon?: "phone" | "message"
@@ -440,7 +445,8 @@ export async function ServicePageLayout({
                     <ReadableText
                       text={faq.answer}
                       targetLineLength={72}
-                      className="max-w-[64ch] pb-1 text-body-compact text-muted-foreground"
+                      lineGapClassName=""
+                      className="max-w-[64ch] pb-1 text-body-compact leading-[1.45] text-muted-foreground"
                     />
                   </AccordionContent>
                 </AccordionItem>
