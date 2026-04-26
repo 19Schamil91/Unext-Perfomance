@@ -10,7 +10,6 @@ import {
   Car,
   CheckCircle,
   ClipboardCheck,
-  Clock,
   FileCheck,
   Instagram,
   Mail,
@@ -113,57 +112,41 @@ export function ContactPageClient() {
                     </>
                   ) : null}
                 </p>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Button asChild size="lg" className="gap-2 sm:min-w-[12rem]">
-                    <a href={`tel:${primaryPhone.replace(/\s/g, "")}`}>
-                      <Phone className="h-5 w-5" />
-                      {primaryPhone}
-                    </a>
-                  </Button>
-                  <Button asChild size="lg" variant="outline" className="gap-2 sm:min-w-[12rem]">
-                    <a
-                      href={`https://wa.me/49${whatsappPhone.replace(/\s/g, "").replace(/^0/, "")}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <MessageCircle className="h-5 w-5" />
-                      {t.whatsappOpen}
-                    </a>
-                  </Button>
-                </div>
               </div>
 
-              <div className="rounded-[1.5rem] border border-border/55 bg-background/72 p-5 shadow-[0_18px_42px_rgba(15,23,42,0.08)] backdrop-blur-sm">
-                {[
-                  { icon: MapPin, data: t.methods.address, href: "https://maps.google.com/?q=Lübarser+Str.+25,+13435+Berlin" },
-                  { icon: Mail, data: t.methods.email, href: "mailto:info@unext.de" },
-                  { icon: Clock, data: t.methods.hours },
-                ].map((method) => (
-                  <div
-                    key={method.data.title}
-                    className="flex gap-4 border-b border-border/50 py-4 first:pt-0 last:border-b-0 last:pb-0"
-                  >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <method.icon className="h-5 w-5" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="font-semibold text-foreground">{method.data.title}</p>
-                      {method.href ? (
-                        <a
-                          href={method.href}
-                          target={method.href.startsWith("http") ? "_blank" : undefined}
-                          rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          className="break-words text-primary hover:underline"
-                        >
-                          {method.data.content}
-                        </a>
-                      ) : (
-                        <p className="text-foreground">{method.data.content}</p>
-                      )}
-                      <p className="text-sm leading-6 text-muted-foreground">{method.data.detail}</p>
-                    </div>
+              <div className="flex flex-col gap-3">
+                <a
+                  href={`tel:${primaryPhone.replace(/\s/g, "")}`}
+                  className="flex items-center gap-4 rounded-xl border border-border/50 bg-background/72 px-6 py-4 text-foreground backdrop-blur-sm transition-colors hover:border-primary/40 hover:bg-primary/5"
+                >
+                  <Phone className="h-5 w-5 shrink-0 text-primary" />
+                  <div>
+                    <p className="text-xs font-medium text-muted-foreground">{t.form.phone}</p>
+                    <p className="font-semibold">{primaryPhone}</p>
                   </div>
-                ))}
+                </a>
+                <a
+                  href={`https://wa.me/49${whatsappPhone.replace(/\s/g, "").replace(/^0/, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 rounded-xl border border-border/50 bg-background/72 px-6 py-4 text-foreground backdrop-blur-sm transition-colors hover:border-primary/40 hover:bg-primary/5"
+                >
+                  <MessageCircle className="h-5 w-5 shrink-0 text-primary" />
+                  <div>
+                    <p className="text-xs font-medium text-muted-foreground">WhatsApp</p>
+                    <p className="font-semibold">{whatsappPhone}</p>
+                  </div>
+                </a>
+                <a
+                  href="mailto:info@unext.de"
+                  className="flex items-center gap-4 rounded-xl border border-border/50 bg-background/72 px-6 py-4 text-foreground backdrop-blur-sm transition-colors hover:border-primary/40 hover:bg-primary/5"
+                >
+                  <Mail className="h-5 w-5 shrink-0 text-primary" />
+                  <div>
+                    <p className="text-xs font-medium text-muted-foreground">E-Mail</p>
+                    <p className="font-semibold">info@unext.de</p>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
@@ -171,158 +154,134 @@ export function ContactPageClient() {
 
         <section className="bg-background py-16 lg:py-24">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="grid gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(20rem,0.92fr)] lg:gap-12">
-              <div>
-                {isSubmitted ? (
-                  <Card className="border-primary/30 bg-background">
-                    <CardContent className="p-8 text-center">
-                      <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                        <CheckCircle className="h-8 w-8 text-primary" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-foreground">{t.form.successTitle}</h3>
-                      <p className="mt-2 text-muted-foreground">{t.form.successText}</p>
-                      <Button
-                        className="mt-6"
-                        variant="outline"
-                        onClick={() => {
-                          setFormData(emptyContactDraft)
-                          setIsSubmitted(false)
-                        }}
-                      >
-                        {t.form.newMessage}
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ) : (
-                  <Card className="border-border/50 bg-background">
-                    <CardHeader>
-                      <CardTitle>{t.form.title}</CardTitle>
-                      <CardDescription>{t.form.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <form onSubmit={handleSubmit}>
-                        <FieldGroup className="space-y-4">
-                          <div className="grid gap-4 sm:grid-cols-2">
-                            <Field>
-                              <FieldLabel htmlFor="name">{t.form.name}</FieldLabel>
-                              <Input
-                                id="name"
-                                name="name"
-                                placeholder={t.form.namePlaceholder}
-                                value={formData.name}
-                                onChange={(event) => handleFieldChange("name", event.target.value)}
-                                required
-                              />
-                            </Field>
-                            <Field>
-                              <FieldLabel htmlFor="phone">{t.form.phone}</FieldLabel>
-                              <Input
-                                id="phone"
-                                name="phone"
-                                type="tel"
-                                placeholder={t.form.phonePlaceholder}
-                                value={formData.phone}
-                                onChange={(event) => handleFieldChange("phone", event.target.value)}
-                              />
-                            </Field>
-                          </div>
-
+            <div className="mx-auto max-w-2xl">
+              {isSubmitted ? (
+                <Card className="border-primary/30 bg-background">
+                  <CardContent className="p-8 text-center">
+                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+                      <CheckCircle className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-foreground">{t.form.successTitle}</h3>
+                    <p className="mt-2 text-muted-foreground">{t.form.successText}</p>
+                    <Button
+                      className="mt-6"
+                      variant="outline"
+                      onClick={() => {
+                        setFormData(emptyContactDraft)
+                        setIsSubmitted(false)
+                      }}
+                    >
+                      {t.form.newMessage}
+                    </Button>
+                  </CardContent>
+                </Card>
+              ) : (
+                <Card className="border-border/50 bg-background">
+                  <CardHeader>
+                    <CardTitle>{t.form.title}</CardTitle>
+                    <CardDescription>{t.form.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <form onSubmit={handleSubmit}>
+                      <FieldGroup className="space-y-4">
+                        <div className="grid gap-4 sm:grid-cols-2">
                           <Field>
-                            <FieldLabel htmlFor="email">{t.form.email}</FieldLabel>
+                            <FieldLabel htmlFor="name">{t.form.name}</FieldLabel>
                             <Input
-                              id="email"
-                              name="email"
-                              type="email"
-                              placeholder={t.form.emailPlaceholder}
-                              value={formData.email}
-                              onChange={(event) => handleFieldChange("email", event.target.value)}
+                              id="name"
+                              name="name"
+                              value={formData.name}
+                              onChange={(event) => handleFieldChange("name", event.target.value)}
                               required
                             />
                           </Field>
-
                           <Field>
-                            <FieldLabel htmlFor="subject">{t.form.subject}</FieldLabel>
+                            <FieldLabel htmlFor="phone">{t.form.phone}</FieldLabel>
                             <Input
-                              id="subject"
-                              name="subject"
-                              placeholder={t.form.subjectPlaceholder}
-                              value={formData.subject}
-                              onChange={(event) => handleFieldChange("subject", event.target.value)}
-                              required
+                              id="phone"
+                              name="phone"
+                              type="tel"
+                              value={formData.phone}
+                              onChange={(event) => handleFieldChange("phone", event.target.value)}
                             />
                           </Field>
+                        </div>
 
-                          <Field>
-                            <FieldLabel htmlFor="message">{t.form.message}</FieldLabel>
-                            <Textarea
-                              id="message"
-                              name="message"
-                              placeholder={t.form.messagePlaceholder}
-                              value={formData.message}
-                              onChange={(event) => handleFieldChange("message", event.target.value)}
-                              rows={5}
-                              required
-                            />
-                          </Field>
+                        <Field>
+                          <FieldLabel htmlFor="email">{t.form.email}</FieldLabel>
+                          <Input
+                            id="email"
+                            name="email"
+                            type="email"
+                            value={formData.email}
+                            onChange={(event) => handleFieldChange("email", event.target.value)}
+                            required
+                          />
+                        </Field>
 
-                          <Button type="submit" className="w-full" disabled={isSubmitting}>
-                            {isSubmitting ? (
-                              <>
-                                <Spinner className="mr-2" />
-                                {t.form.submitting}
-                              </>
-                            ) : (
-                              t.form.submit
-                            )}
-                          </Button>
+                        <Field>
+                          <FieldLabel htmlFor="subject">{t.form.subject}</FieldLabel>
+                          <Input
+                            id="subject"
+                            name="subject"
+                            value={formData.subject}
+                            onChange={(event) => handleFieldChange("subject", event.target.value)}
+                            required
+                          />
+                        </Field>
 
-                          <p className="text-center text-xs text-muted-foreground">
-                            {t.form.privacyPrefix}{" "}
-                            <a href="/datenschutz" className="underline hover:text-foreground">
-                              {t.form.privacyLink}
-                            </a>{" "}
-                            {t.form.privacySuffix}
-                          </p>
-                        </FieldGroup>
-                      </form>
-                    </CardContent>
-                  </Card>
-                )}
-              </div>
+                        <Field>
+                          <FieldLabel htmlFor="message">{t.form.message}</FieldLabel>
+                          <Textarea
+                            id="message"
+                            name="message"
+                            value={formData.message}
+                            onChange={(event) => handleFieldChange("message", event.target.value)}
+                            rows={5}
+                            required
+                          />
+                        </Field>
 
-              <aside className="space-y-4">
-                {[
-                  { icon: Phone, data: { title: t.form.phone, content: primaryPhone, detail: t.whatsapp }, href: `tel:${primaryPhone.replace(/\s/g, "")}` },
-                  { icon: MessageCircle, data: { title: t.whatsapp, content: whatsappPhone, detail: t.whatsappCtaDescription }, href: `https://wa.me/49${whatsappPhone.replace(/\s/g, "").replace(/^0/, "")}` },
-                  { icon: Mail, data: t.methods.email, href: "mailto:info@unext.de" },
-                  { icon: Clock, data: t.methods.hours },
-                ].map((method) => (
-                  <div
-                    key={method.data.title}
-                    className="flex items-start gap-4 rounded-xl border border-border/50 bg-card p-5"
+                        <Button type="submit" className="w-full" disabled={isSubmitting}>
+                          {isSubmitting ? (
+                            <>
+                              <Spinner className="mr-2" />
+                              {t.form.submitting}
+                            </>
+                          ) : (
+                            t.form.submit
+                          )}
+                        </Button>
+
+                        <p className="text-center text-xs text-muted-foreground">
+                          {t.form.privacyPrefix}{" "}
+                          <a href="/datenschutz" className="underline hover:text-foreground">
+                            {t.form.privacyLink}
+                          </a>{" "}
+                          {t.form.privacySuffix}
+                        </p>
+                      </FieldGroup>
+                    </form>
+                  </CardContent>
+                </Card>
+              )}
+
+              <div className="mt-6 flex flex-col items-start justify-between gap-4 rounded-xl border border-border/50 bg-card p-5 sm:flex-row sm:items-center">
+                <div className="min-w-0">
+                  <p className="font-semibold text-foreground">{t.whatsappCtaTitle}</p>
+                  <p className="text-sm text-muted-foreground">{t.whatsappCtaDescription}</p>
+                </div>
+                <Button asChild variant="outline" className="shrink-0 gap-2">
+                  <a
+                    href={`https://wa.me/49${whatsappPhone.replace(/\s/g, "").replace(/^0/, "")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <method.icon className="h-5 w-5" />
-                    </div>
-                    <div className="min-w-0">
-                      <h3 className="font-semibold text-foreground">{method.data.title}</h3>
-                      {method.href ? (
-                        <a
-                          href={method.href}
-                          target={method.href.startsWith("http") ? "_blank" : undefined}
-                          rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          className="break-words text-primary hover:underline"
-                        >
-                          {method.data.content}
-                        </a>
-                      ) : (
-                        <p className="text-foreground">{method.data.content}</p>
-                      )}
-                      <p className="text-sm leading-6 text-muted-foreground">{method.data.detail}</p>
-                    </div>
-                  </div>
-                ))}
-              </aside>
+                    <MessageCircle className="h-5 w-5" />
+                    {t.whatsappOpen}
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
         </section>
