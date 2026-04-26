@@ -2,7 +2,7 @@ export const homeTranslationOverrides = {
   de: {
     hero: {
       description:
-        "Unfallgutachten, Autovermietung, Werkstatt & Service, Kfz-Zulassung,\nPannenhilfe & Abschleppen und Aufbereitung & Pflege\n- alles unter einem Dach. Professionell, schnell und zuverlässig seit 2024.",
+        "Unfallgutachten, Autovermietung, Werkstatt & Service, Kfz-Zulassung, Pannenhilfe & Abschleppen und Aufbereitung & Pflege\n- alles unter einem Dach. Professionell, schnell und zuverlässig seit 2024.",
     },
   },
   en: {

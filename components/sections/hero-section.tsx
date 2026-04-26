@@ -168,8 +168,8 @@ function HeroContent({
           className={
             isOverlay
               ? combinePrimaryTitle
-                ? "relative z-10 inline-flex max-w-none flex-col text-white drop-shadow-[0_10px_34px_rgba(0,0,0,0.42)]"
-                : "relative z-10 max-w-none text-white drop-shadow-[0_10px_34px_rgba(0,0,0,0.42)]"
+                ? "relative z-10 -translate-y-4 inline-flex max-w-none flex-col items-center text-center text-white drop-shadow-[0_10px_34px_rgba(0,0,0,0.42)]"
+                : "relative z-10 max-w-none text-center text-white drop-shadow-[0_10px_34px_rgba(0,0,0,0.42)]"
               : "measure-display text-display-fluid text-foreground"
           }
         >
@@ -216,7 +216,7 @@ function HeroContent({
         <p
           className={
             isOverlay
-              ? "relative z-10 mt-7 max-w-[78ch] text-left text-[clamp(1rem,0.97rem+0.14vw,1.12rem)] leading-[1.8] text-white/94 drop-shadow-[0_8px_24px_rgba(0,0,0,0.44)] sm:mt-7"
+              ? "relative z-10 mx-auto mt-14 max-w-[78ch] text-center text-[clamp(1rem,0.97rem+0.14vw,1.12rem)] leading-[1.8] text-white/94 drop-shadow-[0_8px_24px_rgba(0,0,0,0.44)] sm:mt-14"
               : "measure-intro-tight mt-4 text-body-fluid text-muted-foreground sm:mt-6"
           }
         >
@@ -372,8 +372,8 @@ export async function HeroSection() {
     anchor: homeServiceAnchors[index] ?? homeServiceAnchors[0],
   }))
   const viewAllServices = home.services.viewAll
-  const heroMobileImageSrc = "/images/home-hero-team-balanced.webp"
-  const heroDesktopImageSrc = "/images/home-hero-team-desktop.webp"
+  const heroMobileImageSrc = "/images/home-hero-team-new.webp.png"
+  const heroDesktopImageSrc = "/images/home-hero-team-new.webp.png"
 
   return (
     <section className="overflow-x-clip overflow-y-hidden bg-background">
