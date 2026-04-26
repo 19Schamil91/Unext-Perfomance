@@ -24,6 +24,7 @@ interface HeroContentProps {
   inquiry: string
   whatsapp: string
   address: string
+  directServicesLabel: string
   viewAllServices: string
   className?: string
 }
@@ -134,6 +135,7 @@ function HeroContent({
   inquiry,
   whatsapp,
   address,
+  directServicesLabel,
   viewAllServices,
   className,
 }: HeroContentProps) {
@@ -168,7 +170,7 @@ function HeroContent({
           className={
             isOverlay
               ? combinePrimaryTitle
-                ? "relative z-10 -translate-y-4 inline-flex max-w-none flex-col items-center text-center text-white drop-shadow-[0_10px_34px_rgba(0,0,0,0.42)]"
+                ? "relative z-10 inline-flex max-w-none flex-col items-center text-center text-white drop-shadow-[0_10px_34px_rgba(0,0,0,0.42)]"
                 : "relative z-10 max-w-none text-center text-white drop-shadow-[0_10px_34px_rgba(0,0,0,0.42)]"
               : "measure-display text-display-fluid text-foreground"
           }
@@ -216,7 +218,7 @@ function HeroContent({
         <p
           className={
             isOverlay
-              ? "relative z-10 mx-auto mt-14 max-w-[78ch] text-center text-[clamp(1rem,0.97rem+0.14vw,1.12rem)] leading-[1.8] text-white/94 drop-shadow-[0_8px_24px_rgba(0,0,0,0.44)] sm:mt-14"
+              ? "relative z-10 mx-auto mt-20 translate-y-10 max-w-[78ch] text-center text-[clamp(1rem,0.97rem+0.14vw,1.12rem)] leading-[1.8] text-white/94 drop-shadow-[0_8px_24px_rgba(0,0,0,0.44)] sm:mt-20"
               : "measure-intro-tight mt-4 text-body-fluid text-muted-foreground sm:mt-6"
           }
         >
@@ -232,7 +234,7 @@ function HeroContent({
               : "text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground sm:text-[0.72rem]"
           }
         >
-          Direkt zu den Hauptleistungen
+          {directServicesLabel}
         </p>
       </div>
 
@@ -405,6 +407,7 @@ export async function HeroSection() {
             inquiry={t.inquiry}
             whatsapp={t.whatsapp}
             address={t.address}
+            directServicesLabel={t.directServicesLabel}
             viewAllServices={viewAllServices}
             className="mx-auto max-w-[23rem] sm:max-w-2xl"
           />
@@ -441,6 +444,7 @@ export async function HeroSection() {
             inquiry={t.inquiry}
             whatsapp={t.whatsapp}
             address={t.address}
+            directServicesLabel={t.directServicesLabel}
             viewAllServices={viewAllServices}
             className="max-w-[62rem]"
           />
