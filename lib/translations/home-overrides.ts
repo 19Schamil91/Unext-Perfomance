@@ -2,7 +2,8 @@ export const homeTranslationOverrides = {
   de: {
     hero: {
       description:
-        "Unfallgutachten, Autovermietung, Werkstatt, Kfz-Zulassungsservice, Abschleppdienst\nund Premium Detailing - alles unter einem Dach. Professionell, schnell und zuverlässig seit 2024.",
+        "Unfallgutachten, Autovermietung, Werkstatt & Service, Kfz-Zulassung,\nPannenhilfe & Abschleppen und Aufbereitung & Pflege\n- alles unter einem Dach. Professionell, schnell und zuverlässig seit 2024.",
+      directServicesLabel: "Direkt zu den Hauptleistungen",
     },
   },
   en: {
@@ -12,7 +13,8 @@ export const homeTranslationOverrides = {
       title2: "from one source",
       title3: "in Berlin",
       description:
-        "One point of contact for accident assistance & reports, car rental, vehicle workshop, vehicle detailing,\nvehicle registration and towing in Berlin. For private customers, companies and ride-hailing drivers.",
+        "Accident assistance & reports, car rental, vehicle workshop, vehicle registration,\ntowing & roadside assistance and vehicle detailing\n- all under one roof. Professional, fast and reliable since 2024.",
+      directServicesLabel: "Directly to the main services",
       scrollLabel: "Learn more",
     },
     services: {
@@ -103,7 +105,8 @@ export const homeTranslationOverrides = {
       title2: "из одних рук",
       title3: "в Берлине",
       description:
-        "Один контакт по вопросам помощи при ДТП и экспертизы, аренды автомобилей, автосервиса, детейлинга,\nрегистрации автомобиля и эвакуации в Берлине. Для частных клиентов, компаний, а также водителей Uber, Bolt и такси.",
+        "Помощь при ДТП и экспертиза, аренда автомобилей, автосервис,\nрегистрация автомобиля, эвакуация и помощь на дороге, детейлинг\n- всё под одной крышей. Профессионально, быстро и надёжно с 2024 года.",
+      directServicesLabel: "К основным услугам",
       callNow: "Позвонить сейчас",
       inquiry: "Отправить заявку",
       scrollLabel: "Подробнее",

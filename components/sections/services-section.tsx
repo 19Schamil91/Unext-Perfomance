@@ -1,3 +1,8 @@
+/*
+  Diese Datei zeigt den Leistungsbereich auf der Startseite.
+  Sie zeigt die sechs Hauptleistungen als Karten mit Bild, Kurztext, Vorteilen und Kontaktaktion.
+  Besucher koennen eine Leistung ansehen, Details oeffnen oder direkt anrufen.
+*/
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Car, ClipboardCheck, FileCheck, Phone, Sparkles, Truck, Wrench } from "lucide-react"
@@ -9,7 +14,7 @@ import { homeServiceAnchors } from "@/lib/service-anchors"
 import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
 
-interface ServiceMeta {
+type ServiceMeta = {
   icon: typeof FileCheck
   image: string
   imageClassName: string
@@ -22,8 +27,8 @@ interface ServiceMeta {
 const serviceMeta = [
   {
     icon: FileCheck,
-    image: "/images/service-accident.webp",
-    imageClassName: "object-cover object-[58%_center]",
+    image: "/images/home-service-accident.webp",
+    imageClassName: "object-cover object-center",
     href: "/leistungen/unfallgutachten",
     contactText: "0176 64365185",
     contactHref: "tel:+4917664365185",
@@ -31,8 +36,8 @@ const serviceMeta = [
   },
   {
     icon: Car,
-    image: "/images/service-rental.webp",
-    imageClassName: "object-cover object-[38%_30%] sm:object-[42%_38%] lg:object-[42%_center]",
+    image: "/images/home-service-rental.webp",
+    imageClassName: "object-cover object-[42%_center]",
     href: "/leistungen/autovermietung",
     contactText: "0174 4292900",
     contactHref: "tel:+491744292900",
@@ -40,8 +45,8 @@ const serviceMeta = [
   },
   {
     icon: Wrench,
-    image: "/images/service-workshop.webp",
-    imageClassName: "object-cover object-[60%_center]",
+    image: "/images/home-service-workshop.webp",
+    imageClassName: "object-cover object-[58%_center]",
     href: "/leistungen/autoservice",
     contactText: "0177 7883206",
     contactHref: "tel:+491777883206",
@@ -49,8 +54,8 @@ const serviceMeta = [
   },
   {
     icon: Sparkles,
-    image: "/images/service-detailing.webp",
-    imageClassName: "object-cover object-[56%_center]",
+    image: "/images/home-service-detailing.webp",
+    imageClassName: "object-cover object-[42%_center]",
     href: "/leistungen/detailing",
     contactText: "0177 6691006",
     contactHref: "tel:+491776691006",
@@ -58,8 +63,8 @@ const serviceMeta = [
   },
   {
     icon: ClipboardCheck,
-    image: "/images/service-registration.webp",
-    imageClassName: "object-cover object-[38%_center]",
+    image: "/images/home-service-registration.webp",
+    imageClassName: "object-cover object-[42%_center]",
     href: "/leistungen/zulassungsservice",
     contactText: "030 23613927",
     contactHref: "tel:+493023613927",
@@ -77,24 +82,25 @@ const serviceMeta = [
 ] satisfies readonly ServiceMeta[]
 
 export async function ServicesSection() {
+  // Diese Daten bestimmen pro Leistung Bild, Icon und direkte Kontaktaktion.
   const locale = await getCurrentLocale()
   const t = getTranslations(locale).home.services
 
   return (
-    <section className="bg-background py-20 lg:py-28">
+    <section className="bg-background py-22 lg:py-30">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="mx-auto mb-10 max-w-5xl text-center sm:mb-16">
-          <h2 className="mx-auto max-w-[14ch] text-heading-fluid font-semibold text-foreground sm:max-w-[15ch] lg:max-w-none">
+        <div className="mx-auto mb-12 max-w-5xl text-center sm:mb-16">
+          <h2 className="mx-auto max-w-[24rem] text-[clamp(1.85rem,1.58rem+1.1vw,2.2rem)] leading-[1.08] font-semibold text-foreground sm:max-w-[15ch] sm:text-[clamp(1.9rem,1.35rem+1.45vw,3.15rem)] sm:leading-[1.04] sm:tracking-[-0.03em] sm:font-[650] lg:max-w-none">
             {t.title}
           </h2>
           <ReadableText
             text={t.description}
             targetLineLength={180}
-            className="mx-auto mt-3 max-w-none text-body-fluid text-muted-foreground lg:whitespace-nowrap sm:mt-4"
+            className="mx-auto mt-3 max-w-[34rem] text-[1rem] leading-[1.7] text-muted-foreground sm:mt-4 sm:max-w-none sm:text-[clamp(1rem,0.98rem+0.24vw,1.12rem)] sm:leading-[1.78]"
           />
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-7 md:grid-cols-2">
           {t.items.map((service, index) => {
             const meta = serviceMeta[index]
             const contactText = meta.contactText ?? ""
@@ -103,11 +109,11 @@ export async function ServicesSection() {
               <Card
                 key={service.title}
                 id={homeServiceAnchors[index]}
-                className="group relative scroll-mt-28 overflow-hidden rounded-[1.75rem] border border-border/55 bg-card shadow-[0_16px_38px_rgba(15,23,42,0.08)] transition-all duration-300 hover:border-primary/35 hover:shadow-[0_20px_44px_rgba(15,23,42,0.11)]"
+                className="group relative scroll-mt-28 overflow-hidden rounded-[1.75rem] border border-border/65 bg-card/98 shadow-[0_16px_38px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/35 hover:shadow-[0_22px_48px_rgba(15,23,42,0.14)]"
               >
                 <CardContent className="p-4 sm:p-5 lg:p-6">
                   <div className="flex h-full flex-col">
-                    <div className="relative h-60 overflow-hidden rounded-[1.45rem] border border-border/50 bg-background shadow-sm sm:h-72 lg:h-64">
+                    <div className="relative aspect-square overflow-hidden rounded-[1.45rem] border border-border/55 bg-background shadow-[0_10px_22px_rgba(15,23,42,0.08)]">
                       <Image
                         src={meta.image}
                         alt={service.title}
@@ -128,21 +134,21 @@ export async function ServicesSection() {
                           <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-primary">
                             {service.subtitle}
                           </p>
-                          <h3 className="mt-1 text-[clamp(1.14rem,1.02rem+0.38vw,1.42rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-foreground md:whitespace-nowrap">
+                          <h3 className="mt-1 text-[clamp(1.14rem,1.02rem+0.38vw,1.42rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-foreground lg:whitespace-nowrap">
                             {service.title}
                           </h3>
                         </div>
                       </div>
 
-                      <p className="mt-4 max-w-[62ch] text-[0.98rem] leading-8 text-muted-foreground">
+                      <p className="mt-4 max-w-[62ch] text-[0.98rem] leading-7 text-muted-foreground">
                         {service.description}
                       </p>
 
-                      <ul className="mt-5 grid gap-y-3">
+                      <ul className="mt-5 grid gap-y-3.5">
                         {service.features.map((feature) => (
                           <li
                             key={feature}
-                            className="grid grid-cols-[0.45rem_minmax(0,1fr)] items-start gap-x-3 rounded-xl border border-border/45 bg-background/55 px-3 py-2.5 text-body-compact text-muted-foreground"
+                            className="grid grid-cols-[0.45rem_minmax(0,1fr)] items-start gap-x-3 rounded-xl border border-border/55 bg-background/70 px-3 py-2.5 text-body-compact text-muted-foreground"
                           >
                             <span className="mt-[0.58rem] h-1.5 w-1.5 rounded-full bg-primary" />
                             <span>{feature}</span>

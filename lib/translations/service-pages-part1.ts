@@ -72,7 +72,7 @@ export const servicePagesPart1 = {
       benefits: ["Fast appointments", "Independent reports", "Certified experts", "Claims handling included", "Free initial consultation", "On-site service available"],
       services: [
         { title: "Accident reports", description: "Professional and independent damage assessments after road accidents for insurers and courts." },
-        { title: "Immediate assistance after an accident", description: "Fast support right after the accident - we take care of everything necessary." },
+        { title: "Immediate accident help", description: "Fast support right after the accident - we take care of everything necessary." },
         { title: "Claims handling", description: "Complete support in communication with insurers and all parties involved." },
         { title: "Value reports", description: "Vehicle valuation for purchase, sale or insurance purposes by our experts." },
         { title: "Damage documentation", description: "Comprehensive photo and written documentation of all damage." },
@@ -140,7 +140,7 @@ export const servicePagesPart1 = {
         { title: "Направление к юристам", description: "Связь с компетентными партнерами для юридической поддержки по делам о возмещении ущерба." },
       ],
       whyChoose: [
-        { title: "Сертифицированные эксперты", description: "Наши специалисты прошли проверку и сертификацию - для юридически надежных заключений." },
+        { title: "Сертифицированные\u00A0эксперты", description: "Наши специалисты прошли проверку и сертификацию - для юридически надежных заключений." },
         { title: "Быстрая запись", description: "Мы знаем, что время важно. Срочные записи для нас - стандарт." },
         { title: "Независимость", description: "Мы работаем независимо от страховых компаний - ваши интересы на первом месте." },
         { title: "Полный сервис", description: "От первой консультации до окончательного урегулирования - все из одних рук." },

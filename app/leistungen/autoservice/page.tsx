@@ -1,3 +1,8 @@
+/*
+  Diese Datei ist die Detailseite fuer Werkstatt & Service.
+  Sie zeigt den Leistungsbereich mit Einleitung, Vorteilen, Servicekarten, Gruenden, Fragen und dem Anfrageformular.
+  Besucher koennen die Inhalte lesen und direkt Kontakt per Telefon, WhatsApp oder Formular aufnehmen.
+*/
 import type { Metadata } from "next"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
@@ -8,7 +13,7 @@ import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
 
 const workshopTitleLines = {
-  de: ["Kfz-Werkstatt & Reparatur"],
+  de: ["Werkstatt & Service"],
   en: ["Workshop & Service"],
   ru: ["Сервис и мастерская"],
 } satisfies Record<Locale, readonly string[]>
@@ -16,15 +21,19 @@ const workshopTitleLines = {
 const workshopDescriptionLines = {
   de: [
     "Unser erfahrenes Werkstatt-Team kümmert sich professionell um Ihr Fahrzeug.",
-    "Von der routinemäßigen Wartung bis zur Reparatur bieten wir zuverlässigen Service mit Qualitätsgarantie.",
+    "Von der routinemäßigen Wartung bis zur Reparatur",
+    "- wir bieten zuverlässigen Service mit Qualitätsgarantie.",
   ],
   en: [
     "Our experienced workshop team takes professional care of your vehicle.",
-    "From routine maintenance to repairs, we offer reliable service with a quality guarantee.",
+    "From routine maintenance to repairs",
+    "- we offer reliable service with a quality guarantee.",
   ],
   ru: [
-    "Наша опытная команда мастерской профессионально позаботится о вашем автомобиле.",
-    "От планового обслуживания до ремонта мы предлагаем надежный сервис с гарантией качества.",
+    "Наша опытная команда мастерской",
+    "профессионально позаботится о вашем автомобиле.",
+    "От планового обслуживания до ремонта",
+    "- мы предлагаем надежный сервис с гарантией качества.",
   ],
 } satisfies Record<Locale, readonly string[]>
 
@@ -36,12 +45,30 @@ const workshopServiceTitleLineBreaks = {
 
 const workshopServiceDescriptionLines = {
   de: {
-    "Ölwechsel & Inspektion": ["Regelmäßiger Ölwechsel und umfassende", "Inspektionen nach Herstellervorgaben."],
-    "Reifenwechsel & Einlagerung": ["Professioneller Reifenservice inklusive", "Auswuchten und optionaler Einlagerung."],
-    "Dashcam-Einbau": ["Fachgerechter Einbau von Dashcams - sauber", "verlegt und professionell angeschlossen."],
-    "Bremsenservice": ["Prüfung, Wartung und Austausch von", "Bremsbelägen und Bremsscheiben."],
-    "Allgemeine Reparaturen": ["Von der Auspuffanlage bis zur Elektrik -", "wir reparieren zuverlässig."],
-    "Fahrzeugdiagnose": ["Moderne Diagnosetechnik für die schnelle", "Fehlersuche und -behebung."],
+    "Ölwechsel & Inspektion": [
+      "Regelmäßiger Ölwechsel und umfassende",
+      "Inspektionen nach Herstellervorgaben.",
+    ],
+    "Reifenwechsel & Einlagerung": [
+      "Professioneller Reifenservice inklusive",
+      "Auswuchten und optionaler Einlagerung.",
+    ],
+    "Dashcam-Einbau": [
+      "Fachgerechter Einbau von Dashcams",
+      "‑\u00A0sauber verlegt und professionell angeschlossen.",
+    ],
+    "Bremsenservice": [
+      "Prüfung, Wartung und Austausch",
+      "von Bremsbelägen und Bremsscheiben.",
+    ],
+    "Allgemeine Reparaturen": [
+      "Von der Auspuffanlage bis zur Elektrik",
+      "- wir reparieren zuverlässig.",
+    ],
+    "Fahrzeugdiagnose": [
+      "Moderne Diagnosetechnik für die schnelle",
+      "Fehlersuche und -behebung.",
+    ],
   },
   en: {
     "Oil change & inspection": [
@@ -49,23 +76,54 @@ const workshopServiceDescriptionLines = {
       "inspections according to manufacturer",
       "specifications.",
     ],
-    "Tire service & storage": ["Professional tire service including balancing", "and optional storage."],
-    "Dashcam installation": ["Professional dashcam installation - neatly wired", "and correctly connected."],
-    "Brake service": ["Inspection, maintenance and replacement", "of brake pads and discs."],
-    "General repairs": ["From exhaust systems to electrical work -", "we repair reliably."],
-    "Vehicle diagnostics": ["Modern diagnostic technology for fast", "troubleshooting and repair."],
+    "Tire service & storage": [
+      "Professional tire service including balancing",
+      "and optional storage.",
+    ],
+    "Dashcam installation": [
+      "Professional dashcam installation",
+      "- neatly wired and correctly connected.",
+    ],
+    "Brake service": [
+      "Inspection, maintenance and replacement",
+      "of brake pads and discs.",
+    ],
+    "General repairs": [
+      "From exhaust systems to electrical work",
+      "- we repair reliably.",
+    ],
+    "Vehicle diagnostics": [
+      "Modern diagnostic technology for fast",
+      "troubleshooting and repair.",
+    ],
   },
   ru: {
-    "Замена масла и инспекция": ["Регулярная замена масла и комплексные проверки", "по требованиям производителя."],
-    "Шиномонтаж и хранение": ["Профессиональный шинный сервис,", "включая балансировку", "и при необходимости хранение."],
+    "Замена масла и инспекция": [
+      "Регулярная замена масла и комплексные",
+      "проверки по требованиям производителя.",
+    ],
+    "Шиномонтаж и хранение": [
+      "Профессиональный шинный сервис,",
+      "включая балансировку",
+      "и при необходимости хранение.",
+    ],
     "Установка видеорегистратора": [
-      "Профессиональная установка",
-      "видеорегистратора - аккуратная проводка",
+      "Профессиональная установка видеорегистратора",
+      "- аккуратная проводка",
       "и надежное подключение.",
     ],
-    "Тормозной сервис": ["Проверка, обслуживание и замена", "тормозных колодок и дисков."],
-    "Общий ремонт": ["От выхлопной системы до электрики -", "мы ремонтируем надежно."],
-    "Диагностика автомобиля": ["Современная диагностика для быстрого", "поиска и устранения неисправностей."],
+    "Тормозной сервис": [
+      "Проверка, обслуживание и замена",
+      "тормозных колодок и дисков.",
+    ],
+    "Общий ремонт": [
+      "От выхлопной системы до электрики",
+      "- мы ремонтируем надежно.",
+    ],
+    "Диагностика автомобиля": [
+      "Современная диагностика для быстрого",
+      "поиска и устранения неисправностей.",
+    ],
   },
 } satisfies Record<Locale, Record<string, readonly string[]>>
 
@@ -77,22 +135,40 @@ const workshopWhyTitleLineBreaks = {
 
 const workshopWhyDescriptionLines = {
   de: {
-    "Qualifiziertes Team": ["Unser Werkstatt-Team besteht aus erfahrenen", "und zertifizierten Fachleuten."],
-    "Transparente Kostenvoranschläge": ["Sie wissen vorab, was auf Sie zukommt -", "keine bösen Überraschungen."],
+    "Qualifiziertes Team": [
+      "Unser Werkstatt-Team besteht aus erfahrenen",
+      "und zertifizierten Fachleuten.",
+    ],
+    "Transparente Kostenvoranschläge": [
+      "Sie wissen vorab, was auf Sie zukommt",
+      "- keine bösen Überraschungen.",
+    ],
     "Schneller Service": ["Viele Arbeiten erledigen wir noch am gleichen Tag."],
-    "Alle Marken willkommen": ["Wir betreuen Fahrzeuge", "aller Hersteller und Marken."],
+    "Alle Marken willkommen": ["Wir betreuen Fahrzeuge aller Hersteller und Marken."],
   },
   en: {
-    "Qualified team": ["Our workshop team consists of experienced", "and certified specialists."],
-    "Transparent estimates": ["You know in advance what to expect -", "no unpleasant surprises."],
+    "Qualified team": [
+      "Our workshop team consists of experienced",
+      "and certified specialists.",
+    ],
+    "Transparent estimates": [
+      "You know in advance what to expect",
+      "- no unpleasant surprises.",
+    ],
     "Fast service": ["We complete many jobs on the same day."],
     "All makes welcome": ["We service vehicles from all manufacturers and brands."],
   },
   ru: {
-    "Квалифицированная команда": ["Наша команда состоит из опытных", "и сертифицированных специалистов."],
-    "Прозрачные сметы": ["Вы заранее знаете, чего ожидать -", "никаких неприятных сюрпризов."],
+    "Квалифицированная команда": [
+      "Наша команда состоит из опытных",
+      "и сертифицированных специалистов.",
+    ],
+    "Прозрачные сметы": [
+      "Вы заранее знаете, чего ожидать",
+      "- никаких неприятных сюрпризов.",
+    ],
     "Быстрый сервис": ["Многие работы мы выполняем в тот же день."],
-    "Принимаем все марки": ["Мы обслуживаем автомобили", "всех производителей и брендов."],
+    "Принимаем все марки": ["Мы обслуживаем автомобили всех производителей и брендов."],
   },
 } satisfies Record<Locale, Record<string, readonly string[]>>
 
@@ -116,8 +192,8 @@ export default async function AutoservicePage() {
       title={t.title}
       subtitle={t.subtitle}
       description={t.description}
-      image="/images/service-workshop.webp"
-      imageClassName="object-cover object-[60%_center] md:object-[64%_center]"
+      image="/images/home-service-workshop.webp"
+      imageClassName="object-cover object-[58%_top]"
       phone="0177 7883206"
       benefits={t.benefits}
       services={t.services}

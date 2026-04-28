@@ -17,10 +17,10 @@ export const headerFooterTranslations = {
           children: [
             { name: "Unfallhilfe & Gutachten", href: "/leistungen/unfallgutachten" },
             { name: "Autovermietung", href: "/leistungen/autovermietung" },
-            { name: "Kfz-Werkstatt & Reparatur", href: "/leistungen/autoservice" },
-            { name: "Fahrzeugaufbereitung", href: "/leistungen/detailing" },
-            { name: "Kfz-Zulassungsservice", href: "/leistungen/zulassungsservice" },
-            { name: "Abschleppdienst & Pannenhilfe", href: "/leistungen/abschleppdienst-pannenhilfe" },
+            { name: "Werkstatt & Service", href: "/leistungen/autoservice" },
+            { name: "Aufbereitung & Pflege", href: "/leistungen/detailing" },
+            { name: "Kfz-Zulassung", href: "/leistungen/zulassungsservice" },
+            { name: "Pannenhilfe & Abschleppen", href: "/leistungen/abschleppdienst-pannenhilfe" },
           ],
         },
         { name: "Kontakt", href: "/kontakt" },
@@ -37,9 +37,9 @@ export const headerFooterTranslations = {
     },
     footer: {
       description:
-        "Kompletter Fahrzeug-Service in Berlin: Unfallhilfe & Gutachten, Autovermietung, Kfz-Werkstatt, Fahrzeugaufbereitung, Kfz-Zulassung und Abschleppdienst aus einer Hand.",
+        "Kompletter Fahrzeug-Service in Berlin: Unfallhilfe & Gutachten, Autovermietung, Werkstatt & Service, Aufbereitung & Pflege, Kfz-Zulassung und Pannenhilfe & Abschleppen aus einer Hand.",
       address: "Lübarser Str. 25, 13435 Berlin",
-      hoursWeek: "Mo-Fr: 9:00-18:00",
+      hoursWeek: "Mo-Fr: 09:00-18:00",
       hoursSat: "Sa: 10:00-16:00",
       hoursNote: "sonst nach Vereinbarung",
       columns: {
@@ -85,7 +85,7 @@ export const headerFooterTranslations = {
             { name: "Workshop & Service", href: "/leistungen/autoservice" },
             { name: "Detailing", href: "/leistungen/detailing" },
             { name: "Vehicle Registration Service", href: "/leistungen/zulassungsservice" },
-            { name: "Towing & Roadside Assistance", href: "/leistungen/abschleppdienst-pannenhilfe" },
+            { name: "Towing & Roadside Help", href: "/leistungen/abschleppdienst-pannenhilfe" },
           ],
         },
         { name: "Contact", href: "/kontakt" },
@@ -104,7 +104,7 @@ export const headerFooterTranslations = {
       description:
         "Your strong automotive partner in Berlin. Accident reports, car rental, workshop service, vehicle registration, towing, premium detailing and express delivery from one source.",
       address: "Lübarser Str. 25, 13435 Berlin",
-      hoursWeek: "Mon-Fri: 9:00 AM-6:00 PM",
+      hoursWeek: "Mon-Fri: 09:00 AM-6:00 PM",
       hoursSat: "Sat: 10:00 AM-4:00 PM",
       hoursNote: "otherwise by appointment",
       columns: {
@@ -169,7 +169,7 @@ export const headerFooterTranslations = {
       description:
         "Ваш надежный автомобильный партнер в Берлине. Экспертиза ДТП, прокат авто, сервис, регистрация, эвакуатор и премиальный детейлинг под одной крышей.",
       address: "Lübarser Str. 25, 13435 Berlin",
-      hoursWeek: "Пн-Пт: 9:00-18:00",
+      hoursWeek: "Пн-Пт: 09:00-18:00",
       hoursSat: "Сб: 10:00-16:00",
       hoursNote: "в другое время по договоренности",
       columns: {

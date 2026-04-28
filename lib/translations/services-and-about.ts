@@ -13,7 +13,7 @@ export const servicesAndAboutTranslations = {
           title: "Unfallhilfe & Gutachten",
           subtitle: "UNFALLX",
           description:
-            "Nach einem Unfall erhalten Sie schnelle Unterstützung, ein unabhängiges Gutachten und eine klare Orientierung für die nächsten Schritte.",
+            "Nach einem Unfall erhalten Sie schnelle Unterstützung, ein unabhängiges Gutachten und eine klare Orientierung für\u00A0die\u00A0nächsten Schritte.",
           features: [
             "Schnelle Ersteinschätzung",
             "Unterstützung bei der Schadensabwicklung",
@@ -34,7 +34,7 @@ export const servicesAndAboutTranslations = {
           ],
         },
         {
-          title: "Kfz-Werkstatt & Reparatur",
+          title: "Werkstatt & Service",
           subtitle: "Wartung & Reparatur",
           description:
             "Von Inspektion bis Reparatur kümmern wir uns zuverlässig um die Technik Ihres Fahrzeugs - auch wenn es schnell gehen muss.",
@@ -46,7 +46,7 @@ export const servicesAndAboutTranslations = {
           ],
         },
         {
-          title: "Fahrzeugaufbereitung",
+          title: "Aufbereitung & Pflege",
           subtitle: "Detailing",
           description:
             "Professionelle Innen- und Außenaufbereitung für gepflegte Fahrzeuge, Werterhalt und einen sauberen Gesamteindruck.",
@@ -58,19 +58,19 @@ export const servicesAndAboutTranslations = {
           ],
         },
         {
-          title: "Kfz-Zulassungsservice",
+          title: "Kfz-Zulassung",
           subtitle: "Anmeldung & Kennzeichen",
           description:
-            "Wir übernehmen den gesamten Ablauf für Sie - von der Abmeldung bis zur fertigen Zulassung. Kein Termin, kein Behördengang, kein Aufwand für Sie.",
+            "Wir übernehmen den gesamten Ablauf für Sie - von\u00A0der\u00A0Abmeldung\u00A0bis\u00A0zur\u00A0fertigen\u00A0Zulassung. Kein Termin, kein Behördengang, kein Aufwand für Sie.",
           features: [
-            "Kfz-An- & Abmeldung",
+            "Kfz-Zulassung",
             "Kurzzeit- & Exportkennzeichen",
             "Versicherungsservice inkl. eVB",
             "Wunschkennzeichen-Service",
           ],
         },
         {
-          title: "Abschleppdienst & Pannenhilfe",
+          title: "Pannenhilfe & Abschleppen",
           subtitle: "Soforthilfe & Transport",
           description:
             "Im Notfall sind wir schnell für Sie da und sorgen für eine sichere Lösung. Sie müssen sich um nichts kümmern - wir übernehmen die nächsten Schritte für Sie.",
@@ -92,7 +92,7 @@ export const servicesAndAboutTranslations = {
       storyParagraphs: [
         "UNEXT GMBH wurde 2024 in Berlin gegründet, mit einer klaren Mission: professionelle Unfallgutachten und Soforthilfe für Menschen, die gerade einen stressigen Moment durchleben. Unter der Marke UNFALLX haben wir uns schnell als zuverlässiger und kompetenter Partner etabliert.",
         "Doch wir haben erkannt, dass unsere Kunden mehr brauchen. Wer nach einem Unfall ein Gutachten benötigt, braucht oft auch ein Ersatzfahrzeug. Wer sein Auto zur Reparatur bringt, wünscht sich einen Ansprechpartner für alles. Und wer sein Fahrzeug liebt, möchte es in besten Händen wissen.",
-        "Deshalb haben wir unser Angebot erweitert: Autovermietung, professioneller Werkstattservice, Premium-Detailing, Kfz-Zulassungsservice und Abschleppdienst sind heute feste Bestandteile von UNEXT. Sechs starke Bereiche, ein kompetenter Partner - das ist unsere Vision, die wir jeden Tag leben.",
+        "Deshalb haben wir unser Angebot erweitert: Autovermietung, Werkstatt & Service, Aufbereitung & Pflege, Kfz-Zulassung und Pannenhilfe & Abschleppen sind heute feste Bestandteile von UNEXT. Sechs starke Bereiche, ein kompetenter Partner - das ist unsere Vision, die wir jeden Tag leben.",
       ],
       valuesTitle: "Unsere Werte",
       valuesDescription: "Diese Prinzipien leiten uns bei allem, was wir tun.",
@@ -134,7 +134,7 @@ export const servicesAndAboutTranslations = {
         { year: "2026", title: "Werkstatt & Detailing", description: "Eröffnung des Werkstattbereichs und Start des Premium-Detailing-Service." },
         { year: "Heute", title: "Vollständiger Service", description: "Sechs starke Bereiche unter einem Dach - Ihr Automotive-Partner in Berlin." },
       ],
-      subBrandBadge: "Sub-Brand",
+      subBrandBadge: "Unsere Marke",
       subBrandTitle: "UNFALLX - Unsere Wurzeln",
       subBrandDescription:
         "UNFALLX ist die Marke, mit der alles begann. Als spezialisierter Service für Unfallgutachten und Soforthilfe steht UNFALLX für kompetente, schnelle und unabhängige Unterstützung nach Verkehrsunfällen.",
@@ -154,7 +154,7 @@ export const servicesAndAboutTranslations = {
           title: "Accident Reports & Immediate Assistance",
           subtitle: "UNFALLX",
           description:
-            "After an accident, you need fast and competent support. Our certified experts prepare independent vehicle reports and assist you throughout the claims process.",
+            "After an accident, you need fast and competent support. Our certified experts prepare independent vehicle reports and assist\u00A0you\u00A0throughout the claims process.",
           features: ["Fast appointments", "Support with claims handling", "Independent & professional reports", "Certified experts"],
         },
         {
@@ -182,16 +182,16 @@ export const servicesAndAboutTranslations = {
           title: "Vehicle Registration Service",
           subtitle: "Registration & license plates",
           description:
-            "We handle the entire process for you - from deregistration to completed registration. No appointments, no authority visits and no extra effort on your side.",
+            "We handle the entire process for you - from\u00A0deregistration\u00A0to\u00A0completed\u00A0registration. No appointments, no authority visits and no extra effort on your side.",
           features: [
-            "Vehicle registration & deregistration",
+            "Vehicle registration",
             "Temporary & export plates",
             "Insurance service incl. eVB number",
             "Custom plate service",
           ],
         },
         {
-          title: "Towing & Roadside Assistance",
+          title: "Towing & Roadside Help",
           subtitle: "Immediate help & transport",
           description:
             "In emergencies, we are there quickly and provide a safe solution. You do not have to take care of anything - we handle the next steps for you.",
@@ -235,7 +235,7 @@ export const servicesAndAboutTranslations = {
         { year: "2026", title: "Workshop & Detailing", description: "Opening of the workshop area and launch of the premium detailing service." },
         { year: "Today", title: "Full Service", description: "Six strong business areas under one roof - your automotive partner in Berlin." },
       ],
-      subBrandBadge: "Sub-brand",
+      subBrandBadge: "Our brand",
       subBrandTitle: "UNFALLX - Our roots",
       subBrandDescription:
         "UNFALLX is the brand where it all began. As a specialized service for accident reports and immediate assistance, UNFALLX stands for competent, fast and independent support after road accidents.",
@@ -285,7 +285,7 @@ export const servicesAndAboutTranslations = {
           description:
             "Мы берем на себя весь процесс - от снятия с учета до готовой регистрации. Без записи, без посещения ведомств и без лишних хлопот для вас.",
           features: [
-            "Постановка и снятие с учета",
+            "Регистрация авто",
             "Временные и экспортные номера",
             "Страховой сервис с eVB",
             "Сервис выбора номера",
@@ -356,7 +356,7 @@ export const servicesAndAboutTranslations = {
         { year: "2026", title: "Мастерская и детейлинг", description: "Открытие мастерской и запуск премиального детейлинга." },
         { year: "Сегодня", title: "Полный сервис", description: "Шесть сильных направлений под одной крышей - ваш автомобильный партнер в Берлине." },
       ],
-      subBrandBadge: "Sub-brand",
+      subBrandBadge: "\u041d\u0430\u0448 \u0431\u0440\u0435\u043d\u0434",
       subBrandTitle: "UNFALLX - наши корни",
       subBrandDescription:
         "UNFALLX - бренд, с которого все началось. Как специализированный сервис по экспертизе ДТП и срочной помощи, UNFALLX означает компетентную, быструю и независимую поддержку после дорожных происшествий.",

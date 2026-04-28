@@ -1,3 +1,8 @@
+/*
+  Diese Datei definiert den Hero-Bereich der Startseite.
+  Sie zeigt den zentralen Einstieg mit Hauptbotschaft, Leistungslinks und schnellen Kontaktaktionen.
+  Nutzer koennen von hier direkt anrufen, per WhatsApp schreiben oder zu Leistungen springen.
+*/
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, DoorOpen, MapPin, MessageCircle, Phone } from "lucide-react"
@@ -19,11 +24,14 @@ interface HeroContentProps {
   inquiry: string
   whatsapp: string
   address: string
+  directServicesLabel: string
   viewAllServices: string
   className?: string
+  headingElement?: "h1" | "div"
 }
 
 function renderHeroDescription(description: string, lineClassName?: string) {
+  // Diese Begriffe bleiben zusammen, damit sie in allen Sprachen lesbar umbrechen.
   const protectedTerm = "Kfz-Werkstatt"
   const desktopBreakMarkers = ["Autovermietung,", "Berlin."]
   const protectedTerms = [protectedTerm, "Taxi-Fahrer"]
@@ -74,9 +82,10 @@ function renderHeroDescription(description: string, lineClassName?: string) {
           .split("\n")
           .map((line) => line.trim())
           .filter(Boolean)
-          .map((line, index) => (
-            <span key={`${line}-${index}`} className={`block ${lineClassName ?? ""}`.trim()}>
+          .map((line, index, lines) => (
+            <span key={`${line}-${index}`} className={`inline sm:block ${lineClassName ?? ""}`.trim()}>
               {renderProtectedLine(line)}
+              {index < lines.length - 1 ? " " : null}
             </span>
           ))}
       </>
@@ -107,8 +116,9 @@ function renderHeroDescription(description: string, lineClassName?: string) {
   return (
     <>
       {lines.map((line, index) => (
-        <span key={`${line}-${index}`} className={`block ${lineClassName ?? ""}`.trim()}>
+        <span key={`${line}-${index}`} className={`inline sm:block ${lineClassName ?? ""}`.trim()}>
           {renderProtectedLine(line)}
+          {index < lines.length - 1 ? " " : null}
         </span>
       ))}
     </>
@@ -128,10 +138,13 @@ function HeroContent({
   inquiry,
   whatsapp,
   address,
+  directServicesLabel,
   viewAllServices,
   className,
+  headingElement = "h1",
 }: HeroContentProps) {
   const isOverlay = tone === "overlay"
+  const HeadingElement = headingElement
   const addressParts = address.split(",").map((part) => part.trim()).filter(Boolean)
   const addressPrimary = addressParts[0] ?? address
   const addressSecondary = addressParts.slice(1).join(", ")
@@ -146,10 +159,6 @@ function HeroContent({
             : ""
         }
       >
-        {isOverlay ? (
-          <div className="mb-6 h-px w-20 bg-[linear-gradient(90deg,rgba(220,38,38,0.95),rgba(255,255,255,0.75),transparent)]" />
-        ) : null}
-
         {badge ? (
           <div
             className={
@@ -162,13 +171,13 @@ function HeroContent({
           </div>
         ) : null}
 
-        <h1
+        <HeadingElement
           className={
             isOverlay
               ? combinePrimaryTitle
-                ? "relative z-10 inline-flex max-w-none flex-col text-white drop-shadow-[0_10px_34px_rgba(0,0,0,0.42)]"
-                : "relative z-10 max-w-none text-white drop-shadow-[0_10px_34px_rgba(0,0,0,0.42)]"
-              : "measure-display text-display-fluid text-foreground"
+                ? "relative z-10 inline-flex max-w-none flex-col items-center text-center text-white drop-shadow-[0_10px_34px_rgba(0,0,0,0.42)]"
+                : "relative z-10 max-w-none text-center text-white drop-shadow-[0_10px_34px_rgba(0,0,0,0.42)]"
+              : "max-w-none text-[clamp(2rem,1.78rem+1vw,2.35rem)] leading-[1.04] font-semibold tracking-[-0.02em] text-foreground"
           }
         >
           {isOverlay && combinePrimaryTitle ? (
@@ -203,22 +212,22 @@ function HeroContent({
               isOverlay
                 ? combinePrimaryTitle
                   ? "mt-4 block text-center text-[clamp(1.08rem,1.22vw,1.38rem)] leading-none font-medium tracking-[0.08em] text-white/88 drop-shadow-[0_8px_22px_rgba(0,0,0,0.42)]"
-                  : "mt-2 block text-[clamp(1.28rem,1.55vw,2rem)] leading-[1.05] font-light tracking-[-0.022em] text-white/46 drop-shadow-[0_2px_8px_rgba(0,0,0,0.14)] lg:whitespace-nowrap"
-                : "mt-1.5 block max-w-[18ch] text-[clamp(1.05rem,0.84rem+1vw,2.35rem)] leading-[1.12] font-normal text-muted-foreground sm:mt-2"
+                  : "mt-2 block text-[clamp(1.28rem,1.55vw,2rem)] leading-[1.05] font-light tracking-[-0.022em] text-white/68 drop-shadow-[0_2px_8px_rgba(0,0,0,0.14)] lg:whitespace-nowrap"
+                : "mt-1.5 block max-w-none text-[clamp(1rem,0.9rem+0.45vw,1.22rem)] leading-[1.25] font-normal tracking-normal text-muted-foreground sm:mt-2 sm:max-w-[18ch] sm:text-[clamp(1.05rem,0.84rem+1vw,2.35rem)] sm:leading-[1.12]"
             }
           >
             {title3}
           </span>
-        </h1>
+        </HeadingElement>
 
         <p
           className={
             isOverlay
-              ? "relative z-10 mt-7 max-w-[78ch] text-left text-[clamp(1rem,0.97rem+0.14vw,1.12rem)] leading-[1.8] text-white/94 drop-shadow-[0_8px_24px_rgba(0,0,0,0.44)] sm:mt-7"
-              : "measure-intro-tight mt-4 text-body-fluid text-muted-foreground sm:mt-6"
+              ? "relative z-10 mx-auto mt-20 translate-y-10 max-w-[78ch] text-center text-[clamp(1rem,0.97rem+0.14vw,1.12rem)] leading-[1.8] text-white/94 drop-shadow-[0_8px_24px_rgba(0,0,0,0.44)] sm:mt-20"
+              : "mt-4 max-w-none text-[1rem] leading-[1.7] text-muted-foreground sm:mt-6"
           }
         >
-          {renderHeroDescription(description, isOverlay ? "md:whitespace-nowrap" : undefined)}
+          {renderHeroDescription(description, isOverlay ? "lg:whitespace-nowrap" : undefined)}
         </p>
       </div>
 
@@ -226,11 +235,11 @@ function HeroContent({
         <p
           className={
             isOverlay
-              ? "text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-white/52 sm:text-[0.76rem]"
+              ? "text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-white/70 sm:text-[0.76rem]"
               : "text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground sm:text-[0.72rem]"
           }
         >
-          Direkt zu den Hauptleistungen
+          {directServicesLabel}
         </p>
       </div>
 
@@ -332,7 +341,7 @@ function HeroContent({
               <span
                 className={
                   isOverlay
-                    ? "mt-1 block truncate text-[0.74rem] font-medium uppercase tracking-[0.22em] text-white/48"
+                    ? "mt-1 block truncate text-[0.74rem] font-medium uppercase tracking-[0.22em] text-white/70"
                     : "mt-1 block truncate text-[0.76rem] font-medium uppercase tracking-[0.14em] text-muted-foreground"
                 }
               >
@@ -348,7 +357,7 @@ function HeroContent({
           href="/leistungen"
           className={
             isOverlay
-              ? "inline-flex items-center gap-2 text-sm font-medium text-white/78 transition-colors hover:text-white"
+              ? "inline-flex items-center gap-2 text-sm font-medium text-white/82 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black/30"
               : "inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
           }
         >
@@ -361,6 +370,7 @@ function HeroContent({
 }
 
 export async function HeroSection() {
+  // Diese Inhalte werden serverseitig nach aktueller Sprache geladen.
   const locale = await getCurrentLocale()
   const home = getTranslations(locale).home
   const t = home.hero
@@ -369,27 +379,27 @@ export async function HeroSection() {
     anchor: homeServiceAnchors[index] ?? homeServiceAnchors[0],
   }))
   const viewAllServices = home.services.viewAll
-  const heroMobileImageSrc = "/images/home-hero-team-balanced.webp"
-  const heroDesktopImageSrc = "/images/home-hero-team-desktop.webp"
+  const heroMobileImageSrc = "/images/home-hero-team-new.webp.png"
+  const heroDesktopImageSrc = "/images/home-hero-team-new.webp.png"
 
   return (
     <section className="overflow-x-clip overflow-y-hidden bg-background">
       <div className="md:hidden">
-        <div className="relative aspect-[16/11] overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.16),transparent_58%),linear-gradient(180deg,rgba(26,26,31,0.02),rgba(26,26,31,0.16))]">
+        <div className="relative aspect-video overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.16),transparent_58%),linear-gradient(180deg,rgba(26,26,31,0.02),rgba(26,26,31,0.16))]">
           <Image
             src={heroMobileImageSrc}
             alt="UNEXT team"
             fill
             sizes="100vw"
-            quality={78}
-            className="object-cover object-[center_12%]"
+            quality={92}
+            className="object-cover object-center"
             priority
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,10,15,0.14),rgba(7,10,15,0.34))]" />
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/42 via-black/12 to-transparent" />
         </div>
 
-        <div className="px-5 pb-12 pt-6">
+        <div className="px-5 pb-14 pt-7">
           <HeroContent
             tone="surface"
             badge={t.badge}
@@ -402,20 +412,21 @@ export async function HeroSection() {
             inquiry={t.inquiry}
             whatsapp={t.whatsapp}
             address={t.address}
+            directServicesLabel={t.directServicesLabel}
             viewAllServices={viewAllServices}
-            className="mx-auto max-w-[23rem] sm:max-w-2xl"
+            className="mx-auto max-w-[26rem] sm:max-w-2xl"
           />
         </div>
       </div>
 
-      <div className="relative hidden min-h-[88vh] items-end overflow-hidden md:flex">
+      <div className="relative hidden h-[90svh] min-h-[46rem] max-h-[58rem] items-end overflow-hidden md:flex">
         <div className="absolute inset-0">
           <Image
             src={heroDesktopImageSrc}
             alt="UNEXT team"
             fill
             sizes="100vw"
-            quality={78}
+            quality={92}
             className="object-cover object-[center_18%] lg:object-[center_16%]"
             priority
           />
@@ -425,7 +436,7 @@ export async function HeroSection() {
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/24 via-black/6 to-transparent" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-4 pb-18 pt-24 lg:px-8 lg:pb-20">
+        <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-24 lg:px-8 lg:pb-24">
           <HeroContent
             tone="overlay"
             title1={t.title1}
@@ -438,8 +449,10 @@ export async function HeroSection() {
             inquiry={t.inquiry}
             whatsapp={t.whatsapp}
             address={t.address}
+            directServicesLabel={t.directServicesLabel}
             viewAllServices={viewAllServices}
             className="max-w-[62rem]"
+            headingElement="div"
           />
         </div>
       </div>

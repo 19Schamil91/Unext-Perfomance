@@ -1,3 +1,8 @@
+/*
+  Diese Datei ist die Uebersichtsseite fuer alle Leistungen.
+  Sie zeigt die sechs Hauptleistungen mit Bildern, Vorteilen und Kontaktaktionen.
+  Besucher koennen eine Leistung auswaehlen, Details oeffnen oder direkt anrufen.
+*/
 import type { Metadata } from "next"
 import Image from "next/image"
 import { ArrowRight, Car, ClipboardCheck, FileCheck, Phone, Sparkles, Truck, Wrench } from "lucide-react"
@@ -13,7 +18,7 @@ import { buildPageMetadata } from "@/lib/metadata"
 import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
 
-interface ServiceMeta {
+type ServiceMeta = {
   icon: typeof FileCheck
   image: string
   imageClassName: string
@@ -24,19 +29,14 @@ interface ServiceMeta {
 
 const serviceDescriptionLineLength = {
   de: 54,
-  en: 50,
-  ru: 48,
+  en: 72,
+  ru: 72,
 } satisfies Record<Locale, number>
 
 const serviceTitleLineBreaks: Partial<Record<Locale, Record<string, string[]>>> = {
-  de: {
-    "Kfz-Werkstatt & Reparatur": ["Kfz-Werkstatt", "& Reparatur"],
-    "Abschleppdienst & Pannenhilfe": ["Abschleppdienst", "& Pannenhilfe"],
-  },
   en: {
     "Accident Reports & Immediate Assistance": ["Accident Reports", "& Immediate Assistance"],
-    "Vehicle Registration Service": ["Vehicle Registration", "Service"],
-    "Towing & Roadside Assistance": ["Towing", "& Roadside Assistance"],
+    "Towing & Roadside Help": ["Towing & Roadside", "Help"],
   },
   ru: {
     "Экспертиза ДТП и срочная помощь": ["Экспертиза ДТП", "и срочная помощь"],
@@ -55,40 +55,40 @@ export async function generateMetadata(): Promise<Metadata> {
 const serviceMeta = [
   {
     icon: FileCheck,
-    image: "/images/service-accident.webp",
-    imageClassName: "object-cover object-[58%_center]",
+    image: "/images/home-service-accident.webp",
+    imageClassName: "object-cover object-center",
     href: "/leistungen/unfallgutachten",
     contactText: "0176 64365185",
     contactHref: "tel:+4917664365185",
   },
   {
     icon: Car,
-    image: "/images/service-rental.webp",
-    imageClassName: "object-cover object-[38%_30%] sm:object-[42%_38%] lg:object-[42%_center]",
+    image: "/images/home-service-rental.webp",
+    imageClassName: "object-cover object-[42%_center]",
     href: "/leistungen/autovermietung",
     contactText: "0174 4292900",
     contactHref: "tel:+491744292900",
   },
   {
     icon: Wrench,
-    image: "/images/service-workshop.webp",
-    imageClassName: "object-cover object-[60%_center]",
+    image: "/images/home-service-workshop.webp",
+    imageClassName: "object-cover object-[58%_center]",
     href: "/leistungen/autoservice",
     contactText: "0177 7883206",
     contactHref: "tel:+491777883206",
   },
   {
     icon: Sparkles,
-    image: "/images/service-detailing.webp",
-    imageClassName: "object-cover object-[56%_center]",
+    image: "/images/home-service-detailing.webp",
+    imageClassName: "object-cover object-[42%_center]",
     href: "/leistungen/detailing",
     contactText: "0177 6691006",
     contactHref: "tel:+491776691006",
   },
   {
     icon: ClipboardCheck,
-    image: "/images/service-registration.webp",
-    imageClassName: "object-cover object-[38%_center]",
+    image: "/images/home-service-registration.webp",
+    imageClassName: "object-cover object-[42%_center]",
     href: "/leistungen/zulassungsservice",
     contactText: "030 23613927",
     contactHref: "tel:+493023613927",
@@ -139,7 +139,7 @@ export default async function LeistungenPage() {
     ))
   }
 
-  const renderServiceCards = (balancedText: boolean) => (
+  const renderServiceCards = (balancedText: boolean, shouldUseCompactDescriptionLeading = false) => (
     <div className="space-y-16">
       {t.items.map((service, index) => {
         const meta = serviceMeta[index]
@@ -177,7 +177,7 @@ export default async function LeistungenPage() {
                       <h2
                         className={
                           balancedText
-                            ? "mt-1 max-w-[19ch] text-[clamp(1.22rem,1.06rem+0.46vw,1.58rem)] leading-[1.12] font-bold tracking-[-0.02em] text-foreground text-balance"
+                            ? "mt-1 max-w-none text-[clamp(1.22rem,1.06rem+0.46vw,1.58rem)] leading-[1.12] font-bold tracking-[-0.02em] text-foreground text-balance lg:whitespace-nowrap"
                             : "mt-1 text-[clamp(1.22rem,1.06rem+0.46vw,1.58rem)] leading-[1.08] font-bold tracking-[-0.02em] text-foreground lg:whitespace-nowrap"
                         }
                       >
@@ -190,10 +190,17 @@ export default async function LeistungenPage() {
                     <ReadableText
                       text={service.description}
                       targetLineLength={descriptionLineLength}
-                      className="mt-5 max-w-[64ch] text-[1rem] leading-8 text-muted-foreground sm:mt-6"
+                      lineGapClassName={shouldUseCompactDescriptionLeading ? "" : undefined}
+                      className={`mt-5 max-w-[64ch] text-[1rem] text-muted-foreground sm:mt-6 ${
+                        shouldUseCompactDescriptionLeading ? "leading-[1.55]" : "leading-8"
+                      }`}
                     />
                   ) : (
-                    <p className="mt-5 max-w-[62ch] text-[1rem] leading-8 text-muted-foreground sm:mt-6">
+                    <p
+                      className={`mt-5 max-w-[62ch] text-[1rem] text-muted-foreground sm:mt-6 ${
+                        shouldUseCompactDescriptionLeading ? "leading-[1.55]" : "leading-8"
+                      }`}
+                    >
                       {service.description}
                     </p>
                   )}
@@ -248,14 +255,15 @@ export default async function LeistungenPage() {
         <section className="bg-card py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="mx-auto max-w-5xl text-center">
-              <h1 className="mx-auto max-w-[14ch] text-display-fluid text-foreground sm:max-w-[15ch] lg:max-w-none lg:whitespace-nowrap">
+              <h1 className="mx-auto max-w-[24rem] text-[clamp(2rem,1.74rem+1.2vw,2.45rem)] leading-[1.05] font-semibold text-foreground sm:max-w-[15ch] sm:text-[clamp(2.35rem,1.65rem+2.7vw,4.9rem)] sm:leading-[0.98] sm:tracking-[-0.04em] lg:max-w-none lg:whitespace-nowrap">
                 {t.title}
               </h1>
               {fixedIntroLines ? (
-                <p className="mx-auto mt-6 max-w-none text-body-fluid text-muted-foreground">
-                  {fixedIntroLines.map((line) => (
-                    <span key={line} className="block lg:whitespace-nowrap">
+                <p className="mx-auto mt-5 max-w-[36rem] text-[1rem] leading-[1.7] text-muted-foreground sm:mt-6 sm:max-w-none sm:text-[clamp(1rem,0.98rem+0.24vw,1.12rem)] sm:leading-[1.78]">
+                  {fixedIntroLines.map((line, index) => (
+                    <span key={line} className="inline sm:block lg:whitespace-nowrap">
                       {line}
+                      {index < fixedIntroLines.length - 1 ? " " : null}
                     </span>
                   ))}
                 </p>
@@ -271,7 +279,7 @@ export default async function LeistungenPage() {
         </section>
 
         <section className="bg-background py-16 lg:py-24">
-          <div className="mx-auto max-w-7xl px-4 lg:px-8">{renderServiceCards(true)}</div>
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">{renderServiceCards(true, true)}</div>
         </section>
 
         <CtaSection />

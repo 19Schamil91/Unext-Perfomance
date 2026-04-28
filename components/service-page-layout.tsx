@@ -1,3 +1,8 @@
+/*
+  Diese Datei stellt das gemeinsame Layout fuer einzelne Leistungsseiten bereit.
+  Sie zeigt Hero-Bereich, Vorteile, Servicekarten, Gruende, Formular und Fragen.
+  Besucher koennen Informationen lesen und direkt Kontakt aufnehmen.
+*/
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, CheckCircle, MessageCircle, Phone } from "lucide-react"
@@ -14,7 +19,7 @@ import {
 import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
 
-interface ServicePageLayoutProps {
+type ServicePageLayoutProps = {
   title: string
   subtitle: string
   description: string
@@ -44,7 +49,7 @@ interface ServicePageLayoutProps {
   benefitsSingleLine?: boolean
 }
 
-interface ServiceAction {
+type ServiceAction = {
   label: string
   href: string
   icon?: "phone" | "message"
@@ -225,20 +230,21 @@ export async function ServicePageLayout({
             <h1
               className={
                 balancedTypography
-                  ? `mt-3 max-w-[18ch] text-display-fluid leading-[0.96] tracking-[-0.03em] text-foreground sm:max-w-[20ch] lg:max-w-none ${singleLineHeadings ? "lg:whitespace-nowrap" : "lg:text-balance"}`
-                  : "mt-3 max-w-[16ch] text-display-fluid text-foreground sm:max-w-[18ch] lg:max-w-[20ch]"
+                  ? `mt-3 max-w-[22rem] text-[clamp(2rem,1.72rem+1.2vw,2.45rem)] leading-[1.03] font-semibold tracking-[-0.02em] text-foreground sm:max-w-[20ch] sm:text-[clamp(2.35rem,1.65rem+2.7vw,4.9rem)] sm:leading-[0.96] sm:tracking-[-0.03em] lg:max-w-none ${singleLineHeadings ? "lg:whitespace-nowrap" : "lg:text-balance"}`
+                  : "mt-3 max-w-[22rem] text-[clamp(2rem,1.72rem+1.2vw,2.45rem)] leading-[1.05] font-semibold text-foreground sm:max-w-[18ch] sm:text-[clamp(2.35rem,1.65rem+2.7vw,4.9rem)] sm:leading-[0.98] sm:tracking-[-0.04em] lg:max-w-[20ch]"
               }
             >
               {renderLines(title, titleLines)}
             </h1>
             {descriptionLines ? (
-              <p className="mt-5 max-w-[62ch] text-body-fluid text-muted-foreground text-pretty sm:mt-6 sm:max-w-[68ch] lg:max-w-[72ch]">
+              <p className="mt-5 max-w-[62ch] text-[1rem] leading-[1.62] text-muted-foreground text-pretty sm:mt-6 sm:max-w-[68ch] sm:text-[clamp(1rem,0.98rem+0.24vw,1.12rem)] sm:leading-[1.38] lg:max-w-[72ch]">
                 {descriptionLines.map((line, index) => (
                   <span
                     key={`${description}-${line}-${index}`}
-                    className={index === 0 ? "block" : "mt-1.5 block sm:mt-2"}
+                    className="inline sm:block"
                   >
                     {line}
+                    {index < descriptionLines.length - 1 ? " " : null}
                   </span>
                 ))}
               </p>
@@ -246,7 +252,7 @@ export async function ServicePageLayout({
               <ReadableText
                 text={description}
                 targetLineLength={balancedTypography ? 74 : 82}
-                className="mt-5 max-w-[74ch] text-body-fluid text-muted-foreground sm:mt-6"
+                className="mt-5 max-w-[74ch] text-[1rem] leading-[1.62] text-muted-foreground sm:mt-6 sm:text-[clamp(1rem,0.98rem+0.24vw,1.12rem)] sm:leading-[1.78]"
               />
             )}
 
@@ -256,21 +262,21 @@ export async function ServicePageLayout({
                   key={benefit}
                   className={
                     benefitsSingleLine
-                      ? "flex min-w-0 items-center gap-3 overflow-x-auto rounded-2xl border border-border/60 bg-background/72 px-3 py-2.5 text-[0.8125rem] leading-snug text-foreground shadow-[0_12px_26px_rgba(15,23,42,0.06)] backdrop-blur-sm sm:px-4 sm:py-3 sm:text-body-compact sm:leading-normal"
+                      ? "flex min-w-0 items-start gap-3 rounded-2xl border border-border/60 bg-background/72 px-3 py-2.5 text-[0.8125rem] leading-snug text-foreground shadow-[0_12px_26px_rgba(15,23,42,0.06)] backdrop-blur-sm sm:items-center sm:px-4 sm:py-3 sm:text-body-compact sm:leading-normal"
                       : "flex items-start gap-3 rounded-2xl border border-border/60 bg-background/72 px-4 py-3 text-body-compact text-foreground shadow-[0_12px_26px_rgba(15,23,42,0.06)] backdrop-blur-sm"
                   }
                 >
                   <CheckCircle
                     className={
                       benefitsSingleLine
-                        ? "h-4 w-4 shrink-0 self-center text-primary"
+                        ? "mt-0.5 h-4 w-4 shrink-0 text-primary sm:mt-0"
                         : "mt-0.5 h-4 w-4 shrink-0 text-primary"
                     }
                   />
                   <span
                     className={
                       benefitsSingleLine
-                        ? "min-w-0 flex-1 whitespace-nowrap"
+                        ? "min-w-0 flex-1 text-pretty"
                         : balancedTypography
                           ? "max-w-[34ch] text-balance"
                           : "max-w-[34ch]"
@@ -334,13 +340,14 @@ export async function ServicePageLayout({
                   renderParagraphLines(
                     service.description,
                     serviceDescriptionLines[service.title],
-                    "mt-3 max-w-full text-[0.98rem] leading-[1.55] text-muted-foreground"
+                    "mt-3 max-w-full text-[0.98rem] leading-[1.45] text-muted-foreground"
                   )
                 ) : (
                   <ReadableText
                     text={service.description}
                     targetLineLength={balancedTypography ? 34 : 38}
-                    className="mt-3 max-w-full text-[0.98rem] leading-[1.55] text-muted-foreground"
+                    lineGapClassName=""
+                    className="mt-3 max-w-full text-[0.98rem] leading-[1.45] text-muted-foreground"
                   />
                 )}
               </div>
@@ -385,13 +392,14 @@ export async function ServicePageLayout({
                         renderParagraphLines(
                           item.description,
                           whyChooseDescriptionLines[item.title],
-                          "mt-2 max-w-full text-body-compact leading-[1.6] text-muted-foreground"
+                          "mt-2 max-w-full text-body-compact leading-[1.45] text-muted-foreground"
                         )
                       ) : (
                         <ReadableText
                           text={item.description}
                           targetLineLength={balancedTypography ? 36 : 40}
-                          className="mt-2 max-w-full text-body-compact leading-[1.6] text-muted-foreground"
+                          lineGapClassName=""
+                          className="mt-2 max-w-full text-body-compact leading-[1.45] text-muted-foreground"
                         />
                       )}
                     </div>
@@ -438,7 +446,8 @@ export async function ServicePageLayout({
                     <ReadableText
                       text={faq.answer}
                       targetLineLength={72}
-                      className="max-w-[64ch] pb-1 text-body-compact text-muted-foreground"
+                      lineGapClassName=""
+                      className="max-w-[64ch] pb-1 text-body-compact leading-[1.45] text-muted-foreground"
                     />
                   </AccordionContent>
                 </AccordionItem>

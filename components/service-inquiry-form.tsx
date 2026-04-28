@@ -1,24 +1,32 @@
+/*
+  Diese Datei zeigt das Anfrageformular auf den Leistungsseiten.
+  Besucher koennen ihre Kontaktdaten, Fahrzeugdaten und eine Nachricht eingeben.
+  Nach dem Absenden wird die Anfrage per Server verarbeitet und als E-Mail zugestellt.
+*/
 "use client"
 
-import { useState } from "react"
+import { useActionState } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { CheckCircle } from "lucide-react"
+import { FormSubmitButton } from "@/components/FormSubmitButton"
 import { useLocale } from "@/components/locale-provider"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
+import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { Spinner } from "@/components/ui/spinner"
 import { Textarea } from "@/components/ui/textarea"
-import type { ServiceInquiryDraft } from "@/lib/browser-storage"
+import { sendServiceInquiry } from "@/lib/contactActions"
+import { initialContactActionState } from "@/lib/contactForm"
 import { getTranslations } from "@/lib/translations"
 
-interface ServiceInquiryFormProps {
+type ServiceInquiryFormProps = {
   serviceName: string
   serviceTitle: string
   fields?: ServiceInquiryFields
 }
 
-export interface ServiceInquiryFields {
+export type ServiceInquiryFields = {
   vehicle?: boolean
   date?: boolean
   subject?: boolean
@@ -29,35 +37,16 @@ export function ServiceInquiryForm({
   serviceTitle,
   fields = { vehicle: true, date: true, subject: false },
 }: ServiceInquiryFormProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [formData, setFormData] = useState<ServiceInquiryDraft>({
-    name: "",
-    phone: "",
-    email: "",
-    vehicle: "",
-    subject: "",
-    date: "",
-    message: "",
-  })
+  // Dieser Wert enthaelt die Server-Antwort nach dem Absenden der Anfrage.
+  const [formState, formAction] = useActionState(sendServiceInquiry, initialContactActionState)
+  const pathname = usePathname()
   const { locale } = useLocale()
   const t = getTranslations(locale).serviceDetail.form
-  const handleFieldChange = (field: keyof ServiceInquiryDraft, value: string) => {
-    setFormData((current) => ({
-      ...current,
-      [field]: value,
-    }))
-  }
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-  }
+  // Diese Kurzfunktion holt die passende Fehlermeldung zu einem Formularfeld.
+  const getFieldError = (field: string) => formState.fieldErrors[field]
 
-  if (isSubmitted) {
+  if (formState.status === "success") {
     return (
       <Card className="rounded-[1.6rem] border-primary/30 bg-card shadow-[0_16px_36px_rgba(15,23,42,0.06)]">
         <CardContent className="p-8 text-center">
@@ -65,24 +54,9 @@ export function ServiceInquiryForm({
             <CheckCircle className="h-8 w-8 text-primary" />
           </div>
           <h3 className="text-xl font-semibold text-foreground">{t.successTitle}</h3>
-          <p className="mt-2 text-muted-foreground">{t.successText}</p>
-          <Button
-            className="mt-6"
-            variant="outline"
-            onClick={() => {
-              setFormData({
-                name: "",
-                phone: "",
-                email: "",
-                vehicle: "",
-                subject: "",
-                date: "",
-                message: "",
-              })
-              setIsSubmitted(false)
-            }}
-          >
-            {t.newInquiry}
+          <p className="mt-2 text-muted-foreground">{formState.message || t.successText}</p>
+          <Button asChild className="mt-6" variant="outline">
+            <Link href={pathname}>{t.newInquiry}</Link>
           </Button>
         </CardContent>
       </Card>
@@ -95,116 +69,123 @@ export function ServiceInquiryForm({
         <CardTitle className="max-w-[22ch] text-[clamp(1.22rem,1.08rem+0.5vw,1.65rem)] leading-[1.14]">
           {serviceTitle}
         </CardTitle>
-        <CardDescription className="max-w-[44ch] text-body-compact text-muted-foreground">
+        <CardDescription className="max-w-none text-body-compact text-muted-foreground lg:whitespace-nowrap">
           {t.description}
         </CardDescription>
       </CardHeader>
       <CardContent className="px-7 pb-7 pt-0 sm:px-8 sm:pb-8">
-        <form onSubmit={handleSubmit}>
+        {/* Dieses Formular sendet die Service-Anfrage an den Server, damit daraus eine E-Mail entsteht. */}
+        <form action={formAction}>
           <FieldGroup className="space-y-4">
+            <input type="hidden" name="locale" value={locale} />
+            <input type="hidden" name="service" value={serviceName} />
+            {formState.status === "error" ? (
+              <div
+                role="alert"
+                className="rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive"
+              >
+                {formState.message}
+              </div>
+            ) : null}
             <div className="grid gap-4 sm:grid-cols-2">
-              <Field>
+              <Field data-invalid={Boolean(getFieldError("name"))}>
                 <FieldLabel htmlFor="name">{t.name}</FieldLabel>
                 <Input
                   id="name"
                   name="name"
                   placeholder={t.namePlaceholder}
-                  value={formData.name}
-                  onChange={(event) => handleFieldChange("name", event.target.value)}
+                  aria-invalid={Boolean(getFieldError("name"))}
+                  aria-describedby={getFieldError("name") ? "name-error" : undefined}
                   required
                 />
+                <FieldError id="name-error">{getFieldError("name")}</FieldError>
               </Field>
-              <Field>
+              <Field data-invalid={Boolean(getFieldError("phone"))}>
                 <FieldLabel htmlFor="phone">{t.phone}</FieldLabel>
                 <Input
                   id="phone"
                   name="phone"
                   type="tel"
                   placeholder={t.phonePlaceholder}
-                  value={formData.phone}
-                  onChange={(event) => handleFieldChange("phone", event.target.value)}
+                  aria-invalid={Boolean(getFieldError("phone"))}
+                  aria-describedby={getFieldError("phone") ? "phone-error" : undefined}
                   required
                 />
+                <FieldError id="phone-error">{getFieldError("phone")}</FieldError>
               </Field>
             </div>
 
-            <Field>
+            <Field data-invalid={Boolean(getFieldError("email"))}>
               <FieldLabel htmlFor="email">{t.email}</FieldLabel>
               <Input
                 id="email"
                 name="email"
                 type="email"
                 placeholder={t.emailPlaceholder}
-                value={formData.email}
-                onChange={(event) => handleFieldChange("email", event.target.value)}
+                aria-invalid={Boolean(getFieldError("email"))}
+                aria-describedby={getFieldError("email") ? "email-error" : undefined}
                 required
               />
+              <FieldError id="email-error">{getFieldError("email")}</FieldError>
             </Field>
 
             {fields.vehicle && (
-              <Field>
+              <Field data-invalid={Boolean(getFieldError("vehicle"))}>
                 <FieldLabel htmlFor="vehicle">{t.vehicle}</FieldLabel>
                 <Input
                   id="vehicle"
                   name="vehicle"
                   placeholder={t.vehiclePlaceholder}
-                  value={formData.vehicle}
-                  onChange={(event) => handleFieldChange("vehicle", event.target.value)}
+                  aria-invalid={Boolean(getFieldError("vehicle"))}
+                  aria-describedby={getFieldError("vehicle") ? "vehicle-error" : undefined}
                 />
+                <FieldError id="vehicle-error">{getFieldError("vehicle")}</FieldError>
               </Field>
             )}
 
             {fields.subject && (
-              <Field>
+              <Field data-invalid={Boolean(getFieldError("subject"))}>
                 <FieldLabel htmlFor="subject">{t.subject}</FieldLabel>
                 <Input
                   id="subject"
                   name="subject"
                   placeholder={t.subjectPlaceholder}
-                  value={formData.subject}
-                  onChange={(event) => handleFieldChange("subject", event.target.value)}
+                  aria-invalid={Boolean(getFieldError("subject"))}
+                  aria-describedby={getFieldError("subject") ? "subject-error" : undefined}
                 />
+                <FieldError id="subject-error">{getFieldError("subject")}</FieldError>
               </Field>
             )}
 
             {fields.date && (
-              <Field>
+              <Field data-invalid={Boolean(getFieldError("date"))}>
                 <FieldLabel htmlFor="date">{t.date}</FieldLabel>
                 <Input
                   id="date"
                   name="date"
                   type="date"
                   min={new Date().toISOString().split("T")[0]}
-                  value={formData.date}
-                  onChange={(event) => handleFieldChange("date", event.target.value)}
+                  aria-invalid={Boolean(getFieldError("date"))}
+                  aria-describedby={getFieldError("date") ? "date-error" : undefined}
                 />
+                <FieldError id="date-error">{getFieldError("date")}</FieldError>
               </Field>
             )}
 
-            <Field>
+            <Field data-invalid={Boolean(getFieldError("message"))}>
               <FieldLabel htmlFor="message">{t.message}</FieldLabel>
               <Textarea
                 id="message"
                 name="message"
                 placeholder={t.messagePlaceholder}
-                value={formData.message}
-                onChange={(event) => handleFieldChange("message", event.target.value)}
+                aria-invalid={Boolean(getFieldError("message"))}
+                aria-describedby={getFieldError("message") ? "message-error" : undefined}
                 rows={4}
               />
+              <FieldError id="message-error">{getFieldError("message")}</FieldError>
             </Field>
 
-            <input type="hidden" name="service" value={serviceName} />
-
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? (
-                <>
-                  <Spinner className="mr-2" />
-                  {t.submitting}
-                </>
-              ) : (
-                t.submit
-              )}
-            </Button>
+            <FormSubmitButton submitLabel={t.submit} pendingLabel={t.submitting} />
 
             <p className="mx-auto max-w-[42ch] text-center text-xs leading-6 text-muted-foreground">
               {t.privacyPrefix}{" "}

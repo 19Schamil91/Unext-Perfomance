@@ -8,7 +8,7 @@ export const homeTranslations = {
       title2: "rund ums Fahrzeug",
       title3: "in Berlin",
       description:
-        "Unfallgutachten, Autovermietung, Werkstatt, Kfz-Zulassungsservice,\nAbschleppdienst und Premium Detailing - alles unter einem Dach.\nProfessionell, schnell und zuverlässig seit 2024.",
+        "Unfallgutachten, Autovermietung, Werkstatt & Service, Kfz-Zulassung,\nPannenhilfe & Abschleppen und Aufbereitung & Pflege - alles unter einem Dach.\nProfessionell, schnell und zuverlässig seit 2024.",
       callNow: "Jetzt anrufen",
       inquiry: "Anfrage senden",
       whatsapp: "WhatsApp",
@@ -48,7 +48,7 @@ export const homeTranslations = {
           ],
         },
         {
-          title: "Kfz-Werkstatt & Reparatur",
+          title: "Werkstatt & Service",
           subtitle: "Wartung & Reparatur",
           description:
             "Von Inspektion bis Reparatur: Wir kümmern uns zuverlässig um die Technik Ihres Fahrzeugs und halten Sie mobil.",
@@ -60,7 +60,7 @@ export const homeTranslations = {
           ],
         },
         {
-          title: "Fahrzeugaufbereitung",
+          title: "Aufbereitung & Pflege",
           subtitle: "Detailing",
           description:
             "Professionelle Innen- und Außenaufbereitung für gepflegte Fahrzeuge, Werterhalt und einen sauberen Gesamteindruck.",
@@ -72,19 +72,19 @@ export const homeTranslations = {
           ],
         },
         {
-          title: "Kfz-Zulassungsservice",
+          title: "Kfz-Zulassung",
           subtitle: "Anmeldung & Kennzeichen",
           description:
             "Wir übernehmen Anmeldung, Abmeldung und alle wichtigen Formalitäten rund um Ihr Fahrzeug schnell und unkompliziert.",
           features: [
-            "Kfz-An- & Abmeldung",
+            "Kfz-Zulassung",
             "Kurzzeit- & Exportkennzeichen",
             "eVB- und Wunschkennzeichen-Service",
             "Hol- & Bringservice auf Anfrage",
           ],
         },
         {
-          title: "Abschleppdienst & Pannenhilfe",
+          title: "Pannenhilfe & Abschleppen",
           subtitle: "Soforthilfe vor Ort",
           description:
             "Wenn Ihr Fahrzeug liegen bleibt, organisieren wir schnelle Hilfe, sicheren Transport und auf Wunsch die komplette weitere Abwicklung.",
@@ -153,7 +153,7 @@ export const homeTranslations = {
       paragraph1:
         "UNEXT GMBH ist ein Berliner Unternehmen, das 2024 mit dem Fokus auf professionelle Unfallgutachten und Soforthilfe gestartet ist. Unter der Marke UNFALLX haben wir uns schnell als zuverlässiger Partner für Unfallopfer etabliert.",
       paragraph2:
-        "Heute sind wir mehr als das: Als umfassender Automotive-Dienstleister bieten wir Autovermietung, Werkstattservice, Premium-Detailing, Kfz-Zulassungsservice und Abschleppdienst an - alles unter einem Dach. Unser Ziel ist es, Ihnen bei allen Fahrzeugfragen kompetent zur Seite zu stehen.",
+        "Heute sind wir mehr als das: Als umfassender Automotive-Dienstleister bieten wir Autovermietung, Werkstatt & Service, Aufbereitung & Pflege, Kfz-Zulassung und Pannenhilfe & Abschleppen an - alles unter einem Dach. Unser Ziel ist es, Ihnen bei allen Fahrzeugfragen kompetent zur Seite zu stehen.",
       highlights: [
         "Gegründet 2024 in Berlin",
         "Ursprünglich spezialisiert auf Unfallgutachten",
@@ -314,14 +314,14 @@ export const homeTranslations = {
           description:
             "We handle registration, deregistration and all key formalities around your vehicle quickly and without complications.",
           features: [
-            "Vehicle registration & deregistration",
+            "Vehicle registration",
             "Temporary & export plates",
             "eVB and custom plate service",
             "Pickup service on request",
           ],
         },
         {
-          title: "Towing & Roadside Assistance",
+          title: "Towing & Roadside Help",
           subtitle: "Immediate help on site",
           description:
             "If your vehicle breaks down, we organize fast help, safe transport and, if requested, complete follow-up handling.",
@@ -556,14 +556,14 @@ export const homeTranslations = {
           description:
             "Мы берем на себя регистрацию, снятие с учета и все важные формальности по автомобилю быстро и без лишних сложностей.",
           features: [
-            "Постановка и снятие с учета",
+            "Регистрация авто",
             "Временные и экспортные номера",
             "eVB и подбор номера",
             "Сервис забора документов по запросу",
           ],
         },
         {
-          title: "Эвакуатор и помощь на дороге",
+          title: "Эвакуатор и помощь на дороге",
           subtitle: "Срочная помощь на месте",
           description:
             "Если автомобиль не может продолжать движение, мы организуем быструю помощь, безопасную перевозку и при необходимости дальнейшее сопровождение.",

@@ -1,3 +1,8 @@
+/*
+  Diese Datei definiert den Kopfbereich der Website mit Navigation und Schnellaktionen.
+  Sie zeigt Menues fuer Seiten, Leistungen, Sprache und Theme auf Desktop und Mobil.
+  Nutzer koennen von hier direkt navigieren, Kontakt aufnehmen und die Sprache wechseln.
+*/
 "use client"
 
 import { useEffect, useRef, useState } from "react"
@@ -18,6 +23,7 @@ type NavigationItem = {
 }
 
 export function SiteHeader() {
+  // Diese Werte steuern, welche Menues im Kopfbereich gerade sichtbar sind.
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false)
   const [servicesMenuOpen, setServicesMenuOpen] = useState(false)
@@ -39,6 +45,7 @@ export function SiteHeader() {
     },
   } as const
 
+  // Diese Funktion schliesst Menues beim Sprachwechsel, damit die Seite ruhig bleibt.
   const handleLocaleChange = (nextLocale: Locale) => {
     setLocale(nextLocale)
     setLanguageMenuOpen(false)
@@ -46,6 +53,7 @@ export function SiteHeader() {
     setMobileMenuOpen(false)
   }
 
+  // Dieser Ablauf schliesst offene Menues bei Klick ausserhalb oder Escape.
   useEffect(() => {
     if (!languageMenuOpen && !servicesMenuOpen) {
       return
@@ -77,8 +85,8 @@ export function SiteHeader() {
   }, [languageMenuOpen, servicesMenuOpen])
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 lg:px-8 lg:py-3">
+    <header className="sticky top-0 z-50 w-full border-b border-border/55 bg-background/95 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur supports-[backdrop-filter]:bg-background/85">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8 lg:py-3.5">
         <Link href="/" className="flex items-center">
           <Image
             src="/images/unext-logo.webp"
@@ -96,9 +104,8 @@ export function SiteHeader() {
               <div key={item.name} ref={servicesMenuRef} className="relative">
                 <button
                   type="button"
-                  className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className="flex items-center gap-1 rounded-lg px-2 py-1 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent/45 hover:text-foreground"
                   aria-expanded={servicesMenuOpen}
-                  aria-haspopup="menu"
                   onClick={() => setServicesMenuOpen((open) => !open)}
                 >
                   {item.name}
@@ -108,7 +115,7 @@ export function SiteHeader() {
                 </button>
 
                 {servicesMenuOpen ? (
-                  <div className="absolute left-0 top-full z-50 mt-2 w-64 rounded-xl border border-border bg-popover p-1 shadow-lg">
+                  <div className="absolute left-0 top-full z-50 mt-2 w-64 rounded-2xl border border-border/70 bg-popover/98 p-1.5 shadow-[0_18px_40px_rgba(15,23,42,0.2)]">
                     <Link
                       href={item.href}
                       className="block w-full rounded-lg px-3 py-2 text-sm leading-5 text-popover-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
@@ -133,7 +140,7 @@ export function SiteHeader() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                className="rounded-lg px-2 py-1 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent/45 hover:text-foreground"
               >
                 {item.name}
               </Link>
@@ -146,9 +153,8 @@ export function SiteHeader() {
             <Button
               variant="ghost"
               size="sm"
-              className="gap-2"
+              className="gap-2 rounded-full border border-border/75 bg-card/90 px-3 shadow-sm"
               aria-expanded={languageMenuOpen}
-              aria-haspopup="menu"
               disabled={isPending}
               onClick={() => setLanguageMenuOpen((open) => !open)}
             >
@@ -160,7 +166,7 @@ export function SiteHeader() {
             </Button>
 
             {languageMenuOpen ? (
-              <div className="absolute right-0 top-full z-50 mt-2 min-w-[11rem] rounded-xl border border-border bg-popover p-1 shadow-lg">
+              <div className="absolute right-0 top-full z-50 mt-2 min-w-[11rem] rounded-2xl border border-border/70 bg-popover/98 p-1.5 shadow-[0_18px_40px_rgba(15,23,42,0.2)]">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
@@ -179,7 +185,7 @@ export function SiteHeader() {
           <ThemeToggle
             lightLabel={themeLabels[locale].light}
             darkLabel={themeLabels[locale].dark}
-            className="h-10 w-10 rounded-full border border-border/80 bg-card text-foreground shadow-sm transition-colors hover:bg-accent"
+            className="h-10 w-10 rounded-full border border-border/80 bg-card text-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:bg-accent"
           />
 
           <Button asChild variant="ghost" size="icon" className="h-10 w-10 sm:hidden">
@@ -204,7 +210,7 @@ export function SiteHeader() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-10 w-10 rounded-full border border-border/80 bg-card text-foreground shadow-sm transition-colors hover:bg-accent lg:hidden"
+              className="h-10 w-10 rounded-full border border-border/80 bg-card text-foreground shadow-sm transition-all hover:-translate-y-0.5 hover:bg-accent lg:hidden"
               >
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">{t.header.openMenu}</span>
@@ -212,7 +218,7 @@ export function SiteHeader() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-[88vw] max-w-[20rem] overflow-y-auto border-l border-border/70 bg-card/98 px-3.5 pb-5 pt-4 backdrop-blur"
+              className="w-[88vw] max-w-[20rem] overflow-y-auto border-l border-border/70 bg-card/98 px-3.5 pb-5 pt-4 shadow-[0_18px_44px_rgba(15,23,42,0.24)] backdrop-blur"
             >
               <div className="flex min-h-full flex-col gap-5 pt-2">
                 <div className="rounded-[1.35rem] border border-border/60 bg-background/70 p-4 shadow-sm">
@@ -268,7 +274,7 @@ export function SiteHeader() {
                         key={item.name}
                         href={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center justify-between rounded-[1rem] px-3.5 py-3 text-base font-semibold leading-6 text-foreground transition-colors hover:bg-accent/60"
+                        className="flex items-center justify-between rounded-[1rem] px-3.5 py-3 text-base font-semibold leading-6 text-foreground transition-colors hover:bg-accent/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                       >
                         <span className="min-w-0 [text-wrap:balance]">{item.name}</span>
                         <ChevronRight className="h-4 w-4 text-muted-foreground" />
@@ -288,7 +294,7 @@ export function SiteHeader() {
                           key={child.name}
                           href={child.href}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between rounded-[1rem] px-3.5 py-3 text-sm font-medium leading-5 text-foreground transition-colors hover:bg-accent/40"
+                          className="flex items-center justify-between rounded-[1rem] px-3.5 py-3 text-sm font-medium leading-5 text-foreground transition-colors hover:bg-accent/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                         >
                           <span className="min-w-0 [text-wrap:balance]">{child.name}</span>
                           <ChevronRight className="h-4 w-4 text-muted-foreground" />
