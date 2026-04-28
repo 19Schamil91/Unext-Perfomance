@@ -134,7 +134,7 @@ export const servicesAndAboutTranslations = {
         { year: "2026", title: "Werkstatt & Detailing", description: "Eröffnung des Werkstattbereichs und Start des Premium-Detailing-Service." },
         { year: "Heute", title: "Vollständiger Service", description: "Sechs starke Bereiche unter einem Dach - Ihr Automotive-Partner in Berlin." },
       ],
-      subBrandBadge: "Sub-Brand",
+      subBrandBadge: "Unsere Marke",
       subBrandTitle: "UNFALLX - Unsere Wurzeln",
       subBrandDescription:
         "UNFALLX ist die Marke, mit der alles begann. Als spezialisierter Service für Unfallgutachten und Soforthilfe steht UNFALLX für kompetente, schnelle und unabhängige Unterstützung nach Verkehrsunfällen.",
@@ -235,7 +235,7 @@ export const servicesAndAboutTranslations = {
         { year: "2026", title: "Workshop & Detailing", description: "Opening of the workshop area and launch of the premium detailing service." },
         { year: "Today", title: "Full Service", description: "Six strong business areas under one roof - your automotive partner in Berlin." },
       ],
-      subBrandBadge: "Sub-brand",
+      subBrandBadge: "Our brand",
       subBrandTitle: "UNFALLX - Our roots",
       subBrandDescription:
         "UNFALLX is the brand where it all began. As a specialized service for accident reports and immediate assistance, UNFALLX stands for competent, fast and independent support after road accidents.",
@@ -356,7 +356,7 @@ export const servicesAndAboutTranslations = {
         { year: "2026", title: "Мастерская и детейлинг", description: "Открытие мастерской и запуск премиального детейлинга." },
         { year: "Сегодня", title: "Полный сервис", description: "Шесть сильных направлений под одной крышей - ваш автомобильный партнер в Берлине." },
       ],
-      subBrandBadge: "Sub-brand",
+      subBrandBadge: "\u041d\u0430\u0448 \u0431\u0440\u0435\u043d\u0434",
       subBrandTitle: "UNFALLX - наши корни",
       subBrandDescription:
         "UNFALLX - бренд, с которого все началось. Как специализированный сервис по экспертизе ДТП и срочной помощи, UNFALLX означает компетентную, быструю и независимую поддержку после дорожных происшествий.",

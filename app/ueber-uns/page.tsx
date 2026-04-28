@@ -1,3 +1,9 @@
+/*
+  Diese Datei ist die Ueber-uns-Seite.
+  Sie zeigt Informationen zur UNEXT GMBH, ihre Werte und die Marke UNFALLX.
+  Der Nutzer kann mehr ueber das Unternehmen lesen und zur passenden Leistung wechseln.
+*/
+
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
@@ -156,14 +162,15 @@ export default async function UeberUnsPage() {
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
               <div className="lg:order-2 lg:pl-6">
-                <div className="relative aspect-[16/11] overflow-hidden rounded-[1.75rem] border border-border/50 bg-card shadow-sm">
+                <div className="relative mx-auto aspect-[4/5] w-full max-w-[25rem] overflow-hidden rounded-[1.75rem] border border-border/50 bg-card shadow-sm lg:max-w-[24rem] xl:max-w-[26rem]">
+                  {/* Dieses Foto zeigt den Mitarbeiter im Buero ohne Beschnitt oder Verzerrung. */}
                   <Image
-                    src="/images/service-accident.webp"
-                    alt="UNFALLX"
+                    src="/images/about-office.webp"
+                    alt="UNEXT Mitarbeiter im Büro"
                     fill
                     sizes="(min-width: 1024px) 50vw, 100vw"
-                    quality={76}
-                    className="object-cover object-[58%_center]"
+                    quality={82}
+                    className="object-cover object-center"
                   />
                 </div>
               </div>
