@@ -27,8 +27,8 @@ type ServiceMeta = {
 const serviceMeta = [
   {
     icon: FileCheck,
-    image: "/images/service-accident.webp",
-    imageClassName: "object-cover object-[58%_center]",
+    image: "/images/home-service-accident.webp",
+    imageClassName: "object-cover object-center",
     href: "/leistungen/unfallgutachten",
     contactText: "0176 64365185",
     contactHref: "tel:+4917664365185",
@@ -36,8 +36,8 @@ const serviceMeta = [
   },
   {
     icon: Car,
-    image: "/images/service-rental.webp",
-    imageClassName: "object-cover object-[38%_30%] sm:object-[42%_38%] lg:object-[42%_center]",
+    image: "/images/home-service-rental.webp",
+    imageClassName: "object-cover object-[42%_center]",
     href: "/leistungen/autovermietung",
     contactText: "0174 4292900",
     contactHref: "tel:+491744292900",
@@ -45,8 +45,8 @@ const serviceMeta = [
   },
   {
     icon: Wrench,
-    image: "/images/service-workshop.webp",
-    imageClassName: "object-cover object-[60%_center]",
+    image: "/images/home-service-workshop.webp",
+    imageClassName: "object-cover object-[58%_center]",
     href: "/leistungen/autoservice",
     contactText: "0177 7883206",
     contactHref: "tel:+491777883206",
@@ -54,8 +54,8 @@ const serviceMeta = [
   },
   {
     icon: Sparkles,
-    image: "/images/service-detailing.webp",
-    imageClassName: "object-cover object-[56%_center]",
+    image: "/images/home-service-detailing.webp",
+    imageClassName: "object-cover object-[42%_center]",
     href: "/leistungen/detailing",
     contactText: "0177 6691006",
     contactHref: "tel:+491776691006",
@@ -63,8 +63,8 @@ const serviceMeta = [
   },
   {
     icon: ClipboardCheck,
-    image: "/images/service-registration.webp",
-    imageClassName: "object-cover object-[38%_center]",
+    image: "/images/home-service-registration.webp",
+    imageClassName: "object-cover object-[42%_center]",
     href: "/leistungen/zulassungsservice",
     contactText: "030 23613927",
     contactHref: "tel:+493023613927",
@@ -113,7 +113,7 @@ export async function ServicesSection() {
               >
                 <CardContent className="p-4 sm:p-5 lg:p-6">
                   <div className="flex h-full flex-col">
-                    <div className="relative h-60 overflow-hidden rounded-[1.45rem] border border-border/55 bg-background shadow-[0_10px_22px_rgba(15,23,42,0.08)] sm:h-72 lg:h-64">
+                    <div className="relative aspect-square overflow-hidden rounded-[1.45rem] border border-border/55 bg-background shadow-[0_10px_22px_rgba(15,23,42,0.08)]">
                       <Image
                         src={meta.image}
                         alt={service.title}

@@ -192,8 +192,8 @@ export default async function AutoservicePage() {
       title={t.title}
       subtitle={t.subtitle}
       description={t.description}
-      image="/images/service-workshop.webp"
-      imageClassName="object-cover object-[60%_center] md:object-[64%_center]"
+      image="/images/home-service-workshop.webp"
+      imageClassName="object-cover object-[58%_top]"
       phone="0177 7883206"
       benefits={t.benefits}
       services={t.services}

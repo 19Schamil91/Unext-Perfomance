@@ -212,8 +212,8 @@ export default async function DetailingPage() {
       title={t.title}
       subtitle={t.subtitle}
       description={t.description}
-      image="/images/service-detailing.webp"
-      imageClassName="object-cover object-[58%_center] md:object-[60%_center]"
+      image="/images/home-service-detailing.webp"
+      imageClassName="object-cover object-[42%_top]"
       phone="0177 6691006"
       benefits={t.benefits}
       services={t.services}

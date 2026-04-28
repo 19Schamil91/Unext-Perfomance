@@ -187,8 +187,8 @@ export default async function UnfallgutachtenPage() {
       subtitle={t.subtitle}
       badge={t.badge}
       description={t.description}
-      image="/images/service-accident.webp"
-      imageClassName="object-cover object-[58%_center] md:object-[60%_center]"
+      image="/images/home-service-accident.webp"
+      imageClassName="object-cover object-[center_top]"
       phone="0176 64365185"
       benefits={t.benefits}
       services={t.services}
