@@ -230,20 +230,21 @@ export async function ServicePageLayout({
             <h1
               className={
                 balancedTypography
-                  ? `mt-3 max-w-[18ch] text-display-fluid leading-[0.96] tracking-[-0.03em] text-foreground sm:max-w-[20ch] lg:max-w-none ${singleLineHeadings ? "lg:whitespace-nowrap" : "lg:text-balance"}`
-                  : "mt-3 max-w-[16ch] text-display-fluid text-foreground sm:max-w-[18ch] lg:max-w-[20ch]"
+                  ? `mt-3 max-w-[22rem] text-[clamp(2rem,1.72rem+1.2vw,2.45rem)] leading-[1.03] font-semibold tracking-[-0.02em] text-foreground sm:max-w-[20ch] sm:text-[clamp(2.35rem,1.65rem+2.7vw,4.9rem)] sm:leading-[0.96] sm:tracking-[-0.03em] lg:max-w-none ${singleLineHeadings ? "lg:whitespace-nowrap" : "lg:text-balance"}`
+                  : "mt-3 max-w-[22rem] text-[clamp(2rem,1.72rem+1.2vw,2.45rem)] leading-[1.05] font-semibold text-foreground sm:max-w-[18ch] sm:text-[clamp(2.35rem,1.65rem+2.7vw,4.9rem)] sm:leading-[0.98] sm:tracking-[-0.04em] lg:max-w-[20ch]"
               }
             >
               {renderLines(title, titleLines)}
             </h1>
             {descriptionLines ? (
-              <p className="mt-5 max-w-[62ch] text-body-fluid leading-[1.38] text-muted-foreground text-pretty sm:mt-6 sm:max-w-[68ch] lg:max-w-[72ch]">
+              <p className="mt-5 max-w-[62ch] text-[1rem] leading-[1.62] text-muted-foreground text-pretty sm:mt-6 sm:max-w-[68ch] sm:text-[clamp(1rem,0.98rem+0.24vw,1.12rem)] sm:leading-[1.38] lg:max-w-[72ch]">
                 {descriptionLines.map((line, index) => (
                   <span
                     key={`${description}-${line}-${index}`}
-                    className="block"
+                    className="inline sm:block"
                   >
                     {line}
+                    {index < descriptionLines.length - 1 ? " " : null}
                   </span>
                 ))}
               </p>
@@ -251,7 +252,7 @@ export async function ServicePageLayout({
               <ReadableText
                 text={description}
                 targetLineLength={balancedTypography ? 74 : 82}
-                className="mt-5 max-w-[74ch] text-body-fluid text-muted-foreground sm:mt-6"
+                className="mt-5 max-w-[74ch] text-[1rem] leading-[1.62] text-muted-foreground sm:mt-6 sm:text-[clamp(1rem,0.98rem+0.24vw,1.12rem)] sm:leading-[1.78]"
               />
             )}
 
@@ -261,21 +262,21 @@ export async function ServicePageLayout({
                   key={benefit}
                   className={
                     benefitsSingleLine
-                      ? "flex min-w-0 items-center gap-3 overflow-x-auto rounded-2xl border border-border/60 bg-background/72 px-3 py-2.5 text-[0.8125rem] leading-snug text-foreground shadow-[0_12px_26px_rgba(15,23,42,0.06)] backdrop-blur-sm sm:px-4 sm:py-3 sm:text-body-compact sm:leading-normal"
+                      ? "flex min-w-0 items-start gap-3 rounded-2xl border border-border/60 bg-background/72 px-3 py-2.5 text-[0.8125rem] leading-snug text-foreground shadow-[0_12px_26px_rgba(15,23,42,0.06)] backdrop-blur-sm sm:items-center sm:px-4 sm:py-3 sm:text-body-compact sm:leading-normal"
                       : "flex items-start gap-3 rounded-2xl border border-border/60 bg-background/72 px-4 py-3 text-body-compact text-foreground shadow-[0_12px_26px_rgba(15,23,42,0.06)] backdrop-blur-sm"
                   }
                 >
                   <CheckCircle
                     className={
                       benefitsSingleLine
-                        ? "h-4 w-4 shrink-0 self-center text-primary"
+                        ? "mt-0.5 h-4 w-4 shrink-0 text-primary sm:mt-0"
                         : "mt-0.5 h-4 w-4 shrink-0 text-primary"
                     }
                   />
                   <span
                     className={
                       benefitsSingleLine
-                        ? "min-w-0 flex-1 whitespace-nowrap"
+                        ? "min-w-0 flex-1 text-pretty"
                         : balancedTypography
                           ? "max-w-[34ch] text-balance"
                           : "max-w-[34ch]"

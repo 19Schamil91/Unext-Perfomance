@@ -27,6 +27,7 @@ interface HeroContentProps {
   directServicesLabel: string
   viewAllServices: string
   className?: string
+  headingElement?: "h1" | "div"
 }
 
 function renderHeroDescription(description: string, lineClassName?: string) {
@@ -81,9 +82,10 @@ function renderHeroDescription(description: string, lineClassName?: string) {
           .split("\n")
           .map((line) => line.trim())
           .filter(Boolean)
-          .map((line, index) => (
-            <span key={`${line}-${index}`} className={`block ${lineClassName ?? ""}`.trim()}>
+          .map((line, index, lines) => (
+            <span key={`${line}-${index}`} className={`inline sm:block ${lineClassName ?? ""}`.trim()}>
               {renderProtectedLine(line)}
+              {index < lines.length - 1 ? " " : null}
             </span>
           ))}
       </>
@@ -114,8 +116,9 @@ function renderHeroDescription(description: string, lineClassName?: string) {
   return (
     <>
       {lines.map((line, index) => (
-        <span key={`${line}-${index}`} className={`block ${lineClassName ?? ""}`.trim()}>
+        <span key={`${line}-${index}`} className={`inline sm:block ${lineClassName ?? ""}`.trim()}>
           {renderProtectedLine(line)}
+          {index < lines.length - 1 ? " " : null}
         </span>
       ))}
     </>
@@ -138,8 +141,10 @@ function HeroContent({
   directServicesLabel,
   viewAllServices,
   className,
+  headingElement = "h1",
 }: HeroContentProps) {
   const isOverlay = tone === "overlay"
+  const HeadingElement = headingElement
   const addressParts = address.split(",").map((part) => part.trim()).filter(Boolean)
   const addressPrimary = addressParts[0] ?? address
   const addressSecondary = addressParts.slice(1).join(", ")
@@ -166,13 +171,13 @@ function HeroContent({
           </div>
         ) : null}
 
-        <h1
+        <HeadingElement
           className={
             isOverlay
               ? combinePrimaryTitle
                 ? "relative z-10 inline-flex max-w-none flex-col items-center text-center text-white drop-shadow-[0_10px_34px_rgba(0,0,0,0.42)]"
                 : "relative z-10 max-w-none text-center text-white drop-shadow-[0_10px_34px_rgba(0,0,0,0.42)]"
-              : "measure-display text-display-fluid text-foreground"
+              : "max-w-none text-[clamp(2rem,1.78rem+1vw,2.35rem)] leading-[1.04] font-semibold tracking-[-0.02em] text-foreground"
           }
         >
           {isOverlay && combinePrimaryTitle ? (
@@ -208,18 +213,18 @@ function HeroContent({
                 ? combinePrimaryTitle
                   ? "mt-4 block text-center text-[clamp(1.08rem,1.22vw,1.38rem)] leading-none font-medium tracking-[0.08em] text-white/88 drop-shadow-[0_8px_22px_rgba(0,0,0,0.42)]"
                   : "mt-2 block text-[clamp(1.28rem,1.55vw,2rem)] leading-[1.05] font-light tracking-[-0.022em] text-white/68 drop-shadow-[0_2px_8px_rgba(0,0,0,0.14)] lg:whitespace-nowrap"
-                : "mt-1.5 block max-w-[18ch] text-[clamp(1.05rem,0.84rem+1vw,2.35rem)] leading-[1.12] font-normal text-muted-foreground sm:mt-2"
+                : "mt-1.5 block max-w-none text-[clamp(1rem,0.9rem+0.45vw,1.22rem)] leading-[1.25] font-normal tracking-normal text-muted-foreground sm:mt-2 sm:max-w-[18ch] sm:text-[clamp(1.05rem,0.84rem+1vw,2.35rem)] sm:leading-[1.12]"
             }
           >
             {title3}
           </span>
-        </h1>
+        </HeadingElement>
 
         <p
           className={
             isOverlay
               ? "relative z-10 mx-auto mt-20 translate-y-10 max-w-[78ch] text-center text-[clamp(1rem,0.97rem+0.14vw,1.12rem)] leading-[1.8] text-white/94 drop-shadow-[0_8px_24px_rgba(0,0,0,0.44)] sm:mt-20"
-              : "measure-intro-tight mt-4 text-body-fluid text-muted-foreground sm:mt-6"
+              : "mt-4 max-w-none text-[1rem] leading-[1.7] text-muted-foreground sm:mt-6"
           }
         >
           {renderHeroDescription(description, isOverlay ? "lg:whitespace-nowrap" : undefined)}
@@ -380,14 +385,14 @@ export async function HeroSection() {
   return (
     <section className="overflow-x-clip overflow-y-hidden bg-background">
       <div className="md:hidden">
-        <div className="relative aspect-[16/11] overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.16),transparent_58%),linear-gradient(180deg,rgba(26,26,31,0.02),rgba(26,26,31,0.16))]">
+        <div className="relative aspect-video overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.16),transparent_58%),linear-gradient(180deg,rgba(26,26,31,0.02),rgba(26,26,31,0.16))]">
           <Image
             src={heroMobileImageSrc}
             alt="UNEXT team"
             fill
             sizes="100vw"
             quality={92}
-            className="object-cover object-[center_12%]"
+            className="object-cover object-center"
             priority
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,10,15,0.14),rgba(7,10,15,0.34))]" />
@@ -409,7 +414,7 @@ export async function HeroSection() {
             address={t.address}
             directServicesLabel={t.directServicesLabel}
             viewAllServices={viewAllServices}
-            className="mx-auto max-w-[23rem] sm:max-w-2xl"
+            className="mx-auto max-w-[26rem] sm:max-w-2xl"
           />
         </div>
       </div>
@@ -447,6 +452,7 @@ export async function HeroSection() {
             directServicesLabel={t.directServicesLabel}
             viewAllServices={viewAllServices}
             className="max-w-[62rem]"
+            headingElement="div"
           />
         </div>
       </div>

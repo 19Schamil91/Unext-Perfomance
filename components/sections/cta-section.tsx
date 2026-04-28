@@ -47,14 +47,15 @@ export async function CtaSection() {
               <Clock className="h-5 w-5" />
               <span className="text-sm font-semibold uppercase tracking-wider">{t.badge}</span>
             </div>
-            <h2 className="max-w-[14ch] text-heading-fluid font-semibold tracking-[-0.03em] text-primary-foreground sm:max-w-[16ch] lg:max-w-none lg:text-[clamp(2.8rem,4.2vw,4.35rem)] lg:leading-[1.02] lg:whitespace-nowrap">
+            <h2 className="max-w-[24rem] text-[clamp(1.85rem,1.58rem+1.1vw,2.2rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-primary-foreground sm:max-w-[16ch] sm:text-[clamp(1.9rem,1.35rem+1.45vw,3.15rem)] sm:leading-[1.04] sm:tracking-[-0.03em] sm:font-[650] lg:max-w-none lg:text-[clamp(2.8rem,4.2vw,4.35rem)] lg:leading-[1.02] lg:whitespace-nowrap">
               {t.title}
             </h2>
             {fixedDescriptionLines ? (
-              <p className="mt-4 max-w-[38ch] text-body-fluid text-primary-foreground/80 sm:max-w-[46ch] lg:max-w-none">
-                {fixedDescriptionLines.map((line) => (
-                  <span key={line} className="block lg:whitespace-nowrap">
+              <p className="mt-4 max-w-[36rem] text-[1rem] leading-[1.7] text-primary-foreground/80 sm:max-w-[46ch] sm:text-[clamp(1rem,0.98rem+0.24vw,1.12rem)] sm:leading-[1.78] lg:max-w-none">
+                {fixedDescriptionLines.map((line, index) => (
+                  <span key={line} className="inline sm:block lg:whitespace-nowrap">
                     {line}
+                    {index < fixedDescriptionLines.length - 1 ? " " : null}
                   </span>
                 ))}
               </p>

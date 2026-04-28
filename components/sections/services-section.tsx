@@ -90,13 +90,13 @@ export async function ServicesSection() {
     <section className="bg-background py-22 lg:py-30">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto mb-12 max-w-5xl text-center sm:mb-16">
-          <h2 className="mx-auto max-w-[14ch] text-heading-fluid font-semibold text-foreground sm:max-w-[15ch] lg:max-w-none">
+          <h2 className="mx-auto max-w-[24rem] text-[clamp(1.85rem,1.58rem+1.1vw,2.2rem)] leading-[1.08] font-semibold text-foreground sm:max-w-[15ch] sm:text-[clamp(1.9rem,1.35rem+1.45vw,3.15rem)] sm:leading-[1.04] sm:tracking-[-0.03em] sm:font-[650] lg:max-w-none">
             {t.title}
           </h2>
           <ReadableText
             text={t.description}
             targetLineLength={180}
-            className="mx-auto mt-3 max-w-none text-body-fluid text-muted-foreground sm:mt-4"
+            className="mx-auto mt-3 max-w-[34rem] text-[1rem] leading-[1.7] text-muted-foreground sm:mt-4 sm:max-w-none sm:text-[clamp(1rem,0.98rem+0.24vw,1.12rem)] sm:leading-[1.78]"
           />
         </div>
 
