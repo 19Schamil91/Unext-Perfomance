@@ -549,6 +549,19 @@ Wenn ein Anwendungsfall keine bestehende Klasse trifft (z. B. ein sehr grosses H
 - `text-wrap: pretty` ist in `@layer base` fuer `<p>` aktiv. Fuer Absaetze, die als `<span>` oder `<div>` ausgezeichnet sind, wird `[text-wrap:pretty]` explizit gesetzt.
 - Buttons mit langen, moeglicherweise uebersetzten Texten nutzen die Klasse `button-text-wrap` aus `globals.css`.
 
+**Keine harten Zeilenumbrueche fuer normalen Fliesstext:**
+- Normaler Fliesstext nutzt zuerst `measure-*`, `text-body-*` und `text-wrap: pretty`.
+- Manuelle Zeilenlogik wie `ReadableText`, `renderParagraphLines`, `<span class="block">` pro Satz oder pro Komma wird nur eingesetzt, wenn der User genau diesen redaktionellen Zeilenumbruch wuenscht oder ein konkreter Screenshot-Test zeigt, dass Browser-Wrapping nicht reicht.
+- Harte Zeilenumbrueche duerfen nicht nur zur optischen Korrektur einzelner deutscher Texte genutzt werden, weil sie in Englisch oder Russisch schnell schlechter aussehen koennen.
+- Wenn einzelne Begriffe nicht getrennt werden sollen, werden gezielt nur diese Begriffe mit `whitespace-nowrap` geschuetzt, statt den ganzen Absatz manuell in Zeilen aufzuteilen.
+
+**Semantischer Zeilenumbruch:**
+- Sichtbare Zeilen in wichtigen UI-Texten (Hero, Card-Beschreibungen, CTAs, Formular-Hinweise) sollen als Sinnabschnitt funktionieren. Eine Zeile soll nicht mit einem alleinstehenden Fuellwort oder einem unvollstaendigen Satzteil enden, wenn sich das redaktionell vermeiden laesst.
+- Schlechte Umbrueche werden zuerst durch bessere Formulierung geloest. Beispiel: statt einen Satz technisch nach dem Komma zu trennen, wird der Satz so geschrieben, dass natuerliche Sinnabschnitte entstehen.
+- Automatisches Trennen nach Kommas ist verboten. Kommas sind kein ausreichendes Signal fuer einen guten Zeilenumbruch.
+- Manuell gepflegte Zeilenumbrueche sind nur fuer wichtige, kurze UI-Texte erlaubt und werden pro Locale gepflegt (DE / EN / RU). Ein deutscher Break darf nicht ungeprueft fuer Englisch oder Russisch uebernommen werden.
+- Wenn manuelle Zeilenumbrueche genutzt werden, muessen alle sichtbaren Zeilen in allen drei Sprachen auf Sinn, Laenge und Mobile/Desktop-Darstellung geprueft werden.
+
 **Lesebreite (`measure`):**
 - Laengere Fliesstexte und erklaerende Absaetze haben eine passende `measure-*`-Klasse. Ohne Lesebreite wird Text auf breiten Bildschirmen unlesbar.
 - Standard-Wahl:
