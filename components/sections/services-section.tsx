@@ -26,7 +26,7 @@ type ServiceMeta = {
 const serviceMeta = [
   {
     icon: FileCheck,
-    image: "/images/home-service-accident-wide.png",
+    image: "/images/home-service-accident-wide.webp",
     imageClassName: "object-cover object-center",
     href: "/leistungen/unfallgutachten",
     contactText: "0176 64365185",
