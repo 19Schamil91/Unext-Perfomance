@@ -512,3 +512,118 @@ Der Agent **schreibt nicht selbst** in DECISIONS.md. Er prÃ¤sentiert den Vorsc
 ### 21.4 Reihenfolge in DECISIONS.md
 
 Neue EintrÃ¤ge werden **unten angefÃ¼gt**, alte EintrÃ¤ge bleiben unverÃ¤ndert. Wird eine alte Entscheidung revidiert, bekommt sie den Status â€žRevidiert durch Entscheidung N", und die neue Entscheidung wird als separater Eintrag unten angelegt.
+
+---
+
+## 22. Typografie, Lesbarkeit und Mehrsprachigkeit
+
+Dieses Projekt verfuegt bereits ueber ein durchdachtes Typografie-System in `app/globals.css` (fluid-Type-Klassen, `measure-*`-Klassen, `text-wrap: balance/pretty`). §22 sichert dieses System ab und erweitert es um Lesbarkeits- und i18n-Pflichten.
+
+### 22.1 Bestehendes Typografie-System nutzen - keine Parallel-Patterns
+
+In `app/globals.css` sind verbindliche Utility-Klassen definiert. Der Agent **nutzt diese Klassen** fuer jede neue Komponente und **erfindet keine inline `text-[clamp(...)]`-Werte**, wenn eine bestehende Klasse den Anwendungsfall abdeckt.
+
+**Pflicht-Zuordnung:**
+
+| Element | Pflicht-Klasse | Zusaetzlich (Lesebreite) |
+| --- | --- | --- |
+| Hero-H1 (Startseite, Landing-Pages) | `text-display-fluid` | `measure-display` |
+| Section-H2 (Section-Ueberschriften) | `text-heading-fluid` | `measure-heading` |
+| Card-Titel, Listen-Titel | `text-title-fluid` | - |
+| Fliesstext (Absaetze, Beschreibungen) | `text-body-fluid` | `measure-intro` oder `measure-intro-tight` |
+| Dichter Fliesstext (Cards, Listen) | `text-body-compact` | `measure-card-copy` oder `measure-card-copy-wide` |
+| Button-Text mit Risiko langer Uebersetzungen | zusaetzlich `button-text-wrap` | - |
+
+**Verboten:**
+- Inline `text-[clamp(...)]`-Werte in JSX, wenn eine bestehende Klasse den Anwendungsfall abdeckt.
+- Eigene `text-{size}` + `leading-{value}` + `tracking-{value}`-Kombinationen, die das fluid-System umgehen.
+- Kopieren von Tailwind-Klassen-Strings aus anderen Komponenten ohne Pruefung, ob eine fluid-Klasse passt.
+
+**Ausnahmen erlaubt mit Begruendung:**
+Wenn ein Anwendungsfall keine bestehende Klasse trifft (z. B. ein sehr grosses Hero auf einer speziellen Landing-Page), darf eine inline `text-[clamp(...)]`-Definition genutzt werden - **mit Code-Kommentar**, der erklaert, warum keine bestehende Klasse passt. Solche Stellen sind Kandidaten fuer eine **neue fluid-Klasse** in `globals.css` und werden im naechsten Refactoring konsolidiert.
+
+### 22.2 Lesbarkeit und Textfluss
+
+**Textumbruch (`text-wrap`):**
+- `text-wrap: balance` ist in `@layer base` fuer `h1`, `h2`, `h3` aktiv. Fuer Ueberschriften, die als anderes Element gerendert werden (z. B. `<span>`, `<div role="heading">`), wird `text-wrap: balance` explizit ueber die Tailwind-Klasse `[text-wrap:balance]` gesetzt.
+- `text-wrap: pretty` ist in `@layer base` fuer `<p>` aktiv. Fuer Absaetze, die als `<span>` oder `<div>` ausgezeichnet sind, wird `[text-wrap:pretty]` explizit gesetzt.
+- Buttons mit langen, moeglicherweise uebersetzten Texten nutzen die Klasse `button-text-wrap` aus `globals.css`.
+
+**Lesebreite (`measure`):**
+- Laengere Fliesstexte und erklaerende Absaetze haben eine passende `measure-*`-Klasse. Ohne Lesebreite wird Text auf breiten Bildschirmen unlesbar.
+- Standard-Wahl:
+  - Intro-Absaetze unter Hero/Heading: `measure-intro` (66ch) oder `measure-intro-tight` (58ch)
+  - Card-Beschreibungen: `measure-card-copy` (34ch) oder `measure-card-copy-wide` (40ch)
+  - Display-Texte: `measure-display` (12ch)
+  - Heading-Texte: `measure-heading` (22ch)
+
+**Geschuetzte Begriffe (`whitespace-nowrap`):**
+- Markennamen (`UNEXT`), Produktnamen, Telefonnummern, Adress-Bestandteile (`13435 Berlin`) und Bindestrich-Woerter, die nicht umbrechen sollen (`Kfz-Werkstatt`, `Kfz-Zulassung`, `Taxi-Fahrer`), erhalten `whitespace-nowrap` oder werden in einem `<span class="whitespace-nowrap">` gewrappt.
+- Bei Listen mit mehreren geschuetzten Begriffen wird die `renderProtectedLine`-Logik aus `hero-section.tsx` als Muster wiederverwendet, sofern sie fuer den konkreten Fall passt.
+
+**Kontrast und Lesbarkeit:**
+- Sekundaertext (Beschreibungen, Meta-Info) nutzt `text-muted-foreground` nur, wenn der Kontrast zum Hintergrund ueber WCAG AA bleibt (mindestens 4,5:1 fuer Fliesstext, 3:1 fuer grosse Schrift). Bei Zweifel wird `text-foreground/85` statt `text-muted-foreground` genutzt.
+- `outline: none` ist verboten ohne sichtbaren Ersatz-Fokus-Ring (siehe §18). Fokussierbare Elemente erhalten immer einen klar sichtbaren Fokus-Zustand.
+
+**Vertikaler Rhythmus:**
+- Section-Spacing nutzt eine konsistente Skala: `py-16` mobil, `py-24` ab `md`, `py-32` ab `lg`. Ausnahmen sind mit Begruendung moeglich.
+- Innerhalb einer Section werden Abstaende in `space-y-*` oder `gap-*` mit konsistenten Werten gesetzt: `gap-2` fuer eng, `gap-4` fuer normal, `gap-6` fuer locker, `gap-8` fuer sehr locker.
+
+### 22.3 Mehrsprachigkeit (DE / EN / RU)
+
+Dieses Projekt ist als mehrsprachige Website angelegt (Deutsch, Englisch, Russisch). Mehrsprachigkeit wirkt sich direkt auf Typografie, Layout und Komponenten-Robustheit aus.
+
+**Sprachauszeichnung:**
+- Das Root-`<html>`-Element traegt das aktuelle `lang`-Attribut (`lang="de"`, `lang="en"`, `lang="ru"`). Wird im Root-Layout ueber die Server-seitige Locale-Erkennung gesetzt.
+- Bei eingebetteten Texten in einer anderen Sprache (z. B. ein russisches Zitat in einer deutschen Seite) wird das umschliessende Element mit dem passenden `lang`-Attribut ausgezeichnet, damit Browser und Screenreader korrekt arbeiten.
+
+**Wortbruch (`hyphens`):**
+- Fliesstext in Absaetzen (`<p>`) erhaelt `hyphens-auto` als Tailwind-Klasse, wenn lange Woerter oder schmale Layouts sonst problematische Umbrueche erzeugen. Damit aktiviert der Browser sprachspezifische Trennregeln basierend auf dem `lang`-Attribut.
+- Ueberschriften erhalten **kein** `hyphens-auto`, weil Trennstriche in Headlines unprofessionell wirken.
+
+**Laengen-Robustheit:**
+- Deutsch, Englisch und Russisch koennen je nach Inhalt deutlich andere Zeilenlaengen erzeugen. Komponenten duerfen **nicht** auf feste Container-Breiten setzen, in die der deutsche Text gerade so passt.
+- Buttons nutzen `button-text-wrap` aus `globals.css`, damit lange Uebersetzungen sauber umbrechen statt ueberlaufen.
+- Cards und Service-Tiles werden bei jedem Layout-Test in **allen drei Sprachen** geprueft. Wenn ein Layout in Deutsch funktioniert, aber in Englisch oder Russisch bricht, ist das Layout nicht fertig.
+
+**Geschuetzte Begriffe in mehreren Sprachen:**
+- Markennamen bleiben in allen Sprachen identisch (`UNEXT`, nicht transliteriert).
+- Branchen-Begriffe wie `Kfz-Werkstatt`, `Taxi-Fahrer`, `Kfz-Zulassung` werden im DE-Original belassen, wenn keine eindeutige Uebersetzung existiert. Sie werden mit `whitespace-nowrap` geschuetzt.
+- Telefonnummern werden nicht uebersetzt und bleiben mit `whitespace-nowrap` geschuetzt.
+
+**Ausgangs-Daten und Locale:**
+- Server Components nutzen `getCurrentLocale()` aus `lib/server-locale.ts` fuer serverseitige Locale-Erkennung.
+- Client Components nutzen `useLocale()` aus `components/locale-provider.tsx`.
+- Uebersetzungen werden zentral in `lib/translations.ts` oder den darunter angebundenen Translation-Dateien verwaltet, nicht inline in Komponenten.
+
+**Pflicht-Rueckfrage bei i18n-Schicht-Aenderungen:**
+Aenderungen am i18n-Routing, am Locale-Detection-Mechanismus, an zentralen Uebersetzungsstrukturen oder an der Sprach-Liste fallen unter §13 (Pflicht-Rueckfragen). Begruendung: Diese Schicht ist die Grundlage fuer alle Komponenten und betrifft das gesamte Projekt.
+
+### 22.4 Bild-Text-Verhaeltnis und visuelle Hierarchie
+
+Bilder duerfen die Textinhalte **unterstuetzen, aber nicht erschlagen**. In Service-Cards, Hero-Bereichen und aehnlichen Layouts gelten:
+
+**Bildanteil:**
+- In Service-Cards: Bildbereich nimmt maximal **50 % der Karten-Hoehe** ein. Der Rest gehoert Titel, Beschreibung, Aufzaehlung und Aktionen.
+- In Hero-Bereichen mit Hintergrundbild: Bild ist Hintergrund, nicht Hauptelement. Text und CTAs muessen klar im Vordergrund stehen.
+
+**Text-Hierarchie auf Bildern:**
+- Texte ueber Bildern brauchen ausreichenden Kontrast. Standard: dunkle Bilder mit weissem Text, helle Bilder mit dunklem Text.
+- Bei nicht garantiertem Kontrast wird ein Overlay-Layer eingefuegt (`bg-black/30` bis `bg-black/60`, je nach Bild).
+
+**Fokus-Bereiche im Bild:**
+- Hero-Bilder werden mit Fokus-Bereich gewaehlt: zentrales Motiv darf nicht direkt unter dem H1 liegen, sondern sollte etwas versetzt sein.
+- Auf Mobile werden Bild-Crops mit `object-position` gezielt gesetzt, sodass das wichtige Motiv sichtbar bleibt.
+
+### 22.5 Verzahnung mit anderen Regeln
+
+- **§3 (Wiederverwendungspflicht):** Vor Einfuehrung einer neuen Typografie-Klasse oder eines neuen Layout-Patterns wird `globals.css` und `/components` auf bestehende Loesungen geprueft.
+- **§13 (Risikostufen):** Aenderungen an `globals.css` (insbesondere im `@theme inline` oder in den `@layer utilities`) sind risikorelevant - sie wirken projektweit. Pflicht-Rueckfrage vor Aenderung.
+- **§18 (Accessibility):** §22 ergaenzt §18 um spezifische Typografie-Anforderungen. Bei Konflikten gilt §18 als strengere Regel.
+- **§19 (Subagents):** Der `quality_reviewer` prueft neue Komponenten zusaetzlich gegen §22.1 (keine Parallel-Patterns) und §22.3 (i18n-Robustheit).
+
+### 22.6 Was §22 NICHT regelt
+
+- §22 schreibt keine konkreten Schriftarten vor - die `--font-sans` und `--font-mono` in `globals.css` sind die Quelle der Wahrheit.
+- §22 schreibt keine konkreten Farbwerte vor - die OKLCH-Variablen in `globals.css` sind verbindlich.
+- §22 ersetzt nicht das Design-Auge des Users. Visuelle Feinjustierung (Bildauswahl, Crop-Entscheidungen, Layout-Iterationen) bleibt menschliche Aufgabe.
