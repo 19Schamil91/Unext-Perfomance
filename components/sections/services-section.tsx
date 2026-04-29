@@ -4,7 +4,6 @@
   Besucher koennen eine Leistung ansehen, Details oeffnen oder direkt anrufen.
 */
 import Image from "next/image"
-import Link from "next/link"
 import { ArrowRight, Car, ClipboardCheck, FileCheck, Phone, Sparkles, Truck, Wrench } from "lucide-react"
 import { ReadableText } from "@/components/readable-text"
 import { Button } from "@/components/ui/button"
@@ -87,7 +86,7 @@ export async function ServicesSection() {
   const t = getTranslations(locale).home.services
 
   return (
-    <section className="bg-background py-22 lg:py-30">
+    <section id="leistungen" className="bg-background py-22 lg:py-30">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto mb-12 max-w-5xl text-center sm:mb-16">
           <h2 className="mx-auto max-w-[24rem] text-[clamp(1.85rem,1.58rem+1.1vw,2.2rem)] leading-[1.08] font-semibold text-foreground sm:max-w-[15ch] sm:text-[clamp(1.9rem,1.35rem+1.45vw,3.15rem)] sm:leading-[1.04] sm:tracking-[-0.03em] sm:font-[650] lg:max-w-none">
@@ -140,15 +139,15 @@ export async function ServicesSection() {
                         </div>
                       </div>
 
-                      <p className="mt-4 max-w-[62ch] text-body-compact text-foreground/82">
+                      <p className="mt-3 max-w-[62ch] text-body-compact text-foreground/82">
                         {service.description}
                       </p>
 
-                      <ul className="mt-5 grid gap-y-3.5">
+                      <ul className="mt-4 grid gap-y-2">
                         {service.features.map((feature) => (
                           <li
                             key={feature}
-                            className="grid grid-cols-[0.45rem_minmax(0,1fr)] items-start gap-x-3 rounded-xl border border-border/55 bg-background/70 px-3 py-2.5 text-body-compact text-foreground/74"
+                            className="grid grid-cols-[0.45rem_minmax(0,1fr)] items-start gap-x-3 rounded-xl border border-border/55 bg-background/70 px-3 py-2 text-body-compact text-foreground/78"
                           >
                             <span className="mt-[0.58rem] h-1.5 w-1.5 rounded-full bg-primary" />
                             <span>{feature}</span>
@@ -191,15 +190,6 @@ export async function ServicesSection() {
               </Card>
             )
           })}
-        </div>
-
-        <div className="mt-10 text-center sm:mt-12">
-          <Button asChild variant="outline" size="lg" className="w-full gap-2 sm:w-auto">
-            <Link href="/leistungen">
-              {t.viewAll}
-              <ArrowRight className="h-5 w-5" />
-            </Link>
-          </Button>
         </div>
       </div>
     </section>

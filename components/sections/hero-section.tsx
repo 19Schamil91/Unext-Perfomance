@@ -11,7 +11,7 @@ import { homeServiceAnchors } from "@/lib/service-anchors"
 import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
 
-interface HeroContentProps {
+type HeroContentProps = {
   tone: "surface" | "overlay"
   badge?: string
   title1: string
@@ -25,9 +25,7 @@ interface HeroContentProps {
   whatsapp: string
   address: string
   directServicesLabel: string
-  viewAllServices: string
   className?: string
-  headingElement?: "h1" | "div"
 }
 
 function renderHeroDescription(description: string, lineClassName?: string) {
@@ -139,12 +137,9 @@ function HeroContent({
   whatsapp,
   address,
   directServicesLabel,
-  viewAllServices,
   className,
-  headingElement = "h1",
 }: HeroContentProps) {
   const isOverlay = tone === "overlay"
-  const HeadingElement = headingElement
   const addressParts = address.split(",").map((part) => part.trim()).filter(Boolean)
   const addressPrimary = addressParts[0] ?? address
   const addressSecondary = addressParts.slice(1).join(", ")
@@ -171,7 +166,8 @@ function HeroContent({
           </div>
         ) : null}
 
-        <HeadingElement
+        <div
+          aria-hidden="true"
           className={
             isOverlay
               ? combinePrimaryTitle
@@ -218,7 +214,7 @@ function HeroContent({
           >
             {title3}
           </span>
-        </HeadingElement>
+        </div>
 
         <p
           className={
@@ -243,7 +239,7 @@ function HeroContent({
         </p>
       </div>
 
-      <div className="mt-5 grid grid-cols-2 gap-2 sm:hidden">
+      <div className="mt-5 grid grid-cols-1 gap-2 sm:hidden">
         {services.map((service) => (
           <Link
             key={service.anchor}
@@ -251,10 +247,10 @@ function HeroContent({
             className={
               isOverlay
                 ? "group flex min-h-[4.5rem] min-w-0 items-center justify-between gap-3 rounded-[1.1rem] border border-white/14 bg-[linear-gradient(180deg,rgba(255,255,255,0.1),rgba(255,255,255,0.06))] px-3 py-3 text-[0.83rem] leading-5 text-white/88 shadow-[0_12px_28px_rgba(0,0,0,0.18)] backdrop-blur-sm transition-all hover:border-primary/55 hover:bg-[linear-gradient(180deg,rgba(255,255,255,0.14),rgba(255,255,255,0.08))] hover:text-white"
-                : "group flex min-h-[4.5rem] min-w-0 items-center justify-between gap-3 rounded-[1.1rem] border border-border/70 bg-card px-3 py-3 text-[0.83rem] leading-5 text-foreground shadow-[0_12px_28px_rgba(15,23,42,0.08)] transition-all hover:border-primary/45 hover:bg-accent"
+                : "group flex min-h-14 min-w-0 items-center justify-between gap-3 rounded-[1.1rem] border border-border/70 bg-card px-4 py-3 text-[0.92rem] leading-5 text-foreground shadow-[0_12px_28px_rgba(15,23,42,0.08)] transition-all hover:border-primary/45 hover:bg-accent"
             }
           >
-            <span className="min-w-0 [text-wrap:balance]">{service.title}</span>
+            <span className="min-w-0">{service.title}</span>
             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/12 text-primary transition-transform group-hover:translate-x-0.5">
               <DoorOpen className="h-4 w-4" />
             </span>
@@ -351,20 +347,6 @@ function HeroContent({
           </span>
         </a>
       </div>
-
-      <div className="mt-4 sm:hidden">
-        <Link
-          href="/leistungen"
-          className={
-            isOverlay
-              ? "inline-flex items-center gap-2 text-sm font-medium text-white/82 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black/30"
-              : "inline-flex items-center gap-2 text-sm font-medium text-foreground/72 transition-colors hover:text-foreground"
-          }
-        >
-          {viewAllServices}
-          <ArrowRight className="h-4 w-4" />
-        </Link>
-      </div>
     </div>
   )
 }
@@ -378,16 +360,17 @@ export async function HeroSection() {
     title: service.title,
     anchor: homeServiceAnchors[index] ?? homeServiceAnchors[0],
   }))
-  const viewAllServices = home.services.viewAll
-  const heroMobileImageSrc = "/images/home-hero-team-new.webp.png"
-  const heroDesktopImageSrc = "/images/home-hero-team-new.webp.png"
+  const heroImageSrc = "/images/home-hero-team-new.webp.png"
+  // Dieser vollstaendige Titel ist fuer Suchmaschinen und Screenreader gedacht.
+  const heroTitle = `${t.title1} ${t.title2} ${t.title3}`
 
   return (
     <section className="overflow-x-clip overflow-y-hidden bg-background">
+      <h1 className="sr-only">{heroTitle}</h1>
       <div className="md:hidden">
         <div className="relative aspect-video overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.16),transparent_58%),linear-gradient(180deg,rgba(26,26,31,0.02),rgba(26,26,31,0.16))]">
           <Image
-            src={heroMobileImageSrc}
+            src={heroImageSrc}
             alt="UNEXT team"
             fill
             sizes="100vw"
@@ -413,7 +396,6 @@ export async function HeroSection() {
             whatsapp={t.whatsapp}
             address={t.address}
             directServicesLabel={t.directServicesLabel}
-            viewAllServices={viewAllServices}
             className="mx-auto max-w-[26rem] sm:max-w-2xl"
           />
         </div>
@@ -422,7 +404,7 @@ export async function HeroSection() {
       <div className="relative hidden h-[90svh] min-h-[46rem] max-h-[58rem] items-end overflow-hidden md:flex">
         <div className="absolute inset-0">
           <Image
-            src={heroDesktopImageSrc}
+            src={heroImageSrc}
             alt="UNEXT team"
             fill
             sizes="100vw"
@@ -450,9 +432,7 @@ export async function HeroSection() {
             whatsapp={t.whatsapp}
             address={t.address}
             directServicesLabel={t.directServicesLabel}
-            viewAllServices={viewAllServices}
             className="max-w-[62rem]"
-            headingElement="div"
           />
         </div>
       </div>

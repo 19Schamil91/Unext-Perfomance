@@ -116,13 +116,6 @@ export function SiteHeader() {
 
                 {servicesMenuOpen ? (
                   <div className="absolute left-0 top-full z-50 mt-2 w-64 rounded-2xl border border-border/70 bg-popover/98 p-1.5 shadow-[0_18px_40px_rgba(15,23,42,0.2)]">
-                    <Link
-                      href={item.href}
-                      className="block w-full rounded-lg px-3 py-2 text-sm leading-5 text-popover-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-                      onClick={() => setServicesMenuOpen(false)}
-                    >
-                      {t.header.allServices}
-                    </Link>
                     {item.children.map((child) => (
                       <Link
                         key={child.name}
@@ -322,14 +315,6 @@ export function SiteHeader() {
                       </Button>
                     ))}
                   </div>
-                </div>
-
-                <div className="border-t border-border pt-4">
-                  <Button asChild variant="outline" className="w-full">
-                    <Link href={serviceNavigation?.href ?? "/leistungen"} onClick={() => setMobileMenuOpen(false)}>
-                      {t.header.allServices}
-                    </Link>
-                  </Button>
                 </div>
               </div>
             </SheetContent>

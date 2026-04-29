@@ -27,12 +27,6 @@ type ServiceMeta = {
   contactHref: string
 }
 
-const serviceDescriptionLineLength = {
-  de: 54,
-  en: 72,
-  ru: 72,
-} satisfies Record<Locale, number>
-
 const serviceTitleLineBreaks: Partial<Record<Locale, Record<string, string[]>>> = {
   en: {
     "Accident Reports & Immediate Assistance": ["Accident Reports", "& Immediate Assistance"],
@@ -106,7 +100,6 @@ const serviceMeta = [
 export default async function LeistungenPage() {
   const locale = await getCurrentLocale()
   const t = getTranslations(locale).servicesPage
-  const descriptionLineLength = serviceDescriptionLineLength[locale]
   const fixedIntroLines =
     locale === "de"
       ? [
@@ -139,8 +132,8 @@ export default async function LeistungenPage() {
     ))
   }
 
-  const renderServiceCards = (balancedText: boolean, shouldUseCompactDescriptionLeading = false) => (
-    <div className="space-y-16">
+  const renderServiceCards = () => (
+    <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {t.items.map((service, index) => {
         const meta = serviceMeta[index]
         const contactText = meta.contactText ?? ""
@@ -148,97 +141,73 @@ export default async function LeistungenPage() {
         return (
           <Card
             key={service.title}
-            className="overflow-hidden rounded-[1.85rem] border border-border/55 bg-card shadow-[0_16px_38px_rgba(15,23,42,0.08)]"
+            className="overflow-hidden rounded-[1.45rem] border border-border/55 bg-card shadow-[0_14px_32px_rgba(15,23,42,0.07)] transition-colors hover:border-primary/30"
           >
-            <CardContent className="p-4 sm:p-5 lg:p-6">
-              <div
-                className={`flex flex-col gap-5 ${index % 2 === 1 ? "lg:grid-cols-[minmax(0,1fr)_18rem]" : "lg:grid-cols-[18rem_minmax(0,1fr)]"} lg:grid lg:items-stretch lg:gap-6`}
-              >
-                <div className="relative h-64 overflow-hidden rounded-[1.6rem] border border-border/50 bg-background shadow-sm sm:h-72 lg:h-full lg:min-h-[21rem]">
+            <CardContent className="flex h-full flex-col p-4 sm:p-5">
+              <div className="relative aspect-[16/8.5] overflow-hidden rounded-[1.15rem] border border-border/50 bg-background shadow-sm">
                   <Image
                     src={meta.image}
                     alt={service.title}
                     fill
-                    sizes="(min-width: 1024px) 50vw, 100vw"
-                    quality={76}
+                    sizes="(min-width: 1280px) 25vw, (min-width: 768px) 45vw, 100vw"
+                    quality={72}
                     className={meta.imageClassName}
                   />
+              </div>
+
+              <div className="flex min-w-0 flex-1 flex-col pt-5">
+                <div className="flex items-start gap-3">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <meta.icon className="h-5 w-5" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-primary">
+                      {service.subtitle}
+                    </p>
+                    <h2 className="mt-1 text-card-heading-fluid text-foreground">
+                      {renderServiceTitle(service.title, true)}
+                    </h2>
+                  </div>
                 </div>
 
-                <div className="flex min-w-0 flex-col px-1 py-1 sm:px-2 lg:px-1 lg:py-2">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                      <meta.icon className="h-7 w-7" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-primary">
-                        {service.subtitle}
-                      </p>
-                      <h2
-                        className={
-                          balancedText
-                            ? "mt-1 max-w-none text-[clamp(1.22rem,1.06rem+0.46vw,1.58rem)] leading-[1.12] font-bold tracking-[-0.02em] text-foreground text-balance lg:whitespace-nowrap"
-                            : "mt-1 text-[clamp(1.22rem,1.06rem+0.46vw,1.58rem)] leading-[1.08] font-bold tracking-[-0.02em] text-foreground lg:whitespace-nowrap"
-                        }
-                      >
-                        {renderServiceTitle(service.title, balancedText)}
-                      </h2>
-                    </div>
-                  </div>
+                <p className="mt-4 max-w-[42ch] text-[0.98rem] leading-[1.62] text-foreground/78 text-pretty">
+                  {service.description}
+                </p>
 
-                  {balancedText ? (
-                    <ReadableText
-                      text={service.description}
-                      targetLineLength={descriptionLineLength}
-                      lineGapClassName={shouldUseCompactDescriptionLeading ? "" : undefined}
-                      className={`mt-5 max-w-[64ch] text-[1rem] text-muted-foreground sm:mt-6 ${
-                        shouldUseCompactDescriptionLeading ? "leading-[1.55]" : "leading-8"
-                      }`}
-                    />
-                  ) : (
-                    <p
-                      className={`mt-5 max-w-[62ch] text-[1rem] text-muted-foreground sm:mt-6 ${
-                        shouldUseCompactDescriptionLeading ? "leading-[1.55]" : "leading-8"
-                      }`}
+                <ul className="mt-5 grid gap-y-2.5">
+                  {service.features.slice(0, 3).map((feature) => (
+                    <li
+                      key={feature}
+                      className="grid grid-cols-[0.45rem_minmax(0,1fr)] items-start gap-x-3 rounded-xl border border-border/45 bg-background/55 px-3 py-2.5 text-sm leading-6 text-foreground/82"
                     >
-                      {service.description}
-                    </p>
-                  )}
+                      <span className="mt-[0.6rem] h-1.5 w-1.5 rounded-full bg-primary" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
 
-                  <ul className="mt-6 grid gap-y-3">
-                    {service.features.map((feature) => (
-                      <li
-                        key={feature}
-                        className="grid grid-cols-[0.45rem_minmax(0,1fr)] items-start gap-x-3 rounded-xl border border-border/45 bg-background/55 px-3 py-2.5 text-body-compact text-foreground"
-                      >
-                        <span className="mt-[0.55rem] h-1.5 w-1.5 rounded-full bg-primary" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                    <Button asChild className="gap-2">
-                      <ServiceSelectionLink
-                        href={meta.href}
-                        serviceName={meta.href.split("/").at(-1) ?? service.title}
-                        serviceTitle={service.title}
-                      >
-                        {getTranslations(locale).home.services.learnMore}
-                        <ArrowRight className="h-4 w-4" />
-                      </ServiceSelectionLink>
-                    </Button>
-                    <Button
-                      asChild
-                      variant="outline"
-                      className="group w-full gap-2 border-primary/40 bg-primary/12 text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:!border-primary/55 hover:!bg-primary/12 hover:!text-foreground sm:ml-auto sm:w-auto"
+                <div className="mt-auto flex flex-col gap-3 border-t border-border/50 pt-5 sm:flex-row sm:items-center sm:justify-between">
+                  <Button asChild className="gap-2">
+                    <ServiceSelectionLink
+                      href={meta.href}
+                      serviceName={meta.href.split("/").at(-1) ?? service.title}
+                      serviceTitle={service.title}
                     >
-                      <a href={meta.contactHref}>
-                        <Phone className="h-4 w-4 transition-transform duration-300 ease-out group-hover:-rotate-12 group-hover:scale-110" />
-                        <span className="transition-colors duration-300 group-hover:text-primary">{contactText}</span>
-                      </a>
-                    </Button>
-                  </div>
+                      {getTranslations(locale).home.services.learnMore}
+                      <ArrowRight className="h-4 w-4" />
+                    </ServiceSelectionLink>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="sm"
+                    className="group w-full gap-2 border-primary/40 bg-primary/10 font-semibold text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:!border-primary/55 hover:!bg-primary/12 hover:!text-foreground sm:ml-auto sm:w-auto"
+                  >
+                    <a href={meta.contactHref}>
+                      <Phone className="h-4 w-4 transition-transform duration-300 ease-out group-hover:-rotate-12 group-hover:scale-110" />
+                      <span className="transition-colors duration-300 group-hover:text-primary">{contactText}</span>
+                    </a>
+                  </Button>
                 </div>
               </div>
             </CardContent>
@@ -279,7 +248,7 @@ export default async function LeistungenPage() {
         </section>
 
         <section className="bg-background py-16 lg:py-24">
-          <div className="mx-auto max-w-7xl px-4 lg:px-8">{renderServiceCards(true, true)}</div>
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">{renderServiceCards()}</div>
         </section>
 
         <CtaSection />
