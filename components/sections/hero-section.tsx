@@ -213,7 +213,7 @@ function HeroContent({
                 ? combinePrimaryTitle
                   ? "mt-4 block text-center text-[clamp(1.08rem,1.22vw,1.38rem)] leading-none font-medium tracking-[0.08em] text-white/88 drop-shadow-[0_8px_22px_rgba(0,0,0,0.42)]"
                   : "mt-2 block text-[clamp(1.28rem,1.55vw,2rem)] leading-[1.05] font-light tracking-[-0.022em] text-white/68 drop-shadow-[0_2px_8px_rgba(0,0,0,0.14)] lg:whitespace-nowrap"
-                : "mt-1.5 block max-w-none text-[clamp(1rem,0.9rem+0.45vw,1.22rem)] leading-[1.25] font-normal tracking-normal text-muted-foreground sm:mt-2 sm:max-w-[18ch] sm:text-[clamp(1.05rem,0.84rem+1vw,2.35rem)] sm:leading-[1.12]"
+                : "mt-1.5 block max-w-none text-[clamp(1rem,0.9rem+0.45vw,1.22rem)] leading-[1.25] font-normal tracking-normal text-foreground/78 sm:mt-2 sm:max-w-[18ch] sm:text-[clamp(1.05rem,0.84rem+1vw,2.35rem)] sm:leading-[1.12]"
             }
           >
             {title3}
@@ -224,7 +224,7 @@ function HeroContent({
           className={
             isOverlay
               ? "relative z-10 mx-auto mt-20 translate-y-10 max-w-[78ch] text-center text-[clamp(1rem,0.97rem+0.14vw,1.12rem)] leading-[1.8] text-white/94 drop-shadow-[0_8px_24px_rgba(0,0,0,0.44)] sm:mt-20"
-              : "mt-4 max-w-none text-[1rem] leading-[1.7] text-muted-foreground sm:mt-6"
+              : "mt-4 max-w-none text-body-fluid text-foreground/82 sm:mt-6"
           }
         >
           {renderHeroDescription(description, isOverlay ? "lg:whitespace-nowrap" : undefined)}
@@ -236,7 +236,7 @@ function HeroContent({
           className={
             isOverlay
               ? "text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-white/70 sm:text-[0.76rem]"
-              : "text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground sm:text-[0.72rem]"
+              : "text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-foreground/68 sm:text-[0.72rem]"
           }
         >
           {directServicesLabel}
@@ -342,7 +342,7 @@ function HeroContent({
                 className={
                   isOverlay
                     ? "mt-1 block truncate text-[0.74rem] font-medium uppercase tracking-[0.22em] text-white/70"
-                    : "mt-1 block truncate text-[0.76rem] font-medium uppercase tracking-[0.14em] text-muted-foreground"
+                    : "mt-1 block truncate text-[0.76rem] font-medium uppercase tracking-[0.14em] text-foreground/68"
                 }
               >
                 {addressSecondary}
@@ -358,7 +358,7 @@ function HeroContent({
           className={
             isOverlay
               ? "inline-flex items-center gap-2 text-sm font-medium text-white/82 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black/30"
-              : "inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              : "inline-flex items-center gap-2 text-sm font-medium text-foreground/72 transition-colors hover:text-foreground"
           }
         >
           {viewAllServices}

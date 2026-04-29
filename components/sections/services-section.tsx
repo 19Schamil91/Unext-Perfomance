@@ -28,7 +28,7 @@ const serviceMeta = [
   {
     icon: FileCheck,
     image: "/images/home-service-accident.webp",
-    imageClassName: "object-cover object-center",
+    imageClassName: "object-cover object-[center_top]",
     href: "/leistungen/unfallgutachten",
     contactText: "0176 64365185",
     contactHref: "tel:+4917664365185",
@@ -37,7 +37,7 @@ const serviceMeta = [
   {
     icon: Car,
     image: "/images/home-service-rental.webp",
-    imageClassName: "object-cover object-[42%_center]",
+    imageClassName: "object-cover object-[42%_top]",
     href: "/leistungen/autovermietung",
     contactText: "0174 4292900",
     contactHref: "tel:+491744292900",
@@ -46,7 +46,7 @@ const serviceMeta = [
   {
     icon: Wrench,
     image: "/images/home-service-workshop.webp",
-    imageClassName: "object-cover object-[58%_center]",
+    imageClassName: "object-cover object-[58%_top]",
     href: "/leistungen/autoservice",
     contactText: "0177 7883206",
     contactHref: "tel:+491777883206",
@@ -55,7 +55,7 @@ const serviceMeta = [
   {
     icon: Sparkles,
     image: "/images/home-service-detailing.webp",
-    imageClassName: "object-cover object-[42%_center]",
+    imageClassName: "object-cover object-[42%_top]",
     href: "/leistungen/detailing",
     contactText: "0177 6691006",
     contactHref: "tel:+491776691006",
@@ -96,7 +96,7 @@ export async function ServicesSection() {
           <ReadableText
             text={t.description}
             targetLineLength={180}
-            className="mx-auto mt-3 max-w-[34rem] text-[1rem] leading-[1.7] text-muted-foreground sm:mt-4 sm:max-w-none sm:text-[clamp(1rem,0.98rem+0.24vw,1.12rem)] sm:leading-[1.78]"
+            className="mx-auto mt-3 max-w-[34rem] text-body-fluid text-foreground/82 sm:mt-4 sm:max-w-none"
           />
         </div>
 
@@ -113,7 +113,7 @@ export async function ServicesSection() {
               >
                 <CardContent className="p-4 sm:p-5 lg:p-6">
                   <div className="flex h-full flex-col">
-                    <div className="relative aspect-square overflow-hidden rounded-[1.45rem] border border-border/55 bg-background shadow-[0_10px_22px_rgba(15,23,42,0.08)]">
+                    <div className="relative aspect-[16/10] overflow-hidden rounded-[1.45rem] border border-border/55 bg-background shadow-[0_10px_22px_rgba(15,23,42,0.08)]">
                       <Image
                         src={meta.image}
                         alt={service.title}
@@ -134,13 +134,13 @@ export async function ServicesSection() {
                           <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-primary">
                             {service.subtitle}
                           </p>
-                          <h3 className="mt-1 text-[clamp(1.14rem,1.02rem+0.38vw,1.42rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-foreground lg:whitespace-nowrap">
+                          <h3 className="mt-1 text-card-heading-fluid text-foreground lg:whitespace-nowrap">
                             {service.title}
                           </h3>
                         </div>
                       </div>
 
-                      <p className="mt-4 max-w-[62ch] text-[0.98rem] leading-7 text-muted-foreground">
+                      <p className="mt-4 max-w-[62ch] text-body-compact text-foreground/82">
                         {service.description}
                       </p>
 
@@ -148,7 +148,7 @@ export async function ServicesSection() {
                         {service.features.map((feature) => (
                           <li
                             key={feature}
-                            className="grid grid-cols-[0.45rem_minmax(0,1fr)] items-start gap-x-3 rounded-xl border border-border/55 bg-background/70 px-3 py-2.5 text-body-compact text-muted-foreground"
+                            className="grid grid-cols-[0.45rem_minmax(0,1fr)] items-start gap-x-3 rounded-xl border border-border/55 bg-background/70 px-3 py-2.5 text-body-compact text-foreground/74"
                           >
                             <span className="mt-[0.58rem] h-1.5 w-1.5 rounded-full bg-primary" />
                             <span>{feature}</span>
@@ -173,7 +173,7 @@ export async function ServicesSection() {
                               asChild
                               variant="outline"
                               size="sm"
-                              className="group w-full gap-2 border-primary/40 bg-primary/12 text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:!border-primary/55 hover:!bg-primary/12 hover:!text-foreground sm:ml-auto sm:w-auto"
+                              className="group w-full gap-2 border-primary/45 bg-primary/14 font-semibold text-foreground shadow-[0_10px_24px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-0.5 hover:!border-primary/60 hover:!bg-primary/16 hover:!text-foreground sm:ml-auto sm:w-auto"
                             >
                               <a href={meta.contactHref}>
                                 <Phone className="h-4 w-4 transition-transform duration-300 ease-out group-hover:-rotate-12 group-hover:scale-110" />

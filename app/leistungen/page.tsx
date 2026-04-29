@@ -56,7 +56,7 @@ const serviceMeta = [
   {
     icon: FileCheck,
     image: "/images/home-service-accident.webp",
-    imageClassName: "object-cover object-center",
+    imageClassName: "object-cover object-[center_top]",
     href: "/leistungen/unfallgutachten",
     contactText: "0176 64365185",
     contactHref: "tel:+4917664365185",
@@ -64,7 +64,7 @@ const serviceMeta = [
   {
     icon: Car,
     image: "/images/home-service-rental.webp",
-    imageClassName: "object-cover object-[42%_center]",
+    imageClassName: "object-cover object-[42%_top]",
     href: "/leistungen/autovermietung",
     contactText: "0174 4292900",
     contactHref: "tel:+491744292900",
@@ -72,7 +72,7 @@ const serviceMeta = [
   {
     icon: Wrench,
     image: "/images/home-service-workshop.webp",
-    imageClassName: "object-cover object-[58%_center]",
+    imageClassName: "object-cover object-[58%_top]",
     href: "/leistungen/autoservice",
     contactText: "0177 7883206",
     contactHref: "tel:+491777883206",
@@ -80,7 +80,7 @@ const serviceMeta = [
   {
     icon: Sparkles,
     image: "/images/home-service-detailing.webp",
-    imageClassName: "object-cover object-[42%_center]",
+    imageClassName: "object-cover object-[42%_top]",
     href: "/leistungen/detailing",
     contactText: "0177 6691006",
     contactHref: "tel:+491776691006",

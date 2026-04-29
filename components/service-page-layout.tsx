@@ -213,7 +213,7 @@ export async function ServicePageLayout({
         <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
           <Link
             href="/leistungen"
-            className="mb-8 inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1.5 text-sm text-muted-foreground backdrop-blur-sm transition-colors hover:text-foreground"
+            className="mb-8 inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1.5 text-sm text-foreground/72 backdrop-blur-sm transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
             {t.backToServices}
@@ -237,7 +237,7 @@ export async function ServicePageLayout({
               {renderLines(title, titleLines)}
             </h1>
             {descriptionLines ? (
-              <p className="mt-5 max-w-[62ch] text-[1rem] leading-[1.62] text-muted-foreground text-pretty sm:mt-6 sm:max-w-[68ch] sm:text-[clamp(1rem,0.98rem+0.24vw,1.12rem)] sm:leading-[1.38] lg:max-w-[72ch]">
+              <p className="mt-5 max-w-[62ch] text-body-fluid leading-[1.62] text-foreground/84 text-pretty sm:mt-6 sm:max-w-[68ch] sm:leading-[1.58] lg:max-w-[72ch]">
                 {descriptionLines.map((line, index) => (
                   <span
                     key={`${description}-${line}-${index}`}
@@ -252,7 +252,7 @@ export async function ServicePageLayout({
               <ReadableText
                 text={description}
                 targetLineLength={balancedTypography ? 74 : 82}
-                className="mt-5 max-w-[74ch] text-[1rem] leading-[1.62] text-muted-foreground sm:mt-6 sm:text-[clamp(1rem,0.98rem+0.24vw,1.12rem)] sm:leading-[1.78]"
+                className="mt-5 max-w-[74ch] text-body-fluid text-foreground/84 sm:mt-6"
               />
             )}
 
@@ -330,8 +330,8 @@ export async function ServicePageLayout({
                 <h3
                   className={
                     balancedTypography
-                      ? `max-w-[24ch] text-title-fluid leading-[1.12] font-semibold tracking-[-0.02em] text-foreground ${singleLineHeadings ? "lg:max-w-none lg:whitespace-nowrap" : "text-balance"}`
-                      : "max-w-[24ch] text-title-fluid font-semibold text-foreground"
+                      ? `max-w-[24ch] text-card-heading-fluid text-foreground ${singleLineHeadings ? "lg:max-w-none lg:whitespace-nowrap" : "text-balance"}`
+                      : "max-w-[24ch] text-card-heading-fluid text-foreground"
                   }
                 >
                   {renderLines(service.title, serviceTitleLineBreaks?.[service.title])}
@@ -340,14 +340,14 @@ export async function ServicePageLayout({
                   renderParagraphLines(
                     service.description,
                     serviceDescriptionLines[service.title],
-                    "mt-3 max-w-full text-[0.98rem] leading-[1.45] text-muted-foreground"
+                    "mt-3 max-w-full text-body-compact leading-[1.5] text-foreground/78"
                   )
                 ) : (
                   <ReadableText
                     text={service.description}
                     targetLineLength={balancedTypography ? 34 : 38}
                     lineGapClassName=""
-                    className="mt-3 max-w-full text-[0.98rem] leading-[1.45] text-muted-foreground"
+                    className="mt-3 max-w-full text-body-compact leading-[1.5] text-foreground/78"
                   />
                 )}
               </div>
@@ -366,7 +366,7 @@ export async function ServicePageLayout({
               <ReadableText
                 text={t.whyDescription}
                 targetLineLength={68}
-                className="mt-4 max-w-[60ch] text-body-compact text-muted-foreground"
+                className="mt-4 max-w-[60ch] text-body-compact text-foreground/80"
               />
 
               <div className="mt-8 space-y-4">
@@ -382,8 +382,8 @@ export async function ServicePageLayout({
                       <h3
                         className={
                           balancedTypography
-                            ? `max-w-[24ch] text-title-fluid leading-[1.12] font-semibold tracking-[-0.02em] text-foreground ${singleLineHeadings ? "lg:max-w-none lg:whitespace-nowrap" : "text-balance"}`
-                            : "max-w-[24ch] text-title-fluid font-semibold text-foreground"
+                            ? `max-w-[24ch] text-card-heading-fluid text-foreground ${singleLineHeadings ? "lg:max-w-none lg:whitespace-nowrap" : "text-balance"}`
+                            : "max-w-[24ch] text-card-heading-fluid text-foreground"
                         }
                       >
                         {renderLines(item.title, whyChooseTitleLineBreaks?.[item.title])}
@@ -392,14 +392,14 @@ export async function ServicePageLayout({
                         renderParagraphLines(
                           item.description,
                           whyChooseDescriptionLines[item.title],
-                          "mt-2 max-w-full text-body-compact leading-[1.45] text-muted-foreground"
+                          "mt-2 max-w-full text-body-compact leading-[1.5] text-foreground/78"
                         )
                       ) : (
                         <ReadableText
                           text={item.description}
                           targetLineLength={balancedTypography ? 36 : 40}
                           lineGapClassName=""
-                          className="mt-2 max-w-full text-body-compact leading-[1.45] text-muted-foreground"
+                          className="mt-2 max-w-full text-body-compact leading-[1.5] text-foreground/78"
                         />
                       )}
                     </div>
@@ -442,12 +442,12 @@ export async function ServicePageLayout({
                   >
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
+                  <AccordionContent className="text-foreground/78">
                     <ReadableText
                       text={faq.answer}
                       targetLineLength={72}
                       lineGapClassName=""
-                      className="max-w-[64ch] pb-1 text-body-compact leading-[1.45] text-muted-foreground"
+                      className="max-w-[64ch] pb-1 text-body-compact leading-[1.5] text-foreground/78"
                     />
                   </AccordionContent>
                 </AccordionItem>
@@ -465,7 +465,7 @@ export async function ServicePageLayout({
           <ReadableText
             text={t.questionsDescription}
             targetLineLength={76}
-            className="mx-auto mt-4 max-w-[64ch] text-body-fluid text-primary-foreground/80"
+            className="mx-auto mt-4 max-w-[64ch] text-body-fluid text-primary-foreground/86"
           />
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             {resolvedBottomActions.map((action, index) => (
@@ -474,7 +474,7 @@ export async function ServicePageLayout({
                   action,
                   index === 0 ? "secondary" : "outline",
                   index === 0
-                    ? "w-full gap-2 bg-white text-primary hover:bg-white/90 sm:w-auto sm:min-w-[12rem]"
+                    ? "w-full gap-2 bg-white font-semibold text-primary shadow-[0_14px_30px_rgba(15,23,42,0.24)] hover:bg-white/90 sm:w-auto sm:min-w-[12rem]"
                     : "w-full gap-2 border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white sm:w-auto sm:min-w-[12rem]"
                 )}
               </div>

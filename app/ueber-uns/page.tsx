@@ -160,9 +160,9 @@ export default async function UeberUnsPage() {
 
         <section className="bg-background py-16 lg:py-24">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-12">
               <div className="lg:order-2 lg:pl-6">
-                <div className="relative mx-auto aspect-[4/5] w-full max-w-[25rem] overflow-hidden rounded-[1.75rem] border border-border/50 bg-card shadow-sm lg:max-w-[24rem] xl:max-w-[26rem]">
+                <div className="relative mx-auto aspect-[4/5] w-full max-w-[21rem] overflow-hidden rounded-[1.75rem] border border-border/50 bg-card shadow-sm lg:max-w-[20rem] xl:max-w-[22rem]">
                   {/* Dieses Foto zeigt den Mitarbeiter im Buero ohne Beschnitt oder Verzerrung. */}
                   <Image
                     src="/images/about-office.webp"
@@ -182,8 +182,13 @@ export default async function UeberUnsPage() {
                 <h2 className="measure-heading text-heading-fluid font-semibold text-foreground">
                   {t.subBrandTitle}
                 </h2>
-                <p className="mt-6 measure-intro-tight text-body-fluid text-muted-foreground">
-                  {t.subBrandDescription}
+                <p className="mt-6 max-w-[64ch] text-body-compact leading-[1.72] text-muted-foreground">
+                  {t.subBrandDescription.split("\n").map((line, index, lines) => (
+                    <span key={`${line}-${index}`} className="inline lg:block">
+                      {line}
+                      {index < lines.length - 1 ? " " : null}
+                    </span>
+                  ))}
                 </p>
                 <ul className="mt-6 space-y-3">
                   {t.subBrandHighlights.map((item) => (

@@ -1,3 +1,8 @@
+/*
+  Diese Datei zeigt den Vertrauensbereich der Startseite.
+  Sie zeigt kurze Nachweise und Vorteile als kompakte Badge-Leiste.
+  Besucher koennen die wichtigsten Qualitaetssignale schnell erfassen.
+*/
 import { Award, BadgeCheck, FileCheck, Shield } from "lucide-react"
 import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
@@ -23,7 +28,7 @@ export async function TrustSection() {
               return (
                 <div
                   key={badge}
-                  className="flex items-center gap-3 rounded-[1.15rem] border border-border/70 bg-background/65 px-4 py-3 text-muted-foreground md:rounded-none md:border-none md:bg-transparent md:px-0 md:py-0"
+                  className="flex items-center gap-3 rounded-[1.15rem] border border-border/70 bg-background/65 px-4 py-3 text-foreground/76 md:rounded-none md:border-none md:bg-transparent md:px-0 md:py-0"
                 >
                   <Icon className="h-7 w-7 shrink-0 text-primary sm:h-8 sm:w-8" />
                   <span className="measure-card-copy text-sm font-medium leading-5 [text-wrap:balance]">{badge}</span>

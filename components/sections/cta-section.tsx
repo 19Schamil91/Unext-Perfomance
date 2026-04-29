@@ -35,23 +35,22 @@ export async function CtaSection() {
           : null
 
   return (
-    <section className="relative overflow-hidden py-20 lg:py-28">
-      <div className="absolute inset-0 bg-primary" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_transparent_0%,_rgba(0,0,0,0.36)_100%)]" />
-      <div className="absolute inset-x-0 top-0 h-px bg-white/35" />
+    <section className="relative overflow-hidden border-y border-border/70 bg-card py-16 lg:py-20">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(115,18,28,0.42),rgba(115,18,28,0.18)_42%,transparent_78%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/12" />
 
-      <div className="relative mx-auto max-w-[90rem] px-4 lg:px-8">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
+      <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-4xl xl:max-w-none">
             <div className="mb-4 flex items-center gap-2 text-primary-foreground/80">
               <Clock className="h-5 w-5" />
               <span className="text-sm font-semibold uppercase tracking-wider">{t.badge}</span>
             </div>
-            <h2 className="max-w-[24rem] text-[clamp(1.85rem,1.58rem+1.1vw,2.2rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-primary-foreground sm:max-w-[16ch] sm:text-[clamp(1.9rem,1.35rem+1.45vw,3.15rem)] sm:leading-[1.04] sm:tracking-[-0.03em] sm:font-[650] lg:max-w-none lg:text-[clamp(2.8rem,4.2vw,4.35rem)] lg:leading-[1.02] lg:whitespace-nowrap">
+            <h2 className="max-w-[22rem] text-[clamp(1.85rem,1.5rem+1.15vw,2.65rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-primary-foreground sm:max-w-[18ch] lg:max-w-none lg:whitespace-nowrap">
               {t.title}
             </h2>
             {fixedDescriptionLines ? (
-              <p className="mt-4 max-w-[36rem] text-[1rem] leading-[1.7] text-primary-foreground/80 sm:max-w-[46ch] sm:text-[clamp(1rem,0.98rem+0.24vw,1.12rem)] sm:leading-[1.78] lg:max-w-none">
+              <p className="mt-4 max-w-[36rem] text-body-fluid text-primary-foreground/86 sm:max-w-[46ch] lg:max-w-none">
                 {fixedDescriptionLines.map((line, index) => (
                   <span key={line} className="inline sm:block lg:whitespace-nowrap">
                     {line}
@@ -63,17 +62,17 @@ export async function CtaSection() {
               <ReadableText
                 text={t.description}
                 targetLineLength={56}
-                className="mt-4 max-w-[62ch] text-body-fluid text-primary-foreground/80"
+                className="mt-4 max-w-[62ch] text-body-fluid text-primary-foreground/86"
               />
             )}
           </div>
 
-          <div className="flex flex-col gap-4 sm:flex-row lg:flex-col xl:flex-row">
+          <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
             <Button
               asChild
               size="lg"
               variant="secondary"
-              className="w-full gap-2 bg-white text-primary shadow-[0_14px_30px_rgba(15,23,42,0.24)] hover:bg-white/92 sm:w-auto"
+              className="w-full gap-2 bg-white font-semibold text-primary shadow-[0_16px_34px_rgba(15,23,42,0.28)] hover:bg-white/92 sm:w-auto"
             >
               <a href="tel:+493023613927">
                 <Phone className="h-5 w-5" />

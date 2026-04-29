@@ -93,7 +93,7 @@ export function SiteHeader() {
             alt="UNEXT GMBH Logo"
             width={140}
             height={40}
-            className="h-8 w-auto sm:h-10"
+            className="h-7 w-auto drop-shadow-[0_1px_0_rgba(255,255,255,0.06)] sm:h-8"
             priority
           />
         </Link>
@@ -228,7 +228,7 @@ export function SiteHeader() {
                       alt="UNEXT GMBH Logo"
                       width={120}
                       height={35}
-                      className="h-8 w-auto"
+                      className="h-7 w-auto drop-shadow-[0_1px_0_rgba(255,255,255,0.06)]"
                     />
                   </Link>
                 </div>

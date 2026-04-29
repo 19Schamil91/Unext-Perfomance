@@ -246,22 +246,6 @@ export function ContactPageClient() {
                 </Card>
               )}
 
-              <div className="mt-6 flex flex-col items-start justify-between gap-4 rounded-2xl border border-border/60 bg-card p-5 shadow-[0_10px_26px_rgba(15,23,42,0.07)] sm:flex-row sm:items-center">
-                <div className="min-w-0">
-                  <p className="font-semibold text-foreground">{t.whatsappCtaTitle}</p>
-                  <p className="text-sm text-muted-foreground">{t.whatsappCtaDescription}</p>
-                </div>
-                <Button asChild variant="outline" className="shrink-0 gap-2">
-                  <a
-                    href={`https://wa.me/49${whatsappPhone.replace(/\s/g, "").replace(/^0/, "")}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <MessageCircle className="h-5 w-5" />
-                    {t.whatsappOpen}
-                  </a>
-                </Button>
-              </div>
             </div>
           </div>
         </section>

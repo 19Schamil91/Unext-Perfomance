@@ -39,14 +39,14 @@ export function SiteFooter() {
                 className="h-10 w-auto"
               />
             </Link>
-            <p className="mt-4 max-w-[30ch] text-sm leading-6 text-muted-foreground">{t.footer.description}</p>
+            <p className="mt-4 max-w-[30ch] text-sm leading-6 text-foreground/76">{t.footer.description}</p>
 
             <div className="mt-6 flex flex-col gap-3 text-sm">
-              <div className="flex items-start gap-3 rounded-xl border border-border/50 bg-background/60 px-3 py-2.5 text-muted-foreground">
+              <div className="flex items-start gap-3 rounded-xl border border-border/50 bg-background/60 px-3 py-2.5 text-foreground/76">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <span>{t.footer.address}</span>
               </div>
-              <div className="flex items-center gap-3 rounded-xl border border-border/50 bg-background/60 px-3 py-2.5 text-muted-foreground">
+              <div className="flex items-center gap-3 rounded-xl border border-border/50 bg-background/60 px-3 py-2.5 text-foreground/76">
                 <Mail className="h-4 w-4 shrink-0 text-primary" />
                 <a
                   href="mailto:info@unext.de"
@@ -55,7 +55,7 @@ export function SiteFooter() {
                   info@unext.de
                 </a>
               </div>
-              <div className="flex items-center gap-3 rounded-xl border border-border/50 bg-background/60 px-3 py-2.5 text-muted-foreground">
+              <div className="flex items-center gap-3 rounded-xl border border-primary/35 bg-primary/10 px-3 py-2.5 font-semibold text-foreground">
                 <Phone className="h-4 w-4 shrink-0 text-primary" />
                 <a
                   href="tel:+493023613927"
@@ -64,12 +64,12 @@ export function SiteFooter() {
                   030 23613927
                 </a>
               </div>
-              <div className="flex items-start gap-3 rounded-xl border border-border/50 bg-background/60 px-3 py-2.5 text-muted-foreground">
+              <div className="flex items-start gap-3 rounded-xl border border-border/50 bg-background/60 px-3 py-2.5 text-foreground/76">
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <div>
                   <p>{t.footer.hoursWeek}</p>
                   <p>{t.footer.hoursSat}</p>
-                  <p className="text-xs">{t.footer.hoursNote}</p>
+                  <p className="text-xs text-foreground/62">{t.footer.hoursNote}</p>
                 </div>
               </div>
             </div>
@@ -83,7 +83,7 @@ export function SiteFooter() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                      className="text-sm text-foreground/72 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
                       {t.header.navigation[2].children[index].name}
                     </Link>
@@ -99,7 +99,7 @@ export function SiteFooter() {
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                      className="text-sm text-foreground/72 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
                       {item.name}
                     </Link>
@@ -115,7 +115,7 @@ export function SiteFooter() {
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                      className="text-sm text-foreground/72 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
                       {item.name}
                     </Link>
@@ -132,7 +132,7 @@ export function SiteFooter() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                      className="flex items-center gap-2 text-sm text-foreground/72 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
                       <Instagram className="h-4 w-4" />
                       <span>{item.name}</span>
