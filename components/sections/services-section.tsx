@@ -4,7 +4,6 @@
   Besucher koennen eine Leistung ansehen, Details oeffnen oder direkt anrufen.
 */
 import Image from "next/image"
-import Link from "next/link"
 import { ArrowRight, Car, ClipboardCheck, FileCheck, Phone, Sparkles, Truck, Wrench } from "lucide-react"
 import { ReadableText } from "@/components/readable-text"
 import { Button } from "@/components/ui/button"
@@ -27,7 +26,7 @@ type ServiceMeta = {
 const serviceMeta = [
   {
     icon: FileCheck,
-    image: "/images/home-service-accident.webp",
+    image: "/images/home-service-accident-wide.webp",
     imageClassName: "object-cover object-center",
     href: "/leistungen/unfallgutachten",
     contactText: "0176 64365185",
@@ -37,7 +36,7 @@ const serviceMeta = [
   {
     icon: Car,
     image: "/images/home-service-rental.webp",
-    imageClassName: "object-cover object-[42%_center]",
+    imageClassName: "object-cover object-[42%_top]",
     href: "/leistungen/autovermietung",
     contactText: "0174 4292900",
     contactHref: "tel:+491744292900",
@@ -46,7 +45,7 @@ const serviceMeta = [
   {
     icon: Wrench,
     image: "/images/home-service-workshop.webp",
-    imageClassName: "object-cover object-[58%_center]",
+    imageClassName: "object-cover object-[58%_top]",
     href: "/leistungen/autoservice",
     contactText: "0177 7883206",
     contactHref: "tel:+491777883206",
@@ -55,7 +54,7 @@ const serviceMeta = [
   {
     icon: Sparkles,
     image: "/images/home-service-detailing.webp",
-    imageClassName: "object-cover object-[42%_center]",
+    imageClassName: "object-cover object-[42%_top]",
     href: "/leistungen/detailing",
     contactText: "0177 6691006",
     contactHref: "tel:+491776691006",
@@ -87,7 +86,7 @@ export async function ServicesSection() {
   const t = getTranslations(locale).home.services
 
   return (
-    <section className="bg-background py-22 lg:py-30">
+    <section id="leistungen" className="bg-background py-22 lg:py-30">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto mb-12 max-w-5xl text-center sm:mb-16">
           <h2 className="mx-auto max-w-[24rem] text-[clamp(1.85rem,1.58rem+1.1vw,2.2rem)] leading-[1.08] font-semibold text-foreground sm:max-w-[15ch] sm:text-[clamp(1.9rem,1.35rem+1.45vw,3.15rem)] sm:leading-[1.04] sm:tracking-[-0.03em] sm:font-[650] lg:max-w-none">
@@ -96,7 +95,7 @@ export async function ServicesSection() {
           <ReadableText
             text={t.description}
             targetLineLength={180}
-            className="mx-auto mt-3 max-w-[34rem] text-[1rem] leading-[1.7] text-muted-foreground sm:mt-4 sm:max-w-none sm:text-[clamp(1rem,0.98rem+0.24vw,1.12rem)] sm:leading-[1.78]"
+            className="mx-auto mt-3 max-w-[34rem] text-body-fluid text-foreground/82 sm:mt-4 sm:max-w-none"
           />
         </div>
 
@@ -113,7 +112,7 @@ export async function ServicesSection() {
               >
                 <CardContent className="p-4 sm:p-5 lg:p-6">
                   <div className="flex h-full flex-col">
-                    <div className="relative aspect-square overflow-hidden rounded-[1.45rem] border border-border/55 bg-background shadow-[0_10px_22px_rgba(15,23,42,0.08)]">
+                    <div className="relative aspect-[16/10] overflow-hidden rounded-[1.45rem] border border-border/55 bg-background shadow-[0_10px_22px_rgba(15,23,42,0.08)]">
                       <Image
                         src={meta.image}
                         alt={service.title}
@@ -134,21 +133,21 @@ export async function ServicesSection() {
                           <p className="text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-primary">
                             {service.subtitle}
                           </p>
-                          <h3 className="mt-1 text-[clamp(1.14rem,1.02rem+0.38vw,1.42rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-foreground lg:whitespace-nowrap">
+                          <h3 className="mt-1 text-card-heading-fluid text-foreground lg:whitespace-nowrap">
                             {service.title}
                           </h3>
                         </div>
                       </div>
 
-                      <p className="mt-4 max-w-[62ch] text-[0.98rem] leading-7 text-muted-foreground">
+                      <p className="mt-3 max-w-[62ch] text-body-compact text-foreground/82">
                         {service.description}
                       </p>
 
-                      <ul className="mt-5 grid gap-y-3.5">
+                      <ul className="mt-4 grid gap-y-2">
                         {service.features.map((feature) => (
                           <li
                             key={feature}
-                            className="grid grid-cols-[0.45rem_minmax(0,1fr)] items-start gap-x-3 rounded-xl border border-border/55 bg-background/70 px-3 py-2.5 text-body-compact text-muted-foreground"
+                            className="grid grid-cols-[0.45rem_minmax(0,1fr)] items-start gap-x-3 rounded-xl border border-border/55 bg-background/70 px-3 py-2 text-body-compact text-foreground/78"
                           >
                             <span className="mt-[0.58rem] h-1.5 w-1.5 rounded-full bg-primary" />
                             <span>{feature}</span>
@@ -173,7 +172,7 @@ export async function ServicesSection() {
                               asChild
                               variant="outline"
                               size="sm"
-                              className="group w-full gap-2 border-primary/40 bg-primary/12 text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:!border-primary/55 hover:!bg-primary/12 hover:!text-foreground sm:ml-auto sm:w-auto"
+                              className="group w-full gap-2 border-primary/45 bg-primary/14 font-semibold text-foreground shadow-[0_10px_24px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-0.5 hover:!border-primary/60 hover:!bg-primary/16 hover:!text-foreground sm:ml-auto sm:w-auto"
                             >
                               <a href={meta.contactHref}>
                                 <Phone className="h-4 w-4 transition-transform duration-300 ease-out group-hover:-rotate-12 group-hover:scale-110" />
@@ -191,15 +190,6 @@ export async function ServicesSection() {
               </Card>
             )
           })}
-        </div>
-
-        <div className="mt-10 text-center sm:mt-12">
-          <Button asChild variant="outline" size="lg" className="w-full gap-2 sm:w-auto">
-            <Link href="/leistungen">
-              {t.viewAll}
-              <ArrowRight className="h-5 w-5" />
-            </Link>
-          </Button>
         </div>
       </div>
     </section>

@@ -1,3 +1,8 @@
+/*
+  Diese Datei zeigt den Expresslieferungs-Bereich der Startseite.
+  Sie erklaert den Kurierdienst mit Vorteilen, Bild, Kontaktbox und Anrufaktion.
+  Besucher koennen den Express-Service pruefen und direkt telefonisch anfragen.
+*/
 import Image from "next/image"
 import { ArrowRight, Clock3, Package, Truck } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -41,7 +46,7 @@ export async function ExpressCourierSection() {
                   </div>
                 </div>
 
-                <p className="mt-5 measure-intro-tight text-body-compact text-muted-foreground">
+                <p className="mt-5 measure-intro-tight text-body-fluid text-foreground/82">
                   {t.description}
                 </p>
 
@@ -52,7 +57,7 @@ export async function ExpressCourierSection() {
                       className="flex items-start gap-3 rounded-xl border border-border/50 bg-card p-4"
                     >
                       <Package className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                      <p className="measure-card-copy text-body-compact text-foreground">{feature}</p>
+                      <p className="measure-card-copy text-body-compact text-foreground/82">{feature}</p>
                     </div>
                   ))}
                 </div>
@@ -78,7 +83,7 @@ export async function ExpressCourierSection() {
                         height={imageHeight}
                       sizes="(min-width: 1024px) 32vw, (min-width: 640px) 50vw, 100vw"
                       quality={74}
-                      className="aspect-[16/11] h-auto w-full object-cover object-[52%_center]"
+                      className="aspect-[16/10] h-auto w-full object-cover object-[52%_center]"
                     />
                   </div>
 
@@ -86,10 +91,10 @@ export async function ExpressCourierSection() {
                       <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
                         <Clock3 className="h-7 w-7" />
                       </div>
-                      <h3 className="mt-5 measure-card-copy text-title-fluid font-semibold text-foreground">
+                      <h3 className="mt-5 measure-card-copy text-card-heading-fluid text-foreground">
                         {t.highlightTitle}
                       </h3>
-                      <p className="mt-3 measure-card-copy-wide text-body-compact text-muted-foreground">
+                      <p className="mt-3 measure-card-copy-wide text-body-compact text-foreground/78">
                         {t.highlightDescription}
                       </p>
                       <div className="mt-6 rounded-xl border border-border/50 bg-card/80 px-4 py-3">
@@ -98,7 +103,7 @@ export async function ExpressCourierSection() {
                         </p>
                         <a
                           href={contactHref}
-                          className="mt-2 inline-block text-lg font-semibold text-foreground transition-colors hover:text-primary"
+                          className="mt-2 inline-block text-xl font-semibold text-foreground transition-colors hover:text-primary"
                         >
                           {contactNumber}
                         </a>

@@ -1,7 +1,7 @@
 /*
   Diese Datei zeigt die 404-Seite.
   Sie erscheint, wenn eine aufgerufene Seite nicht existiert.
-  Nutzer koennen zur Startseite, zu den Leistungen oder direkt zum Kontakt wechseln.
+  Nutzer koennen zur Startseite, zum Leistungsbereich oder direkt zum Kontakt wechseln.
 */
 
 import { Button } from "@/components/ui/button"
@@ -21,7 +21,7 @@ export default function NotFound() {
             <Link href="/">Zur Startseite</Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href="/leistungen">Leistungen ansehen</Link>
+            <Link href="/#leistungen">Leistungen ansehen</Link>
           </Button>
           <Button asChild variant="outline">
             <Link href="/kontakt">Kontakt aufnehmen</Link>

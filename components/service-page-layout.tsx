@@ -103,6 +103,12 @@ export async function ServicePageLayout({
   const defaultBottomActions = phone
     ? [
         { label: phone, href: `tel:${phone.replace(/\s/g, "")}`, icon: "phone" as const },
+        {
+          label: "WhatsApp",
+          href: `https://wa.me/49${phone.replace(/\s/g, "").replace(/^0/, "")}`,
+          icon: "message" as const,
+          external: true,
+        },
         { label: t.contactCta, href: "/kontakt" },
       ]
     : [{ label: t.contactCta, href: "/kontakt" }]
@@ -156,10 +162,10 @@ export async function ServicePageLayout({
       ) : null
 
     const actionClassName = [
-      className,
       isPhoneAction
         ? "group transition-all duration-300 hover:-translate-y-0.5 hover:!border-primary/55 hover:!bg-primary/12 hover:!text-foreground"
         : "",
+      className,
     ]
       .filter(Boolean)
       .join(" ")
@@ -212,8 +218,8 @@ export async function ServicePageLayout({
 
         <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
           <Link
-            href="/leistungen"
-            className="mb-8 inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1.5 text-sm text-muted-foreground backdrop-blur-sm transition-colors hover:text-foreground"
+            href="/#leistungen"
+            className="mb-8 inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-1.5 text-sm text-foreground/72 backdrop-blur-sm transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
             {t.backToServices}
@@ -237,7 +243,7 @@ export async function ServicePageLayout({
               {renderLines(title, titleLines)}
             </h1>
             {descriptionLines ? (
-              <p className="mt-5 max-w-[62ch] text-[1rem] leading-[1.62] text-muted-foreground text-pretty sm:mt-6 sm:max-w-[68ch] sm:text-[clamp(1rem,0.98rem+0.24vw,1.12rem)] sm:leading-[1.38] lg:max-w-[72ch]">
+              <p className="mt-5 max-w-[62ch] text-body-fluid leading-[1.62] text-foreground/84 text-pretty sm:mt-6 sm:max-w-[68ch] sm:leading-[1.58] lg:max-w-[72ch]">
                 {descriptionLines.map((line, index) => (
                   <span
                     key={`${description}-${line}-${index}`}
@@ -252,7 +258,7 @@ export async function ServicePageLayout({
               <ReadableText
                 text={description}
                 targetLineLength={balancedTypography ? 74 : 82}
-                className="mt-5 max-w-[74ch] text-[1rem] leading-[1.62] text-muted-foreground sm:mt-6 sm:text-[clamp(1rem,0.98rem+0.24vw,1.12rem)] sm:leading-[1.78]"
+                className="mt-5 max-w-[74ch] text-body-fluid text-foreground/84 sm:mt-6"
               />
             )}
 
@@ -330,8 +336,8 @@ export async function ServicePageLayout({
                 <h3
                   className={
                     balancedTypography
-                      ? `max-w-[24ch] text-title-fluid leading-[1.12] font-semibold tracking-[-0.02em] text-foreground ${singleLineHeadings ? "lg:max-w-none lg:whitespace-nowrap" : "text-balance"}`
-                      : "max-w-[24ch] text-title-fluid font-semibold text-foreground"
+                      ? `max-w-[24ch] text-card-heading-fluid text-foreground ${singleLineHeadings ? "lg:max-w-none lg:whitespace-nowrap" : "text-balance"}`
+                      : "max-w-[24ch] text-card-heading-fluid text-foreground"
                   }
                 >
                   {renderLines(service.title, serviceTitleLineBreaks?.[service.title])}
@@ -340,14 +346,14 @@ export async function ServicePageLayout({
                   renderParagraphLines(
                     service.description,
                     serviceDescriptionLines[service.title],
-                    "mt-3 max-w-full text-[0.98rem] leading-[1.45] text-muted-foreground"
+                    "mt-3 max-w-full text-body-compact leading-[1.5] text-foreground/78"
                   )
                 ) : (
                   <ReadableText
                     text={service.description}
                     targetLineLength={balancedTypography ? 34 : 38}
                     lineGapClassName=""
-                    className="mt-3 max-w-full text-[0.98rem] leading-[1.45] text-muted-foreground"
+                    className="mt-3 max-w-full text-body-compact leading-[1.5] text-foreground/78"
                   />
                 )}
               </div>
@@ -360,13 +366,13 @@ export async function ServicePageLayout({
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-16">
             <div>
-              <h2 className="max-w-[18ch] text-heading-fluid font-semibold text-foreground">
+              <h2 className="max-w-none whitespace-nowrap text-[1.72rem] leading-[1.04] font-[650] tracking-[-0.024em] text-foreground sm:text-heading-fluid">
                 {t.whyTitle}
               </h2>
               <ReadableText
                 text={t.whyDescription}
                 targetLineLength={68}
-                className="mt-4 max-w-[60ch] text-body-compact text-muted-foreground"
+                className="mt-4 max-w-[60ch] text-body-compact text-foreground/80"
               />
 
               <div className="mt-8 space-y-4">
@@ -382,8 +388,8 @@ export async function ServicePageLayout({
                       <h3
                         className={
                           balancedTypography
-                            ? `max-w-[24ch] text-title-fluid leading-[1.12] font-semibold tracking-[-0.02em] text-foreground ${singleLineHeadings ? "lg:max-w-none lg:whitespace-nowrap" : "text-balance"}`
-                            : "max-w-[24ch] text-title-fluid font-semibold text-foreground"
+                            ? `max-w-[24ch] text-card-heading-fluid text-foreground ${singleLineHeadings ? "lg:max-w-none lg:whitespace-nowrap" : "text-balance"}`
+                            : "max-w-[24ch] text-card-heading-fluid text-foreground"
                         }
                       >
                         {renderLines(item.title, whyChooseTitleLineBreaks?.[item.title])}
@@ -392,14 +398,14 @@ export async function ServicePageLayout({
                         renderParagraphLines(
                           item.description,
                           whyChooseDescriptionLines[item.title],
-                          "mt-2 max-w-full text-body-compact leading-[1.45] text-muted-foreground"
+                          "mt-2 max-w-full text-body-compact leading-[1.5] text-foreground/78"
                         )
                       ) : (
                         <ReadableText
                           text={item.description}
                           targetLineLength={balancedTypography ? 36 : 40}
                           lineGapClassName=""
-                          className="mt-2 max-w-full text-body-compact leading-[1.45] text-muted-foreground"
+                          className="mt-2 max-w-full text-body-compact leading-[1.5] text-foreground/78"
                         />
                       )}
                     </div>
@@ -421,7 +427,7 @@ export async function ServicePageLayout({
 
       {faqs && faqs.length > 0 && (
         <section className="bg-card py-16 lg:py-24">
-          <div className="mx-auto max-w-3xl px-4 lg:px-8">
+          <div className="mx-auto max-w-4xl px-3 sm:px-4 lg:px-8">
             <h2 className="mx-auto mb-12 max-w-[18ch] text-heading-fluid font-semibold text-center text-foreground">
               {t.faqTitle}
             </h2>
@@ -442,12 +448,12 @@ export async function ServicePageLayout({
                   >
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
+                  <AccordionContent className="text-foreground/78">
                     <ReadableText
                       text={faq.answer}
                       targetLineLength={72}
                       lineGapClassName=""
-                      className="max-w-[64ch] pb-1 text-body-compact leading-[1.45] text-muted-foreground"
+                      className="max-w-[64ch] pb-1 text-body-compact leading-[1.5] text-foreground/78"
                     />
                   </AccordionContent>
                 </AccordionItem>
@@ -457,29 +463,36 @@ export async function ServicePageLayout({
         </section>
       )}
 
-      <section className="bg-primary py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-4 text-center lg:px-8">
-          <h2 className="mx-auto max-w-[18ch] text-heading-fluid font-semibold text-primary-foreground">
-            {t.questionsTitle}
-          </h2>
-          <ReadableText
-            text={t.questionsDescription}
-            targetLineLength={76}
-            className="mx-auto mt-4 max-w-[64ch] text-body-fluid text-primary-foreground/80"
-          />
-          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-            {resolvedBottomActions.map((action, index) => (
-              <div key={`${action.href}-${action.label}`} className="contents">
-                {renderAction(
-                  action,
-                  index === 0 ? "secondary" : "outline",
-                  index === 0
-                    ? "w-full gap-2 bg-white text-primary hover:bg-white/90 sm:w-auto sm:min-w-[12rem]"
-                    : "w-full gap-2 border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white sm:w-auto sm:min-w-[12rem]"
-                )}
-              </div>
-            )
-            )}
+      <section className="relative overflow-hidden border-y border-border/70 bg-card py-16 lg:py-20">
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(115,18,28,0.42),rgba(115,18,28,0.18)_42%,transparent_78%)]" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/12" />
+
+        <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <h2 className="max-w-[22rem] text-[clamp(1.85rem,1.5rem+1.15vw,2.65rem)] leading-[1.08] font-semibold tracking-[-0.02em] text-primary-foreground sm:max-w-[18ch] lg:max-w-none lg:whitespace-nowrap">
+                {t.questionsTitle}
+              </h2>
+              <ReadableText
+                text={t.questionsDescription}
+                targetLineLength={76}
+                className="mt-4 max-w-[64ch] text-body-fluid text-primary-foreground/86"
+              />
+            </div>
+
+            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+              {resolvedBottomActions.map((action, index) => (
+                <div key={`${action.href}-${action.label}`} className="contents">
+                  {renderAction(
+                    action,
+                    index === 0 ? "secondary" : "outline",
+                    index === 0
+                      ? "w-full gap-2 bg-white font-semibold text-primary shadow-[0_16px_34px_rgba(15,23,42,0.28)] hover:!bg-white/92 hover:!text-primary sm:w-auto sm:min-w-[12rem]"
+                      : "w-full gap-2 border-white/35 bg-transparent text-white hover:bg-white/12 hover:text-white sm:w-auto sm:min-w-[12rem]"
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
           {contactNote && (
             <ReadableText

@@ -13,7 +13,7 @@ export const headerFooterTranslations = {
         { name: "Über uns", href: "/ueber-uns" },
         {
           name: "Leistungen",
-          href: "/leistungen",
+          href: "/#leistungen",
           children: [
             { name: "Unfallhilfe & Gutachten", href: "/leistungen/unfallgutachten" },
             { name: "Autovermietung", href: "/leistungen/autovermietung" },
@@ -39,14 +39,10 @@ export const headerFooterTranslations = {
       description:
         "Kompletter Fahrzeug-Service in Berlin: Unfallhilfe & Gutachten, Autovermietung, Werkstatt & Service, Aufbereitung & Pflege, Kfz-Zulassung und Pannenhilfe & Abschleppen aus einer Hand.",
       address: "Lübarser Str. 25, 13435 Berlin",
-      hoursWeek: "Mo-Fr: 09:00-18:00",
-      hoursSat: "Sa: 10:00-16:00",
-      hoursNote: "sonst nach Vereinbarung",
       columns: {
         services: "Leistungen",
         company: "Unternehmen",
         legal: "Rechtliches",
-        social: "Social Media",
       },
       companyLinks: [
         { name: "Über uns", href: "/ueber-uns" },
@@ -78,7 +74,7 @@ export const headerFooterTranslations = {
         { name: "About", href: "/ueber-uns" },
         {
           name: "Services",
-          href: "/leistungen",
+          href: "/#leistungen",
           children: [
             { name: "Accident Reports", href: "/leistungen/unfallgutachten" },
             { name: "Car Rental", href: "/leistungen/autovermietung" },
@@ -104,14 +100,10 @@ export const headerFooterTranslations = {
       description:
         "Your strong automotive partner in Berlin. Accident reports, car rental, workshop service, vehicle registration, towing, premium detailing and express delivery from one source.",
       address: "Lübarser Str. 25, 13435 Berlin",
-      hoursWeek: "Mon-Fri: 09:00 AM-6:00 PM",
-      hoursSat: "Sat: 10:00 AM-4:00 PM",
-      hoursNote: "otherwise by appointment",
       columns: {
         services: "Services",
         company: "Company",
         legal: "Legal",
-        social: "Social media",
       },
       companyLinks: [
         { name: "About", href: "/ueber-uns" },
@@ -143,7 +135,7 @@ export const headerFooterTranslations = {
         { name: "О нас", href: "/ueber-uns" },
         {
           name: "Услуги",
-          href: "/leistungen",
+          href: "/#leistungen",
           children: [
             { name: "Экспертиза ДТП", href: "/leistungen/unfallgutachten" },
             { name: "Прокат авто", href: "/leistungen/autovermietung" },
@@ -169,14 +161,10 @@ export const headerFooterTranslations = {
       description:
         "Ваш надежный автомобильный партнер в Берлине. Экспертиза ДТП, прокат авто, сервис, регистрация, эвакуатор и премиальный детейлинг под одной крышей.",
       address: "Lübarser Str. 25, 13435 Berlin",
-      hoursWeek: "Пн-Пт: 09:00-18:00",
-      hoursSat: "Сб: 10:00-16:00",
-      hoursNote: "в другое время по договоренности",
       columns: {
         services: "Услуги",
         company: "Компания",
         legal: "Правовая информация",
-        social: "Соцсети",
       },
       companyLinks: [
         { name: "О нас", href: "/ueber-uns" },

@@ -1,3 +1,8 @@
+/*
+  Diese Datei zeigt den Ueber-uns-Bereich der Startseite.
+  Sie verbindet ein Bild, kurze Kennzahlen, Text und Vertrauenspunkte.
+  Besucher koennen mehr ueber UNEXT lesen und zur Ueber-uns-Seite wechseln.
+*/
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, CheckCircle } from "lucide-react"
@@ -30,17 +35,17 @@ export async function AboutSection() {
               <div className="flex flex-wrap justify-center gap-4 rounded-xl border border-border bg-card p-4 shadow-lg sm:flex-nowrap">
                 <div className="min-w-[84px] px-2 text-center">
                   <p className="text-2xl font-bold text-primary">2024</p>
-                  <p className="text-xs text-muted-foreground">{t.stats.founded}</p>
+                  <p className="text-xs font-medium text-foreground/72">{t.stats.founded}</p>
                 </div>
                 <div className="hidden w-px bg-border sm:block" />
                 <div className="min-w-[84px] px-2 text-center">
                   <p className="text-2xl font-bold text-primary">6</p>
-                  <p className="text-xs text-muted-foreground">{t.stats.services}</p>
+                  <p className="text-xs font-medium text-foreground/72">{t.stats.services}</p>
                 </div>
                 <div className="hidden w-px bg-border sm:block" />
                 <div className="min-w-[84px] px-2 text-center">
                   <p className="text-2xl font-bold text-primary">1</p>
-                  <p className="text-xs text-muted-foreground">{t.stats.location}</p>
+                  <p className="text-xs font-medium text-foreground/72">{t.stats.location}</p>
                 </div>
               </div>
             </div>
@@ -53,12 +58,12 @@ export async function AboutSection() {
             <h2 className="mt-2 measure-heading text-heading-fluid font-semibold text-foreground">
               {t.title}
             </h2>
-            <p className="mt-6 measure-intro-tight text-body-fluid text-muted-foreground">{t.paragraph1}</p>
-            <p className="mt-4 measure-intro-tight text-body-fluid text-muted-foreground">{t.paragraph2}</p>
+            <p className="mt-6 measure-intro-tight text-body-fluid text-foreground/82">{t.paragraph1}</p>
+            <p className="mt-4 measure-intro-tight text-body-fluid text-foreground/82">{t.paragraph2}</p>
 
             <ul className="mt-8 space-y-3">
               {t.highlights.map((item) => (
-                <li key={item} className="flex items-center gap-3 text-sm text-foreground">
+                <li key={item} className="flex items-center gap-3 text-body-compact text-foreground/82">
                   <CheckCircle className="h-5 w-5 shrink-0 text-primary" />
                   {item}
                 </li>

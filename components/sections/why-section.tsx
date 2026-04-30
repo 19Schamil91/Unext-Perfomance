@@ -1,3 +1,8 @@
+/*
+  Diese Datei zeigt den Bereich mit Gruenden fuer UNEXT.
+  Sie zeigt Vorteile als Karten mit Icon, Titel und kurzer Erklaerung.
+  Besucher koennen vergleichen, warum UNEXT fuer ihre Anfrage passt.
+*/
 import { Award, Clock, Euro, MapPin, ShieldCheck, Users } from "lucide-react"
 import { getCurrentLocale } from "@/lib/server-locale"
 import { getTranslations } from "@/lib/translations"
@@ -15,7 +20,7 @@ export async function WhySection() {
           <h2 className="mx-auto text-heading-fluid font-semibold text-foreground lg:whitespace-nowrap">
             {t.title}
           </h2>
-          <p className="mx-auto mt-4 text-body-fluid text-muted-foreground lg:whitespace-nowrap">{t.description}</p>
+          <p className="mx-auto mt-4 text-body-fluid text-foreground/82 lg:whitespace-nowrap">{t.description}</p>
         </div>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -30,8 +35,8 @@ export async function WhySection() {
                 <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
                   <Icon className="h-7 w-7" />
                 </div>
-                <h3 className="measure-card-copy text-title-fluid font-semibold text-foreground">{benefit.title}</h3>
-                <p className="mt-2 measure-card-copy text-body-compact text-muted-foreground">
+                <h3 className="measure-card-copy text-card-heading-fluid text-foreground">{benefit.title}</h3>
+                <p className="mt-2 measure-card-copy text-body-compact text-foreground/78">
                   {benefit.description}
                 </p>
               </div>

@@ -1,3 +1,8 @@
+/*
+  Diese Datei zeigt den Prozessbereich der Startseite.
+  Sie erklaert die Kontakt- und Ablauf-Schritte bis zur passenden Hilfe.
+  Besucher koennen schnell verstehen, wie eine Anfrage bei UNEXT ablaeuft.
+*/
 import { CheckCircle, Clock, MessageSquare, Phone } from "lucide-react"
 import { ReadableText } from "@/components/readable-text"
 import { getCurrentLocale } from "@/lib/server-locale"
@@ -19,7 +24,7 @@ export async function ProcessSection() {
           <ReadableText
             text={t.description}
             targetLineLength={72}
-            className="mx-auto mt-3 max-w-[34rem] text-[1rem] leading-[1.7] text-muted-foreground sm:mt-4 sm:max-w-[66ch] sm:text-[clamp(1rem,0.98rem+0.24vw,1.12rem)] sm:leading-[1.78]"
+            className="mx-auto mt-3 max-w-[34rem] text-body-fluid text-foreground/82 sm:mt-4 sm:max-w-[66ch]"
           />
         </div>
 
@@ -42,8 +47,8 @@ export async function ProcessSection() {
                     </span>
                   </div>
 
-                  <h3 className="measure-card-copy text-title-fluid font-semibold text-foreground">{item.title}</h3>
-                  <p className="mt-2 measure-card-copy text-body-compact text-muted-foreground">
+                  <h3 className="measure-card-copy text-card-heading-fluid text-foreground">{item.title}</h3>
+                  <p className="mt-2 measure-card-copy text-body-compact text-foreground/78">
                     {item.description}
                   </p>
 
